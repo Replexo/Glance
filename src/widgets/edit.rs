@@ -20,9 +20,11 @@ pub mod crop;
 pub mod crop_selection;
 pub mod markup;
 pub mod markup_canvas;
+pub mod resize_dialog;
 
 pub use adjust::LpEditAdjust;
 pub use crop::LpEditCrop;
 pub use crop_selection::LpEditCropSelection;
 pub use markup::LpEditMarkup;
 pub use markup_canvas::LpMarkupCanvas;
+pub use resize_dialog::LpResizeDialog;

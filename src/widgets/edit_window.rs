@@ -71,6 +71,7 @@ mod imp {
         pub(super) operations: RefCell<Option<Arc<Operations>>>,
         pub(super) adjustments: Cell<Adjustments>,
         pub(super) markup: RefCell<Arc<Vec<Shape>>>,
+        pub(super) resize: Cell<Option<f64>>,
 
         /// States before each change, for undo
         pub(super) history: RefCell<Vec<EditState>>,
@@ -549,6 +550,7 @@ mod imp {
                 || obj.edit_crop().selection().cropped()
                 || !self.adjustments.get().is_identity()
                 || !self.markup.borrow().is_empty()
+                || self.resize.get().is_some()
         }
 
         pub fn update_save_state(&self, force_disabled: bool) {
@@ -573,6 +575,7 @@ pub struct EditState {
     operations: Option<Arc<Operations>>,
     adjustments: Adjustments,
     markup: Arc<Vec<Shape>>,
+    resize: Option<f64>,
 }
 
 glib::wrapper! {
@@ -610,8 +613,9 @@ impl LpEditWindow {
     fn replace_operations(&self, operations: Option<Arc<glycin::Operations>>) {
         let imp = self.imp();
         imp.operations.replace(operations);
-        // Markup follows the operations
+        // Markup and the resized size follow the operations
         self.edit_crop().markup_changed();
+        self.edit_crop().update_resize_label();
         imp.update_save_state(false);
     }
 
@@ -671,7 +675,40 @@ impl LpEditWindow {
         PixelEdits {
             adjustments: self.adjustments(),
             markup: self.markup(),
+            resize: self.resize(),
         }
+    }
+
+    /// Factor the image is scaled down by on save
+    pub fn resize(&self) -> Option<f64> {
+        self.imp().resize.get()
+    }
+
+    pub fn set_resize(&self, resize: Option<f64>) {
+        // Only a resize that changes the size counts
+        let (width, height) = self.edit_crop().image().image_size();
+        let size = (width.max(1) as u32, height.max(1) as u32);
+        let resize = resize.filter(|x| crate::editing::render::scaled_size(size, *x) != size);
+        if resize != self.resize() {
+            self.record(None);
+            self.replace_resize(resize);
+        }
+    }
+
+    fn replace_resize(&self, resize: Option<f64>) {
+        let imp = self.imp();
+        imp.resize.set(resize);
+        self.edit_crop().update_resize_label();
+        imp.update_save_state(false);
+    }
+
+    /// Undoes crop, rotate, flip and resize as one step
+    pub fn reset_crop_view(&self) {
+        if self.operations().is_some() || self.resize().is_some() {
+            self.record(None);
+        }
+        self.replace_operations(None);
+        self.replace_resize(None);
     }
 
     fn state(&self) -> EditState {
@@ -679,6 +716,7 @@ impl LpEditWindow {
             operations: self.operations(),
             adjustments: self.adjustments(),
             markup: self.markup(),
+            resize: self.resize(),
         }
     }
 
@@ -715,6 +753,7 @@ impl LpEditWindow {
         self.replace_operations(state.operations);
         self.replace_adjustments(state.adjustments);
         self.replace_markup(state.markup);
+        self.replace_resize(state.resize);
 
         edit_crop.state_restored();
         self.update_history_actions();

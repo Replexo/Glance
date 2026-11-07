@@ -38,11 +38,13 @@ use crate::deps::*;
 pub struct PixelEdits {
     pub adjustments: Adjustments,
     pub markup: Arc<Vec<Shape>>,
+    /// Factor to scale the image down by, as the last step
+    pub resize: Option<f64>,
 }
 
 impl PixelEdits {
     pub fn is_empty(&self) -> bool {
-        self.adjustments.is_identity() && self.markup.is_empty()
+        self.adjustments.is_identity() && self.markup.is_empty() && self.resize.is_none()
     }
 
     /// Applies the pixel edits to an image that already has the geometric
@@ -59,8 +61,60 @@ impl PixelEdits {
 
         let original_size = (original_size.0 as f64, original_size.1 as f64);
         let (matrix, _) = markup::operations_matrix(operations, original_size);
-        markup::flatten(image, &self.markup, matrix)
+        markup::flatten(image, &self.markup, matrix)?;
+
+        if let Some(scale) = self.resize {
+            let (width, height) = scaled_size(image.dimensions(), scale);
+            if (width, height) != image.dimensions() {
+                *image = resize(image, width, height);
+            }
+        }
+
+        Ok(())
     }
+}
+
+/// Size after scaling `(width, height)` down by `scale`, at least one pixel
+pub fn scaled_size((width, height): (u32, u32), scale: f64) -> (u32, u32) {
+    (
+        ((width as f64 * scale).round() as u32).clamp(1, width.max(1)),
+        ((height as f64 * scale).round() as u32).clamp(1, height.max(1)),
+    )
+}
+
+/// Scales with Lanczos filtering on premultiplied colours, so transparent
+/// pixels don't bleed their hidden colour into the edges
+fn resize(image: &RgbaImage, width: u32, height: u32) -> RgbaImage {
+    use image::imageops::{self, FilterType};
+
+    // Without transparency there is nothing to bleed and 8 bit is enough
+    if image.pixels().all(|pixel| pixel.0[3] == 255) {
+        return imageops::resize(image, width, height, FilterType::Lanczos3);
+    }
+
+    let premultiplied = image::Rgba32FImage::from_fn(image.width(), image.height(), |x, y| {
+        let [r, g, b, a] = image.get_pixel(x, y).0.map(|c| c as f32 / 255.);
+        image::Rgba([r * a, g * a, b * a, a])
+    });
+    let resized = imageops::resize(&premultiplied, width, height, FilterType::Lanczos3);
+    drop(premultiplied);
+    RgbaImage::from_fn(width, height, |x, y| {
+        let [r, g, b, a] = resized.get_pixel(x, y).0;
+        let a = a.clamp(0., 1.);
+        let straight = |c: f32| {
+            if a > 0. {
+                ((c / a).clamp(0., 1.) * 255.).round() as u8
+            } else {
+                0
+            }
+        };
+        image::Rgba([
+            straight(r),
+            straight(g),
+            straight(b),
+            (a * 255.).round() as u8,
+        ])
+    })
 }
 
 /// Loads `file`, applies `operations` and `edits` and returns the encoded
@@ -319,6 +373,42 @@ mod tests {
             Operation::Clip((0, 1, 2, 2)),
         ]);
         assert_eq!(reds(&image), [1, 4, 0, 3]);
+    }
+
+    #[test]
+    fn scaled_size_keeps_ratio_and_bounds() {
+        assert_eq!(scaled_size((4000, 3000), 0.5), (2000, 1500));
+        assert_eq!(scaled_size((4000, 3000), 1.), (4000, 3000));
+        assert_eq!(scaled_size((4000, 3000), 0.), (1, 1));
+        assert_eq!(scaled_size((3, 1000), 0.1), (1, 100));
+        assert_eq!(scaled_size((4000, 3000), 2.), (4000, 3000));
+    }
+
+    #[test]
+    fn resize_applies_last() {
+        let edits = PixelEdits {
+            resize: Some(0.5),
+            ..Default::default()
+        };
+        let mut image = RgbaImage::from_pixel(40, 20, image::Rgba([10, 200, 30, 255]));
+        edits.apply(&mut image, None, (40, 20)).unwrap();
+        assert_eq!(image.dimensions(), (20, 10));
+        assert_eq!(image.get_pixel(10, 5).0, [10, 200, 30, 255]);
+    }
+
+    #[test]
+    fn resize_does_not_bleed_transparent_colour() {
+        // Left half opaque white, right half transparent "red"
+        let mut image = RgbaImage::from_fn(40, 20, |x, _| {
+            if x < 20 {
+                image::Rgba([255, 255, 255, 255])
+            } else {
+                image::Rgba([255, 0, 0, 0])
+            }
+        });
+        image = resize(&image, 20, 10);
+        let edge = image.get_pixel(9, 5).0;
+        assert!(edge[1] > 240 && edge[2] > 240, "{edge:?}");
     }
 
     #[test]

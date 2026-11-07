@@ -112,6 +112,17 @@
                         <child>
                           <object class="GtkBox" id="box-start">
                             <property name="hexpand">true</property>
+                            <child>
+                              <object class="GtkLabel" id="resize_label">
+                                <property name="visible">false</property>
+                                <property name="tooltip-text" translatable="yes">Size After Resizing</property>
+                                <style>
+                                  <class name="dimmed" />
+                                  <class name="caption" />
+                                  <class name="numeric" />
+                                </style>
+                              </object>
+                            </child>
                           </object>
                         </child>
                         <child>
@@ -160,6 +171,14 @@
                                     </child>
                                   </object>
                                 </property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="icon-name">transform-scale-symbolic</property>
+                                <property name="tooltip-text" translatable="yes">Resize</property>
+                                <property name="action-name">edit-crop.resize</property>
+                                <property name="valign">start</property>
                               </object>
                             </child>
                             <child>

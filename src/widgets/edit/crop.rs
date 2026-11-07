@@ -32,7 +32,9 @@ use crate::util::gettext::*;
 use crate::util::root::ParentWindow;
 use crate::widgets::LpImage;
 use crate::widgets::edit::markup::{color_from_name, tool_from_name};
-use crate::widgets::edit::{LpEditAdjust, LpEditCropSelection, LpEditMarkup, LpMarkupCanvas};
+use crate::widgets::edit::{
+    LpEditAdjust, LpEditCropSelection, LpEditMarkup, LpMarkupCanvas, LpResizeDialog,
+};
 
 /// Aspect ratio modes that can be selected
 #[derive(Debug, Clone, Copy, Default, glib::Enum, glib::Variant)]
@@ -80,6 +82,8 @@ mod imp {
         pub(super) markup: TemplateChild<LpEditMarkup>,
         #[template_child]
         pub(super) markup_canvas: TemplateChild<LpMarkupCanvas>,
+        #[template_child]
+        pub(super) resize_label: TemplateChild<gtk::Label>,
 
         #[property(get, construct_only)]
         original_image: OnceCell<LpImage>,
@@ -118,6 +122,9 @@ mod imp {
             });
             klass.install_action("edit-crop.reset", None, |obj, _, _| {
                 obj.handle_error(obj.imp().apply_reset())
+            });
+            klass.install_action("edit-crop.resize", None, |obj, _, _| {
+                obj.imp().show_resize_dialog()
             });
             klass.install_action("edit-crop.apply-crop", None, |obj, _, _| {
                 obj.imp().apply_crop()
@@ -342,7 +349,7 @@ mod imp {
             self.image
                 .set_operations(Some(Arc::new(Operations::new(Vec::new()))))?;
 
-            obj.edit_window().set_operations(None);
+            obj.edit_window().reset_crop_view();
             self.reset_selection();
 
             let res = self.obj().activate_action(
@@ -388,7 +395,10 @@ mod imp {
         }
 
         pub(super) fn is_reset_enabled(&self) -> bool {
-            self.obj().edit_window().operations().is_some() || self.selection.cropped()
+            let edit_window = self.obj().edit_window();
+            edit_window.operations().is_some()
+                || edit_window.resize().is_some()
+                || self.selection.cropped()
         }
 
         fn asepect_ratio_orientation_changed(&self) {
@@ -401,6 +411,25 @@ mod imp {
                     obj.add_css_class("button-icons-portrait");
                 }
             }
+        }
+
+        fn show_resize_dialog(&self) {
+            let obj = self.obj();
+            // The size shown includes a pending crop
+            self.apply_crop();
+
+            let edit_window = obj.edit_window();
+            let (width, height) = self.image.image_size();
+            let dialog = LpResizeDialog::new(
+                (width.max(1) as u32, height.max(1) as u32),
+                edit_window.resize().unwrap_or(1.),
+            );
+            dialog.connect_scale_chosen(glib::clone!(
+                #[weak]
+                edit_window,
+                move |_, scale| edit_window.set_resize(Some(scale))
+            ));
+            dialog.present(Some(&*obj));
         }
 
         fn set_mode(&self, mode: String) {
@@ -425,6 +454,7 @@ mod imp {
                 "edit-crop.mirror-vertically",
                 "edit-crop.rotate-cw",
                 "edit-crop.rotate-ccw",
+                "edit-crop.resize",
             ] {
                 obj.action_set_enabled(action, is_crop);
             }
@@ -489,6 +519,29 @@ impl LpEditCrop {
 
     pub fn markup_changed(&self) {
         self.imp().markup_canvas.queue_draw();
+    }
+
+    /// Shows the size the image will be saved at while it is resized
+    pub fn update_resize_label(&self) {
+        let imp = self.imp();
+        let Some(edit_window) = self.try_edit_window() else {
+            return;
+        };
+
+        if let Some(scale) = edit_window.resize() {
+            let (width, height) = imp.image.image_size();
+            let (width, height) =
+                crate::editing::render::scaled_size((width as u32, height as u32), scale);
+            imp.resize_label.set_label(&format!("{width} × {height}"));
+            imp.resize_label.set_visible(true);
+        } else {
+            imp.resize_label.set_visible(false);
+        }
+
+        self.action_set_enabled(
+            "edit-crop.reset",
+            self.mode() == "crop" && imp.is_reset_enabled(),
+        );
     }
 
     /// Updates controls after undo or redo
