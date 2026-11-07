@@ -103,7 +103,6 @@
                 <child>
                   <object class="AdwToggle">
                     <property name="name">markup</property>
-                    <property name="enabled">false</property>
                     <property name="tooltip" translatable="yes">Markup</property>
                     <property name="child">
                       <object class="AdwButtonContent">

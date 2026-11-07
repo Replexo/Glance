@@ -27,25 +27,39 @@ use glycin::{MemoryFormat, MemoryFormatSelection, Operation, Operations};
 use gufo::common::orientation::Rotation;
 use image::RgbaImage;
 
+use std::sync::Arc;
+
 use super::adjust::Adjustments;
+use super::markup::{self, Shape};
 use crate::deps::*;
 
 /// Edits that need the image to be decoded and encoded again
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct PixelEdits {
     pub adjustments: Adjustments,
+    pub markup: Arc<Vec<Shape>>,
 }
 
 impl PixelEdits {
     pub fn is_empty(&self) -> bool {
-        self.adjustments.is_identity()
+        self.adjustments.is_identity() && self.markup.is_empty()
     }
 
     /// Applies the pixel edits to an image that already has the geometric
-    /// operations applied
-    pub fn apply(&self, image: &mut RgbaImage) -> anyhow::Result<()> {
+    /// `operations` applied to its `original_size`
+    ///
+    /// Markup is drawn after the adjustments, so its colours stay as picked.
+    pub fn apply(
+        &self,
+        image: &mut RgbaImage,
+        operations: Option<&Operations>,
+        original_size: (u32, u32),
+    ) -> anyhow::Result<()> {
         self.adjustments.apply_rgba8(image.as_mut());
-        Ok(())
+
+        let original_size = (original_size.0 as f64, original_size.1 as f64);
+        let (matrix, _) = markup::operations_matrix(operations, original_size);
+        markup::flatten(image, &self.markup, matrix)
     }
 }
 
@@ -96,11 +110,12 @@ pub async fn render(
 
     let (format, width, height, data) = gio::spawn_blocking(move || {
         let mut pixels = pixels;
+        let original_size = pixels.dimensions();
         if let Some(operations) = &operations {
             pixels = apply_operations(pixels, operations)?;
         }
 
-        edits.apply(&mut pixels)?;
+        edits.apply(&mut pixels, operations.as_ref(), original_size)?;
 
         let (width, height) = pixels.dimensions();
         // glycin's conversion from RGBA to a format without alpha prefers grey

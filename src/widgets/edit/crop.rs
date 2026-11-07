@@ -31,7 +31,8 @@ use crate::util::ErrorType;
 use crate::util::gettext::*;
 use crate::util::root::ParentWindow;
 use crate::widgets::LpImage;
-use crate::widgets::edit::{LpEditAdjust, LpEditCropSelection};
+use crate::widgets::edit::markup::{color_from_name, tool_from_name};
+use crate::widgets::edit::{LpEditAdjust, LpEditCropSelection, LpEditMarkup, LpMarkupCanvas};
 
 /// Aspect ratio modes that can be selected
 #[derive(Debug, Clone, Copy, Default, glib::Enum, glib::Variant)]
@@ -75,6 +76,10 @@ mod imp {
         mode_stack: TemplateChild<gtk::Stack>,
         #[template_child]
         pub(super) adjust: TemplateChild<LpEditAdjust>,
+        #[template_child]
+        pub(super) markup: TemplateChild<LpEditMarkup>,
+        #[template_child]
+        pub(super) markup_canvas: TemplateChild<LpMarkupCanvas>,
 
         #[property(get, construct_only)]
         original_image: OnceCell<LpImage>,
@@ -95,6 +100,8 @@ mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             LpEditAdjust::static_type();
+            LpEditMarkup::static_type();
+            LpMarkupCanvas::static_type();
             Self::bind_template(klass);
 
             klass.install_action("edit-crop.mirror-horizontally", None, |obj, _, _| {
@@ -196,6 +203,49 @@ mod imp {
             ));
 
             obj.insert_action_group("edit-crop", Some(&actions));
+
+            let markup_actions = gio::SimpleActionGroup::new();
+            let tool_action = gio::SimpleAction::new_stateful(
+                "tool",
+                Some(glib::VariantTy::STRING),
+                &"brush".to_variant(),
+            );
+            tool_action.connect_activate(glib::clone!(
+                #[weak]
+                obj,
+                move |action, target| {
+                    if let Some(name) = target.and_then(|x| x.get::<String>())
+                        && let Some(tool) = tool_from_name(&name)
+                    {
+                        action.set_state(&name.to_variant());
+                        obj.imp().markup_canvas.set_tool(tool);
+                    }
+                }
+            ));
+            markup_actions.add_action(&tool_action);
+
+            let color_action = gio::SimpleAction::new_stateful(
+                "color",
+                Some(glib::VariantTy::STRING),
+                &"blue".to_variant(),
+            );
+            color_action.connect_activate(glib::clone!(
+                #[weak]
+                obj,
+                move |action, target| {
+                    if let Some(name) = target.and_then(|x| x.get::<String>())
+                        && let Some(color) = color_from_name(&name)
+                    {
+                        action.set_state(&name.to_variant());
+                        let imp = obj.imp();
+                        imp.markup_canvas.set_color(color);
+                        imp.markup.show_color(&name);
+                    }
+                }
+            ));
+            markup_actions.add_action(&color_action);
+            obj.insert_action_group("edit-markup", Some(&markup_actions));
+            self.markup.show_color("blue");
 
             obj.action_set_enabled("edit-crop.reset", false);
 
@@ -325,20 +375,19 @@ mod imp {
             let obj = self.obj();
 
             let edit_window = obj.edit_window();
-            let previous_operiatons = edit_window.operations();
             edit_window.add_operation(operation);
             let res = self.image.set_operations(edit_window.operations());
 
             if res.is_err() {
                 obj.handle_error(res);
-                // Reset to set of hopefully working operations
-                edit_window.set_operations(previous_operiatons);
+                // Back to the set of hopefully working operations
+                edit_window.discard_last_change();
             } else {
                 obj.action_set_enabled("edit-crop.reset", true);
             }
         }
 
-        fn is_reset_enabled(&self) -> bool {
+        pub(super) fn is_reset_enabled(&self) -> bool {
             self.obj().edit_window().operations().is_some() || self.selection.cropped()
         }
 
@@ -369,6 +418,7 @@ mod imp {
             let is_crop = mode == "crop";
             self.selection.set_visible(is_crop);
             self.selection.set_can_target(is_crop);
+            self.markup_canvas.set_can_target(mode == "markup");
             for action in [
                 "edit-crop.apply-crop",
                 "edit-crop.mirror-horizontally",
@@ -388,6 +438,10 @@ mod imp {
 
             if mode == "adjust" {
                 self.adjust.sync();
+            }
+
+            if let Some(edit_window) = obj.try_edit_window() {
+                edit_window.end_coalescing();
             }
 
             self.mode.replace(mode);
@@ -431,5 +485,20 @@ impl LpEditCrop {
 
     pub fn image(&self) -> LpImage {
         self.imp().image.clone()
+    }
+
+    pub fn markup_changed(&self) {
+        self.imp().markup_canvas.queue_draw();
+    }
+
+    /// Updates controls after undo or redo
+    pub fn state_restored(&self) {
+        let imp = self.imp();
+        imp.adjust.sync();
+        imp.markup_canvas.queue_draw();
+        self.action_set_enabled(
+            "edit-crop.reset",
+            self.mode() == "crop" && imp.is_reset_enabled(),
+        );
     }
 }

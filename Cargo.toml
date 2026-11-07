@@ -43,6 +43,8 @@ indexmap = "2.0.0"
 libc = "0.2.158"
 libgweather = "4.8.0"
 moxcms = "0.8.1"
+pango = "0.22"
+pangocairo = "0.22"
 strum = { version = "0.28.0", features = ["derive"] }
 thiserror = "2.0.3"
 tracing = "0.1.44"

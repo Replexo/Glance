@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="LpEditMarkup" parent="AdwBin">
+    <property name="child">
+      <object class="GtkScrolledWindow">
+        <property name="vscrollbar-policy">never</property>
+        <property name="hscrollbar-policy">external</property>
+        <property name="propagate-natural-width">true</property>
+        <property name="propagate-natural-height">true</property>
+        <property name="halign">center</property>
+        <property name="child">
+          <object class="GtkBox">
+            <property name="spacing">6</property>
+            <style>
+              <class name="toolbar" />
+            </style>
+            <child>
+              <object class="GtkBox">
+                <property name="spacing">6</property>
+                <child>
+                  <object class="GtkToggleButton">
+                    <property name="icon-name">brush-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Paintbrush</property>
+                    <property name="action-name">edit-markup.tool</property>
+                    <property name="action-target">'brush'</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkToggleButton">
+                    <property name="icon-name">large-brush-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Highlighter</property>
+                    <property name="action-name">edit-markup.tool</property>
+                    <property name="action-target">'highlighter'</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkToggleButton">
+                    <property name="icon-name">draw-rectangle-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Rectangle</property>
+                    <property name="action-name">edit-markup.tool</property>
+                    <property name="action-target">'rectangle'</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkToggleButton">
+                    <property name="icon-name">top-right-arrow-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Arrow</property>
+                    <property name="action-name">edit-markup.tool</property>
+                    <property name="action-target">'arrow'</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkToggleButton">
+                    <property name="icon-name">text-t-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Text</property>
+                    <property name="action-name">edit-markup.tool</property>
+                    <property name="action-target">'text'</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="orientation">vertical</property>
+                <property name="margin-top">6</property>
+                <property name="margin-bottom">6</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuButton" id="color_button">
+                <property name="tooltip-text" translatable="yes">Color</property>
+                <property name="direction">up</property>
+                <property name="always-show-arrow">false</property>
+                <property name="child">
+                  <object class="AdwBin" id="color_indicator">
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                    <style>
+                      <class name="color-indicator" />
+                    </style>
+                  </object>
+                </property>
+                <property name="popover">
+                  <object class="GtkPopover" id="color_popover">
+                    <property name="child">
+                      <object class="GtkBox">
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkButton">
+                            <property name="tooltip-text" translatable="yes">Blue</property>
+                            <property name="action-name">edit-markup.color</property>
+                            <property name="action-target">'blue'</property>
+                            <style>
+                              <class name="color-swatch" />
+                              <class name="flat" />
+                              <class name="circular" />
+                              <class name="blue" />
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton">
+                            <property name="tooltip-text" translatable="yes">Yellow</property>
+                            <property name="action-name">edit-markup.color</property>
+                            <property name="action-target">'yellow'</property>
+                            <style>
+                              <class name="color-swatch" />
+                              <class name="flat" />
+                              <class name="circular" />
+                              <class name="yellow" />
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton">
+                            <property name="tooltip-text" translatable="yes">Red</property>
+                            <property name="action-name">edit-markup.color</property>
+                            <property name="action-target">'red'</property>
+                            <style>
+                              <class name="color-swatch" />
+                              <class name="flat" />
+                              <class name="circular" />
+                              <class name="red" />
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton">
+                            <property name="tooltip-text" translatable="yes">Orange</property>
+                            <property name="action-name">edit-markup.color</property>
+                            <property name="action-target">'orange'</property>
+                            <style>
+                              <class name="color-swatch" />
+                              <class name="flat" />
+                              <class name="circular" />
+                              <class name="orange" />
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton">
+                            <property name="tooltip-text" translatable="yes">Green</property>
+                            <property name="action-name">edit-markup.color</property>
+                            <property name="action-target">'green'</property>
+                            <style>
+                              <class name="color-swatch" />
+                              <class name="flat" />
+                              <class name="circular" />
+                              <class name="green" />
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="orientation">vertical</property>
+                <property name="margin-top">6</property>
+                <property name="margin-bottom">6</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="icon-name">edit-undo-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Undo</property>
+                <property name="action-name">edit.undo</property>
+                <style>
+                  <class name="flat" />
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="icon-name">edit-redo-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Redo</property>
+                <property name="action-name">edit.redo</property>
+                <style>
+                  <class name="flat" />
+                </style>
+              </object>
+            </child>
+          </object>
+        </property>
+      </object>
+    </property>
+  </template>
+</interface>

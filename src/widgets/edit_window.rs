@@ -27,7 +27,8 @@ use glycin::Operations;
 use super::LpImage;
 use super::edit::LpEditCrop;
 use crate::deps::*;
-use crate::editing::adjust::Adjustments;
+use crate::editing::adjust::{Adjustments, Property};
+use crate::editing::markup::Shape;
 use crate::editing::render::PixelEdits;
 use crate::util::ErrorType;
 use crate::util::gettext::*;
@@ -69,6 +70,16 @@ mod imp {
 
         pub(super) operations: RefCell<Option<Arc<Operations>>>,
         pub(super) adjustments: Cell<Adjustments>,
+        pub(super) markup: RefCell<Arc<Vec<Shape>>>,
+
+        /// States before each change, for undo
+        pub(super) history: RefCell<Vec<EditState>>,
+        /// States undone, for redo
+        pub(super) future: RefCell<Vec<EditState>>,
+        /// Slider whose changes are merged into the last undo step
+        pub(super) coalesce: Cell<Option<Property>>,
+        /// Redo steps dropped by the last change, for `discard_last_change`
+        pub(super) dropped_future: RefCell<Vec<EditState>>,
         save_cancellable: RefCell<Option<gio::Cancellable>>,
     }
 
@@ -98,6 +109,9 @@ mod imp {
                     }
                 ));
             });
+
+            klass.install_action("edit.undo", None, |obj, _, _| obj.undo());
+            klass.install_action("edit.redo", None, |obj, _, _| obj.redo());
 
             klass.install_action("edit.cancel", None, move |obj, _, _| {
                 obj.imp().cancel();
@@ -150,6 +164,24 @@ mod imp {
 
             self.shortcut_controller.add_shortcut(gtk::Shortcut::new(
                 Some(gtk::KeyvalTrigger::new(
+                    gdk::Key::Z,
+                    gdk::ModifierType::CONTROL_MASK,
+                )),
+                Some(gtk::NamedAction::new("edit.undo")),
+            ));
+
+            self.shortcut_controller.add_shortcut(gtk::Shortcut::new(
+                Some(gtk::KeyvalTrigger::new(
+                    gdk::Key::Z,
+                    gdk::ModifierType::CONTROL_MASK.union(gdk::ModifierType::SHIFT_MASK),
+                )),
+                Some(gtk::NamedAction::new("edit.redo")),
+            ));
+
+            obj.update_history_actions();
+
+            self.shortcut_controller.add_shortcut(gtk::Shortcut::new(
+                Some(gtk::KeyvalTrigger::new(
                     gdk::Key::Escape,
                     gdk::ModifierType::NO_MODIFIER_MASK,
                 )),
@@ -169,7 +201,10 @@ mod imp {
                 .connect_cropped_notify(glib::clone!(
                     #[weak]
                     obj,
-                    move |_| obj.imp().update_save_state(false)
+                    move |_| {
+                        obj.imp().update_save_state(false);
+                        obj.update_history_actions();
+                    }
                 ));
 
             self.update_save_state(false);
@@ -512,7 +547,8 @@ mod imp {
                 .as_ref()
                 .is_some_and(|x| !x.operations().is_empty())
                 || obj.edit_crop().selection().cropped()
-                || !obj.pixel_edits().is_empty()
+                || !self.adjustments.get().is_identity()
+                || !self.markup.borrow().is_empty()
         }
 
         pub fn update_save_state(&self, force_disabled: bool) {
@@ -529,6 +565,14 @@ mod imp {
             obj.action_set_enabled("edit.save-copy", enabled);
         }
     }
+}
+
+/// Everything that undo and redo bring back
+#[derive(Debug, Clone)]
+pub struct EditState {
+    operations: Option<Arc<Operations>>,
+    adjustments: Adjustments,
+    markup: Arc<Vec<Shape>>,
 }
 
 glib::wrapper! {
@@ -555,19 +599,25 @@ impl LpEditWindow {
         self.imp().operations.borrow().clone()
     }
 
+    /// Sets the crop, rotate and flip operations as one undo step
     pub fn set_operations(&self, operations: Option<Arc<glycin::Operations>>) {
+        if self.operations() != operations {
+            self.record(None);
+        }
+        self.replace_operations(operations);
+    }
+
+    fn replace_operations(&self, operations: Option<Arc<glycin::Operations>>) {
         let imp = self.imp();
         imp.operations.replace(operations);
+        // Markup follows the operations
+        self.edit_crop().markup_changed();
         imp.update_save_state(false);
     }
 
     pub fn add_operation(&self, operation: glycin::Operation) {
-        let imp = self.imp();
-
-        let mut operations = imp
-            .operations
-            .borrow()
-            .as_ref()
+        let mut operations = self
+            .operations()
             .map(|x| x.operations().to_vec())
             .unwrap_or_default();
 
@@ -581,10 +631,38 @@ impl LpEditWindow {
     }
 
     /// Changes the colour adjustments
-    pub fn change_adjustments(&self, adjustments: Adjustments) {
+    ///
+    /// Changes to the same `property` in a row form one undo step.
+    pub fn change_adjustments(&self, adjustments: Adjustments, property: Option<Property>) {
+        if adjustments == self.adjustments() {
+            return;
+        }
+        self.record(property);
+        self.replace_adjustments(adjustments);
+    }
+
+    fn replace_adjustments(&self, adjustments: Adjustments) {
         let imp = self.imp();
         imp.adjustments.set(adjustments);
         self.edit_crop().image().set_adjustments(adjustments);
+        imp.update_save_state(false);
+    }
+
+    pub fn markup(&self) -> Arc<Vec<Shape>> {
+        self.imp().markup.borrow().clone()
+    }
+
+    pub fn add_markup(&self, shape: Shape) {
+        self.record(None);
+        let mut markup = (*self.markup()).clone();
+        markup.push(shape);
+        self.replace_markup(Arc::new(markup));
+    }
+
+    fn replace_markup(&self, markup: Arc<Vec<Shape>>) {
+        let imp = self.imp();
+        imp.markup.replace(markup);
+        self.edit_crop().markup_changed();
         imp.update_save_state(false);
     }
 
@@ -592,7 +670,102 @@ impl LpEditWindow {
     pub fn pixel_edits(&self) -> PixelEdits {
         PixelEdits {
             adjustments: self.adjustments(),
+            markup: self.markup(),
         }
+    }
+
+    fn state(&self) -> EditState {
+        EditState {
+            operations: self.operations(),
+            adjustments: self.adjustments(),
+            markup: self.markup(),
+        }
+    }
+
+    /// Remembers the current state before a change
+    fn record(&self, coalesce: Option<Property>) {
+        let imp = self.imp();
+
+        if coalesce.is_some() && imp.coalesce.get() == coalesce {
+            return;
+        }
+        imp.coalesce.set(coalesce);
+
+        imp.history.borrow_mut().push(self.state());
+        let future = imp.future.take();
+        imp.dropped_future.replace(future);
+        self.update_history_actions();
+    }
+
+    /// Starts a new undo step for the next slider change
+    pub fn end_coalescing(&self) {
+        self.imp().coalesce.set(None);
+    }
+
+    fn restore(&self, state: EditState) {
+        let imp = self.imp();
+        imp.coalesce.set(None);
+
+        let edit_crop = self.edit_crop();
+        edit_crop.selection().reset();
+
+        if let Err(err) = edit_crop.image().set_operations(state.operations.clone()) {
+            tracing::error!("Failed to restore operations: {err}");
+        }
+        self.replace_operations(state.operations);
+        self.replace_adjustments(state.adjustments);
+        self.replace_markup(state.markup);
+
+        edit_crop.state_restored();
+        self.update_history_actions();
+    }
+
+    pub fn undo(&self) {
+        // A pending crop selection is undone first
+        let selection = self.edit_crop().selection();
+        if self.edit_crop().mode() == "crop" && selection.cropped() {
+            selection.reset();
+            return;
+        }
+
+        let previous = self.imp().history.borrow_mut().pop();
+        if let Some(previous) = previous {
+            self.imp().future.borrow_mut().push(self.state());
+            self.restore(previous);
+        }
+    }
+
+    pub fn redo(&self) {
+        let next = self.imp().future.borrow_mut().pop();
+        if let Some(next) = next {
+            self.imp().history.borrow_mut().push(self.state());
+            self.restore(next);
+        }
+    }
+
+    /// Drops the last change without keeping it for redo
+    pub fn discard_last_change(&self) {
+        let imp = self.imp();
+        let previous = imp.history.borrow_mut().pop();
+        if let Some(previous) = previous {
+            self.restore(previous);
+            let future = imp.dropped_future.take();
+            imp.future.replace(future);
+            self.update_history_actions();
+        }
+    }
+
+    fn update_history_actions(&self) {
+        let imp = self.imp();
+        let pending_crop = imp
+            .edit_crop
+            .get()
+            .is_some_and(|x| x.mode() == "crop" && x.selection().cropped());
+        self.action_set_enabled(
+            "edit.undo",
+            pending_crop || !imp.history.borrow().is_empty(),
+        );
+        self.action_set_enabled("edit.redo", !imp.future.borrow().is_empty());
     }
 
     /// Returns if the window should proceed with closing

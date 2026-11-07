@@ -130,6 +130,9 @@ mod imp {
         fn select(&self, property: Property) {
             self.property.set(Some(property));
             self.sync();
+            if let Some(edit_window) = self.obj().try_edit_window() {
+                edit_window.end_coalescing();
+            }
         }
 
         /// Shows the stored value of the selected property
@@ -172,7 +175,7 @@ mod imp {
             if let Some(edit_window) = self.obj().try_edit_window() {
                 let mut adjustments = edit_window.adjustments();
                 adjustments.set(property, value as f32 / 100.);
-                edit_window.change_adjustments(adjustments);
+                edit_window.change_adjustments(adjustments, Some(property));
             }
         }
 
@@ -198,7 +201,7 @@ mod imp {
                     adjustments.contrast = automatic.contrast;
                     adjustments.highlights = automatic.highlights;
                     adjustments.shadows = automatic.shadows;
-                    edit_window.change_adjustments(adjustments);
+                    edit_window.change_adjustments(adjustments, None);
                     self.sync();
                 }
                 Err(err) => tracing::warn!("Failed to sample image: {err}"),

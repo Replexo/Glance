@@ -29,6 +29,8 @@ src/widgets/edit/crop.rs
 src/widgets/edit/crop.ui
 src/widgets/edit/crop_selection.rs
 src/widgets/edit/crop_selection.ui
+src/widgets/edit/markup.ui
+src/widgets/edit/markup_canvas.rs
 src/widgets/edit_window.rs
 src/widgets/edit_window.ui
 src/widgets/error_details.rs

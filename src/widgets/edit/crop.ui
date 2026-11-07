@@ -68,6 +68,9 @@
               </object>
             </child>
             <child type="overlay">
+              <object class="LpMarkupCanvas" id="markup_canvas" />
+            </child>
+            <child type="overlay">
               <object class="LpEditCropSelection" id="selection">
               </object>
             </child>
@@ -82,6 +85,14 @@
                 <property name="name">adjust</property>
                 <property name="child">
                   <object class="LpEditAdjust" id="adjust" />
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkStackPage">
+                <property name="name">markup</property>
+                <property name="child">
+                  <object class="LpEditMarkup" id="markup" />
                 </property>
               </object>
             </child>

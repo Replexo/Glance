@@ -1,5 +1,6 @@
 @import 'edit.css';
 @import 'edit_crop.css';
+@import 'edit_markup.css';
 
 :root {
   --osd-background-color: rgba(240, 240, 240, 0.75);
