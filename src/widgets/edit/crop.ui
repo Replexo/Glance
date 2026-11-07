@@ -1,66 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <menu id="aspect_ratio_menu">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Free</attribute>
-        <attribute name="action">edit-crop.aspect-ratio</attribute>
-        <attribute name="target">free</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Original</attribute>
-        <attribute name="action">edit-crop.aspect-ratio</attribute>
-        <attribute name="target">original</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Square</attribute>
-        <attribute name="action">edit-crop.aspect-ratio</attribute>
-        <attribute name="target">square</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">5:4</attribute>
-        <attribute name="action">edit-crop.aspect-ratio</attribute>
-        <attribute name="target">r5to4</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">4:3</attribute>
-        <attribute name="action">edit-crop.aspect-ratio</attribute>
-        <attribute name="target">r4to3</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">3:2</attribute>
-        <attribute name="action">edit-crop.aspect-ratio</attribute>
-        <attribute name="target">r3to2</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">16:9</attribute>
-        <attribute name="action">edit-crop.aspect-ratio</attribute>
-        <attribute name="target">r16to9</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="custom">orientation</attribute>
-      </item>
-
-    </section>
-  </menu>
-  <object class="GtkSizeGroup">
-    <property name="mode">horizontal</property>
-    <widgets>
-      <widget name="box-start" />
-      <widget name="box-end" />
-    </widgets>
-  </object>
   <template class="LpEditCrop" parent="AdwBin">
     <property name="child">
-      <object class="AdwToolbarView">
-        <property name="bottom-bar-style">raised</property>
-        <property name="content">
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <child>
           <object class="GtkOverlay">
+            <property name="vexpand">true</property>
             <property name="margin-top">18</property>
             <property name="margin-end">18</property>
-            <property name="margin-bottom">18</property>
+            <property name="margin-bottom">12</property>
             <property name="margin-start">18</property>
             <child>
               <object class="LpImage" id="image">
@@ -68,23 +17,38 @@
               </object>
             </child>
             <child type="overlay">
-              <object class="LpMarkupCanvas" id="markup_canvas" />
+              <object class="LpMarkupCanvas" id="markup_canvas"/>
             </child>
             <child type="overlay">
               <object class="LpEditCropSelection" id="selection">
               </object>
             </child>
+            <child type="overlay">
+              <object class="GtkLabel" id="size_label">
+                <property name="halign">start</property>
+                <property name="valign">start</property>
+                <property name="margin-top">8</property>
+                <property name="margin-start">8</property>
+                <property name="can-target">false</property>
+                <style>
+                  <class name="glint-name"/>
+                  <class name="numeric"/>
+                </style>
+              </object>
+            </child>
           </object>
-        </property>
-        <child type="bottom">
+        </child>
+        <child>
           <object class="GtkStack" id="mode_stack">
+            <property name="hhomogeneous">false</property>
             <property name="transition-type">crossfade</property>
             <property name="vhomogeneous">false</property>
+            <property name="margin-bottom">12</property>
             <child>
               <object class="GtkStackPage">
                 <property name="name">adjust</property>
                 <property name="child">
-                  <object class="LpEditAdjust" id="adjust" />
+                  <object class="LpEditAdjust" id="adjust"/>
                 </property>
               </object>
             </child>
@@ -92,7 +56,7 @@
               <object class="GtkStackPage">
                 <property name="name">markup</property>
                 <property name="child">
-                  <object class="LpEditMarkup" id="markup" />
+                  <object class="LpEditMarkup" id="markup"/>
                 </property>
               </object>
             </child>
@@ -100,134 +64,227 @@
               <object class="GtkStackPage">
                 <property name="name">crop</property>
                 <property name="child">
-                  <object class="AdwClamp">
-                    <property name="maximum-size">400</property>
-                    <property name="child">
-                      <object class="GtkBox">
-                        <property name="orientation">horizontal</property>
-                        <property name="spacing">6</property>
-                        <style>
-                          <class name="toolbar" />
-                        </style>
-                        <child>
-                          <object class="GtkBox" id="box-start">
-                            <property name="hexpand">true</property>
-                            <child>
-                              <object class="GtkLabel" id="resize_label">
-                                <property name="visible">false</property>
-                                <property name="tooltip-text" translatable="yes">Size After Resizing</property>
-                                <style>
-                                  <class name="dimmed" />
-                                  <class name="caption" />
-                                  <class name="numeric" />
-                                </style>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="orientation">horizontal</property>
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">8</property>
+                    <child>
+                      <object class="GtkCenterBox">
+                        <property name="center-widget">
+                          <object class="GtkScrolledWindow">
+                            <property name="hscrollbar-policy">external</property>
+                            <property name="vscrollbar-policy">never</property>
+                            <property name="propagate-natural-width">true</property>
+                            <property name="propagate-natural-height">true</property>
                             <property name="halign">center</property>
-                            <property name="spacing">6</property>
-                            <child>
-                              <object class="GtkMenuButton">
-                                <property name="icon-name">aspect-ratio-symbolic</property>
-                                <property name="tooltip-text" translatable="yes">Aspect Ratio</property>
-                                <property name="halign">start</property>
-                                <property name="direction">up</property>
-                                <property name="popover">
-                                  <object class="GtkPopoverMenu">
-                                    <property name="menu-model">aspect_ratio_menu</property>
-                                    <child type="orientation">
-                                      <object class="GtkBox">
-                                        <property name="homogeneous">true</property>
-                                        <property name="spacing">6</property>
-                                        <child>
-                                          <object class="GtkToggleButton" id="landscape">
-                                            <property name="icon-name">page-orientation-landscape-symbolic</property>
-                                            <property name="tooltip-text" translatable="yes">Orientation Landscape</property>
-                                            <property name="hexpand">true</property>
-                                            <property name="action-name">edit-crop.orientation</property>
-                                            <property name="action-target">'landscape'</property>
-                                            <style>
-                                              <class name="flat" />
-                                            </style>
-                                          </object>
-                                        </child>
-                                        <child>
-                                          <object class="GtkToggleButton" id="portrait">
-                                            <property name="icon-name">page-orientation-portrait-symbolic</property>
-                                            <property name="tooltip-text" translatable="yes">Orientation Portrait</property>
-                                            <property name="hexpand">true</property>
-                                            <property name="action-name">edit-crop.orientation</property>
-                                            <property name="action-target">'portrait'</property>
-                                            <style>
-                                              <class name="flat" />
-                                            </style>
-                                          </object>
-                                        </child>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkButton">
-                                <property name="icon-name">transform-scale-symbolic</property>
-                                <property name="tooltip-text" translatable="yes">Resize</property>
-                                <property name="action-name">edit-crop.resize</property>
-                                <property name="valign">start</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkButton">
-                                <property name="icon-name">object-rotate-left-symbolic</property>
-                                <property name="tooltip-text" translatable="yes">Rotate Counter Clockwise</property>
-                                <property name="action-name">edit-crop.rotate-ccw</property>
-                                <property name="valign">start</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkButton">
-                                <property name="icon-name">object-rotate-right-symbolic</property>
-                                <property name="tooltip-text" translatable="yes">Rotate Clockwise</property>
-                                <property name="action-name">edit-crop.rotate-cw</property>
-                                <property name="valign">start</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkButton">
-                                <property name="icon-name">edit-mirror-horizontally-symbolic</property>
-                                <property name="tooltip-text" translatable="yes">Mirror Horizontally</property>
-                                <property name="action-name">edit-crop.mirror-horizontally</property>
-                                <property name="valign">start</property>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkBox" id="box-end">
-                            <property name="orientation">horizontal</property>
-                            <property name="halign">end</property>
-                            <property name="hexpand">true</property>
-                            <child>
-                              <object class="GtkButton">
-                                <property name="label" translatable="yes">_Reset</property>
-                                <property name="use-underline">true</property>
-                                <property name="tooltip-text" translatable="yes">Undo Changes in this View</property>
-                                <property name="action-name">edit-crop.reset</property>
-                                <property name="valign">start</property>
+                            <property name="child">
+                              <object class="GtkBox">
+                                <property name="spacing">2</property>
                                 <style>
-                                  <class name="flat" />
+                                  <class name="glint-pill"/>
                                 </style>
+                                <child>
+                                  <object class="GtkMenuButton" id="aspect_button">
+                                    <property name="tooltip-text" translatable="yes">Aspect Ratio</property>
+                                    <property name="direction">up</property>
+                                    <property name="child">
+                                      <object class="AdwButtonContent" id="aspect_content">
+                                        <property name="icon-name">glint-aspect-symbolic</property>
+                                        <property name="label" translatable="yes">Free</property>
+                                      </object>
+                                    </property>
+                                    <property name="popover">
+                                      <object class="GtkPopover" id="aspect_popover">
+                                        <property name="has-arrow">false</property>
+                                        <style>
+                                          <class name="glint-card"/>
+                                          <class name="glint-chips"/>
+                                        </style>
+                                        <property name="child">
+                                          <object class="GtkBox" id="aspect_ratio_buttons">
+                                            <property name="spacing">2</property>
+                                            <style>
+                                              <class name="glint-pill"/>
+                                            </style>
+                                            <child>
+                                              <object class="GtkToggleButton">
+                                                <property name="label" translatable="yes">Free</property>
+                                                <property name="action-name">edit-crop.aspect-ratio</property>
+                                                <property name="action-target">'free'</property>
+                                                <style>
+                                                  <class name="text-button"/>
+                                                </style>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="GtkToggleButton">
+                                                <property name="label" translatable="yes">Original</property>
+                                                <property name="action-name">edit-crop.aspect-ratio</property>
+                                                <property name="action-target">'original'</property>
+                                                <style>
+                                                  <class name="text-button"/>
+                                                </style>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="GtkToggleButton">
+                                                <property name="label" translatable="yes">Square</property>
+                                                <property name="action-name">edit-crop.aspect-ratio</property>
+                                                <property name="action-target">'square'</property>
+                                                <style>
+                                                  <class name="text-button"/>
+                                                </style>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="GtkToggleButton">
+                                                <property name="label" translatable="yes">5:4</property>
+                                                <property name="action-name">edit-crop.aspect-ratio</property>
+                                                <property name="action-target">'r5to4'</property>
+                                                <style>
+                                                  <class name="text-button"/>
+                                                </style>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="GtkToggleButton">
+                                                <property name="label" translatable="yes">4:3</property>
+                                                <property name="action-name">edit-crop.aspect-ratio</property>
+                                                <property name="action-target">'r4to3'</property>
+                                                <style>
+                                                  <class name="text-button"/>
+                                                </style>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="GtkToggleButton">
+                                                <property name="label" translatable="yes">3:2</property>
+                                                <property name="action-name">edit-crop.aspect-ratio</property>
+                                                <property name="action-target">'r3to2'</property>
+                                                <style>
+                                                  <class name="text-button"/>
+                                                </style>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="GtkToggleButton">
+                                                <property name="label" translatable="yes">16:9</property>
+                                                <property name="action-name">edit-crop.aspect-ratio</property>
+                                                <property name="action-target">'r16to9'</property>
+                                                <style>
+                                                  <class name="text-button"/>
+                                                </style>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="GtkSeparator">
+                                                <property name="orientation">vertical</property>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="GtkToggleButton">
+                                                <property name="icon-name">page-orientation-landscape-symbolic</property>
+                                                <property name="tooltip-text" translatable="yes">Landscape</property>
+                                                <property name="action-name">edit-crop.orientation</property>
+                                                <property name="action-target">'landscape'</property>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="GtkToggleButton">
+                                                <property name="icon-name">page-orientation-portrait-symbolic</property>
+                                                <property name="tooltip-text" translatable="yes">Portrait</property>
+                                                <property name="action-name">edit-crop.orientation</property>
+                                                <property name="action-target">'portrait'</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </property>
+                                      </object>
+                                    </property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkSeparator">
+                                    <property name="orientation">vertical</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkButton">
+                                    <property name="icon-name">glint-rotate-left-symbolic</property>
+                                    <property name="tooltip-text" translatable="yes">Rotate Counter Clockwise</property>
+                                    <property name="action-name">edit-crop.rotate-ccw</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkButton">
+                                    <property name="icon-name">glint-rotate-right-symbolic</property>
+                                    <property name="tooltip-text" translatable="yes">Rotate Clockwise</property>
+                                    <property name="action-name">edit-crop.rotate-cw</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkButton">
+                                    <property name="icon-name">glint-flip-symbolic</property>
+                                    <property name="tooltip-text" translatable="yes">Mirror Horizontally</property>
+                                    <property name="action-name">edit-crop.mirror-horizontally</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkButton">
+                                    <property name="icon-name">glint-resize-symbolic</property>
+                                    <property name="tooltip-text" translatable="yes">Resize</property>
+                                    <property name="action-name">edit-crop.resize</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkSeparator">
+                                    <property name="orientation">vertical</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkButton">
+                                    <property name="label" translatable="yes">_Reset</property>
+                                    <property name="use-underline">true</property>
+                                    <property name="tooltip-text" translatable="yes">Undo Changes in this View</property>
+                                    <property name="action-name">edit-crop.reset</property>
+                                    <style>
+                                      <class name="text-button"/>
+                                    </style>
+                                  </object>
+                                </child>
+                              </object>
+                            </property>
+                          </object>
+                        </property>
+                        <property name="end-widget">
+                          <object class="GtkBox">
+                            <binding name="visible">
+                              <lookup name="wide-layout" type="LpWindow">
+                                <lookup name="root">LpEditCrop</lookup>
+                              </lookup>
+                            </binding>
+                            <property name="margin-end">12</property>
+                            <property name="valign">center</property>
+                            <style>
+                              <class name="glint-pill"/>
+                            </style>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="icon-name">glint-undo-symbolic</property>
+                                <property name="tooltip-text" translatable="yes">Undo</property>
+                                <property name="action-name">edit.undo</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="icon-name">glint-redo-symbolic</property>
+                                <property name="tooltip-text" translatable="yes">Redo</property>
+                                <property name="action-name">edit.redo</property>
                               </object>
                             </child>
                           </object>
-                        </child>
+                        </property>
                       </object>
-                    </property>
+                    </child>
                   </object>
                 </property>
               </object>

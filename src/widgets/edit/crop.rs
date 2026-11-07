@@ -26,15 +26,28 @@ use adw::{glib, gtk};
 use glycin::{Operation, Operations};
 
 use crate::deps::*;
+use crate::editing::markup::Tool;
 use crate::editing::preview::EditingError;
 use crate::util::ErrorType;
 use crate::util::gettext::*;
 use crate::util::root::ParentWindow;
 use crate::widgets::LpImage;
-use crate::widgets::edit::markup::{color_from_name, tool_from_name};
+use crate::widgets::edit::markup::{tool_from_name, width_from_name};
 use crate::widgets::edit::{
     LpEditAdjust, LpEditCropSelection, LpEditMarkup, LpMarkupCanvas, LpResizeDialog,
 };
+
+fn aspect_ratio_label(aspect_ratio: LpAspectRatio) -> String {
+    match aspect_ratio {
+        LpAspectRatio::Free => gettext("Free"),
+        LpAspectRatio::Original => gettext("Original"),
+        LpAspectRatio::Square => gettext("Square"),
+        LpAspectRatio::R5to4 => "5:4".to_owned(),
+        LpAspectRatio::R4to3 => "4:3".to_owned(),
+        LpAspectRatio::R3to2 => "3:2".to_owned(),
+        LpAspectRatio::R16to9 => "16:9".to_owned(),
+    }
+}
 
 /// Aspect ratio modes that can be selected
 #[derive(Debug, Clone, Copy, Default, glib::Enum, glib::Variant)]
@@ -83,7 +96,11 @@ mod imp {
         #[template_child]
         pub(super) markup_canvas: TemplateChild<LpMarkupCanvas>,
         #[template_child]
-        pub(super) resize_label: TemplateChild<gtk::Label>,
+        pub(super) size_label: TemplateChild<gtk::Label>,
+        #[template_child]
+        aspect_button: TemplateChild<gtk::MenuButton>,
+        #[template_child]
+        aspect_content: TemplateChild<adw::ButtonContent>,
 
         #[property(get, construct_only)]
         original_image: OnceCell<LpImage>,
@@ -196,6 +213,9 @@ mod imp {
             obj.child().set_parent(obj);
 
             self.image.duplicate_from(&obj.original_image());
+            // Same colour as the editor's canvas
+            self.image
+                .set_fixed_background_color(Some(gdk::RGBA::new(0.059, 0.059, 0.067, 1.)));
 
             let actions = gio::SimpleActionGroup::new();
             actions.add_action(&gio::PropertyAction::new(
@@ -225,7 +245,10 @@ mod imp {
                         && let Some(tool) = tool_from_name(&name)
                     {
                         action.set_state(&name.to_variant());
-                        obj.imp().markup_canvas.set_tool(tool);
+                        let imp = obj.imp();
+                        imp.markup_canvas.set_tool(tool);
+                        imp.markup
+                            .set_fill_visible(matches!(tool, Tool::Rectangle | Tool::Ellipse));
                     }
                 }
             ));
@@ -241,7 +264,7 @@ mod imp {
                 obj,
                 move |action, target| {
                     if let Some(name) = target.and_then(|x| x.get::<String>())
-                        && let Some(color) = color_from_name(&name)
+                        && let Some(color) = obj.imp().markup.color(&name)
                     {
                         action.set_state(&name.to_variant());
                         let imp = obj.imp();
@@ -251,8 +274,70 @@ mod imp {
                 }
             ));
             markup_actions.add_action(&color_action);
+
+            let fill_action = gio::SimpleAction::new_stateful(
+                "fill",
+                Some(glib::VariantTy::STRING),
+                &"outline".to_variant(),
+            );
+            fill_action.connect_activate(glib::clone!(
+                #[weak]
+                obj,
+                move |action, target| {
+                    if let Some(name) = target.and_then(|x| x.get::<String>()) {
+                        obj.imp().markup_canvas.set_filled(name == "filled");
+                        action.set_state(&name.to_variant());
+                    }
+                }
+            ));
+            markup_actions.add_action(&fill_action);
+
+            let width_action = gio::SimpleAction::new_stateful(
+                "width",
+                Some(glib::VariantTy::STRING),
+                &"m".to_variant(),
+            );
+            width_action.connect_activate(glib::clone!(
+                #[weak]
+                obj,
+                move |action, target| {
+                    if let Some(name) = target.and_then(|x| x.get::<String>())
+                        && let Some(factor) = width_from_name(&name)
+                    {
+                        obj.imp().markup_canvas.set_size_factor(factor);
+                        action.set_state(&name.to_variant());
+                    }
+                }
+            ));
+            markup_actions.add_action(&width_action);
             obj.insert_action_group("edit-markup", Some(&markup_actions));
             self.markup.show_color("blue");
+            // Keep a gap to the pill below
+            if let Some(popover) = self.aspect_button.popover() {
+                popover.set_offset(0, -10);
+            }
+
+            self.selection.connect_aspect_ratio_notify(glib::clone!(
+                #[weak]
+                obj,
+                move |selection| {
+                    let imp = obj.imp();
+                    imp.aspect_content
+                        .set_label(&aspect_ratio_label(selection.aspect_ratio()));
+                    imp.aspect_button.popdown();
+                }
+            ));
+
+            for property in ["crop-x", "crop-y", "crop-width", "crop-height"] {
+                self.selection.connect_notify_local(
+                    Some(property),
+                    glib::clone!(
+                        #[weak]
+                        obj,
+                        move |_, _| obj.update_size_label()
+                    ),
+                );
+            }
 
             obj.action_set_enabled("edit-crop.reset", false);
 
@@ -445,9 +530,16 @@ mod imp {
             }
 
             let is_crop = mode == "crop";
+            self.size_label.set_visible(is_crop);
+            if !is_crop {
+                self.aspect_button.popdown();
+            }
             self.selection.set_visible(is_crop);
             self.selection.set_can_target(is_crop);
-            self.markup_canvas.set_can_target(mode == "markup");
+            let is_markup = mode == "markup";
+            self.markup_canvas.set_can_target(is_markup);
+            self.markup_canvas.set_focusable(is_markup);
+            self.markup_canvas.clear_selection();
             for action in [
                 "edit-crop.apply-crop",
                 "edit-crop.mirror-horizontally",
@@ -517,26 +609,36 @@ impl LpEditCrop {
         self.imp().image.clone()
     }
 
+    pub fn markup_canvas(&self) -> LpMarkupCanvas {
+        self.imp().markup_canvas.clone()
+    }
+
     pub fn markup_changed(&self) {
         self.imp().markup_canvas.queue_draw();
     }
 
-    /// Shows the size the image will be saved at while it is resized
-    pub fn update_resize_label(&self) {
+    /// Shows the size of the crop selection, and the size after resizing
+    pub fn update_size_label(&self) {
         let imp = self.imp();
         let Some(edit_window) = self.try_edit_window() else {
             return;
         };
 
+        let (width, height) = imp
+            .selection
+            .crop_area_image_coord()
+            .map(|(_, _, w, h)| (w, h))
+            .unwrap_or_else(|| {
+                let (w, h) = imp.image.image_size();
+                (w.max(0) as u32, h.max(0) as u32)
+            });
+
+        let mut label = format!("{width} × {height}");
         if let Some(scale) = edit_window.resize() {
-            let (width, height) = imp.image.image_size();
-            let (width, height) =
-                crate::editing::render::scaled_size((width as u32, height as u32), scale);
-            imp.resize_label.set_label(&format!("{width} × {height}"));
-            imp.resize_label.set_visible(true);
-        } else {
-            imp.resize_label.set_visible(false);
+            let (width, height) = crate::editing::render::scaled_size((width, height), scale);
+            label.push_str(&format!("  →  {width} × {height}"));
         }
+        imp.size_label.set_label(&label);
 
         self.action_set_enabled(
             "edit-crop.reset",

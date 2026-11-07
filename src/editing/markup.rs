@@ -34,11 +34,15 @@ use crate::deps::*;
 /// Markup tools
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]
 pub enum Tool {
+    /// Select and move drawn shapes
+    Select,
     #[default]
     Brush,
     Highlighter,
-    Rectangle,
+    Line,
     Arrow,
+    Rectangle,
+    Ellipse,
     Text,
 }
 
@@ -89,7 +93,15 @@ pub enum Kind {
         points: Vec<(f64, f64)>,
         highlighter: bool,
     },
+    Line {
+        from: (f64, f64),
+        to: (f64, f64),
+    },
     Rectangle {
+        from: (f64, f64),
+        to: (f64, f64),
+    },
+    Ellipse {
         from: (f64, f64),
         to: (f64, f64),
     },
@@ -113,6 +125,8 @@ pub struct Shape {
     pub size: f64,
     /// Maps shape coordinates to original image coordinates
     pub matrix: cairo::Matrix,
+    /// Rectangles and ellipses are filled instead of outlined
+    pub filled: bool,
 }
 
 impl Shape {
@@ -122,8 +136,149 @@ impl Shape {
             color,
             size,
             matrix: cairo::Matrix::identity(),
+            filled: false,
         }
     }
+}
+
+impl Shape {
+    /// Bounding box in shape coordinates, including the line width
+    pub fn bounds(&self) -> (f64, f64, f64, f64) {
+        let points: Vec<(f64, f64)> = match &self.kind {
+            Kind::Stroke { points, .. } => points.clone(),
+            Kind::Line { from, to }
+            | Kind::Rectangle { from, to }
+            | Kind::Ellipse { from, to }
+            | Kind::Arrow { from, to } => vec![*from, *to],
+            Kind::Text { position, text } => {
+                let (width, height) = text_size(text, self.size);
+                return (
+                    position.0,
+                    position.1,
+                    position.0 + width,
+                    position.1 + height,
+                );
+            }
+        };
+
+        // Arrow heads reach out about twice the line width
+        let pad = match self.kind {
+            Kind::Arrow { .. } => self.size * 2.,
+            _ => self.size / 2.,
+        };
+        let (mut x0, mut y0, mut x1, mut y1) = (f64::MAX, f64::MAX, f64::MIN, f64::MIN);
+        for (x, y) in points {
+            x0 = x0.min(x);
+            y0 = y0.min(y);
+            x1 = x1.max(x);
+            y1 = y1.max(y);
+        }
+        (x0 - pad, y0 - pad, x1 + pad, y1 + pad)
+    }
+
+    /// Whether `point` in shape coordinates touches the shape, with
+    /// `tolerance` added to the line width
+    pub fn hit(&self, point: (f64, f64), tolerance: f64) -> bool {
+        let reach = self.size / 2. + tolerance;
+        match &self.kind {
+            Kind::Stroke { points, .. } => {
+                points.len() == 1 && distance(points[0], point) <= reach
+                    || points
+                        .windows(2)
+                        .any(|w| segment_distance(w[0], w[1], point) <= reach)
+            }
+            Kind::Line { from, to } => segment_distance(*from, *to, point) <= reach,
+            Kind::Arrow { from, to } => {
+                segment_distance(*from, *to, point) <= self.size * 2. + tolerance
+            }
+            Kind::Rectangle { from, to }
+                if self.filled
+                    && point.0 >= from.0.min(to.0) - reach
+                    && point.0 <= from.0.max(to.0) + reach
+                    && point.1 >= from.1.min(to.1) - reach
+                    && point.1 <= from.1.max(to.1) + reach =>
+            {
+                true
+            }
+            Kind::Rectangle { from, to } => {
+                let corners = [*from, (to.0, from.1), *to, (from.0, to.1), *from];
+                corners
+                    .windows(2)
+                    .any(|w| segment_distance(w[0], w[1], point) <= reach)
+            }
+            Kind::Ellipse { from, to } => {
+                let center = ((from.0 + to.0) / 2., (from.1 + to.1) / 2.);
+                let (rx, ry) = ((to.0 - from.0).abs() / 2., (to.1 - from.1).abs() / 2.);
+                if rx <= 0. || ry <= 0. {
+                    return distance(center, point) <= reach;
+                }
+                // Distance along the ray from the centre, close enough for
+                // picking
+                let (dx, dy) = (point.0 - center.0, point.1 - center.1);
+                let norm = ((dx / rx).powi(2) + (dy / ry).powi(2)).sqrt();
+                let length = dx.hypot(dy);
+                norm <= 1. && self.filled || norm > 0. && (length - length / norm).abs() <= reach
+            }
+            Kind::Text { .. } => {
+                let (x0, y0, x1, y1) = self.bounds();
+                point.0 >= x0 - tolerance
+                    && point.0 <= x1 + tolerance
+                    && point.1 >= y0 - tolerance
+                    && point.1 <= y1 + tolerance
+            }
+        }
+    }
+
+    /// Moves the shape by `(dx, dy)` in original image coordinates
+    pub fn translate(&mut self, dx: f64, dy: f64) {
+        self.matrix =
+            cairo::Matrix::multiply(&self.matrix, &cairo::Matrix::new(1., 0., 0., 1., dx, dy));
+    }
+}
+
+/// Font and options for text shapes
+///
+/// Glyph positions are the same at every scale, so the view matches the
+/// saved image.
+fn setup_text_layout(layout: &pango::Layout, text: &str, size: f64) {
+    let context = layout.context();
+    if let Ok(mut options) = cairo::FontOptions::new() {
+        options.set_hint_metrics(cairo::HintMetrics::Off);
+        options.set_hint_style(cairo::HintStyle::None);
+        pangocairo::functions::context_set_font_options(&context, Some(&options));
+    }
+    context.set_round_glyph_positions(false);
+    layout.context_changed();
+    let mut font = pango::FontDescription::from_string("Sans Bold");
+    font.set_absolute_size(size * pango::SCALE as f64);
+    layout.set_font_description(Some(&font));
+    layout.set_text(text);
+}
+
+/// Size of a text shape, measured like it is drawn
+fn text_size(text: &str, size: f64) -> (f64, f64) {
+    let context = pango::prelude::FontMapExt::create_context(&pangocairo::FontMap::default());
+    let layout = pango::Layout::new(&context);
+    setup_text_layout(&layout, text, size);
+    let (_, logical) = layout.extents();
+    (
+        logical.width() as f64 / pango::SCALE as f64,
+        logical.height() as f64 / pango::SCALE as f64,
+    )
+}
+
+fn distance(a: (f64, f64), b: (f64, f64)) -> f64 {
+    (a.0 - b.0).hypot(a.1 - b.1)
+}
+
+fn segment_distance(a: (f64, f64), b: (f64, f64), p: (f64, f64)) -> f64 {
+    let (dx, dy) = (b.0 - a.0, b.1 - a.1);
+    let length = dx * dx + dy * dy;
+    if length == 0. {
+        return distance(a, p);
+    }
+    let t = (((p.0 - a.0) * dx + (p.1 - a.1) * dy) / length).clamp(0., 1.);
+    distance((a.0 + t * dx, a.1 + t * dy), p)
 }
 
 /// Line width for brush, rectangle and arrow on an image of this size
@@ -180,6 +335,28 @@ fn draw_shape(cr: &cairo::Context, shape: &Shape) -> Result<(), cairo::Error> {
                 cr.stroke()?;
             }
         }
+        Kind::Line { from, to } => {
+            shape.color.set_source(cr, 1.);
+            cr.move_to(from.0, from.1);
+            cr.line_to(to.0, to.1);
+            cr.stroke()?;
+        }
+        Kind::Ellipse { from, to } => {
+            let (rx, ry) = ((to.0 - from.0).abs() / 2., (to.1 - from.1).abs() / 2.);
+            if rx > 0. && ry > 0. {
+                shape.color.set_source(cr, 1.);
+                cr.save()?;
+                cr.translate((from.0 + to.0) / 2., (from.1 + to.1) / 2.);
+                cr.scale(rx, ry);
+                cr.arc(0., 0., 1., 0., std::f64::consts::TAU);
+                // Stroke with an unscaled pen
+                cr.restore()?;
+                if shape.filled {
+                    cr.fill_preserve()?;
+                }
+                cr.stroke()?;
+            }
+        }
         Kind::Rectangle { from, to } => {
             shape.color.set_source(cr, 1.);
             cr.set_line_cap(cairo::LineCap::Square);
@@ -190,6 +367,9 @@ fn draw_shape(cr: &cairo::Context, shape: &Shape) -> Result<(), cairo::Error> {
                 (to.0 - from.0).abs(),
                 (to.1 - from.1).abs(),
             );
+            if shape.filled {
+                cr.fill_preserve()?;
+            }
             cr.stroke()?;
         }
         Kind::Arrow { from, to } => {
@@ -224,19 +404,7 @@ fn draw_shape(cr: &cairo::Context, shape: &Shape) -> Result<(), cairo::Error> {
         Kind::Text { position, text } => {
             shape.color.set_source(cr, 1.);
             let layout = pangocairo::functions::create_layout(cr);
-            // Same glyph positions at every scale, so the view matches the
-            // saved image
-            let context = layout.context();
-            let mut options = cairo::FontOptions::new()?;
-            options.set_hint_metrics(cairo::HintMetrics::Off);
-            options.set_hint_style(cairo::HintStyle::None);
-            pangocairo::functions::context_set_font_options(&context, Some(&options));
-            context.set_round_glyph_positions(false);
-            layout.context_changed();
-            let mut font = pango::FontDescription::from_string("Sans Bold");
-            font.set_absolute_size(shape.size * pango::SCALE as f64);
-            layout.set_font_description(Some(&font));
-            layout.set_text(text);
+            setup_text_layout(&layout, text, shape.size);
             cr.move_to(position.0, position.1);
             pangocairo::functions::show_layout(cr, &layout);
         }
@@ -596,6 +764,99 @@ mod tests {
         for x in [10, TILE_SIZE - 1, TILE_SIZE, size - 10] {
             assert_eq!(image.get_pixel(x, 5).0, [255, 255, 255, 255], "{x}");
         }
+    }
+
+    #[test]
+    fn hit_testing() {
+        let line = Shape::new(
+            Kind::Line {
+                from: (0., 0.),
+                to: (10., 0.),
+            },
+            Color::default(),
+            2.,
+        );
+        assert!(line.hit((5., 1.5), 1.));
+        assert!(!line.hit((5., 4.), 1.));
+
+        let ellipse = Shape::new(
+            Kind::Ellipse {
+                from: (0., 0.),
+                to: (20., 10.),
+            },
+            Color::default(),
+            2.,
+        );
+        assert!(ellipse.hit((20., 5.), 1.));
+        assert!(ellipse.hit((10., 0.), 1.));
+        assert!(!ellipse.hit((10., 5.), 1.));
+
+        let rect = Shape::new(
+            Kind::Rectangle {
+                from: (0., 0.),
+                to: (10., 10.),
+            },
+            Color::default(),
+            2.,
+        );
+        assert!(rect.hit((0., 5.), 1.));
+        assert!(!rect.hit((5., 5.), 1.));
+
+        let mut filled = rect.clone();
+        filled.filled = true;
+        assert!(filled.hit((5., 5.), 1.));
+        let mut filled = ellipse.clone();
+        filled.filled = true;
+        assert!(filled.hit((10., 5.), 1.));
+    }
+
+    #[test]
+    fn translate_moves_in_original_coordinates() {
+        let mut shape = Shape::new(
+            Kind::Line {
+                from: (0., 0.),
+                to: (1., 0.),
+            },
+            Color::default(),
+            1.,
+        );
+        // Drawn in a view rotated by 90°
+        shape.matrix = cairo::Matrix::new(0., -1., 1., 0., 0., 10.);
+        shape.translate(3., 4.);
+        assert_eq!(transformed(&shape.matrix, (0., 0.)), (3, 14));
+    }
+
+    #[test]
+    fn ellipse_and_line_draw() {
+        let mut image = RgbaImage::from_pixel(40, 40, image::Rgba([0, 0, 0, 255]));
+        let ellipse = Shape::new(
+            Kind::Ellipse {
+                from: (5., 5.),
+                to: (35., 35.),
+            },
+            Color::rgb(255, 255, 255),
+            2.,
+        );
+        flatten(&mut image, &[ellipse], cairo::Matrix::identity()).unwrap();
+        assert!(image.get_pixel(5, 20).0[0] > 200);
+        assert_eq!(image.get_pixel(20, 20).0[0], 0);
+    }
+
+    #[test]
+    fn filled_rectangle_covers_inside() {
+        let mut image = RgbaImage::from_pixel(20, 20, image::Rgba([0, 0, 0, 255]));
+        let mut rect = Shape::new(
+            Kind::Rectangle {
+                from: (4., 4.),
+                to: (16., 16.),
+            },
+            Color::rgb(255, 0, 0),
+            2.,
+        );
+        rect.filled = true;
+        flatten(&mut image, &[rect], cairo::Matrix::identity()).unwrap();
+        assert_eq!(image.get_pixel(10, 10).0, [255, 0, 0, 255]);
+        assert_eq!(image.get_pixel(1, 1).0, [0, 0, 0, 255]);
     }
 
     #[test]

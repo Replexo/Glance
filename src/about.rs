@@ -45,6 +45,16 @@ pub async fn dialog() -> adw::AboutDialog {
         .debug_info(debug_info().await)
         .build();
     dialog.add_credit_section(
+        Some("Editor icons"),
+        &["coolicons by Kryston Schwarze https://github.com/krystonschwarze/coolicons"],
+    );
+    dialog.add_legal_section(
+        "coolicons",
+        Some("Copyright © 2026 Kryston Schwarze"),
+        gtk::License::MitX11,
+        None,
+    );
+    dialog.add_credit_section(
         Some("Based on Loupe by"),
         &[
             "Christopher Davis <christopherdavis@gnome.org>",

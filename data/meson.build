@@ -127,3 +127,6 @@ test(
   glib_compile_schemas,
   args: ['--strict', '--dry-run', meson.current_source_dir()],
 )
+
+# Licence of the bundled coolicons
+install_data('COPYING.coolicons', install_dir: datadir / 'licenses' / meson.project_name())

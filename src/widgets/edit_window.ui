@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="LpEditWindow" parent="AdwBin">
+    <style>
+      <class name="glint-editor" />
+    </style>
     <child>
       <object class="GtkShortcutController" id="shortcut_controller">
         <property name="scope">global</property>
@@ -64,6 +67,9 @@
                 <property name="label" translatable="yes">_Cancel</property>
                 <property name="use-underline">true</property>
                 <property name="action-name">edit.cancel</property>
+                <style>
+                  <class name="cancel" />
+                </style>
               </object>
             </child>
             <property name="title-widget">
@@ -80,7 +86,7 @@
                     <property name="tooltip" translatable="yes">Crop</property>
                     <property name="child">
                       <object class="AdwButtonContent">
-                        <property name="icon-name">crop-symbolic</property>
+                        <property name="icon-name">glint-crop-symbolic</property>
                         <property name="label" translatable="yes">Cr_op</property>
                         <property name="use-underline">true</property>
                       </object>
@@ -93,7 +99,7 @@
                     <property name="tooltip" translatable="yes">Adjust</property>
                     <property name="child">
                       <object class="AdwButtonContent">
-                        <property name="icon-name">tune-symbolic</property>
+                        <property name="icon-name">glint-adjust-symbolic</property>
                         <property name="label" translatable="yes">A_djust</property>
                         <property name="use-underline">true</property>
                       </object>
@@ -106,7 +112,7 @@
                     <property name="tooltip" translatable="yes">Markup</property>
                     <property name="child">
                       <object class="AdwButtonContent">
-                        <property name="icon-name">markup-symbolic</property>
+                        <property name="icon-name">glint-markup-symbolic</property>
                         <property name="label" translatable="yes">_Markup</property>
                         <property name="use-underline">true</property>
                       </object>

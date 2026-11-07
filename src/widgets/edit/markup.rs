@@ -17,22 +17,31 @@
 
 //! Bottom bar of the Markup view: tools, colour and undo/redo
 
+use std::cell::{Cell, RefCell};
+
 use adw::prelude::*;
 use adw::subclass::prelude::*;
 
 use crate::deps::*;
 use crate::editing::markup::{COLORS, Color, Tool};
+use crate::widgets::edit::LpColorCard;
 
-const TOOLS: [(&str, Tool); 5] = [
+const TOOLS: [(&str, Tool); 8] = [
+    ("select", Tool::Select),
     ("brush", Tool::Brush),
     ("highlighter", Tool::Highlighter),
-    ("rectangle", Tool::Rectangle),
+    ("line", Tool::Line),
     ("arrow", Tool::Arrow),
+    ("rectangle", Tool::Rectangle),
+    ("ellipse", Tool::Ellipse),
     ("text", Tool::Text),
 ];
 
 /// CSS class names of [`COLORS`], in the same order
 const COLOR_NAMES: [&str; 5] = ["blue", "yellow", "red", "orange", "green"];
+
+/// Line width factors for the width buttons
+const WIDTHS: [(&str, f64); 4] = [("s", 0.5), ("m", 1.), ("l", 1.75), ("xl", 3.)];
 
 pub fn tool_from_name(name: &str) -> Option<Tool> {
     TOOLS
@@ -41,11 +50,11 @@ pub fn tool_from_name(name: &str) -> Option<Tool> {
         .map(|(_, tool)| *tool)
 }
 
-pub fn color_from_name(name: &str) -> Option<Color> {
-    COLOR_NAMES
+pub fn width_from_name(name: &str) -> Option<f64> {
+    WIDTHS
         .iter()
-        .position(|n| *n == name)
-        .map(|index| COLORS[index])
+        .find(|(n, _)| *n == name)
+        .map(|(_, factor)| *factor)
 }
 
 mod imp {
@@ -55,9 +64,27 @@ mod imp {
     #[template(file = "markup.ui")]
     pub struct LpEditMarkup {
         #[template_child]
-        color_indicator: TemplateChild<adw::Bin>,
+        custom_swatch: TemplateChild<gtk::DrawingArea>,
         #[template_child]
         color_popover: TemplateChild<gtk::Popover>,
+        #[template_child]
+        color_card: TemplateChild<LpColorCard>,
+        #[template_child]
+        swatch_blue: TemplateChild<gtk::Button>,
+        #[template_child]
+        swatch_yellow: TemplateChild<gtk::Button>,
+        #[template_child]
+        swatch_red: TemplateChild<gtk::Button>,
+        #[template_child]
+        swatch_orange: TemplateChild<gtk::Button>,
+        #[template_child]
+        swatch_green: TemplateChild<gtk::Button>,
+        #[template_child]
+        pub(super) fill_box: TemplateChild<gtk::Box>,
+
+        /// Colour picked in the colour card
+        pub(super) custom: Cell<Option<Color>>,
+        pub(super) selected: RefCell<String>,
     }
 
     #[glib::object_subclass]
@@ -67,6 +94,7 @@ mod imp {
         type ParentType = adw::Bin;
 
         fn class_init(klass: &mut Self::Class) {
+            LpColorCard::static_type();
             Self::bind_template(klass);
         }
 
@@ -75,17 +103,141 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for LpEditMarkup {}
+    impl ObjectImpl for LpEditMarkup {
+        fn constructed(&self) {
+            self.parent_constructed();
+            let obj = self.obj();
+
+            // Keep a gap to the pill below
+            self.color_popover.set_offset(0, -10);
+
+            self.custom_swatch.set_draw_func(glib::clone!(
+                #[weak]
+                obj,
+                move |_, cr, width, height| obj.imp().draw_custom(cr, width, height)
+            ));
+
+            // Opening the card starts from and selects the custom colour
+            self.color_popover.connect_show(glib::clone!(
+                #[weak]
+                obj,
+                move |_| {
+                    let imp = obj.imp();
+                    match imp.custom.get() {
+                        // Setting the same colour again would lose the hue
+                        // of greys
+                        Some(color) if color != imp.color_card.color() => {
+                            imp.color_card.set_color(color)
+                        }
+                        Some(_) => {}
+                        None => imp.custom.set(Some(imp.color_card.color())),
+                    }
+                    imp.select_custom();
+                }
+            ));
+            self.color_card.connect_color_changed(glib::clone!(
+                #[weak]
+                obj,
+                move |card| {
+                    let imp = obj.imp();
+                    imp.custom.set(Some(card.color()));
+                    imp.select_custom();
+                }
+            ));
+        }
+    }
+
     impl WidgetImpl for LpEditMarkup {}
     impl BinImpl for LpEditMarkup {}
 
     impl LpEditMarkup {
+        fn swatches(&self) -> [(&str, &gtk::Button); 5] {
+            [
+                ("blue", &*self.swatch_blue),
+                ("yellow", &*self.swatch_yellow),
+                ("red", &*self.swatch_red),
+                ("orange", &*self.swatch_orange),
+                ("green", &*self.swatch_green),
+            ]
+        }
+
+        pub(super) fn select_custom(&self) {
+            self.custom_swatch.queue_draw();
+            let _ = self
+                .obj()
+                .activate_action("edit-markup.color", Some(&"custom".to_variant()));
+        }
+
         pub(super) fn show_color(&self, name: &str) {
-            for class in COLOR_NAMES {
-                self.color_indicator.remove_css_class(class);
+            self.selected.replace(name.to_owned());
+            for (swatch_name, button) in self.swatches() {
+                if swatch_name == name {
+                    button.add_css_class("selected");
+                } else {
+                    button.remove_css_class("selected");
+                }
             }
-            self.color_indicator.add_css_class(name);
-            self.color_popover.popdown();
+            self.custom_swatch.queue_draw();
+        }
+
+        /// Dashed ring with a plus while empty; after picking, one solid
+        /// ring around the colour, white while the colour is in use
+        fn draw_custom(&self, cr: &cairo::Context, width: i32, height: i32) {
+            let (cx, cy) = (width as f64 / 2., height as f64 / 2.);
+            let radius = cx.min(cy) - 1.5;
+            let tau = std::f64::consts::TAU;
+            let foreground = WidgetExt::color(&*self.obj());
+
+            match self.custom.get() {
+                None => {
+                    cr.set_dash(&[3., 3.], 0.);
+                    cr.set_line_width(1.5);
+                    cr.set_source_rgba(0.42, 0.42, 0.45, 1.);
+                    cr.arc(cx, cy, radius - 1., 0., tau);
+                    let _ = cr.stroke();
+                    cr.set_dash(&[], 0.);
+                    cr.set_source_rgba(
+                        foreground.red() as f64,
+                        foreground.green() as f64,
+                        foreground.blue() as f64,
+                        0.8,
+                    );
+                }
+                Some(color) => {
+                    let in_use = self.selected.borrow().as_str() == "custom";
+                    cr.set_line_width(2.);
+                    if in_use {
+                        cr.set_source_rgb(1., 1., 1.);
+                    } else {
+                        cr.set_source_rgba(0.42, 0.42, 0.45, 1.);
+                    }
+                    cr.arc(cx, cy, radius - 1., 0., tau);
+                    let _ = cr.stroke();
+                    cr.set_source_rgb(
+                        color.r as f64 / 255.,
+                        color.g as f64 / 255.,
+                        color.b as f64 / 255.,
+                    );
+                    cr.arc(cx, cy, radius - 4., 0., tau);
+                    let _ = cr.fill();
+                    // Plus that stays readable on light colours
+                    let luma =
+                        0.2126 * color.r as f64 + 0.7152 * color.g as f64 + 0.0722 * color.b as f64;
+                    let shade = if luma > 170. { 0. } else { 1. };
+                    cr.set_source_rgb(shade, shade, shade);
+                }
+            }
+
+            // Plus, centred on whole pixels
+            let arm = 4.5;
+            let (px, py) = (cx.round(), cy.round());
+            cr.set_line_width(2.);
+            cr.set_line_cap(cairo::LineCap::Round);
+            cr.move_to(px - arm, py);
+            cr.line_to(px + arm, py);
+            cr.move_to(px, py - arm);
+            cr.line_to(px, py + arm);
+            let _ = cr.stroke();
         }
     }
 }
@@ -97,8 +249,24 @@ glib::wrapper! {
 }
 
 impl LpEditMarkup {
-    /// Shows the selected colour on the colour button and closes the popover
+    /// Colour for a swatch name, including the picked custom colour
+    pub fn color(&self, name: &str) -> Option<Color> {
+        if name == "custom" {
+            return self.imp().custom.get();
+        }
+        COLOR_NAMES
+            .iter()
+            .position(|n| *n == name)
+            .map(|index| COLORS[index])
+    }
+
+    /// Marks the swatch of the selected colour
     pub fn show_color(&self, name: &str) {
         self.imp().show_color(name);
+    }
+
+    /// Shows the outline/filled choice, for tools that draw areas
+    pub fn set_fill_visible(&self, visible: bool) {
+        self.imp().fill_box.set_visible(visible);
     }
 }

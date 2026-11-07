@@ -40,6 +40,16 @@ mod imp {
         pub(super) current: RefCell<Option<Shape>>,
         pub(super) drag_start: Cell<(f64, f64)>,
         pub(super) text_popover: RefCell<Option<gtk::Popover>>,
+        /// Factor for line width and font size of new shapes
+        pub(super) size_factor: Cell<f64>,
+        /// New rectangles and ellipses are filled
+        pub(super) filled: Cell<bool>,
+        /// Shape picked with the select tool, and whether it was moved in
+        /// the current drag
+        pub(super) selected: Cell<Option<usize>>,
+        pub(super) moved: Cell<bool>,
+        /// Drag offset at the last move
+        pub(super) last_offset: Cell<Option<(f64, f64)>>,
     }
 
     #[glib::object_subclass]
@@ -59,6 +69,33 @@ mod imp {
             let obj = self.obj();
 
             obj.set_cursor_from_name(Some("crosshair"));
+            obj.set_focusable(true);
+            self.size_factor.set(1.);
+
+            let keys = gtk::EventControllerKey::new();
+            keys.connect_key_pressed(glib::clone!(
+                #[weak]
+                obj,
+                #[upgrade_or]
+                glib::Propagation::Proceed,
+                move |_, key, _, _| {
+                    let imp = obj.imp();
+                    match (key, imp.selected.get()) {
+                        (gdk::Key::Delete | gdk::Key::BackSpace, Some(index)) => {
+                            imp.selected.set(None);
+                            obj.edit_window().remove_markup(index);
+                            glib::Propagation::Stop
+                        }
+                        (gdk::Key::Escape, Some(_)) => {
+                            imp.selected.set(None);
+                            obj.queue_draw();
+                            glib::Propagation::Stop
+                        }
+                        _ => glib::Propagation::Proceed,
+                    }
+                }
+            ));
+            obj.add_controller(keys);
 
             let drag = gtk::GestureDrag::new();
             drag.connect_drag_begin(glib::clone!(
@@ -98,6 +135,7 @@ mod imp {
             if shapes.is_empty() && current.is_none() {
                 return;
             }
+            let selected = self.selected.get().and_then(|index| shapes.get(index));
 
             let image = self.image();
             let Some((x, y, scale)) = image_transform(&image) else {
@@ -118,6 +156,26 @@ mod imp {
             markup::draw(&cr, &shapes);
             if let Some(shape) = current.as_ref() {
                 markup::draw(&cr, std::slice::from_ref(shape));
+            }
+
+            // Dashed outline around the selected shape, in screen pixels
+            if let Some(shape) = selected {
+                let (x0, y0, x1, y1) = shape.bounds();
+                // Also outline the parts outside the picture
+                cr.reset_clip();
+                cr.transform(shape.matrix);
+                // Works under rotation, where x and y swap
+                let (pad_x, pad_y) = cr.device_to_user_distance(6., 0.).unwrap_or((6., 0.));
+                let pad = pad_x.hypot(pad_y);
+                cr.rectangle(x0 - pad, y0 - pad, x1 - x0 + 2. * pad, y1 - y0 + 2. * pad);
+                cr.identity_matrix();
+                cr.set_line_width(1.5);
+                cr.set_dash(&[5., 4.], 0.);
+                cr.set_source_rgb(1., 1., 1.);
+                let _ = cr.stroke_preserve();
+                cr.set_dash(&[5., 4.], 5.);
+                cr.set_source_rgb(0., 0., 0.);
+                let _ = cr.stroke();
             }
         }
 
@@ -155,6 +213,30 @@ mod imp {
             Some(((x - offset_x) / scale, (y - offset_y) / scale))
         }
 
+        pub(super) fn restore_cursor(&self) {
+            let tool = self.tool.get();
+            self.obj()
+                .set_cursor_from_name(Some(if tool == Tool::Select {
+                    "default"
+                } else {
+                    "crosshair"
+                }));
+        }
+
+        /// Topmost shape under the widget point `(x, y)`
+        fn shape_at(&self, x: f64, y: f64) -> Option<usize> {
+            let (_, _, scale) = image_transform(&self.image())?;
+            let point = self.to_image(x, y)?;
+            let (matrix, _) = self.operations_matrix();
+            let shapes = self.obj().edit_window().markup();
+
+            shapes.iter().enumerate().rev().find_map(|(index, shape)| {
+                let full = cairo::Matrix::multiply(&shape.matrix, &matrix);
+                let local = full.try_invert().ok()?.transform_point(point.0, point.1);
+                shape.hit(local, 6. / scale).then_some(index)
+            })
+        }
+
         fn new_shape(&self, kind: Kind) -> Shape {
             let (width, height) = self.image().image_size();
             let (width, height) = (width.max(1) as u32, height.max(1) as u32);
@@ -165,7 +247,9 @@ mod imp {
                 Kind::Text { .. } => markup::font_size(width, height),
                 _ => markup::line_width(width, height),
             };
-            let mut shape = Shape::new(kind, self.color.get(), size);
+            let fillable = matches!(kind, Kind::Rectangle { .. } | Kind::Ellipse { .. });
+            let mut shape = Shape::new(kind, self.color.get(), size * self.size_factor.get());
+            shape.filled = fillable && self.filled.get();
             // Shapes are stored relative to the original image
             let (matrix, _) = self.operations_matrix();
             if let Ok(inverse) = matrix.try_invert() {
@@ -176,11 +260,28 @@ mod imp {
 
         fn drag_begin(&self, x: f64, y: f64) {
             self.drag_start.set((x, y));
+
             let Some(point) = self.to_image(x, y) else {
                 return;
             };
 
             let kind = match self.tool.get() {
+                Tool::Select => {
+                    self.selected.set(self.shape_at(x, y));
+                    self.moved.set(false);
+                    self.last_offset.set(None);
+                    self.obj().grab_focus();
+                    self.obj().queue_draw();
+                    return;
+                }
+                Tool::Line => Kind::Line {
+                    from: point,
+                    to: point,
+                },
+                Tool::Ellipse => Kind::Ellipse {
+                    from: point,
+                    to: point,
+                },
                 Tool::Brush => Kind::Stroke {
                     points: vec![point],
                     highlighter: false,
@@ -208,6 +309,11 @@ mod imp {
         }
 
         fn drag_update(&self, offset_x: f64, offset_y: f64) {
+            if self.tool.get() == Tool::Select {
+                self.move_selected(offset_x, offset_y);
+                return;
+            }
+
             let (start_x, start_y) = self.drag_start.get();
             let Some(point) = self.to_image(start_x + offset_x, start_y + offset_y) else {
                 return;
@@ -216,7 +322,10 @@ mod imp {
             if let Some(shape) = self.current.borrow_mut().as_mut() {
                 match &mut shape.kind {
                     Kind::Stroke { points, .. } => points.push(point),
-                    Kind::Rectangle { to, .. } | Kind::Arrow { to, .. } => *to = point,
+                    Kind::Line { to, .. }
+                    | Kind::Rectangle { to, .. }
+                    | Kind::Ellipse { to, .. }
+                    | Kind::Arrow { to, .. } => *to = point,
                     Kind::Text { .. } => {}
                 }
             }
@@ -229,9 +338,10 @@ mod imp {
             };
 
             let empty = match &shape.kind {
-                Kind::Rectangle { from, to } | Kind::Arrow { from, to } => {
-                    (from.0 - to.0).hypot(from.1 - to.1) < shape.size
-                }
+                Kind::Line { from, to }
+                | Kind::Rectangle { from, to }
+                | Kind::Ellipse { from, to }
+                | Kind::Arrow { from, to } => (from.0 - to.0).hypot(from.1 - to.1) < shape.size,
                 _ => false,
             };
 
@@ -239,6 +349,41 @@ mod imp {
                 self.obj().edit_window().add_markup(shape);
             }
             self.obj().queue_draw();
+        }
+
+        /// Moves the selected shape so it follows the drag
+        fn move_selected(&self, offset_x: f64, offset_y: f64) {
+            let Some(index) = self.selected.get() else {
+                return;
+            };
+            let Some((_, _, scale)) = image_transform(&self.image()) else {
+                return;
+            };
+            let edit_window = self.obj().edit_window();
+            let Some(mut shape) = edit_window.markup().get(index).cloned() else {
+                return;
+            };
+
+            // Offset since the last update, in widget coordinates
+            let (previous_x, previous_y) = self
+                .last_offset
+                .replace(Some((offset_x, offset_y)))
+                .unwrap_or((0., 0.));
+            let (delta_x, delta_y) = (offset_x - previous_x, offset_y - previous_y);
+            // A click that barely moves is not a move
+            if !self.moved.get() && offset_x.hypot(offset_y) < 2. {
+                self.last_offset.set(None);
+                return;
+            }
+
+            let (matrix, _) = self.operations_matrix();
+            let Ok(inverse) = matrix.try_invert() else {
+                return;
+            };
+            let (dx, dy) = inverse.transform_distance(delta_x / scale, delta_y / scale);
+            shape.translate(dx, dy);
+
+            edit_window.replace_markup(index, shape, !self.moved.replace(true));
         }
 
         /// Shows an entry at the clicked point and adds the text on Enter
@@ -315,10 +460,31 @@ glib::wrapper! {
 
 impl LpMarkupCanvas {
     pub fn set_tool(&self, tool: Tool) {
-        self.imp().tool.set(tool);
+        let imp = self.imp();
+        imp.tool.set(tool);
+        if tool != Tool::Select && imp.selected.take().is_some() {
+            self.queue_draw();
+        }
+        imp.restore_cursor();
     }
 
     pub fn set_color(&self, color: Color) {
         self.imp().color.set(color);
+    }
+}
+
+impl LpMarkupCanvas {
+    pub fn set_filled(&self, filled: bool) {
+        self.imp().filled.set(filled);
+    }
+
+    pub fn set_size_factor(&self, factor: f64) {
+        self.imp().size_factor.set(factor);
+    }
+
+    /// Forgets the selected shape, for example after undo
+    pub fn clear_selection(&self) {
+        self.imp().selected.set(None);
+        self.queue_draw();
     }
 }

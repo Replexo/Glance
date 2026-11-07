@@ -25,7 +25,6 @@ use gtk::CompositeTemplate;
 use strum::IntoEnumIterator;
 
 use super::LpErrorDetails;
-use crate::config;
 use crate::deps::*;
 use crate::util::gettext::*;
 use crate::util::{Direction, ErrorType};
@@ -121,10 +120,6 @@ mod imp {
             self.parent_constructed();
 
             let obj = self.obj();
-
-            if config::APP_ID.ends_with(".Devel") {
-                obj.add_css_class("devel");
-            }
 
             // Limit effect of modal dialogs to this window
             // and keeps the others usable

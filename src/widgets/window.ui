@@ -14,6 +14,7 @@
         <condition>min-width: 590sp</condition>
         <setter object="LpWindow" property="layout-name">wide</setter>
         <setter object="LpWindow" property="narrow-layout">false</setter>
+        <setter object="LpWindow" property="wide-layout">true</setter>
 
       </object>
     </child>
@@ -22,6 +23,7 @@
         <condition>max-width: 590sp</condition>
         <setter object="LpWindow" property="layout-name">narrow</setter>
         <setter object="LpWindow" property="narrow-layout">true</setter>
+        <setter object="LpWindow" property="wide-layout">false</setter>
       </object>
     </child>
     <property name="content">

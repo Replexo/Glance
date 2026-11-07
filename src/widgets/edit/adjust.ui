@@ -4,110 +4,234 @@
     <property name="child">
       <object class="GtkBox">
         <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
-        <style>
-          <class name="toolbar" />
-          <class name="edit-adjust" />
-        </style>
+        <property name="spacing">10</property>
         <child>
-          <object class="GtkLabel" id="value_label">
-            <property name="label">0</property>
+          <object class="GtkLabel" id="name_label">
+            <property name="halign">center</property>
+            <property name="label" translatable="yes">Brightness</property>
             <style>
-              <class name="caption" />
-              <class name="numeric" />
+              <class name="glint-name"/>
             </style>
           </object>
         </child>
         <child>
-          <object class="AdwClamp">
-            <property name="maximum-size">320</property>
-            <property name="child">
-              <object class="GtkScale" id="scale">
-                <property name="hexpand">true</property>
-                <property name="draw-value">false</property>
-                <property name="has-origin">false</property>
-                <property name="round-digits">0</property>
-                <property name="adjustment">
-                  <object class="GtkAdjustment">
-                    <property name="lower">-100</property>
-                    <property name="upper">100</property>
-                    <property name="step-increment">1</property>
-                    <property name="page-increment">10</property>
-                  </object>
-                </property>
-                <marks>
-                  <mark value="0" position="bottom" />
-                </marks>
-                <accessibility>
-                  <relation name="labelled-by">value_label</relation>
-                </accessibility>
-              </object>
-            </property>
+          <object class="LpCenterSlider" id="slider">
+            <property name="halign">center</property>
+            <property name="width-request">300</property>
+            <accessibility>
+              <relation name="labelled-by">name_label</relation>
+            </accessibility>
           </object>
         </child>
         <child>
-          <object class="GtkScrolledWindow">
-            <property name="vscrollbar-policy">never</property>
-            <property name="hscrollbar-policy">external</property>
-            <property name="propagate-natural-width">true</property>
-            <property name="halign">center</property>
-            <property name="child">
-              <object class="GtkBox" id="buttons">
-                <property name="spacing">6</property>
+          <object class="GtkCenterBox">
+            <property name="center-widget">
+              <object class="GtkScrolledWindow">
+                <property name="hscrollbar-policy">external</property>
+                <property name="vscrollbar-policy">never</property>
+                <property name="propagate-natural-width">true</property>
+                <property name="propagate-natural-height">true</property>
                 <property name="halign">center</property>
+                <property name="child">
+                  <object class="GtkBox">
+                    <property name="spacing">2</property>
+                    <style>
+                      <class name="glint-pill"/>
+                    </style>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="icon-name">glint-auto-symbolic</property>
+                        <property name="tooltip-text" translatable="yes">Adjust Automatically</property>
+                        <property name="action-name">edit-adjust.automatic</property>
+                        <style>
+                          <class name="wide"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparator">
+                        <property name="orientation">vertical</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkToggleButton">
+                        <property name="tooltip-text" translatable="yes">Brightness</property>
+                        <property name="action-name">edit-adjust.property</property>
+                        <property name="action-target">'brightness'</property>
+                        <style>
+                          <class name="wide"/>
+                        </style>
+                        <property name="child">
+                          <object class="GtkOverlay">
+                            <property name="child">
+                              <object class="GtkImage">
+                                <property name="icon-name">glint-brightness-symbolic</property>
+                              </object>
+                            </property>
+                            <child type="overlay">
+                              <object class="AdwBin" id="dot_brightness">
+                                <property name="visible">false</property>
+                                <property name="halign">end</property>
+                                <property name="valign">start</property>
+                                <style>
+                                  <class name="changed-dot"/>
+                                </style>
+                              </object>
+                            </child>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkToggleButton">
+                        <property name="tooltip-text" translatable="yes">Contrast</property>
+                        <property name="action-name">edit-adjust.property</property>
+                        <property name="action-target">'contrast'</property>
+                        <style>
+                          <class name="wide"/>
+                        </style>
+                        <property name="child">
+                          <object class="GtkOverlay">
+                            <property name="child">
+                              <object class="GtkImage">
+                                <property name="icon-name">glint-contrast-symbolic</property>
+                              </object>
+                            </property>
+                            <child type="overlay">
+                              <object class="AdwBin" id="dot_contrast">
+                                <property name="visible">false</property>
+                                <property name="halign">end</property>
+                                <property name="valign">start</property>
+                                <style>
+                                  <class name="changed-dot"/>
+                                </style>
+                              </object>
+                            </child>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkToggleButton">
+                        <property name="tooltip-text" translatable="yes">Highlights</property>
+                        <property name="action-name">edit-adjust.property</property>
+                        <property name="action-target">'highlights'</property>
+                        <style>
+                          <class name="wide"/>
+                        </style>
+                        <property name="child">
+                          <object class="GtkOverlay">
+                            <property name="child">
+                              <object class="GtkImage">
+                                <property name="icon-name">glint-highlights-symbolic</property>
+                              </object>
+                            </property>
+                            <child type="overlay">
+                              <object class="AdwBin" id="dot_highlights">
+                                <property name="visible">false</property>
+                                <property name="halign">end</property>
+                                <property name="valign">start</property>
+                                <style>
+                                  <class name="changed-dot"/>
+                                </style>
+                              </object>
+                            </child>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkToggleButton">
+                        <property name="tooltip-text" translatable="yes">Shadows</property>
+                        <property name="action-name">edit-adjust.property</property>
+                        <property name="action-target">'shadows'</property>
+                        <style>
+                          <class name="wide"/>
+                        </style>
+                        <property name="child">
+                          <object class="GtkOverlay">
+                            <property name="child">
+                              <object class="GtkImage">
+                                <property name="icon-name">glint-shadows-symbolic</property>
+                              </object>
+                            </property>
+                            <child type="overlay">
+                              <object class="AdwBin" id="dot_shadows">
+                                <property name="visible">false</property>
+                                <property name="halign">end</property>
+                                <property name="valign">start</property>
+                                <style>
+                                  <class name="changed-dot"/>
+                                </style>
+                              </object>
+                            </child>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkToggleButton">
+                        <property name="tooltip-text" translatable="yes">Saturation</property>
+                        <property name="action-name">edit-adjust.property</property>
+                        <property name="action-target">'saturation'</property>
+                        <style>
+                          <class name="wide"/>
+                        </style>
+                        <property name="child">
+                          <object class="GtkOverlay">
+                            <property name="child">
+                              <object class="GtkImage">
+                                <property name="icon-name">glint-saturation-symbolic</property>
+                              </object>
+                            </property>
+                            <child type="overlay">
+                              <object class="AdwBin" id="dot_saturation">
+                                <property name="visible">false</property>
+                                <property name="halign">end</property>
+                                <property name="valign">start</property>
+                                <style>
+                                  <class name="changed-dot"/>
+                                </style>
+                              </object>
+                            </child>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+              </object>
+            </property>
+            <property name="end-widget">
+              <object class="GtkBox">
+                <binding name="visible">
+                  <lookup name="wide-layout" type="LpWindow">
+                    <lookup name="root">LpEditAdjust</lookup>
+                  </lookup>
+                </binding>
+                <property name="margin-end">12</property>
+                <property name="valign">center</property>
+                <style>
+                  <class name="glint-pill"/>
+                </style>
                 <child>
-                  <object class="GtkButton" id="automatic">
-                    <property name="label" translatable="yes">_Automatic</property>
-                    <property name="use-underline">true</property>
-                    <property name="tooltip-text" translatable="yes">Adjust Levels Automatically</property>
-                    <property name="action-name">edit-adjust.automatic</property>
+                  <object class="GtkButton" id="compare">
+                    <property name="icon-name">glint-compare-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Hold to Show Original</property>
                   </object>
                 </child>
                 <child>
-                  <object class="GtkSeparator">
-                    <property name="orientation">vertical</property>
-                    <property name="margin-top">6</property>
-                    <property name="margin-bottom">6</property>
+                  <object class="GtkButton">
+                    <property name="icon-name">glint-undo-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Undo</property>
+                    <property name="action-name">edit.undo</property>
                   </object>
                 </child>
                 <child>
-                  <object class="GtkToggleButton">
-                    <property name="label" translatable="yes">_Brightness</property>
-                    <property name="use-underline">true</property>
-                    <property name="action-name">edit-adjust.property</property>
-                    <property name="action-target">'brightness'</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkToggleButton">
-                    <property name="label" translatable="yes">_Contrast</property>
-                    <property name="use-underline">true</property>
-                    <property name="action-name">edit-adjust.property</property>
-                    <property name="action-target">'contrast'</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkToggleButton">
-                    <property name="label" translatable="yes">_Highlights</property>
-                    <property name="use-underline">true</property>
-                    <property name="action-name">edit-adjust.property</property>
-                    <property name="action-target">'highlights'</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkToggleButton">
-                    <property name="label" translatable="yes">Shado_ws</property>
-                    <property name="use-underline">true</property>
-                    <property name="action-name">edit-adjust.property</property>
-                    <property name="action-target">'shadows'</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkToggleButton">
-                    <property name="label" translatable="yes">Sa_turation</property>
-                    <property name="use-underline">true</property>
-                    <property name="action-name">edit-adjust.property</property>
-                    <property name="action-target">'saturation'</property>
+                  <object class="GtkButton">
+                    <property name="icon-name">glint-redo-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Redo</property>
+                    <property name="action-name">edit.redo</property>
                   </object>
                 </child>
               </object>

@@ -16,6 +16,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 pub mod adjust;
+pub mod center_slider;
+pub mod color_card;
 pub mod crop;
 pub mod crop_selection;
 pub mod markup;
@@ -23,6 +25,8 @@ pub mod markup_canvas;
 pub mod resize_dialog;
 
 pub use adjust::LpEditAdjust;
+pub use center_slider::LpCenterSlider;
+pub use color_card::LpColorCard;
 pub use crop::LpEditCrop;
 pub use crop_selection::LpEditCropSelection;
 pub use markup::LpEditMarkup;

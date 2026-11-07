@@ -15,7 +15,8 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-//! Bottom bar of the Adjust view: one slider for the selected property
+//! Controls of the Adjust view: the selected property's name and slider
+//! above a pill of property buttons
 
 use std::cell::{Cell, OnceCell};
 
@@ -24,7 +25,19 @@ use adw::subclass::prelude::*;
 
 use crate::deps::*;
 use crate::editing::adjust::{Adjustments, Property};
+use crate::util::gettext::*;
 use crate::util::root::ParentWindow;
+use crate::widgets::edit::LpCenterSlider;
+
+fn property_label(property: Property) -> String {
+    match property {
+        Property::Brightness => gettext("Brightness"),
+        Property::Contrast => gettext("Contrast"),
+        Property::Highlights => gettext("Highlights"),
+        Property::Shadows => gettext("Shadows"),
+        Property::Saturation => gettext("Saturation"),
+    }
+}
 
 fn property_name(property: Property) -> &'static str {
     match property {
@@ -49,12 +62,24 @@ mod imp {
     #[template(file = "adjust.ui")]
     pub struct LpEditAdjust {
         #[template_child]
-        pub(super) scale: TemplateChild<gtk::Scale>,
+        pub(super) slider: TemplateChild<LpCenterSlider>,
         #[template_child]
-        pub(super) value_label: TemplateChild<gtk::Label>,
+        name_label: TemplateChild<gtk::Label>,
+        #[template_child]
+        compare: TemplateChild<gtk::Button>,
+        #[template_child]
+        dot_brightness: TemplateChild<adw::Bin>,
+        #[template_child]
+        dot_contrast: TemplateChild<adw::Bin>,
+        #[template_child]
+        dot_highlights: TemplateChild<adw::Bin>,
+        #[template_child]
+        dot_shadows: TemplateChild<adw::Bin>,
+        #[template_child]
+        dot_saturation: TemplateChild<adw::Bin>,
 
         pub(super) property: Cell<Option<Property>>,
-        pub(super) scale_handler: OnceCell<glib::SignalHandlerId>,
+        pub(super) slider_handler: OnceCell<glib::SignalHandlerId>,
         pub(super) automatic_action: OnceCell<gio::SimpleAction>,
     }
 
@@ -65,6 +90,7 @@ mod imp {
         type ParentType = adw::Bin;
 
         fn class_init(klass: &mut Self::Class) {
+            LpCenterSlider::static_type();
             Self::bind_template(klass);
         }
 
@@ -112,12 +138,31 @@ mod imp {
 
             obj.insert_action_group("edit-adjust", Some(&actions));
 
-            let handler = self.scale.connect_value_changed(glib::clone!(
+            let handler = self.slider.connect_value_notify(glib::clone!(
                 #[weak]
                 obj,
-                move |scale| obj.imp().scale_changed(scale.value())
+                move |slider| obj.imp().slider_changed(slider.value())
             ));
-            self.scale_handler.set(handler).unwrap();
+            self.slider_handler.set(handler).unwrap();
+
+            // Holding the button shows the picture without adjustments
+            let hold = gtk::GestureClick::new();
+            hold.connect_pressed(glib::clone!(
+                #[weak]
+                obj,
+                move |_, _, _, _| obj.imp().show_original(true)
+            ));
+            hold.connect_released(glib::clone!(
+                #[weak]
+                obj,
+                move |_, _, _, _| obj.imp().show_original(false)
+            ));
+            hold.connect_cancel(glib::clone!(
+                #[weak]
+                obj,
+                move |_, _| obj.imp().show_original(false)
+            ));
+            self.compare.add_controller(hold);
 
             self.select(Property::Brightness);
         }
@@ -135,7 +180,8 @@ mod imp {
             }
         }
 
-        /// Shows the stored value of the selected property
+        /// Shows the stored value of the selected property and which
+        /// properties are changed
         pub(super) fn sync(&self) {
             let Some(property) = self.property.get() else {
                 return;
@@ -147,35 +193,45 @@ mod imp {
                 .map(|x| x.adjustments())
                 .unwrap_or_default();
 
-            let value = (adjustments.get(property) * 100.).round() as f64;
-            let handler = self.scale_handler.get().unwrap();
-            self.scale.block_signal(handler);
-            self.scale.set_value(value);
-            self.scale.unblock_signal(handler);
-            self.update_label(value);
+            self.name_label.set_label(&property_label(property));
+
+            let handler = self.slider_handler.get().unwrap();
+            self.slider.block_signal(handler);
+            self.slider.set_value(adjustments.get(property) as f64);
+            self.slider.unblock_signal(handler);
+
+            for (dot, property) in [
+                (&*self.dot_brightness, Property::Brightness),
+                (&*self.dot_contrast, Property::Contrast),
+                (&*self.dot_highlights, Property::Highlights),
+                (&*self.dot_shadows, Property::Shadows),
+                (&*self.dot_saturation, Property::Saturation),
+            ] {
+                dot.set_visible(adjustments.get(property) != 0.);
+            }
         }
 
-        fn update_label(&self, value: f64) {
-            let value = value.round() as i32;
-            let label = if value > 0 {
-                format!("+{value}")
-            } else {
-                // Minus sign instead of hyphen
-                value.to_string().replace('-', "−")
-            };
-            self.value_label.set_label(&label);
-        }
-
-        fn scale_changed(&self, value: f64) {
+        fn slider_changed(&self, value: f64) {
             let Some(property) = self.property.get() else {
                 return;
             };
-            self.update_label(value);
 
             if let Some(edit_window) = self.obj().try_edit_window() {
                 let mut adjustments = edit_window.adjustments();
-                adjustments.set(property, value as f32 / 100.);
+                adjustments.set(property, value as f32);
                 edit_window.change_adjustments(adjustments, Some(property));
+            }
+            self.sync();
+        }
+
+        fn show_original(&self, original: bool) {
+            if let Some(edit_window) = self.obj().try_edit_window() {
+                let adjustments = if original {
+                    Adjustments::default()
+                } else {
+                    edit_window.adjustments()
+                };
+                edit_window.edit_crop().image().set_adjustments(adjustments);
             }
         }
 

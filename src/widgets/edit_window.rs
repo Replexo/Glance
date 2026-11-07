@@ -112,6 +112,7 @@ mod imp {
             });
 
             klass.install_action("edit.undo", None, |obj, _, _| obj.undo());
+            klass.install_action("edit.clear-markup", None, |obj, _, _| obj.clear_markup());
             klass.install_action("edit.redo", None, |obj, _, _| obj.redo());
 
             klass.install_action("edit.cancel", None, move |obj, _, _| {
@@ -180,6 +181,7 @@ mod imp {
             ));
 
             obj.update_history_actions();
+            obj.action_set_enabled("edit.clear-markup", false);
 
             self.shortcut_controller.add_shortcut(gtk::Shortcut::new(
                 Some(gtk::KeyvalTrigger::new(
@@ -615,7 +617,7 @@ impl LpEditWindow {
         imp.operations.replace(operations);
         // Markup and the resized size follow the operations
         self.edit_crop().markup_changed();
-        self.edit_crop().update_resize_label();
+        self.edit_crop().update_size_label();
         imp.update_save_state(false);
     }
 
@@ -660,11 +662,42 @@ impl LpEditWindow {
         self.record(None);
         let mut markup = (*self.markup()).clone();
         markup.push(shape);
-        self.replace_markup(Arc::new(markup));
+        self.set_markup_list(Arc::new(markup));
     }
 
-    fn replace_markup(&self, markup: Arc<Vec<Shape>>) {
+    /// Replaces the shape at `index`, as a new undo step if `record` is set
+    pub fn replace_markup(&self, index: usize, shape: Shape, record: bool) {
+        if record {
+            self.record(None);
+        }
+        let mut markup = (*self.markup()).clone();
+        if let Some(old) = markup.get_mut(index) {
+            *old = shape;
+            self.set_markup_list(Arc::new(markup));
+        }
+    }
+
+    pub fn remove_markup(&self, index: usize) {
+        let mut markup = (*self.markup()).clone();
+        if index < markup.len() {
+            self.record(None);
+            markup.remove(index);
+            self.edit_crop().markup_canvas().clear_selection();
+            self.set_markup_list(Arc::new(markup));
+        }
+    }
+
+    pub fn clear_markup(&self) {
+        if !self.markup().is_empty() {
+            self.record(None);
+            self.edit_crop().markup_canvas().clear_selection();
+            self.set_markup_list(Arc::new(Vec::new()));
+        }
+    }
+
+    fn set_markup_list(&self, markup: Arc<Vec<Shape>>) {
         let imp = self.imp();
+        self.action_set_enabled("edit.clear-markup", !markup.is_empty());
         imp.markup.replace(markup);
         self.edit_crop().markup_changed();
         imp.update_save_state(false);
@@ -698,7 +731,7 @@ impl LpEditWindow {
     fn replace_resize(&self, resize: Option<f64>) {
         let imp = self.imp();
         imp.resize.set(resize);
-        self.edit_crop().update_resize_label();
+        self.edit_crop().update_size_label();
         imp.update_save_state(false);
     }
 
@@ -752,10 +785,11 @@ impl LpEditWindow {
         }
         self.replace_operations(state.operations);
         self.replace_adjustments(state.adjustments);
-        self.replace_markup(state.markup);
+        self.set_markup_list(state.markup);
         self.replace_resize(state.resize);
 
         edit_crop.state_restored();
+        edit_crop.markup_canvas().clear_selection();
         self.update_history_actions();
     }
 
