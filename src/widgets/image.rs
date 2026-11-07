@@ -269,6 +269,8 @@ mod imp {
         /// Editing queue
         pub(super) editing_queue: crate::editing::Queue,
         pub(super) operations: RefCell<Option<Arc<Operations>>>,
+        /// Colour adjustments shown as a live preview
+        pub(super) adjustments: Cell<crate::editing::adjust::Adjustments>,
     }
 
     #[glib::object_subclass]

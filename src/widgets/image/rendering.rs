@@ -119,11 +119,23 @@ impl WidgetImpl for imp::LpImage {
         // Don't use current frame buffer if it empty during an image reload
         let frame_buffer = self.active_frame_buffer();
 
+        // With adjustments the image is drawn into its own node first, so the
+        // background for transparent images can stay unadjusted
+        let adjustments = self.adjustments.get();
+        let adjusted = !adjustments.is_identity();
+        let (image_snapshot, render_options) = if adjusted {
+            let mut options = render_options.clone();
+            options.background_color = None;
+            (gtk::Snapshot::new(), options)
+        } else {
+            (snapshot.clone(), render_options)
+        };
+
         if self.operations.borrow().is_some() {
             let tmp_snapshot = gtk::Snapshot::new();
             frame_buffer.add_to_snapshot(&tmp_snapshot, applicable_zoom, &render_options);
             if let Some(node) = tmp_snapshot.to_node() {
-                if let Err(err) = self.apply_operations(node, snapshot) {
+                if let Err(err) = self.apply_operations(node, &image_snapshot) {
                     tracing::error!("Failed to apply operations to node: {err}");
                 }
             } else {
@@ -132,13 +144,22 @@ impl WidgetImpl for imp::LpImage {
         } else {
             // Apply rotation and mirroring
             self.snapshot_rotate_mirror(
-                snapshot,
+                &image_snapshot,
                 obj.rotation() as f32,
                 obj.mirrored(),
                 applicable_zoom,
             );
 
-            frame_buffer.add_to_snapshot(snapshot, applicable_zoom, &render_options);
+            frame_buffer.add_to_snapshot(&image_snapshot, applicable_zoom, &render_options);
+        }
+
+        if adjusted && let Some(node) = image_snapshot.to_node() {
+            snapshot.append_color(&self.background_color(), &node.bounds());
+            let pushed = push_adjustments(snapshot, &adjustments);
+            snapshot.append_node(node);
+            for _ in 0..pushed {
+                snapshot.pop();
+            }
         }
 
         snapshot.restore();
@@ -404,4 +425,48 @@ impl LpImage {
 
         (x, y)
     }
+}
+
+/// Pushes the preview form of the adjustments
+///
+/// Returns the number of nodes pushed. The outermost node is applied last.
+fn push_adjustments(
+    snapshot: &gtk::Snapshot,
+    adjustments: &crate::editing::adjust::Adjustments,
+) -> usize {
+    let identity = gsk::ComponentTransfer::new_identity();
+    let mut pushed = 0;
+
+    if adjustments.saturation != 0. {
+        let m = adjustments.saturation_matrix();
+        let matrix = graphene::Matrix::from_float([
+            m[0][0], m[1][0], m[2][0], 0., //
+            m[0][1], m[1][1], m[2][1], 0., //
+            m[0][2], m[1][2], m[2][2], 0., //
+            0., 0., 0., 1.,
+        ]);
+        snapshot.push_color_matrix(&matrix, &graphene::Vec4::zero());
+        pushed += 1;
+    }
+
+    if adjustments.contrast != 0. {
+        let (slope, offset) = adjustments.contrast_line();
+        let linear = gsk::ComponentTransfer::new_linear(slope, offset);
+        snapshot.push_component_transfer(&linear, &linear, &linear, &identity);
+        pushed += 1;
+    }
+
+    if adjustments.shadows != 0. || adjustments.highlights != 0. {
+        let table = gsk::ComponentTransfer::new_table(&adjustments.shadows_highlights_table());
+        snapshot.push_component_transfer(&table, &table, &table, &identity);
+        pushed += 1;
+    }
+
+    if adjustments.brightness != 0. {
+        let gamma = gsk::ComponentTransfer::new_gamma(1., adjustments.brightness_exponent(), 0.);
+        snapshot.push_component_transfer(&gamma, &gamma, &gamma, &identity);
+        pushed += 1;
+    }
+
+    pushed
 }

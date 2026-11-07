@@ -962,6 +962,7 @@ dependencies = [
  "gtk4",
  "gufo",
  "gvdb-macros",
+ "image",
  "indexmap",
  "libadwaita",
  "libc",

@@ -85,3 +85,15 @@ impl LpImage {
         Ok(())
     }
 }
+
+impl LpImage {
+    pub fn adjustments(&self) -> crate::editing::adjust::Adjustments {
+        self.imp().adjustments.get()
+    }
+
+    /// Sets the colour adjustments shown in the preview
+    pub fn set_adjustments(&self, adjustments: crate::editing::adjust::Adjustments) {
+        self.imp().adjustments.set(adjustments);
+        self.queue_draw();
+    }
+}

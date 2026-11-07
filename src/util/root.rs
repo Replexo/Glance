@@ -78,6 +78,16 @@ pub trait ParentWindow: WidgetExt {
             .downcast()
             .unwrap_or_else(|_| parent.edit_window())
     }
+
+    /// Like [`Self::edit_window`] but returns `None` while not in an edit window
+    fn try_edit_window(&self) -> Option<LpEditWindow> {
+        let parent = self.parent()?;
+
+        match parent.clone().downcast() {
+            Ok(edit_window) => Some(edit_window),
+            Err(_) => parent.try_edit_window(),
+        }
+    }
 }
 
 impl<T: WidgetExt> ParentWindow for T {}

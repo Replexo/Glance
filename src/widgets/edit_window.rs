@@ -27,6 +27,8 @@ use glycin::Operations;
 use super::LpImage;
 use super::edit::LpEditCrop;
 use crate::deps::*;
+use crate::editing::adjust::Adjustments;
+use crate::editing::render::PixelEdits;
 use crate::util::ErrorType;
 use crate::util::gettext::*;
 use crate::util::root::ParentWindow;
@@ -52,6 +54,8 @@ mod imp {
         saving_info: TemplateChild<gtk::Revealer>,
         #[template_child]
         shortcut_controller: TemplateChild<gtk::ShortcutController>,
+        #[template_child]
+        mode_switcher: TemplateChild<adw::ToggleGroup>,
 
         #[property(get, construct_only)]
         original_image: OnceCell<LpImage>,
@@ -64,6 +68,7 @@ mod imp {
         pub(super) can_trash: Cell<bool>,
 
         pub(super) operations: RefCell<Option<Arc<Operations>>>,
+        pub(super) adjustments: Cell<Adjustments>,
         save_cancellable: RefCell<Option<gio::Cancellable>>,
     }
 
@@ -110,6 +115,12 @@ mod imp {
             self.parent_constructed();
 
             let obj = self.obj();
+
+            self.mode_switcher
+                .bind_property("active-name", &obj.edit_crop(), "mode")
+                .bidirectional()
+                .sync_create()
+                .build();
 
             glib::spawn_future_local(glib::clone!(
                 #[weak]
@@ -365,6 +376,39 @@ mod imp {
             obj.edit_crop().apply_crop();
 
             self.set_saving_status(Some(gettext("Editing Image")));
+
+            let pixel_edits = obj.pixel_edits();
+            if !pixel_edits.is_empty() {
+                tracing::debug!("Rendering pixel edits {pixel_edits:?}");
+                let operations = obj.operations().map(|x| (*x).clone());
+                let result = crate::editing::render::render(
+                    current_file,
+                    operations,
+                    pixel_edits.clone(),
+                    &cancellable,
+                )
+                .await;
+
+                return match result {
+                    Err(err) if cancellable.is_cancelled() => {
+                        tracing::debug!("Rendering edited image canceled: {err}");
+                        self.set_saving_status(None);
+                        false
+                    }
+                    Err(err) => {
+                        tracing::warn!("Failed to render image: {err}");
+                        obj.window_show_error(
+                            &gettext("Failed to edit image."),
+                            &format!("Failed to edit image:\n\n{err}\n\n{pixel_edits:#?}"),
+                            ErrorType::Loader,
+                        );
+                        self.set_saving_status(None);
+                        false
+                    }
+                    Ok(data) => self.write(new_file, data, cancellable).await,
+                };
+            }
+
             let mut editor = glycin::Editor::new(current_file);
             editor.cancellable(cancellable.clone());
 
@@ -387,36 +431,48 @@ mod imp {
                         )
                     }
                     Ok(edit) => {
-                        tracing::debug!("Saving edited image to '{}'", new_file.uri());
-                        self.set_saving_status(Some(gettext("Saving Image")));
-
                         // TODO: Clone might be avoidable
                         let data = edit.data().to_vec();
-                        let save_result = gio::CancellableFuture::new(
-                            new_file.replace_contents_future(
-                                data,
-                                None,
-                                true,
-                                gio::FileCreateFlags::NONE,
-                            ),
-                            cancellable,
-                        )
-                        .await;
-
-                        if save_result.is_err() {
-                            tracing::debug!("Saving image canceled");
-                        } else if let Ok(Err(err)) = save_result {
-                            obj.window_show_error(
-                                &gettext("Failed to Save Image"),
-                                &format!("Failed to write file:\n\n{err:?}"),
-                                ErrorType::General,
-                            );
-                        } else {
-                            tracing::debug!("Image saved");
-                            return true;
-                        }
+                        return self.write(new_file, data, cancellable).await;
                     }
                 }
+            }
+
+            self.set_saving_status(None);
+            false
+        }
+
+        /// Writes encoded image data to `new_file`
+        ///
+        /// Returns `true` if writing was successful
+        async fn write(
+            &self,
+            new_file: gio::File,
+            data: Vec<u8>,
+            cancellable: gio::Cancellable,
+        ) -> bool {
+            let obj = self.obj();
+
+            tracing::debug!("Saving edited image to '{}'", new_file.uri());
+            self.set_saving_status(Some(gettext("Saving Image")));
+
+            let save_result = gio::CancellableFuture::new(
+                new_file.replace_contents_future(data, None, true, gio::FileCreateFlags::NONE),
+                cancellable,
+            )
+            .await;
+
+            if save_result.is_err() {
+                tracing::debug!("Saving image canceled");
+            } else if let Ok(Err(err)) = save_result {
+                obj.window_show_error(
+                    &gettext("Failed to Save Image"),
+                    &format!("Failed to write file:\n\n{err:?}"),
+                    ErrorType::General,
+                );
+            } else {
+                tracing::debug!("Image saved");
+                return true;
             }
 
             self.set_saving_status(None);
@@ -456,6 +512,7 @@ mod imp {
                 .as_ref()
                 .is_some_and(|x| !x.operations().is_empty())
                 || obj.edit_crop().selection().cropped()
+                || !obj.pixel_edits().is_empty()
         }
 
         pub fn update_save_state(&self, force_disabled: bool) {
@@ -517,6 +574,25 @@ impl LpEditWindow {
         operations.push(operation);
 
         self.set_operations(Some(Arc::new(Operations::new(operations))));
+    }
+
+    pub fn adjustments(&self) -> Adjustments {
+        self.imp().adjustments.get()
+    }
+
+    /// Changes the colour adjustments
+    pub fn change_adjustments(&self, adjustments: Adjustments) {
+        let imp = self.imp();
+        imp.adjustments.set(adjustments);
+        self.edit_crop().image().set_adjustments(adjustments);
+        imp.update_save_state(false);
+    }
+
+    /// Edits that are applied to the decoded pixels on save
+    pub fn pixel_edits(&self) -> PixelEdits {
+        PixelEdits {
+            adjustments: self.adjustments(),
+        }
     }
 
     /// Returns if the window should proceed with closing

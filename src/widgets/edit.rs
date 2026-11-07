@@ -15,8 +15,10 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+pub mod adjust;
 pub mod crop;
 pub mod crop_selection;
 
+pub use adjust::LpEditAdjust;
 pub use crop::LpEditCrop;
 pub use crop_selection::LpEditCropSelection;

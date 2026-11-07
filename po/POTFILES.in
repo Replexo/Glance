@@ -24,6 +24,7 @@ src/widgets.rs
 src/widgets/drag_overlay.rs
 src/widgets/drag_overlay.ui
 src/widgets/edit.rs
+src/widgets/edit/adjust.ui
 src/widgets/edit/crop.rs
 src/widgets/edit/crop.ui
 src/widgets/edit/crop_selection.rs

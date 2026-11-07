@@ -17,7 +17,7 @@
 
 //! Shows an resizable cropping selection
 
-use std::cell::OnceCell;
+use std::cell::{OnceCell, RefCell};
 use std::sync::Arc;
 
 use adw::prelude::*;
@@ -31,7 +31,7 @@ use crate::util::ErrorType;
 use crate::util::gettext::*;
 use crate::util::root::ParentWindow;
 use crate::widgets::LpImage;
-use crate::widgets::edit::LpEditCropSelection;
+use crate::widgets::edit::{LpEditAdjust, LpEditCropSelection};
 
 /// Aspect ratio modes that can be selected
 #[derive(Debug, Clone, Copy, Default, glib::Enum, glib::Variant)]
@@ -72,13 +72,19 @@ mod imp {
         #[template_child]
         pub(super) selection: TemplateChild<LpEditCropSelection>,
         #[template_child]
-        aspect_ratio_buttons: TemplateChild<gtk::Widget>,
+        mode_stack: TemplateChild<gtk::Stack>,
+        #[template_child]
+        pub(super) adjust: TemplateChild<LpEditAdjust>,
 
         #[property(get, construct_only)]
         original_image: OnceCell<LpImage>,
 
         #[property(get, set)]
         child: OnceCell<gtk::Widget>,
+
+        /// Active editing view: `crop`, `adjust` or `markup`
+        #[property(get, set = Self::set_mode, explicit_notify)]
+        mode: RefCell<String>,
     }
 
     #[glib::object_subclass]
@@ -88,6 +94,7 @@ mod imp {
         type ParentType = adw::Bin;
 
         fn class_init(klass: &mut Self::Class) {
+            LpEditAdjust::static_type();
             Self::bind_template(klass);
 
             klass.install_action("edit-crop.mirror-horizontally", None, |obj, _, _| {
@@ -231,8 +238,20 @@ mod imp {
         }
 
         pub(super) fn apply_crop(&self) {
-            if let Some(crop) = self.selection.crop_area_image_coord() {
-                self.add_operation(Operation::Clip(crop));
+            // The selection is hidden and not kept up to date in other views
+            if self.mode.borrow().as_str() != "crop" {
+                return;
+            }
+
+            if let Some((x, y, width, height)) = self.selection.crop_area_image_coord() {
+                // Rounding can put the selection a pixel outside the image
+                let (image_width, image_height) = self.image.image_size();
+                let x = x.min(image_width.max(1) as u32 - 1);
+                let y = y.min(image_height.max(1) as u32 - 1);
+                let width = width.clamp(1, image_width as u32 - x);
+                let height = height.clamp(1, image_height as u32 - y);
+
+                self.add_operation(Operation::Clip((x, y, width, height)));
 
                 self.reset_selection();
             }
@@ -324,16 +343,55 @@ mod imp {
         }
 
         fn asepect_ratio_orientation_changed(&self) {
+            let obj = self.obj();
             match self.selection.orientation() {
                 LpOrientation::Landscape => {
-                    self.aspect_ratio_buttons
-                        .remove_css_class("button-icons-portrait");
+                    obj.remove_css_class("button-icons-portrait");
                 }
                 LpOrientation::Portrait => {
-                    self.aspect_ratio_buttons
-                        .add_css_class("button-icons-portrait");
+                    obj.add_css_class("button-icons-portrait");
                 }
             }
+        }
+
+        fn set_mode(&self, mode: String) {
+            if *self.mode.borrow() == mode {
+                return;
+            }
+
+            let obj = self.obj();
+
+            // Leaving the crop view commits the selection, like rotating does
+            if self.mode.borrow().as_str() == "crop" {
+                self.apply_crop();
+            }
+
+            let is_crop = mode == "crop";
+            self.selection.set_visible(is_crop);
+            self.selection.set_can_target(is_crop);
+            for action in [
+                "edit-crop.apply-crop",
+                "edit-crop.mirror-horizontally",
+                "edit-crop.mirror-vertically",
+                "edit-crop.rotate-cw",
+                "edit-crop.rotate-ccw",
+            ] {
+                obj.action_set_enabled(action, is_crop);
+            }
+            // The mode is first set while the widget is constructed
+            let reset_enabled = obj.try_edit_window().is_some() && self.is_reset_enabled();
+            obj.action_set_enabled("edit-crop.reset", is_crop && reset_enabled);
+
+            if self.mode_stack.child_by_name(&mode).is_some() {
+                self.mode_stack.set_visible_child_name(&mode);
+            }
+
+            if mode == "adjust" {
+                self.adjust.sync();
+            }
+
+            self.mode.replace(mode);
+            obj.notify_mode();
         }
     }
 }

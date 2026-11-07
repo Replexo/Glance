@@ -15,7 +15,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+pub mod adjust;
 pub mod preview;
+pub mod render;
 
 use std::sync::Arc;
 
