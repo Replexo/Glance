@@ -3,24 +3,19 @@
   <id>@APP_ID@</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
-  <name>Image Viewer</name>
+  <name>Glint</name>
   <!-- developer_name tag deprecated with Appstream 1.0 -->
-  <developer_name>The GNOME Project</developer_name>
-  <developer id="org.gnome">
-    <name>The GNOME Project</name>
+  <developer_name>madarra16</developer_name>
+  <developer id="io.github.madarra16">
+    <name>madarra16</name>
   </developer>
-  <project_group>GNOME</project_group>
   <summary>View and edit images</summary>
   <description>
     <p>Explore images, view their metadata, and make quick edits by cropping, rotating, or flipping them.</p>
   </description>
-  <url type="homepage">https://apps.gnome.org/Loupe/</url>
-  <url type="bugtracker">https://gitlab.gnome.org/GNOME/loupe/issues</url>
-  <url type="translate">https://l10n.gnome.org/module/loupe/</url>
-  <url type="donation">https://www.gnome.org/donate/</url>
-  <url type="vcs-browser">https://gitlab.gnome.org/GNOME/loupe</url>
-  <url type="contribute">https://welcome.gnome.org/app/Loupe/</url>
-  <url type="contact">https://discourse.gnome.org/tag/loupe</url>
+  <url type="homepage">https://github.com/madarra16/glint</url>
+  <url type="bugtracker">https://github.com/madarra16/glint/issues</url>
+  <url type="vcs-browser">https://github.com/madarra16/glint</url>
 
   <screenshots>
     <screenshot type="default">

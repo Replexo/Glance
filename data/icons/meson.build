@@ -8,7 +8,7 @@ install_data(
 symbolic_dir = 'hicolor' / 'symbolic' / 'apps'
 
 install_data(
-  symbolic_dir / 'org.gnome.Loupe-symbolic.svg',
+  symbolic_dir / 'io.github.madarra16.Glint-symbolic.svg',
   install_dir: datadir / 'icons' / symbolic_dir,
   rename: '@0@-symbolic.svg'.format(app_id),
 )

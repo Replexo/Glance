@@ -28,25 +28,31 @@ pub async fn dialog() -> adw::AboutDialog {
     // Builders are a pattern that allow you to create
     // an object and set all relevant properties very
     // easily in a way that's idiomatic to Rust.
-    adw::AboutDialog::builder()
-        .application_name(gettext("Image Viewer"))
+    let dialog = adw::AboutDialog::builder()
+        .application_name("Glint")
         .application_icon(config::APP_ID)
         .version(config::VERSION)
-        .developer_name(gettext("The GNOME Project"))
-        .website("https://apps.gnome.org/Loupe/")
-        .issue_url("https://gitlab.gnome.org/GNOME/loupe/-/issues/")
-        .support_url("https://discourse.gnome.org/tag/loupe")
-        .developers([
-            "Christopher Davis <christopherdavis@gnome.org>",
-            "Sophie Herold <sophieherold@gnome.org>",
-        ])
+        .developer_name("madarra16")
+        .website("https://github.com/madarra16/glint")
+        .issue_url("https://github.com/madarra16/glint/issues")
+        .comments("Based on Loupe by the GNOME project")
+        .developers(["madarra16"])
         .designers(["Allan Day", "Jakub Steiner", "Tobias Bernard"])
         // Translators: Replace "translator-credits" with your names, one name per line
         .translator_credits(gettext("translator-credits"))
         .copyright(gettext("Copyright © 2020–2024 Christopher Davis et al."))
         .license_type(gtk::License::Gpl30)
         .debug_info(debug_info().await)
-        .build()
+        .build();
+    dialog.add_credit_section(
+        Some("Based on Loupe by"),
+        &[
+            "Christopher Davis <christopherdavis@gnome.org>",
+            "Sophie Herold <sophieherold@gnome.org>",
+            "The GNOME Project",
+        ],
+    );
+    dialog
 }
 
 fn etc() -> std::path::PathBuf {

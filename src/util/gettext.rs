@@ -52,7 +52,7 @@ enum State {
 ///
 /// ```
 /// assert_eq!(
-///    loupe::util::gettext::apply_unicode_escapes(r"abc \u{03a6} \u{2764} d"),
+///    glint::util::gettext::apply_unicode_escapes(r"abc \u{03a6} \u{2764} d"),
 ///    Some("abc \u{03a6} \u{2764} d".into())
 /// );
 pub fn apply_unicode_escapes(s: impl AsRef<str>) -> Option<String> {
@@ -89,7 +89,7 @@ pub fn apply_unicode_escapes(s: impl AsRef<str>) -> Option<String> {
 /// Convert hex string to char
 ///
 /// ```
-/// assert_eq!(loupe::util::gettext::hex_to_char("03a6"), Some('Φ'))
+/// assert_eq!(glint::util::gettext::hex_to_char("03a6"), Some('Φ'))
 /// ```
 pub fn hex_to_char(hex: &str) -> Option<char> {
     let u = u32::from_str_radix(hex, 16).ok()?;

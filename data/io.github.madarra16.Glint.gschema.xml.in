@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <schemalist>
-  <schema path="/org/gnome/Loupe/" id="@app-id@" gettext-domain="@gettext-package@">
+  <schema path="/io/github/madarra16/Glint/" id="@app-id@" gettext-domain="@gettext-package@">
     <key name="show-properties" type="b">
       <default>false</default>
       <summary>Show the image properties sidebar</summary>

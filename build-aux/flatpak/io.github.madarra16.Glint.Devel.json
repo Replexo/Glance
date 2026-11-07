@@ -1,5 +1,5 @@
 {
-    "id": "org.gnome.Loupe.Devel",
+    "id": "io.github.madarra16.Glint.Devel",
     "runtime": "org.gnome.Platform",
     "runtime-version": "master",
     "sdk": "org.gnome.Sdk",
@@ -7,7 +7,7 @@
         "org.freedesktop.Sdk.Extension.rust-stable",
         "org.freedesktop.Sdk.Extension.llvm22"
     ],
-    "command": "loupe",
+    "command": "glint",
     "finish-args": [
         "--share=ipc",
         "--socket=fallback-x11",
@@ -112,7 +112,7 @@
             ]
         },
         {
-            "name": "loupe",
+            "name": "glint",
             "buildsystem": "meson",
             "config-opts": [
                 "-Dprofile=dev",
