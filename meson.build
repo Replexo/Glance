@@ -1,7 +1,7 @@
 project(
-  'glint',
+  'glance',
   'rust',
-  version: '51.1',
+  version: '1.0',
   meson_version: '>= 0.59.0',
   default_options: [
     'warning_level=2',
@@ -36,7 +36,7 @@ endif
 
 prefix = get_option('prefix')
 
-app_id = 'io.github.Replexo.Glint@0@'.format(get_option('app_id_suffix'))
+app_id = 'io.github.Replexo.Glance@0@'.format(get_option('app_id_suffix'))
 profile = get_option('profile')
 version = meson.project_version() + version_suffix
 localedir = prefix / get_option('localedir')

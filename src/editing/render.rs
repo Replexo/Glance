@@ -209,37 +209,6 @@ async fn supports_icc_profile(mime_type: glycin::MimeType) -> bool {
         .is_ok_and(|frame| frame.set_color_icc_profile(Some(vec![0])).is_ok())
 }
 
-/// Loads `file` and returns RGBA8 pixels of a version that is at most about
-/// `size` pixels wide or high, for histograms
-pub async fn load_sample(file: gio::File, size: u32) -> anyhow::Result<Vec<u8>> {
-    let mut loader = glycin::Loader::new(file);
-    loader.accepted_memory_formats(MemoryFormatSelection::R8g8b8a8);
-    let mut image = loader.load().await?;
-    // Loaders may ignore the requested size, so the result is thinned out
-    let frame = image
-        .specific_frame(glycin::FrameRequest::new().scale(size, size))
-        .await?;
-    let (width, height, stride) = (frame.width(), frame.height(), frame.stride());
-    let buf = frame.buf_bytes();
-    drop(frame);
-
-    gio::spawn_blocking(move || {
-        let step = (width.max(height) / size.max(1)).max(1) as usize;
-        let mut sample = Vec::new();
-        for y in (0..height as usize).step_by(step) {
-            let row = buf
-                .get(y * stride as usize..y * stride as usize + width as usize * 4)
-                .ok_or_else(|| anyhow::anyhow!("Frame buffer too small"))?;
-            for pixel in row.chunks_exact(4).step_by(step) {
-                sample.extend_from_slice(pixel);
-            }
-        }
-        Ok(sample)
-    })
-    .await
-    .map_err(|_| anyhow::anyhow!("Sampling thread panicked"))?
-}
-
 fn rgba_from_strided(
     buf: &[u8],
     width: u32,

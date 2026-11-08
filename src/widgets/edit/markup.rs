@@ -23,10 +23,10 @@ use adw::prelude::*;
 use adw::subclass::prelude::*;
 
 use crate::deps::*;
-use crate::editing::markup::{COLORS, Color, Tool};
+use crate::editing::markup::{COLORS, Color, Font, Tool};
 use crate::widgets::edit::LpColorCard;
 
-const TOOLS: [(&str, Tool); 8] = [
+const TOOLS: [(&str, Tool); 9] = [
     ("select", Tool::Select),
     ("brush", Tool::Brush),
     ("highlighter", Tool::Highlighter),
@@ -35,7 +35,22 @@ const TOOLS: [(&str, Tool); 8] = [
     ("rectangle", Tool::Rectangle),
     ("ellipse", Tool::Ellipse),
     ("text", Tool::Text),
+    ("eraser", Tool::Eraser),
 ];
+
+const FONTS: [(&str, Font); 4] = [
+    ("sans", Font::Sans),
+    ("serif", Font::Serif),
+    ("mono", Font::Mono),
+    ("hand", Font::Hand),
+];
+
+pub fn font_from_name(name: &str) -> Option<Font> {
+    FONTS
+        .iter()
+        .find(|(n, _)| *n == name)
+        .map(|(_, font)| *font)
+}
 
 /// CSS class names of [`COLORS`], in the same order
 const COLOR_NAMES: [&str; 5] = ["blue", "yellow", "red", "orange", "green"];
@@ -80,7 +95,23 @@ mod imp {
         #[template_child]
         swatch_green: TemplateChild<gtk::Button>,
         #[template_child]
+        pub(super) options_pill: TemplateChild<gtk::Widget>,
+        #[template_child]
+        pub(super) color_box: TemplateChild<gtk::Box>,
+        #[template_child]
         pub(super) fill_box: TemplateChild<gtk::Box>,
+        #[template_child]
+        pub(super) fill_outline: TemplateChild<gtk::Button>,
+        #[template_child]
+        pub(super) fill_filled: TemplateChild<gtk::Button>,
+        #[template_child]
+        pub(super) width_box: TemplateChild<gtk::Box>,
+        #[template_child]
+        pub(super) width_separator: TemplateChild<gtk::Widget>,
+        #[template_child]
+        pub(super) width_thin: TemplateChild<gtk::Widget>,
+        #[template_child]
+        pub(super) text_box: TemplateChild<gtk::Box>,
 
         /// Colour picked in the colour card
         pub(super) custom: Cell<Option<Color>>,
@@ -265,8 +296,26 @@ impl LpEditMarkup {
         self.imp().show_color(name);
     }
 
-    /// Shows the outline/filled choice, for tools that draw areas
-    pub fn set_fill_visible(&self, visible: bool) {
-        self.imp().fill_box.set_visible(visible);
+    /// Shows only the options that `tool` uses
+    pub fn set_tool(&self, tool: Tool) {
+        let imp = self.imp();
+        imp.options_pill.set_visible(tool != Tool::Select);
+        imp.color_box
+            .set_visible(!matches!(tool, Tool::Select | Tool::Eraser));
+        imp.fill_box
+            .set_visible(matches!(tool, Tool::Rectangle | Tool::Ellipse));
+        let (outline, filled) = if tool == Tool::Ellipse {
+            ("glance-circle-symbolic", "glance-circle-filled-symbolic")
+        } else {
+            ("glance-outline-symbolic", "glance-filled-symbolic")
+        };
+        imp.fill_outline.set_icon_name(outline);
+        imp.fill_filled.set_icon_name(filled);
+        imp.width_box.set_visible(tool != Tool::Text);
+        // The eraser has no other options to separate from
+        imp.width_separator.set_visible(tool != Tool::Eraser);
+        // The highlighter is wide already
+        imp.width_thin.set_visible(tool != Tool::Highlighter);
+        imp.text_box.set_visible(tool == Tool::Text);
     }
 }

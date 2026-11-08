@@ -18,7 +18,7 @@
 #![allow(clippy::new_without_default)]
 
 /*!
-# Glint Image Viewer
+# Glance Image Viewer
 
 Code documentation
 
@@ -75,12 +75,12 @@ use tracing_subscriber::layer::*;
 use tracing_subscriber::util::*;
 
 static GRESOURCE_BYTES: &[u8] =
-    gvdb_macros::include_gresource_from_dir!("/io/github/Replexo/Glint", "data/resources");
+    gvdb_macros::include_gresource_from_dir!("/io/github/Replexo/Glance", "data/resources");
 
 pub fn main() -> glib::ExitCode {
     // Follow G_MESSAGES_DEBUG env variable
     let default_level =
-        if !glib::log_writer_default_would_drop(glib::LogLevel::Debug, Some("glint")) {
+        if !glib::log_writer_default_would_drop(glib::LogLevel::Debug, Some("glance")) {
             tracing_subscriber::filter::LevelFilter::DEBUG
         } else {
             tracing_subscriber::filter::LevelFilter::ERROR
@@ -105,8 +105,8 @@ pub fn main() -> glib::ExitCode {
     unsafe {
         setlocale(LocaleCategory::LcAll, "");
     }
-    bindtextdomain("glint", config::LOCALEDIR).unwrap();
-    textdomain("glint").unwrap();
+    bindtextdomain("glance", config::LOCALEDIR).unwrap();
+    textdomain("glance").unwrap();
 
     tracing::trace!("gettext initialized");
 

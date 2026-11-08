@@ -16,6 +16,9 @@
               </object>
             </child>
             <child type="overlay">
+              <object class="LpFrost"/>
+            </child>
+            <child type="overlay">
               <object class="GtkLabel" id="size_label">
                 <property name="halign">start</property>
                 <property name="valign">start</property>
@@ -23,7 +26,7 @@
                 <property name="margin-start">26</property>
                 <property name="can-target">false</property>
                 <style>
-                  <class name="glint-name"/>
+                  <class name="glance-name"/>
                   <class name="numeric"/>
                 </style>
               </object>
@@ -73,7 +76,7 @@
                               <object class="GtkBox">
                                 <property name="spacing">2</property>
                                 <style>
-                                  <class name="glint-pill"/>
+                                  <class name="glance-pill"/>
                                 </style>
                                 <child>
                                   <object class="GtkMenuButton" id="aspect_button">
@@ -81,7 +84,7 @@
                                     <property name="direction">up</property>
                                     <property name="child">
                                       <object class="AdwButtonContent" id="aspect_content">
-                                        <property name="icon-name">glint-aspect-symbolic</property>
+                                        <property name="icon-name">glance-aspect-symbolic</property>
                                         <property name="label" translatable="yes">Free</property>
                                       </object>
                                     </property>
@@ -89,14 +92,20 @@
                                       <object class="GtkPopover" id="aspect_popover">
                                         <property name="has-arrow">false</property>
                                         <style>
-                                          <class name="glint-card"/>
-                                          <class name="glint-chips"/>
+                                          <class name="glance-card"/>
+                                          <class name="glance-chips"/>
                                         </style>
                                         <property name="child">
+                                          <object class="GtkScrolledWindow" id="aspect_scroll">
+                                            <property name="hscrollbar-policy">external</property>
+                                            <property name="vscrollbar-policy">never</property>
+                                            <property name="propagate-natural-width">true</property>
+                                            <property name="propagate-natural-height">true</property>
+                                            <property name="child">
                                           <object class="GtkBox" id="aspect_ratio_buttons">
                                             <property name="spacing">2</property>
                                             <style>
-                                              <class name="glint-pill"/>
+                                              <class name="glance-pill"/>
                                             </style>
                                             <child>
                                               <object class="GtkToggleButton">
@@ -190,6 +199,8 @@
                                               </object>
                                             </child>
                                           </object>
+                                            </property>
+                                          </object>
                                         </property>
                                       </object>
                                     </property>
@@ -202,28 +213,28 @@
                                 </child>
                                 <child>
                                   <object class="GtkButton">
-                                    <property name="icon-name">glint-rotate-left-symbolic</property>
+                                    <property name="icon-name">glance-rotate-left-symbolic</property>
                                     <property name="tooltip-text" translatable="yes">Rotate Counter Clockwise</property>
                                     <property name="action-name">edit-crop.rotate-ccw</property>
                                   </object>
                                 </child>
                                 <child>
                                   <object class="GtkButton">
-                                    <property name="icon-name">glint-rotate-right-symbolic</property>
+                                    <property name="icon-name">glance-rotate-right-symbolic</property>
                                     <property name="tooltip-text" translatable="yes">Rotate Clockwise</property>
                                     <property name="action-name">edit-crop.rotate-cw</property>
                                   </object>
                                 </child>
                                 <child>
                                   <object class="GtkButton">
-                                    <property name="icon-name">glint-flip-symbolic</property>
+                                    <property name="icon-name">glance-flip-symbolic</property>
                                     <property name="tooltip-text" translatable="yes">Mirror Horizontally</property>
                                     <property name="action-name">edit-crop.mirror-horizontally</property>
                                   </object>
                                 </child>
                                 <child>
                                   <object class="GtkButton">
-                                    <property name="icon-name">glint-resize-symbolic</property>
+                                    <property name="icon-name">glance-resize-symbolic</property>
                                     <property name="tooltip-text" translatable="yes">Resize</property>
                                     <property name="action-name">edit-crop.resize</property>
                                   </object>

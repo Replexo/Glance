@@ -876,7 +876,7 @@ impl LpImageWindow {
             .image_view
             .current_image()
             .and_then(|x| x.metadata().file_name())
-            .unwrap_or_else(|| gettext("Glint"));
+            .unwrap_or_else(|| gettext("Glance"));
 
         self.window_inspect(|x| x.set_title(Some(&title)));
     }

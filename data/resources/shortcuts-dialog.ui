@@ -232,6 +232,12 @@
         </child>
         <child>
           <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Crop</property>
+            <property name="accelerator">C</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
             <property name="title" translatable="yes" context="shortcut window">Replace Original</property>
             <property name="accelerator">&lt;Ctrl&gt;S</property>
           </object>
@@ -276,6 +282,59 @@
           <object class="AdwShortcutsItem">
             <property name="title" translatable="yes" context="shortcut window">Apply Crop</property>
             <property name="accelerator">&lt;Ctrl&gt;Return</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="AdwShortcutsSection">
+        <property name="title" translatable="yes" context="shortcut window">Markup</property>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Select, Move and Resize Markup</property>
+            <property name="accelerator">A</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Brush</property>
+            <property name="accelerator">B</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Line</property>
+            <property name="accelerator">L</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Arrow</property>
+            <property name="accelerator">&lt;Shift&gt;L</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Rectangle</property>
+            <property name="accelerator">R</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Ellipse</property>
+            <property name="accelerator">O</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Text</property>
+            <property name="accelerator">T</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Eraser</property>
+            <property name="accelerator">E</property>
           </object>
         </child>
       </object>

@@ -29,33 +29,47 @@ pub async fn dialog() -> adw::AboutDialog {
     // an object and set all relevant properties very
     // easily in a way that's idiomatic to Rust.
     let dialog = adw::AboutDialog::builder()
-        .application_name("Glint")
+        .application_name("Glance")
         .application_icon(config::APP_ID)
         .version(config::VERSION)
         .developer_name("Replexo")
-        .website("https://github.com/Replexo/glint")
-        .issue_url("https://github.com/Replexo/glint/issues")
-        .comments("Based on Loupe by the GNOME project")
+        .website("https://github.com/Replexo/Glance")
+        .issue_url("https://github.com/Replexo/Glance/issues")
+        .comments("An image viewer with editing, based on Loupe")
         .developers(["Replexo"])
-        .designers(["Allan Day", "Jakub Steiner", "Tobias Bernard"])
         // Translators: Replace "translator-credits" with your names, one name per line
         .translator_credits(gettext("translator-credits"))
-        .copyright(gettext("Copyright © 2020–2024 Christopher Davis et al."))
+        .copyright("Copyright © 2026 Replexo\nCopyright © 2020–2026 the Loupe authors")
         .license_type(gtk::License::Gpl30)
         .debug_info(debug_info().await)
         .build();
     dialog.add_credit_section(
         Some("Icons"),
-        &["MingCute Icons https://www.mingcute.com/"],
+        &[
+            "MingCute Icons https://www.mingcute.com/",
+            "coolicons by Kryston Schwarze https://github.com/krystonschwarze/coolicons",
+        ],
     );
     dialog.add_legal_section("MingCute Icons", None, gtk::License::Apache20, None);
+    dialog.add_legal_section(
+        "coolicons",
+        Some("Copyright © 2026 Kryston Schwarze"),
+        gtk::License::MitX11,
+        None,
+    );
     dialog.add_credit_section(
         Some("Based on Loupe by"),
         &[
-            "Christopher Davis <christopherdavis@gnome.org>",
-            "Sophie Herold <sophieherold@gnome.org>",
-            "The GNOME Project",
+            "Christopher Davis",
+            "Sophie Herold",
+            "The GNOME Project https://www.gnome.org",
         ],
+    );
+    dialog.add_legal_section(
+        "Loupe",
+        Some("Copyright © 2020–2026 Christopher Davis, Sophie Herold et al."),
+        gtk::License::Gpl30,
+        None,
     );
     dialog
 }

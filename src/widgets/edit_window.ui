@@ -2,7 +2,7 @@
 <interface>
   <template class="LpEditWindow" parent="AdwBin">
     <style>
-      <class name="glint-editor"/>
+      <class name="glance-editor"/>
     </style>
     <child>
       <object class="GtkShortcutController" id="shortcut_controller">
@@ -16,30 +16,33 @@
           <object class="GtkOverlay">
             <property name="child" bind-source="LpEditWindow" bind-property="edit_crop"/>
             <child type="overlay">
+              <object class="LpFrost"/>
+            </child>
+            <child type="overlay">
               <object class="GtkBox" id="history_pill">
                 <property name="margin-end">12</property>
                 <property name="margin-top">12</property>
                 <property name="halign">end</property>
                 <property name="valign">start</property>
                 <style>
-                  <class name="glint-pill"/>
+                  <class name="glance-pill"/>
                 </style>
                 <child>
                   <object class="GtkButton" id="compare">
-                    <property name="icon-name">glint-compare-symbolic</property>
+                    <property name="icon-name">glance-compare-symbolic</property>
                     <property name="tooltip-text" translatable="yes">Hold to Show Original</property>
                   </object>
                 </child>
                 <child>
                   <object class="GtkButton">
-                    <property name="icon-name">glint-undo-symbolic</property>
+                    <property name="icon-name">glance-undo-symbolic</property>
                     <property name="tooltip-text" translatable="yes">Undo</property>
                     <property name="action-name">edit.undo</property>
                   </object>
                 </child>
                 <child>
                   <object class="GtkButton">
-                    <property name="icon-name">glint-redo-symbolic</property>
+                    <property name="icon-name">glance-redo-symbolic</property>
                     <property name="tooltip-text" translatable="yes">Redo</property>
                     <property name="action-name">edit.redo</property>
                   </object>
@@ -105,7 +108,7 @@
             </child>
             <property name="title-widget">
               <object class="AdwToggleGroup" id="mode_switcher">
-                <property name="active-name">crop</property>
+                <property name="active-name">markup</property>
                 <property name="homogeneous">false</property>
                 <style>
                   <class name="flat"/>
@@ -117,7 +120,7 @@
                     <property name="tooltip" translatable="yes">Crop</property>
                     <property name="child">
                       <object class="AdwButtonContent">
-                        <property name="icon-name">glint-crop-symbolic</property>
+                        <property name="icon-name">glance-crop-symbolic</property>
                         <property name="label" translatable="yes">Cr_op</property>
                         <property name="use-underline">true</property>
                       </object>
@@ -130,7 +133,7 @@
                     <property name="tooltip" translatable="yes">Adjust</property>
                     <property name="child">
                       <object class="AdwButtonContent">
-                        <property name="icon-name">glint-adjust-symbolic</property>
+                        <property name="icon-name">glance-adjust-symbolic</property>
                         <property name="label" translatable="yes">A_djust</property>
                         <property name="use-underline">true</property>
                       </object>
@@ -143,7 +146,7 @@
                     <property name="tooltip" translatable="yes">Markup</property>
                     <property name="child">
                       <object class="AdwButtonContent">
-                        <property name="icon-name">glint-markup-symbolic</property>
+                        <property name="icon-name">glance-markup-symbolic</property>
                         <property name="label" translatable="yes">_Markup</property>
                         <property name="use-underline">true</property>
                       </object>

@@ -121,7 +121,7 @@ impl LpApplication {
         glib::Object::builder()
             .property("application-id", config::APP_ID)
             .property("flags", gio::ApplicationFlags::HANDLES_OPEN)
-            .property("resource-base-path", "/io/github/Replexo/Glint")
+            .property("resource-base-path", "/io/github/Replexo/Glance")
             .build()
     }
 
@@ -164,7 +164,7 @@ impl LpApplication {
             .map(|w| gtk::prelude::WidgetExt::display(&w).app_launch_context());
         glib::spawn_future_local(async move {
             if let Err(e) =
-                gio::AppInfo::launch_default_for_uri_future("help:glint", context.as_ref()).await
+                gio::AppInfo::launch_default_for_uri_future("help:glance", context.as_ref()).await
             {
                 tracing::error!("Failed to launch help: {}", e.message());
             }

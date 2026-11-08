@@ -26,15 +26,14 @@ use adw::{glib, gtk};
 use glycin::{Operation, Operations};
 
 use crate::deps::*;
-use crate::editing::markup::Tool;
 use crate::editing::preview::EditingError;
 use crate::util::ErrorType;
 use crate::util::gettext::*;
 use crate::util::root::ParentWindow;
 use crate::widgets::LpImage;
-use crate::widgets::edit::markup::{tool_from_name, width_from_name};
+use crate::widgets::edit::markup::{font_from_name, tool_from_name, width_from_name};
 use crate::widgets::edit::{
-    LpEditAdjust, LpEditCropSelection, LpEditMarkup, LpMarkupCanvas, LpResizeDialog,
+    LpEditAdjust, LpEditCropSelection, LpEditMarkup, LpFrost, LpMarkupCanvas, LpResizeDialog,
 };
 
 fn aspect_ratio_label(aspect_ratio: LpAspectRatio) -> String {
@@ -103,6 +102,8 @@ mod imp {
         aspect_button: TemplateChild<gtk::MenuButton>,
         #[template_child]
         aspect_content: TemplateChild<adw::ButtonContent>,
+        #[template_child]
+        aspect_scroll: TemplateChild<gtk::ScrolledWindow>,
 
         #[property(get, construct_only)]
         original_image: OnceCell<LpImage>,
@@ -113,6 +114,10 @@ mod imp {
         /// Active editing view: `crop`, `adjust` or `markup`
         #[property(get, set = Self::set_mode, explicit_notify)]
         mode: RefCell<String>,
+
+        /// Markup tool in use, and the width each tool used last
+        tool_name: RefCell<String>,
+        tool_widths: RefCell<std::collections::HashMap<String, String>>,
 
         /// Pointer position, for zooming with the scroll wheel
         pointer: Cell<Option<(f64, f64)>>,
@@ -130,6 +135,7 @@ mod imp {
             LpEditAdjust::static_type();
             LpEditMarkup::static_type();
             LpMarkupCanvas::static_type();
+            LpFrost::static_type();
             Self::bind_template(klass);
 
             klass.install_action("edit-crop.mirror-horizontally", None, |obj, _, _| {
@@ -239,6 +245,8 @@ mod imp {
 
             obj.insert_action_group("edit-crop", Some(&actions));
 
+            // Matches the tool action's first state
+            self.tool_name.replace("brush".to_owned());
             let markup_actions = gio::SimpleActionGroup::new();
             let tool_action = gio::SimpleAction::new_stateful(
                 "tool",
@@ -255,8 +263,16 @@ mod imp {
                         action.set_state(&name.to_variant());
                         let imp = obj.imp();
                         imp.markup_canvas.set_tool(tool);
-                        imp.markup
-                            .set_fill_visible(matches!(tool, Tool::Rectangle | Tool::Ellipse));
+                        imp.markup.set_tool(tool);
+                        // Each tool keeps its own width or size
+                        imp.tool_name.replace(name.clone());
+                        let width = imp
+                            .tool_widths
+                            .borrow()
+                            .get(&name)
+                            .cloned()
+                            .unwrap_or_else(|| "m".to_owned());
+                        let _ = obj.activate_action("edit-markup.width", Some(&width.to_variant()));
                     }
                 }
             ));
@@ -312,17 +328,60 @@ mod imp {
                     if let Some(name) = target.and_then(|x| x.get::<String>())
                         && let Some(factor) = width_from_name(&name)
                     {
-                        obj.imp().markup_canvas.set_size_factor(factor);
+                        let imp = obj.imp();
+                        imp.markup_canvas.set_size_factor(factor);
                         action.set_state(&name.to_variant());
+                        let tool = imp.tool_name.borrow().clone();
+                        imp.tool_widths.borrow_mut().insert(tool, name);
                     }
                 }
             ));
             markup_actions.add_action(&width_action);
+
+            let font_action = gio::SimpleAction::new_stateful(
+                "font",
+                Some(glib::VariantTy::STRING),
+                &"sans".to_variant(),
+            );
+            font_action.connect_activate(glib::clone!(
+                #[weak]
+                obj,
+                move |action, target| {
+                    if let Some(name) = target.and_then(|x| x.get::<String>())
+                        && let Some(font) = font_from_name(&name)
+                    {
+                        obj.imp().markup_canvas.set_font(font);
+                        action.set_state(&name.to_variant());
+                    }
+                }
+            ));
+            markup_actions.add_action(&font_action);
             obj.insert_action_group("edit-markup", Some(&markup_actions));
             self.markup.show_color("blue");
             // Keep a gap to the pill below
             if let Some(popover) = self.aspect_button.popover() {
                 popover.set_offset(0, -10);
+                // Centred over the whole pill and never wider than the window
+                popover.connect_show(glib::clone!(
+                    #[weak]
+                    obj,
+                    move |popover| {
+                        let imp = obj.imp();
+                        let button = imp.aspect_button.upcast_ref::<gtk::Widget>();
+                        if let Some(pill) = button.parent()
+                            && let Some(bounds) = pill.compute_bounds(button)
+                        {
+                            popover.set_pointing_to(Some(&gdk::Rectangle::new(
+                                bounds.x() as i32,
+                                bounds.y() as i32,
+                                bounds.width() as i32,
+                                bounds.height() as i32,
+                            )));
+                        }
+                        let window_width = obj.width();
+                        imp.aspect_scroll.set_max_content_width((window_width - 32).max(120));
+                    }
+                ));
             }
 
             self.selection.connect_aspect_ratio_notify(glib::clone!(

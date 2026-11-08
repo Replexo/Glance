@@ -902,6 +902,38 @@ dependencies = [
 ]
 
 [[package]]
+name = "glance"
+version = "1.0.0"
+dependencies = [
+ "anyhow",
+ "arc-swap",
+ "ashpd",
+ "async-channel",
+ "async-lock",
+ "cairo-rs",
+ "chrono",
+ "gettext-rs",
+ "gettext-sys",
+ "gio",
+ "glycin",
+ "gtk4",
+ "gufo",
+ "gvdb-macros",
+ "image",
+ "indexmap",
+ "libadwaita",
+ "libc",
+ "libgweather",
+ "moxcms",
+ "pango",
+ "pangocairo",
+ "strum",
+ "thiserror",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
 name = "glib"
 version = "0.22.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -942,38 +974,6 @@ checksum = "030967459f9f676851872c6304adea7825c6d462ec9b72554c733cf0c5952233"
 dependencies = [
  "libc",
  "system-deps 7.0.8",
-]
-
-[[package]]
-name = "glint"
-version = "51.1.0"
-dependencies = [
- "anyhow",
- "arc-swap",
- "ashpd",
- "async-channel",
- "async-lock",
- "cairo-rs",
- "chrono",
- "gettext-rs",
- "gettext-sys",
- "gio",
- "glycin",
- "gtk4",
- "gufo",
- "gvdb-macros",
- "image",
- "indexmap",
- "libadwaita",
- "libc",
- "libgweather",
- "moxcms",
- "pango",
- "pangocairo",
- "strum",
- "thiserror",
- "tracing",
- "tracing-subscriber",
 ]
 
 [[package]]

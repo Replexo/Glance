@@ -10,7 +10,7 @@
             <property name="halign">center</property>
             <property name="label" translatable="yes">Brightness</property>
             <style>
-              <class name="glint-name"/>
+              <class name="glance-name"/>
             </style>
           </object>
         </child>
@@ -36,23 +36,8 @@
                   <object class="GtkBox">
                     <property name="spacing">2</property>
                     <style>
-                      <class name="glint-pill"/>
+                      <class name="glance-pill"/>
                     </style>
-                    <child>
-                      <object class="GtkButton">
-                        <property name="icon-name">glint-auto-symbolic</property>
-                        <property name="tooltip-text" translatable="yes">Adjust Automatically</property>
-                        <property name="action-name">edit-adjust.automatic</property>
-                        <style>
-                          <class name="wide"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparator">
-                        <property name="orientation">vertical</property>
-                      </object>
-                    </child>
                     <child>
                       <object class="GtkToggleButton">
                         <property name="tooltip-text" translatable="yes">Brightness</property>
@@ -65,7 +50,7 @@
                           <object class="GtkOverlay">
                             <property name="child">
                               <object class="GtkImage">
-                                <property name="icon-name">glint-brightness-symbolic</property>
+                                <property name="icon-name">glance-brightness-symbolic</property>
                               </object>
                             </property>
                             <child type="overlay">
@@ -94,7 +79,7 @@
                           <object class="GtkOverlay">
                             <property name="child">
                               <object class="GtkImage">
-                                <property name="icon-name">glint-contrast-symbolic</property>
+                                <property name="icon-name">glance-contrast-symbolic</property>
                               </object>
                             </property>
                             <child type="overlay">
@@ -123,7 +108,7 @@
                           <object class="GtkOverlay">
                             <property name="child">
                               <object class="GtkImage">
-                                <property name="icon-name">glint-highlights-symbolic</property>
+                                <property name="icon-name">glance-highlights-symbolic</property>
                               </object>
                             </property>
                             <child type="overlay">
@@ -152,7 +137,7 @@
                           <object class="GtkOverlay">
                             <property name="child">
                               <object class="GtkImage">
-                                <property name="icon-name">glint-shadows-symbolic</property>
+                                <property name="icon-name">glance-shadows-symbolic</property>
                               </object>
                             </property>
                             <child type="overlay">
@@ -181,7 +166,7 @@
                           <object class="GtkOverlay">
                             <property name="child">
                               <object class="GtkImage">
-                                <property name="icon-name">glint-saturation-symbolic</property>
+                                <property name="icon-name">glance-saturation-symbolic</property>
                               </object>
                             </property>
                             <child type="overlay">

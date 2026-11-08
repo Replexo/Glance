@@ -1,0 +1,174 @@
+/* Dark editor with floating pill controls */
+.glance-editor {
+  --glance-canvas: #0f0f11;
+  --glance-bar: #18181b;
+  /* Translucent over the blurred picture, see LpFrost */
+  --glance-pill: rgb(28 28 32 / 0.6);
+  --glance-pill-border: rgb(255 255 255 / 0.08);
+  --glance-raised: #2a2a30;
+  --glance-fg: #f2f2f4;
+  --glance-dim: #b4b4bb;
+  background-color: var(--glance-canvas);
+  color: var(--glance-fg);
+}
+
+.glance-editor headerbar {
+  background-color: var(--glance-bar);
+  color: var(--glance-fg);
+  box-shadow: inset 0 -1px #26262a;
+}
+
+.glance-editor headerbar button.cancel {
+  background-color: #26262b;
+  color: var(--glance-fg);
+}
+
+.glance-editor toggle-group {
+  background-color: var(--glance-canvas);
+}
+
+.glance-editor toggle-group > toggle {
+  color: #a9a9b0;
+}
+
+.glance-editor toggle-group > toggle:checked {
+  background-color: var(--glance-raised);
+  color: var(--glance-fg);
+}
+
+.glance-pill {
+  background-color: var(--glance-pill);
+  border: 1px solid var(--glance-pill-border);
+  border-radius: 9999px;
+  padding: 4px 6px;
+}
+
+.glance-pill button {
+  min-width: 30px;
+  min-height: 30px;
+  padding: 0 6px;
+  border-radius: 9999px;
+  background: none;
+  box-shadow: none;
+  color: var(--glance-dim);
+}
+
+.glance-pill button.wide {
+  min-width: 40px;
+}
+
+.glance-pill button:hover {
+  background-color: rgb(255 255 255 / 0.07);
+  color: var(--glance-fg);
+}
+
+.glance-pill button:checked {
+  background-color: var(--glance-raised);
+  color: var(--glance-fg);
+}
+
+.glance-pill.accent-checked button:checked {
+  background-color: var(--accent-bg-color);
+  color: var(--accent-fg-color);
+}
+
+.glance-pill button.text-button {
+  padding: 0 12px;
+}
+
+.glance-pill separator {
+  min-width: 1px;
+  margin: 6px 4px;
+  background-color: #34343a;
+}
+
+.glance-name {
+  font-size: 0.9em;
+  font-weight: bold;
+  padding: 2px 10px;
+  border-radius: 9999px;
+  background-color: rgb(15 15 17 / 0.55);
+}
+
+.changed-dot {
+  min-width: 6px;
+  min-height: 6px;
+  margin: 3px 5px;
+  border-radius: 9999px;
+  background-color: var(--accent-bg-color);
+}
+
+/* Markup colours */
+.color-swatch {
+  min-width: 18px;
+  min-height: 18px;
+  border-radius: 9999px;
+}
+
+.glance-pill button.swatch-button {
+  min-width: 30px;
+  padding: 0;
+}
+
+.glance-pill button.swatch-button.selected {
+  box-shadow: inset 0 0 0 2px white;
+}
+
+.glance-pill menubutton.custom-color > button {
+  min-width: 30px;
+  min-height: 30px;
+  padding: 0;
+}
+
+.glance-pill menubutton.custom-color > button:hover {
+  background: none;
+}
+
+.size-dot {
+  border-radius: 9999px;
+  background-color: var(--glance-dim);
+}
+
+/* Text sizes and fonts in the text tool's pill */
+.text-size-s { font-size: 10px; font-weight: 700; }
+.text-size-m { font-size: 13px; font-weight: 700; }
+.text-size-l { font-size: 16px; font-weight: 700; }
+.text-size-xl { font-size: 20px; font-weight: 700; }
+.font-sans { font-family: Sans; font-weight: 700; }
+.font-serif { font-family: Serif; font-weight: 700; }
+.font-mono { font-family: Monospace; font-weight: 700; }
+.font-hand { font-family: "Comic Neue", "Comic Sans MS", cursive; font-weight: 700; }
+
+.color-swatch.blue { background-color: #3584e4; }
+.color-swatch.yellow { background-color: #f6d32d; }
+.color-swatch.red { background-color: #e01b24; }
+.color-swatch.orange { background-color: #ff7800; }
+.color-swatch.green { background-color: #33d17a; }
+
+/* Cards that open from a pill */
+.glance-editor popover.glance-card > contents {
+  padding: 12px;
+  border-radius: 18px;
+  /* Popovers are their own surface, so nothing behind them is blurred */
+  background-color: #1c1c20;
+  border: 1px solid var(--glance-pill-border);
+  color: var(--glance-fg);
+  box-shadow: none;
+}
+
+
+/* A radius like 9999px makes GTK size the popover surface from it */
+.glance-editor popover.glance-chips > contents {
+  padding: 0;
+  border-radius: 22px;
+}
+
+.glance-editor popover.glance-chips .glance-pill {
+  background: none;
+  border: none;
+}
+
+.glance-editor colorcard entry {
+  border-radius: 9999px;
+  background-color: var(--glance-canvas);
+}

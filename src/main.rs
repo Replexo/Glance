@@ -18,5 +18,5 @@
 
 use gtk::glib;
 pub fn main() -> glib::ExitCode {
-    glint::main()
+    glance::main()
 }

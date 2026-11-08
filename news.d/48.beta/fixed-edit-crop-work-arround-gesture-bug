@@ -1,1 +1,0 @@
-edit/crop: Work around GTK gesture bug that blocks the drag gesture after clicking the apply button until one additional click has been done.

@@ -1,1 +1,0 @@
-Don't show error-screen if SVG has been loaded and only the rendering for tiles for other zoom levels fails. Instead, show the already loaded tiles.

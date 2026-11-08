@@ -1,6 +1,6 @@
-data/io.github.Replexo.Glint.desktop.in.in
-data/io.github.Replexo.Glint.gschema.xml.in
-data/io.github.Replexo.Glint.metainfo.xml.in.in
+data/io.github.Replexo.Glance.desktop.in.in
+data/io.github.Replexo.Glance.gschema.xml.in
+data/io.github.Replexo.Glance.metainfo.xml.in.in
 data/resources/shortcuts-dialog.ui
 src/about.rs
 src/application.rs

@@ -51,7 +51,7 @@
         <attribute name="action">app.shortcuts</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">_About Glint</attribute>
+        <attribute name="label" translatable="yes">_About Glance</attribute>
         <attribute name="action">win.about</attribute>
       </item>
     </section>
@@ -128,7 +128,7 @@
                 <child type="end">
                   <object class="GtkButton">
                     <property name="action-name">win.edit</property>
-                    <property name="icon-name">glint-edit-symbolic</property>
+                    <property name="icon-name">glance-edit-symbolic</property>
                     <property name="tooltip-text" translatable="yes">Edit Image</property>
                   </object>
                 </child>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>@APP_ID@</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>Glance</name>
+  <developer id="io.github.replexo">
+    <name>Replexo</name>
+  </developer>
+  <summary>View and edit images</summary>
+  <description>
+    <p>Glance is an image viewer with built-in editing. Browse your images, view their metadata, and make quick edits without opening a separate editor.</p>
+    <ul>
+      <li>Mark up images with a brush, highlighter, lines, arrows, shapes and text</li>
+      <li>Adjust brightness, contrast, highlights, shadows and saturation</li>
+      <li>Crop to an aspect ratio, rotate, flip and resize</li>
+      <li>Undo and redo every edit, and save a copy or replace the original</li>
+    </ul>
+    <p>Glance is based on Loupe, the GNOME image viewer.</p>
+  </description>
+  <url type="homepage">https://github.com/Replexo/Glance</url>
+  <url type="bugtracker">https://github.com/Replexo/Glance/issues</url>
+  <url type="vcs-browser">https://github.com/Replexo/Glance</url>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/Replexo/Glance/main/data/screenshots/markup.png</image>
+      <caption>Marking up an image</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/Replexo/Glance/main/data/screenshots/adjust.png</image>
+      <caption>Adjusting colours</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/Replexo/Glance/main/data/screenshots/crop.png</image>
+      <caption>Cropping</caption>
+    </screenshot>
+  </screenshots>
+
+  <supports>
+    <control>keyboard</control>
+    <control>pointing</control>
+    <control>touch</control>
+  </supports>
+  <requires>
+    <display_length compare="ge">360</display_length>
+  </requires>
+
+  <launchable type="desktop-id">@APP_ID@.desktop</launchable>
+  <provides>
+    <binary>@BIN_NAME@</binary>
+  </provides>
+
+  <translation type="gettext">@BIN_NAME@</translation>
+  <content_rating type="oars-1.1" />
+
+  <branding>
+    <color type="primary" scheme_preference="light">#d9b8ef</color>
+    <color type="primary" scheme_preference="dark">#4b2f78</color>
+  </branding>
+  <custom>
+    <value key="GnomeSoftware::key-colors">[(164, 90, 203)]</value>
+    <value key="Purism::form_factor">mobile</value>
+  </custom>
+
+  <categories>
+    <category>Graphics</category>
+    <category>Viewer</category>
+    <category>GTK</category>
+    <category>GNOME</category>
+  </categories>
+
+  <releases>
+    <release version="1.0" date="2026-11-08">
+      <description>
+        <p>First release of Glance, based on Loupe 51.1. It adds Markup, Adjust and Crop editing views, undo and redo, zoom in the editor, and keyboard shortcuts for the markup tools.</p>
+      </description>
+    </release>
+  </releases>
+</component>

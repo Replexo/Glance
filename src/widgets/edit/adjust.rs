@@ -24,7 +24,7 @@ use adw::prelude::*;
 use adw::subclass::prelude::*;
 
 use crate::deps::*;
-use crate::editing::adjust::{Adjustments, Property};
+use crate::editing::adjust::Property;
 use crate::util::gettext::*;
 use crate::util::root::ParentWindow;
 use crate::widgets::edit::LpCenterSlider;
@@ -78,7 +78,6 @@ mod imp {
 
         pub(super) property: Cell<Option<Property>>,
         pub(super) slider_handler: OnceCell<glib::SignalHandlerId>,
-        pub(super) automatic_action: OnceCell<gio::SimpleAction>,
     }
 
     #[glib::object_subclass]
@@ -122,17 +121,6 @@ mod imp {
                 }
             ));
             actions.add_action(&property_action);
-
-            let automatic_action = gio::SimpleAction::new("automatic", None);
-            automatic_action.connect_activate(glib::clone!(
-                #[weak]
-                obj,
-                move |_, _| {
-                    glib::spawn_future_local(async move { obj.imp().automatic().await });
-                }
-            ));
-            actions.add_action(&automatic_action);
-            self.automatic_action.set(automatic_action).unwrap();
 
             obj.insert_action_group("edit-adjust", Some(&actions));
 
@@ -201,35 +189,6 @@ mod imp {
                 edit_window.change_adjustments(adjustments, Some(property));
             }
             self.sync();
-        }
-
-        async fn automatic(&self) {
-            let obj = self.obj();
-            let Some(edit_window) = obj.try_edit_window() else {
-                return;
-            };
-            let Some(file) = edit_window.original_image().file() else {
-                return;
-            };
-
-            let action = self.automatic_action.get().unwrap();
-            action.set_enabled(false);
-            let sample = crate::editing::render::load_sample(file, 512).await;
-            action.set_enabled(true);
-
-            match sample {
-                Ok(pixels) => {
-                    let automatic = Adjustments::automatic(&pixels);
-                    let mut adjustments = edit_window.adjustments();
-                    adjustments.brightness = automatic.brightness;
-                    adjustments.contrast = automatic.contrast;
-                    adjustments.highlights = automatic.highlights;
-                    adjustments.shadows = automatic.shadows;
-                    edit_window.change_adjustments(adjustments, None);
-                    self.sync();
-                }
-                Err(err) => tracing::warn!("Failed to sample image: {err}"),
-            }
         }
     }
 }

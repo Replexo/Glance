@@ -1,1 +1,0 @@
-No longer overwrite GTKs default renderer with 'gl'. The latest patches in GTK seem to make the Vulkan renderer work fine.

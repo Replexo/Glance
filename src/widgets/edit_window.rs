@@ -93,6 +93,7 @@ mod imp {
         type ParentType = adw::Bin;
 
         fn class_init(klass: &mut Self::Class) {
+            crate::widgets::edit::LpFrost::static_type();
             Self::bind_template(klass);
 
             klass.install_action("edit.save-copy", None, |obj, _, _| {
@@ -228,7 +229,10 @@ mod imp {
             ] {
                 for key in keys {
                     self.shortcut_controller.add_shortcut(gtk::Shortcut::new(
-                        Some(gtk::KeyvalTrigger::new(*key, gdk::ModifierType::CONTROL_MASK)),
+                        Some(gtk::KeyvalTrigger::new(
+                            *key,
+                            gdk::ModifierType::CONTROL_MASK,
+                        )),
                         Some(gtk::CallbackAction::new(glib::clone!(
                             #[weak]
                             obj,
@@ -243,7 +247,8 @@ mod imp {
                 }
             }
 
-            // Single keys for views and tools; text fields and typed text
+            // Single keys for views and tools (A select, B brush, C crop);
+            // text fields and typed text
             // take the keys first
             self.shortcut_controller.add_shortcut(gtk::Shortcut::new(
                 Some(gtk::KeyvalTrigger::new(
@@ -264,28 +269,39 @@ mod imp {
                     }
                 ))),
             ));
-            self.shortcut_controller.add_shortcut(gtk::Shortcut::new(
-                Some(gtk::KeyvalTrigger::new(
-                    gdk::Key::b,
-                    gdk::ModifierType::NO_MODIFIER_MASK,
-                )),
-                Some(gtk::CallbackAction::new(glib::clone!(
-                    #[weak]
-                    obj,
-                    #[upgrade_or]
-                    glib::Propagation::Proceed,
-                    move |_, _| {
-                        if obj.dialog_open() {
-                            return glib::Propagation::Proceed;
+            // Markup tools, with the keys image editors commonly use
+            let no_modifier = gdk::ModifierType::NO_MODIFIER_MASK;
+            for (key, modifiers, tool) in [
+                (gdk::Key::a, no_modifier, "select"),
+                (gdk::Key::b, no_modifier, "brush"),
+                (gdk::Key::l, no_modifier, "line"),
+                (gdk::Key::L, gdk::ModifierType::SHIFT_MASK, "arrow"),
+                (gdk::Key::r, no_modifier, "rectangle"),
+                (gdk::Key::o, no_modifier, "ellipse"),
+                (gdk::Key::t, no_modifier, "text"),
+                (gdk::Key::e, no_modifier, "eraser"),
+            ] {
+                self.shortcut_controller.add_shortcut(gtk::Shortcut::new(
+                    Some(gtk::KeyvalTrigger::new(key, modifiers)),
+                    Some(gtk::CallbackAction::new(glib::clone!(
+                        #[weak]
+                        obj,
+                        #[upgrade_or]
+                        glib::Propagation::Proceed,
+                        move |_, _| {
+                            let edit_crop = obj.edit_crop();
+                            // Letters typed onto the picture stay text
+                            if obj.dialog_open() || edit_crop.markup_canvas().is_typing() {
+                                return glib::Propagation::Proceed;
+                            }
+                            edit_crop.set_mode("markup");
+                            let _ = edit_crop
+                                .activate_action("edit-markup.tool", Some(&tool.to_variant()));
+                            glib::Propagation::Stop
                         }
-                        let edit_crop = obj.edit_crop();
-                        edit_crop.set_mode("markup");
-                        let _ = edit_crop
-                            .activate_action("edit-markup.tool", Some(&"brush".to_variant()));
-                        glib::Propagation::Stop
-                    }
-                ))),
-            ));
+                    ))),
+                ));
+            }
         }
     }
 
@@ -327,7 +343,7 @@ mod imp {
             });
         }
 
-        async fn save_copy(&self) {
+        pub(super) async fn save_copy(&self) {
             let obj = self.obj();
             self.save.popdown();
 
@@ -489,10 +505,12 @@ mod imp {
 
                     self.has_unsaved_changes.replace(false);
                     obj.window_inspect(|w| w.show_specific_image(original_file));
+                    return Ok(());
                 }
             }
 
-            Ok(())
+            // Nothing was written, so the edits are still only here
+            Err(())
         }
 
         #[must_use]
@@ -649,6 +667,7 @@ mod imp {
                 || obj.edit_crop().selection().cropped()
                 || !self.adjustments.get().is_identity()
                 || !self.markup.borrow().is_empty()
+                || obj.edit_crop().markup_canvas().has_typed_text()
                 || self.resize.get().is_some()
         }
 
@@ -897,9 +916,19 @@ impl LpEditWindow {
         self.update_history_actions();
     }
 
+    /// Updates Save after a change that is not an undo step yet
+    pub fn refresh_save_state(&self) {
+        self.imp().update_save_state(false);
+    }
+
     pub fn undo(&self) {
-        // Typed text becomes a shape that can be undone
-        self.edit_crop().markup_canvas().finish_text();
+        // Typed text becomes a shape, and undo stops there, since text
+        // that stayed the same adds no step to undo
+        let markup_canvas = self.edit_crop().markup_canvas();
+        if markup_canvas.is_typing() {
+            markup_canvas.finish_text();
+            return;
+        }
 
         // A pending crop selection is undone first
         let selection = self.edit_crop().selection();
@@ -979,6 +1008,15 @@ impl LpEditWindow {
                 "discard" => {
                     self.imp().has_unsaved_changes.replace(false);
                     glib::Propagation::Proceed
+                }
+                // Replacing needs the original in the trash
+                "save" if !self.imp().can_trash.get() => {
+                    self.imp().save_copy().await;
+                    if self.has_unsaved_changes() {
+                        glib::Propagation::Stop
+                    } else {
+                        glib::Propagation::Proceed
+                    }
                 }
                 "save" => {
                     if self.imp().save_overwrite().await.is_ok() {

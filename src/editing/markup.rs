@@ -44,6 +44,30 @@ pub enum Tool {
     Rectangle,
     Ellipse,
     Text,
+    /// Rubs out markup where it is dragged
+    Eraser,
+}
+
+/// Font families offered for text
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]
+pub enum Font {
+    #[default]
+    Sans,
+    Serif,
+    Mono,
+    /// Handwriting, with fallbacks since no such font is always installed
+    Hand,
+}
+
+impl Font {
+    fn family(self) -> &'static str {
+        match self {
+            Self::Sans => "Sans",
+            Self::Serif => "Serif",
+            Self::Mono => "Monospace",
+            Self::Hand => "Comic Neue, Comic Sans MS, cursive",
+        }
+    }
 }
 
 /// Colours offered in the colour popover: blue, yellow, red, orange, green
@@ -114,6 +138,10 @@ pub enum Kind {
         position: (f64, f64),
         text: String,
     },
+    /// Eraser stroke, which clears the markup drawn before it
+    Erase {
+        points: Vec<(f64, f64)>,
+    },
 }
 
 /// One drawn element
@@ -127,6 +155,8 @@ pub struct Shape {
     pub matrix: cairo::Matrix,
     /// Rectangles and ellipses are filled instead of outlined
     pub filled: bool,
+    /// Font of text
+    pub font: Font,
 }
 
 impl Shape {
@@ -137,6 +167,7 @@ impl Shape {
             size,
             matrix: cairo::Matrix::identity(),
             filled: false,
+            font: Font::default(),
         }
     }
 }
@@ -145,13 +176,13 @@ impl Shape {
     /// Bounding box in shape coordinates, including the line width
     pub fn bounds(&self) -> (f64, f64, f64, f64) {
         let points: Vec<(f64, f64)> = match &self.kind {
-            Kind::Stroke { points, .. } => points.clone(),
+            Kind::Stroke { points, .. } | Kind::Erase { points } => points.clone(),
             Kind::Line { from, to }
             | Kind::Rectangle { from, to }
             | Kind::Ellipse { from, to }
             | Kind::Arrow { from, to } => vec![*from, *to],
             Kind::Text { position, text } => {
-                let (width, height) = text_size(text, self.size);
+                let (width, height) = text_size(text, self.size, self.font);
                 return (
                     position.0,
                     position.1,
@@ -219,6 +250,8 @@ impl Shape {
                 let length = dx.hypot(dy);
                 norm <= 1. && self.filled || norm > 0. && (length - length / norm).abs() <= reach
             }
+            // Eraser strokes can't be picked
+            Kind::Erase { .. } => false,
             Kind::Text { .. } => {
                 let (x0, y0, x1, y1) = self.bounds();
                 point.0 >= x0 - tolerance
@@ -240,7 +273,7 @@ impl Shape {
 ///
 /// Glyph positions are the same at every scale, so the view matches the
 /// saved image.
-fn setup_text_layout(layout: &pango::Layout, text: &str, size: f64) {
+fn setup_text_layout(layout: &pango::Layout, text: &str, size: f64, font: Font) {
     let context = layout.context();
     if let Ok(mut options) = cairo::FontOptions::new() {
         options.set_hint_metrics(cairo::HintMetrics::Off);
@@ -249,23 +282,25 @@ fn setup_text_layout(layout: &pango::Layout, text: &str, size: f64) {
     }
     context.set_round_glyph_positions(false);
     layout.context_changed();
-    let mut font = pango::FontDescription::from_string("Sans Bold");
-    font.set_absolute_size(size * pango::SCALE as f64);
-    layout.set_font_description(Some(&font));
+    let mut description = pango::FontDescription::new();
+    description.set_family(font.family());
+    description.set_weight(pango::Weight::Bold);
+    description.set_absolute_size(size * pango::SCALE as f64);
+    layout.set_font_description(Some(&description));
     layout.set_text(text);
 }
 
 /// Layout of a text shape, set up like it is drawn
-fn text_layout(text: &str, size: f64) -> pango::Layout {
+fn text_layout(text: &str, size: f64, font: Font) -> pango::Layout {
     let context = pango::prelude::FontMapExt::create_context(&pangocairo::FontMap::default());
     let layout = pango::Layout::new(&context);
-    setup_text_layout(&layout, text, size);
+    setup_text_layout(&layout, text, size, font);
     layout
 }
 
 /// Size of a text shape, measured like it is drawn
-pub fn text_size(text: &str, size: f64) -> (f64, f64) {
-    let (_, logical) = text_layout(text, size).extents();
+pub fn text_size(text: &str, size: f64, font: Font) -> (f64, f64) {
+    let (_, logical) = text_layout(text, size, font).extents();
     (
         logical.width() as f64 / pango::SCALE as f64,
         logical.height() as f64 / pango::SCALE as f64,
@@ -274,8 +309,8 @@ pub fn text_size(text: &str, size: f64) -> (f64, f64) {
 
 /// Caret at byte `index` of `text`, as top and bottom point relative to
 /// the top left corner of the text
-pub fn text_caret(text: &str, size: f64, index: usize) -> ((f64, f64), (f64, f64)) {
-    let layout = text_layout(text, size);
+pub fn text_caret(text: &str, size: f64, font: Font, index: usize) -> ((f64, f64), (f64, f64)) {
+    let layout = text_layout(text, size, font);
     let (strong, _) = layout.cursor_pos(index.min(text.len()) as i32);
     let scale = pango::SCALE as f64;
     let x = strong.x() as f64 / scale;
@@ -283,10 +318,48 @@ pub fn text_caret(text: &str, size: f64, index: usize) -> ((f64, f64), (f64, f64
     ((x, y), (x, y + strong.height() as f64 / scale))
 }
 
+/// Rectangles covering the bytes from `start` to `end` of `text`, one per
+/// line, as x, y, width and height relative to the top left corner of the
+/// text
+pub fn text_selection(
+    text: &str,
+    size: f64,
+    font: Font,
+    start: usize,
+    end: usize,
+) -> Vec<(f64, f64, f64, f64)> {
+    let layout = text_layout(text, size, font);
+    let scale = pango::SCALE as f64;
+    let mut rects = Vec::new();
+    let mut line_start = 0;
+    for line in text.split('\n') {
+        let line_end = line_start + line.len();
+        let (from, to) = (start.max(line_start), end.min(line_end));
+        // A selected line break shows as a bit of space after the line
+        let selects_break = start <= line_end && end > line_end;
+        if from < to || selects_break {
+            let (a, _) = layout.cursor_pos(from as i32);
+            let (b, _) = layout.cursor_pos(to as i32);
+            let mut width = (b.x() - a.x()) as f64 / scale;
+            if selects_break {
+                width += size * 0.3;
+            }
+            rects.push((
+                a.x() as f64 / scale,
+                a.y() as f64 / scale,
+                width,
+                a.height() as f64 / scale,
+            ));
+        }
+        line_start = line_end + 1;
+    }
+    rects
+}
+
 /// Byte index in `text` closest to `point`, relative to the top left corner
 /// of the text
-pub fn text_index_at(text: &str, size: f64, point: (f64, f64)) -> usize {
-    let layout = text_layout(text, size);
+pub fn text_index_at(text: &str, size: f64, font: Font, point: (f64, f64)) -> usize {
+    let layout = text_layout(text, size, font);
     let scale = pango::SCALE as f64;
     let (_, index, trailing) =
         layout.xy_to_index((point.0 * scale) as i32, (point.1 * scale) as i32);
@@ -327,17 +400,36 @@ pub fn font_size(width: u32, height: u32) -> f64 {
     (width.max(height) as f64 * 0.035).max(12.)
 }
 
+/// Line width for the eraser
+pub fn eraser_width(width: u32, height: u32) -> f64 {
+    line_width(width, height) * 4.
+}
+
 /// Draws `shapes` with `cr` set up in image coordinates
+///
+/// The shapes are drawn on their own layer first, so the eraser only clears
+/// markup and never the picture below.
 pub fn draw(cr: &cairo::Context, shapes: &[Shape]) {
+    let erases = shapes.iter().any(|x| matches!(x.kind, Kind::Erase { .. }));
+    if erases {
+        cr.push_group();
+    }
     for shape in shapes {
         if let Err(err) = draw_shape(cr, shape) {
             tracing::warn!("Failed to draw shape: {err}");
+        }
+    }
+    if erases {
+        if let Err(err) = cr.pop_group_to_source().and_then(|()| cr.paint()) {
+            tracing::warn!("Failed to draw markup layer: {err}");
         }
     }
 }
 
 fn draw_shape(cr: &cairo::Context, shape: &Shape) -> Result<(), cairo::Error> {
     cr.save()?;
+    // A point left over from earlier drawing would join the shape with a line
+    cr.new_path();
     cr.transform(shape.matrix);
     cr.set_line_join(cairo::LineJoin::Round);
     cr.set_line_cap(cairo::LineCap::Round);
@@ -360,6 +452,17 @@ fn draw_shape(cr: &cairo::Context, shape: &Shape) -> Result<(), cairo::Error> {
                     // A single click leaves a dot
                     cr.line_to(first.0, first.1);
                 }
+                for point in rest {
+                    cr.line_to(point.0, point.1);
+                }
+                cr.stroke()?;
+            }
+        }
+        Kind::Erase { points } => {
+            if let Some((first, rest)) = points.split_first() {
+                cr.set_operator(cairo::Operator::Clear);
+                cr.move_to(first.0, first.1);
+                cr.line_to(first.0, first.1);
                 for point in rest {
                     cr.line_to(point.0, point.1);
                 }
@@ -435,7 +538,7 @@ fn draw_shape(cr: &cairo::Context, shape: &Shape) -> Result<(), cairo::Error> {
         Kind::Text { position, text } => {
             shape.color.set_source(cr, 1.);
             let layout = pangocairo::functions::create_layout(cr);
-            setup_text_layout(&layout, text, shape.size);
+            setup_text_layout(&layout, text, shape.size, shape.font);
             cr.move_to(position.0, position.1);
             pangocairo::functions::show_layout(cr, &layout);
         }
@@ -660,25 +763,26 @@ mod tests {
     fn text_caret_and_index_agree() {
         let text = "Hä\nyo";
         let size = 40.;
-        let (width, height) = text_size(text, size);
+        let font = Font::Sans;
+        let (width, height) = text_size(text, size, font);
         assert!(width > 0. && height > 0.);
 
         // Start of text is the top left corner
-        let ((x, y), (_, bottom)) = text_caret(text, size, 0);
+        let ((x, y), (_, bottom)) = text_caret(text, size, font, 0);
         assert_eq!((x, y), (0., 0.));
         assert!(bottom > y);
 
         // Each character boundary maps back to itself
         for index in [0, 1, 3, 4, 5, 6] {
-            let ((x, y), (_, bottom)) = text_caret(text, size, index);
-            let found = text_index_at(text, size, (x + 0.5, (y + bottom) / 2.));
+            let ((x, y), (_, bottom)) = text_caret(text, size, font, index);
+            let found = text_index_at(text, size, font, (x + 0.5, (y + bottom) / 2.));
             assert_eq!(found, index, "index {index}");
         }
 
         // Empty text still has a line to type into
-        let ((_, top), (_, bottom)) = text_caret("", size, 0);
+        let ((_, top), (_, bottom)) = text_caret("", size, font, 0);
         assert!(bottom - top > size * 0.5);
-        assert_eq!(text_index_at("", size, (50., 5.)), 0);
+        assert_eq!(text_index_at("", size, font, (50., 5.)), 0);
     }
 
     #[test]
