@@ -49,15 +49,15 @@ Free or fixed aspect ratios, rotate, flip and resize.
 
 ## Install
 
-Glance is coming to Flathub. Until then, build and install the Flatpak from this repository:
+Download [`glance-1.0.flatpak`](https://github.com/Replexo/Glance/releases/latest/download/glance-1.0.flatpak) from the latest release. Open it with your software centre, or install it from a terminal:
 
 ```sh
-git clone https://github.com/Replexo/Glance.git
-cd Glance
-flatpak-builder --user --install --install-deps-from=flathub build-flatpak build-aux/flatpak/io.github.Replexo.Glance.json
+flatpak install --user glance-1.0.flatpak
 ```
 
-This needs `flatpak-builder` and the [Flathub remote](https://flathub.org/setup). You can also [build Glance natively](#build-from-source).
+Glance uses the GNOME 51 runtime, which Flatpak downloads from [Flathub](https://flathub.org/setup) if you don't have it yet. Glance is coming to Flathub itself soon, with automatic updates.
+
+To build it yourself instead, see [Build from source](#build-from-source).
 
 ## Keyboard shortcuts
 
@@ -85,6 +85,12 @@ You need GTK 4.20, libadwaita 1.8, libgweather 4, libseccomp, the glycin loaders
 meson setup builddir
 ninja -C builddir
 ninja -C builddir install
+```
+
+To build and install the Flatpak:
+
+```sh
+flatpak-builder --user --install --install-deps-from=flathub build-flatpak build-aux/flatpak/io.github.Replexo.Glance.json
 ```
 
 To build a development version with its own app ID, so it can sit next to an installed release:
