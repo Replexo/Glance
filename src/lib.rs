@@ -75,7 +75,7 @@ use tracing_subscriber::layer::*;
 use tracing_subscriber::util::*;
 
 static GRESOURCE_BYTES: &[u8] =
-    gvdb_macros::include_gresource_from_dir!("/io/github/madarra16/Glint", "data/resources");
+    gvdb_macros::include_gresource_from_dir!("/io/github/Replexo/Glint", "data/resources");
 
 pub fn main() -> glib::ExitCode {
     // Follow G_MESSAGES_DEBUG env variable

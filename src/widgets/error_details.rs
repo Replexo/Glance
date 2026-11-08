@@ -95,7 +95,7 @@ impl LpErrorDetails {
 
         let issue_uri = match type_ {
             ErrorType::Loader => "https://gitlab.gnome.org/GNOME/glycin/-/issues",
-            ErrorType::General => "https://github.com/madarra16/glint/issues",
+            ErrorType::General => "https://github.com/Replexo/glint/issues",
         };
 
         imp.report.connect_clicked(glib::clone!(

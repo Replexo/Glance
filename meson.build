@@ -36,7 +36,7 @@ endif
 
 prefix = get_option('prefix')
 
-app_id = 'io.github.madarra16.Glint@0@'.format(get_option('app_id_suffix'))
+app_id = 'io.github.Replexo.Glint@0@'.format(get_option('app_id_suffix'))
 profile = get_option('profile')
 version = meson.project_version() + version_suffix
 localedir = prefix / get_option('localedir')

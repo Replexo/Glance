@@ -121,7 +121,7 @@ impl LpApplication {
         glib::Object::builder()
             .property("application-id", config::APP_ID)
             .property("flags", gio::ApplicationFlags::HANDLES_OPEN)
-            .property("resource-base-path", "/io/github/madarra16/Glint")
+            .property("resource-base-path", "/io/github/Replexo/Glint")
             .build()
     }
 

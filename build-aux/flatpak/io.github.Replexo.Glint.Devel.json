@@ -1,5 +1,5 @@
 {
-    "id": "io.github.madarra16.Glint.Devel",
+    "id": "io.github.Replexo.Glint.Devel",
     "runtime": "org.gnome.Platform",
     "runtime-version": "master",
     "sdk": "org.gnome.Sdk",

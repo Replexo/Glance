@@ -5,17 +5,17 @@
   <project_license>GPL-3.0-or-later</project_license>
   <name>Glint</name>
   <!-- developer_name tag deprecated with Appstream 1.0 -->
-  <developer_name>madarra16</developer_name>
-  <developer id="io.github.madarra16">
-    <name>madarra16</name>
+  <developer_name>Replexo</developer_name>
+  <developer id="io.github.replexo">
+    <name>Replexo</name>
   </developer>
   <summary>View and edit images</summary>
   <description>
     <p>Explore images, view their metadata, and make quick edits by cropping, rotating, or flipping them.</p>
   </description>
-  <url type="homepage">https://github.com/madarra16/glint</url>
-  <url type="bugtracker">https://github.com/madarra16/glint/issues</url>
-  <url type="vcs-browser">https://github.com/madarra16/glint</url>
+  <url type="homepage">https://github.com/Replexo/glint</url>
+  <url type="bugtracker">https://github.com/Replexo/glint/issues</url>
+  <url type="vcs-browser">https://github.com/Replexo/glint</url>
 
   <screenshots>
     <screenshot type="default">
