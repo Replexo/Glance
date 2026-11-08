@@ -255,16 +255,47 @@ fn setup_text_layout(layout: &pango::Layout, text: &str, size: f64) {
     layout.set_text(text);
 }
 
-/// Size of a text shape, measured like it is drawn
-fn text_size(text: &str, size: f64) -> (f64, f64) {
+/// Layout of a text shape, set up like it is drawn
+fn text_layout(text: &str, size: f64) -> pango::Layout {
     let context = pango::prelude::FontMapExt::create_context(&pangocairo::FontMap::default());
     let layout = pango::Layout::new(&context);
     setup_text_layout(&layout, text, size);
-    let (_, logical) = layout.extents();
+    layout
+}
+
+/// Size of a text shape, measured like it is drawn
+pub fn text_size(text: &str, size: f64) -> (f64, f64) {
+    let (_, logical) = text_layout(text, size).extents();
     (
         logical.width() as f64 / pango::SCALE as f64,
         logical.height() as f64 / pango::SCALE as f64,
     )
+}
+
+/// Caret at byte `index` of `text`, as top and bottom point relative to
+/// the top left corner of the text
+pub fn text_caret(text: &str, size: f64, index: usize) -> ((f64, f64), (f64, f64)) {
+    let layout = text_layout(text, size);
+    let (strong, _) = layout.cursor_pos(index.min(text.len()) as i32);
+    let scale = pango::SCALE as f64;
+    let x = strong.x() as f64 / scale;
+    let y = strong.y() as f64 / scale;
+    ((x, y), (x, y + strong.height() as f64 / scale))
+}
+
+/// Byte index in `text` closest to `point`, relative to the top left corner
+/// of the text
+pub fn text_index_at(text: &str, size: f64, point: (f64, f64)) -> usize {
+    let layout = text_layout(text, size);
+    let scale = pango::SCALE as f64;
+    let (_, index, trailing) =
+        layout.xy_to_index((point.0 * scale) as i32, (point.1 * scale) as i32);
+    let mut index = index.max(0) as usize;
+    // `trailing` counts characters after `index`
+    for _ in 0..trailing {
+        index += text[index..].chars().next().map_or(0, char::len_utf8);
+    }
+    index.min(text.len())
 }
 
 fn distance(a: (f64, f64), b: (f64, f64)) -> f64 {
@@ -623,6 +654,31 @@ mod tests {
             assert_eq!(size, expected_size, "{operation:?}");
             assert_eq!(transformed(&matrix, (1., 0.)), expected, "{operation:?}");
         }
+    }
+
+    #[test]
+    fn text_caret_and_index_agree() {
+        let text = "Hä\nyo";
+        let size = 40.;
+        let (width, height) = text_size(text, size);
+        assert!(width > 0. && height > 0.);
+
+        // Start of text is the top left corner
+        let ((x, y), (_, bottom)) = text_caret(text, size, 0);
+        assert_eq!((x, y), (0., 0.));
+        assert!(bottom > y);
+
+        // Each character boundary maps back to itself
+        for index in [0, 1, 3, 4, 5, 6] {
+            let ((x, y), (_, bottom)) = text_caret(text, size, index);
+            let found = text_index_at(text, size, (x + 0.5, (y + bottom) / 2.));
+            assert_eq!(found, index, "index {index}");
+        }
+
+        // Empty text still has a line to type into
+        let ((_, top), (_, bottom)) = text_caret("", size, 0);
+        assert!(bottom - top > size * 0.5);
+        assert_eq!(text_index_at("", size, (50., 5.)), 0);
     }
 
     #[test]

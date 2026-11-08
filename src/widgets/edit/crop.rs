@@ -528,6 +528,10 @@ mod imp {
             if self.mode.borrow().as_str() == "crop" {
                 self.apply_crop();
             }
+            // Leaving markup adds the text being typed
+            if self.mode.borrow().as_str() == "markup" {
+                self.markup_canvas.finish_text();
+            }
 
             let is_crop = mode == "crop";
             self.size_label.set_visible(is_crop);

@@ -448,6 +448,7 @@ mod imp {
             let obj = self.obj();
 
             obj.edit_crop().apply_crop();
+            obj.edit_crop().markup_canvas().finish_text();
 
             self.set_saving_status(Some(gettext("Editing Image")));
 
@@ -733,6 +734,7 @@ impl LpEditWindow {
     }
 
     pub fn clear_markup(&self) {
+        self.edit_crop().markup_canvas().finish_text();
         if !self.markup().is_empty() {
             self.record(None);
             self.edit_crop().markup_canvas().clear_selection();
@@ -839,6 +841,9 @@ impl LpEditWindow {
     }
 
     pub fn undo(&self) {
+        // Typed text becomes a shape that can be undone
+        self.edit_crop().markup_canvas().finish_text();
+
         // A pending crop selection is undone first
         let selection = self.edit_crop().selection();
         if self.edit_crop().mode() == "crop" && selection.cropped() {
@@ -854,6 +859,12 @@ impl LpEditWindow {
     }
 
     pub fn redo(&self) {
+        // Adding the typed text starts a new branch, with nothing to redo
+        let markup_canvas = self.edit_crop().markup_canvas();
+        if markup_canvas.is_typing() {
+            markup_canvas.finish_text();
+            return;
+        }
         let next = self.imp().future.borrow_mut().pop();
         if let Some(next) = next {
             self.imp().history.borrow_mut().push(self.state());
@@ -888,6 +899,7 @@ impl LpEditWindow {
 
     /// Returns if the window should proceed with closing
     pub async fn ensure_saved(&self) -> glib::Propagation {
+        self.edit_crop().markup_canvas().finish_text();
         if self.has_unsaved_changes() {
             let dialog = adw::AlertDialog::new(
                 Some(&gettext("Save Changes?")),

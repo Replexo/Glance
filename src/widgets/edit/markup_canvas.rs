@@ -24,7 +24,6 @@ use adw::subclass::prelude::*;
 
 use crate::deps::*;
 use crate::editing::markup::{self, Color, Kind, Shape, Tool};
-use crate::util::gettext::*;
 use crate::util::root::ParentWindow;
 use crate::widgets::LpImage;
 use crate::widgets::edit::LpEditCrop;
@@ -39,7 +38,11 @@ mod imp {
         /// Shape that is being drawn
         pub(super) current: RefCell<Option<Shape>>,
         pub(super) drag_start: Cell<(f64, f64)>,
-        pub(super) text_popover: RefCell<Option<gtk::Popover>>,
+        /// Text being typed onto the picture
+        pub(super) typing: RefCell<Option<Typing>>,
+        pub(super) im_context: gtk::IMMulticontext,
+        /// Only filters keys through the input method while typing
+        pub(super) keys: gtk::EventControllerKey,
         /// Factor for line width and font size of new shapes
         pub(super) size_factor: Cell<f64>,
         /// New rectangles and ellipses are filled
@@ -50,6 +53,79 @@ mod imp {
         pub(super) moved: Cell<bool>,
         /// Drag offset at the last move
         pub(super) last_offset: Cell<Option<(f64, f64)>>,
+    }
+
+    /// Text shape that is still being typed, and the caret as byte index
+    #[derive(Debug)]
+    pub struct Typing {
+        pub(super) shape: Shape,
+        pub(super) caret: usize,
+    }
+
+    impl Typing {
+        pub(super) fn text(&self) -> &str {
+            match &self.shape.kind {
+                Kind::Text { text, .. } => text,
+                _ => "",
+            }
+        }
+
+        fn text_mut(&mut self) -> Option<&mut String> {
+            match &mut self.shape.kind {
+                Kind::Text { text, .. } => Some(text),
+                _ => None,
+            }
+        }
+
+        pub(super) fn insert(&mut self, string: &str) {
+            let caret = self.caret;
+            if let Some(text) = self.text_mut() {
+                text.insert_str(caret, string);
+                self.caret += string.len();
+            }
+        }
+
+        /// Byte index of the character boundary before or after the caret
+        fn neighbour(&self, forward: bool) -> Option<usize> {
+            let text = self.text();
+            if forward {
+                text[self.caret..]
+                    .chars()
+                    .next()
+                    .map(|c| self.caret + c.len_utf8())
+            } else {
+                text[..self.caret].char_indices().next_back().map(|(i, _)| i)
+            }
+        }
+
+        pub(super) fn delete(&mut self, forward: bool) {
+            let Some(other) = self.neighbour(forward) else {
+                return;
+            };
+            let (start, end) = (self.caret.min(other), self.caret.max(other));
+            if let Some(text) = self.text_mut() {
+                text.replace_range(start..end, "");
+                self.caret = start;
+            }
+        }
+
+        pub(super) fn step(&mut self, forward: bool) {
+            if let Some(index) = self.neighbour(forward) {
+                self.caret = index;
+            }
+        }
+
+        /// Moves the caret to the start or end of its line
+        pub(super) fn line_edge(&mut self, end: bool) {
+            let text = self.text();
+            self.caret = if end {
+                text[self.caret..]
+                    .find('\n')
+                    .map_or(text.len(), |i| self.caret + i)
+            } else {
+                text[..self.caret].rfind('\n').map_or(0, |i| i + 1)
+            };
+        }
     }
 
     #[glib::object_subclass]
@@ -72,14 +148,54 @@ mod imp {
             obj.set_focusable(true);
             self.size_factor.set(1.);
 
-            let keys = gtk::EventControllerKey::new();
+            // Typed characters, including dead keys and compose sequences
+            self.im_context.set_client_widget(Some(&*obj));
+            self.im_context.connect_commit(glib::clone!(
+                #[weak]
+                obj,
+                move |_, string| {
+                    let imp = obj.imp();
+                    if let Some(typing) = imp.typing.borrow_mut().as_mut() {
+                        typing.insert(string);
+                    }
+                    imp.text_changed();
+                }
+            ));
+            self.im_context.connect_preedit_changed(glib::clone!(
+                #[weak]
+                obj,
+                move |_| obj.queue_draw()
+            ));
+
+            let focus = gtk::EventControllerFocus::new();
+            focus.connect_enter(glib::clone!(
+                #[weak]
+                obj,
+                move |_| {
+                    let imp = obj.imp();
+                    if imp.typing.borrow().is_some() {
+                        imp.im_context.focus_in();
+                    }
+                }
+            ));
+            focus.connect_leave(glib::clone!(
+                #[weak]
+                obj,
+                move |_| obj.imp().im_context.focus_out()
+            ));
+            obj.add_controller(focus);
+
+            let keys = &self.keys;
             keys.connect_key_pressed(glib::clone!(
                 #[weak]
                 obj,
                 #[upgrade_or]
                 glib::Propagation::Proceed,
-                move |_, key, _, _| {
+                move |_, key, _, modifiers| {
                     let imp = obj.imp();
+                    if imp.typing.borrow().is_some() {
+                        return imp.typing_key(key, modifiers);
+                    }
                     match (key, imp.selected.get()) {
                         (gdk::Key::Delete | gdk::Key::BackSpace, Some(index)) => {
                             imp.selected.set(None);
@@ -95,7 +211,7 @@ mod imp {
                     }
                 }
             ));
-            obj.add_controller(keys);
+            obj.add_controller(keys.clone());
 
             let drag = gtk::GestureDrag::new();
             drag.connect_drag_begin(glib::clone!(
@@ -117,9 +233,7 @@ mod imp {
         }
 
         fn dispose(&self) {
-            if let Some(popover) = self.text_popover.take() {
-                popover.unparent();
-            }
+            self.im_context.set_client_widget(None::<&gtk::Widget>);
         }
     }
 
@@ -132,7 +246,8 @@ mod imp {
 
             let shapes = edit_window.markup();
             let current = self.current.borrow();
-            if shapes.is_empty() && current.is_none() {
+            let typing = self.typing.borrow();
+            if shapes.is_empty() && current.is_none() && typing.is_none() {
                 return;
             }
             let selected = self.selected.get().and_then(|index| shapes.get(index));
@@ -157,33 +272,34 @@ mod imp {
             if let Some(shape) = current.as_ref() {
                 markup::draw(&cr, std::slice::from_ref(shape));
             }
+            // Text being composed by the input method shows at the caret
+            let typing = typing.as_ref().map(|typing| {
+                let (preedit, _, _) = self.im_context.preedit_string();
+                let mut shown = Typing {
+                    shape: typing.shape.clone(),
+                    caret: typing.caret,
+                };
+                shown.insert(&preedit);
+                shown
+            });
+            if let Some(typing) = typing.as_ref() {
+                markup::draw(&cr, std::slice::from_ref(&typing.shape));
+            }
 
-            // Dashed outline around the selected shape, in screen pixels
+            // Also outline the parts outside the picture
+            cr.reset_clip();
             if let Some(shape) = selected {
-                let (x0, y0, x1, y1) = shape.bounds();
-                // Also outline the parts outside the picture
-                cr.reset_clip();
-                cr.transform(shape.matrix);
-                // Works under rotation, where x and y swap
-                let (pad_x, pad_y) = cr.device_to_user_distance(6., 0.).unwrap_or((6., 0.));
-                let pad = pad_x.hypot(pad_y);
-                cr.rectangle(x0 - pad, y0 - pad, x1 - x0 + 2. * pad, y1 - y0 + 2. * pad);
-                cr.identity_matrix();
-                cr.set_line_width(1.5);
-                cr.set_dash(&[5., 4.], 0.);
-                cr.set_source_rgb(1., 1., 1.);
-                let _ = cr.stroke_preserve();
-                cr.set_dash(&[5., 4.], 5.);
-                cr.set_source_rgb(0., 0., 0.);
-                let _ = cr.stroke();
+                draw_outline(&cr, shape);
+            }
+            if let Some(typing) = typing.as_ref() {
+                draw_outline(&cr, &typing.shape);
+                self.draw_caret(&cr, typing);
             }
         }
 
-        fn size_allocate(&self, width: i32, height: i32, baseline: i32) {
-            self.parent_size_allocate(width, height, baseline);
-            if let Some(popover) = self.text_popover.borrow().as_ref() {
-                popover.present();
-            }
+        fn unmap(&self) {
+            self.finish_text();
+            self.parent_unmap();
         }
     }
 
@@ -214,13 +330,11 @@ mod imp {
         }
 
         pub(super) fn restore_cursor(&self) {
-            let tool = self.tool.get();
-            self.obj()
-                .set_cursor_from_name(Some(if tool == Tool::Select {
-                    "default"
-                } else {
-                    "crosshair"
-                }));
+            self.obj().set_cursor_from_name(Some(match self.tool.get() {
+                Tool::Select => "default",
+                Tool::Text => "text",
+                _ => "crosshair",
+            }));
         }
 
         /// Topmost shape under the widget point `(x, y)`
@@ -299,7 +413,7 @@ mod imp {
                     to: point,
                 },
                 Tool::Text => {
-                    self.ask_text(x, y, point);
+                    self.text_click(x, y, point);
                     return;
                 }
             };
@@ -386,59 +500,238 @@ mod imp {
             edit_window.replace_markup(index, shape, !self.moved.replace(true));
         }
 
-        /// Shows an entry at the clicked point and adds the text on Enter
-        fn ask_text(&self, x: f64, y: f64, position: (f64, f64)) {
+        /// Starts typing at the clicked point, moves the caret within the
+        /// text being typed, or finishes it on a click elsewhere
+        fn text_click(&self, x: f64, y: f64, point: (f64, f64)) {
             let obj = self.obj();
+            obj.grab_focus();
 
-            if let Some(popover) = self.text_popover.take() {
-                popover.unparent();
+            if self.typing.borrow().is_some() {
+                let inside = self.typing_point(x, y).and_then(|(local, tolerance)| {
+                    let typing = self.typing.borrow();
+                    let typing = typing.as_ref()?;
+                    let position = match &typing.shape.kind {
+                        Kind::Text { position, .. } => *position,
+                        _ => return None,
+                    };
+                    typing.shape.hit(local, tolerance).then(|| {
+                        let local = (local.0 - position.0, local.1 - position.1);
+                        markup::text_index_at(typing.text(), typing.shape.size, local)
+                    })
+                });
+
+                match inside {
+                    Some(index) => {
+                        // Pending composed text lands at the old caret
+                        self.im_context.reset();
+                        if let Some(typing) = self.typing.borrow_mut().as_mut() {
+                            typing.caret = index.min(typing.text().len());
+                        }
+                        self.text_changed();
+                    }
+                    None => self.finish_text(),
+                }
+                return;
             }
 
-            let entry = gtk::Entry::builder()
-                .placeholder_text(gettext("Text"))
-                .width_chars(20)
-                .build();
-            let popover = gtk::Popover::builder()
-                .child(&entry)
-                .pointing_to(&gdk::Rectangle::new(x as i32, y as i32, 1, 1))
-                .position(gtk::PositionType::Bottom)
-                .build();
-            popover.set_parent(&*obj);
+            // The click marks the middle of the first line
+            let mut shape = self.new_shape(Kind::Text {
+                position: point,
+                text: String::new(),
+            });
+            let (_, line_height) = markup::text_size("", shape.size);
+            shape.kind = Kind::Text {
+                position: (point.0, point.1 - line_height / 2.),
+                text: String::new(),
+            };
 
-            entry.connect_activate(glib::clone!(
-                #[weak]
-                obj,
-                #[weak]
-                popover,
-                move |entry| {
-                    let text = entry.text().trim_end().to_string();
-                    if !text.is_empty() {
-                        let shape = obj.imp().new_shape(Kind::Text { position, text });
-                        obj.edit_window().add_markup(shape);
-                    }
-                    popover.popdown();
+            self.typing.replace(Some(Typing { shape, caret: 0 }));
+            self.keys.set_im_context(Some(&self.im_context));
+            self.im_context.focus_in();
+            self.text_changed();
+        }
+
+        /// Keeps typing after the colour or size was changed in the pill
+        pub(super) fn keep_typing(&self) {
+            if self.typing.borrow().is_some() {
+                self.text_changed();
+                self.obj().grab_focus();
+            }
+        }
+
+        /// Widget point in the coordinates of the text being typed, and the
+        /// hit tolerance there
+        fn typing_point(&self, x: f64, y: f64) -> Option<((f64, f64), f64)> {
+            let (_, _, scale) = image_transform(&self.image())?;
+            let point = self.to_image(x, y)?;
+            let (matrix, _) = self.operations_matrix();
+            let typing = self.typing.borrow();
+            let full = cairo::Matrix::multiply(&typing.as_ref()?.shape.matrix, &matrix);
+            let local = full.try_invert().ok()?.transform_point(point.0, point.1);
+            Some((local, 6. / scale))
+        }
+
+        /// Keys while typing
+        fn typing_key(&self, key: gdk::Key, modifiers: gdk::ModifierType) -> glib::Propagation {
+            // Shortcuts like undo still reach the window
+            if modifiers.intersects(gdk::ModifierType::CONTROL_MASK | gdk::ModifierType::ALT_MASK) {
+                return glib::Propagation::Proceed;
+            }
+
+            let enter = matches!(
+                key,
+                gdk::Key::Return | gdk::Key::KP_Enter | gdk::Key::ISO_Enter
+            );
+            if key == gdk::Key::Escape {
+                self.cancel_text();
+                return glib::Propagation::Stop;
+            }
+            if enter && !modifiers.contains(gdk::ModifierType::SHIFT_MASK) {
+                self.finish_text();
+                return glib::Propagation::Stop;
+            }
+
+            if let Some(typing) = self.typing.borrow_mut().as_mut() {
+                match key {
+                    _ if enter => typing.insert("\n"),
+                    gdk::Key::BackSpace => typing.delete(false),
+                    gdk::Key::Delete | gdk::Key::KP_Delete => typing.delete(true),
+                    gdk::Key::Left | gdk::Key::KP_Left => typing.step(false),
+                    gdk::Key::Right | gdk::Key::KP_Right => typing.step(true),
+                    gdk::Key::Home | gdk::Key::KP_Home => typing.line_edge(false),
+                    gdk::Key::End | gdk::Key::KP_End => typing.line_edge(true),
+                    // Keep the focus on the text
+                    gdk::Key::Tab
+                    | gdk::Key::ISO_Left_Tab
+                    | gdk::Key::Up
+                    | gdk::Key::Down
+                    | gdk::Key::KP_Up
+                    | gdk::Key::KP_Down => return glib::Propagation::Stop,
+                    _ => return glib::Propagation::Proceed,
                 }
-            ));
+            }
+            self.text_changed();
+            glib::Propagation::Stop
+        }
 
-            popover.connect_closed(glib::clone!(
-                #[weak]
-                obj,
-                move |popover| {
-                    let imp = obj.imp();
-                    if imp.text_popover.borrow().as_ref() == Some(popover) {
-                        imp.text_popover.take();
-                        let popover = popover.clone();
-                        // Unparenting inside the signal handler is not allowed
-                        glib::idle_add_local_once(move || popover.unparent());
-                    }
+        /// Redraws the text being typed and tells the input method where
+        /// the caret is
+        pub(super) fn text_changed(&self) {
+            let obj = self.obj();
+            obj.queue_draw();
+
+            let Some(typing) = self.typing.borrow().as_ref().map(|t| {
+                (t.shape.clone(), t.text().to_owned(), t.caret)
+            }) else {
+                return;
+            };
+            let (shape, text, caret) = typing;
+            let Kind::Text { position, .. } = shape.kind else {
+                return;
+            };
+            let Some((offset_x, offset_y, scale)) = image_transform(&self.image()) else {
+                return;
+            };
+            let (top, bottom) = markup::text_caret(&text, shape.size, caret);
+            let (matrix, _) = self.operations_matrix();
+            let full = cairo::Matrix::multiply(&shape.matrix, &matrix);
+            let to_widget = |(x, y): (f64, f64)| {
+                let (x, y) = full.transform_point(position.0 + x, position.1 + y);
+                (offset_x + x * scale, offset_y + y * scale)
+            };
+            let (x0, y0) = to_widget(top);
+            let (x1, y1) = to_widget(bottom);
+            self.im_context.set_cursor_location(&gdk::Rectangle::new(
+                x0.min(x1) as i32,
+                y0.min(y1) as i32,
+                (x1 - x0).abs().max(1.) as i32,
+                (y1 - y0).abs().max(1.) as i32,
+            ));
+        }
+
+        /// Caret of the text being typed, with `cr` in image coordinates
+        fn draw_caret(&self, cr: &cairo::Context, typing: &Typing) {
+            let Kind::Text { position, .. } = typing.shape.kind else {
+                return;
+            };
+            let ((x0, y0), (x1, y1)) =
+                markup::text_caret(typing.text(), typing.shape.size, typing.caret);
+
+            cr.save().ok();
+            cr.transform(typing.shape.matrix);
+            cr.move_to(position.0 + x0, position.1 + y0);
+            cr.line_to(position.0 + x1, position.1 + y1);
+            cr.restore().ok();
+            cr.save().ok();
+            cr.identity_matrix();
+            cr.set_dash(&[], 0.);
+            cr.set_line_width(2.);
+            let color = typing.shape.color;
+            cr.set_source_rgb(
+                color.r as f64 / 255.,
+                color.g as f64 / 255.,
+                color.b as f64 / 255.,
+            );
+            let _ = cr.stroke();
+            cr.restore().ok();
+        }
+
+        /// Adds the text being typed as a shape, if it has any
+        pub(super) fn finish_text(&self) {
+            if self.typing.borrow().is_none() {
+                return;
+            }
+            // Adds what the input method still composes
+            self.im_context.reset();
+            self.stop_input_method();
+            let Some(typing) = self.typing.take() else {
+                return;
+            };
+            let obj = self.obj();
+            if !typing.text().trim().is_empty() {
+                let mut shape = typing.shape;
+                if let Kind::Text { text, .. } = &mut shape.kind {
+                    *text = text.trim_end().to_owned();
                 }
-            ));
+                obj.edit_window().add_markup(shape);
+            }
+            obj.queue_draw();
+        }
 
-            self.text_popover.replace(Some(popover.clone()));
-            popover.popup();
-            entry.grab_focus();
+        fn cancel_text(&self) {
+            if self.typing.take().is_some() {
+                self.im_context.reset();
+                self.stop_input_method();
+                self.obj().queue_draw();
+            }
+        }
+
+        fn stop_input_method(&self) {
+            self.im_context.focus_out();
+            self.keys.set_im_context(None::<&gtk::IMContext>);
         }
     }
+}
+
+/// Dashed outline around `shape`, in screen pixels, with `cr` in image
+/// coordinates
+fn draw_outline(cr: &cairo::Context, shape: &Shape) {
+    let (x0, y0, x1, y1) = shape.bounds();
+    cr.save().ok();
+    cr.transform(shape.matrix);
+    // Works under rotation, where x and y swap
+    let (pad_x, pad_y) = cr.device_to_user_distance(6., 0.).unwrap_or((6., 0.));
+    let pad = pad_x.hypot(pad_y);
+    cr.rectangle(x0 - pad, y0 - pad, x1 - x0 + 2. * pad, y1 - y0 + 2. * pad);
+    cr.identity_matrix();
+    cr.set_line_width(1.5);
+    cr.set_dash(&[5., 4.], 0.);
+    cr.set_source_rgb(1., 1., 1.);
+    let _ = cr.stroke_preserve();
+    cr.set_dash(&[5., 4.], 5.);
+    cr.set_source_rgb(0., 0., 0.);
+    let _ = cr.stroke();
+    cr.restore().ok();
 }
 
 /// Offset and scale that map image coordinates to widget coordinates
@@ -461,6 +754,7 @@ glib::wrapper! {
 impl LpMarkupCanvas {
     pub fn set_tool(&self, tool: Tool) {
         let imp = self.imp();
+        imp.finish_text();
         imp.tool.set(tool);
         if tool != Tool::Select && imp.selected.take().is_some() {
             self.queue_draw();
@@ -469,7 +763,12 @@ impl LpMarkupCanvas {
     }
 
     pub fn set_color(&self, color: Color) {
-        self.imp().color.set(color);
+        let imp = self.imp();
+        imp.color.set(color);
+        if let Some(typing) = imp.typing.borrow_mut().as_mut() {
+            typing.shape.color = color;
+        }
+        imp.keep_typing();
     }
 }
 
@@ -479,7 +778,21 @@ impl LpMarkupCanvas {
     }
 
     pub fn set_size_factor(&self, factor: f64) {
-        self.imp().size_factor.set(factor);
+        let imp = self.imp();
+        let old = imp.size_factor.replace(factor);
+        if let Some(typing) = imp.typing.borrow_mut().as_mut() {
+            typing.shape.size *= factor / old;
+        }
+        imp.keep_typing();
+    }
+
+    /// Adds the text being typed, before the markup is used elsewhere
+    pub fn finish_text(&self) {
+        self.imp().finish_text();
+    }
+
+    pub fn is_typing(&self) -> bool {
+        self.imp().typing.borrow().is_some()
     }
 
     /// Forgets the selected shape, for example after undo
