@@ -66,8 +66,6 @@ mod imp {
         #[template_child]
         name_label: TemplateChild<gtk::Label>,
         #[template_child]
-        compare: TemplateChild<gtk::Button>,
-        #[template_child]
         dot_brightness: TemplateChild<adw::Bin>,
         #[template_child]
         dot_contrast: TemplateChild<adw::Bin>,
@@ -145,25 +143,6 @@ mod imp {
             ));
             self.slider_handler.set(handler).unwrap();
 
-            // Holding the button shows the picture without adjustments
-            let hold = gtk::GestureClick::new();
-            hold.connect_pressed(glib::clone!(
-                #[weak]
-                obj,
-                move |_, _, _, _| obj.imp().show_original(true)
-            ));
-            hold.connect_released(glib::clone!(
-                #[weak]
-                obj,
-                move |_, _, _, _| obj.imp().show_original(false)
-            ));
-            hold.connect_cancel(glib::clone!(
-                #[weak]
-                obj,
-                move |_, _| obj.imp().show_original(false)
-            ));
-            self.compare.add_controller(hold);
-
             self.select(Property::Brightness);
         }
     }
@@ -222,17 +201,6 @@ mod imp {
                 edit_window.change_adjustments(adjustments, Some(property));
             }
             self.sync();
-        }
-
-        fn show_original(&self, original: bool) {
-            if let Some(edit_window) = self.obj().try_edit_window() {
-                let adjustments = if original {
-                    Adjustments::default()
-                } else {
-                    edit_window.adjustments()
-                };
-                edit_window.edit_crop().image().set_adjustments(adjustments);
-            }
         }
 
         async fn automatic(&self) {

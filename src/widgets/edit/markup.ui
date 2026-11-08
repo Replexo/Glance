@@ -343,41 +343,6 @@
                 </property>
               </object>
             </property>
-            <property name="end-widget">
-              <object class="GtkBox">
-                <binding name="visible">
-                  <lookup name="wide-layout" type="LpWindow">
-                    <lookup name="root">LpEditMarkup</lookup>
-                  </lookup>
-                </binding>
-                <property name="margin-end">12</property>
-                <property name="valign">center</property>
-                <style>
-                  <class name="glint-pill"/>
-                </style>
-                <child>
-                  <object class="GtkButton">
-                    <property name="icon-name">glint-undo-symbolic</property>
-                    <property name="tooltip-text" translatable="yes">Undo</property>
-                    <property name="action-name">edit.undo</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkButton">
-                    <property name="icon-name">glint-redo-symbolic</property>
-                    <property name="tooltip-text" translatable="yes">Redo</property>
-                    <property name="action-name">edit.redo</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkButton">
-                    <property name="icon-name">glint-clear-symbolic</property>
-                    <property name="tooltip-text" translatable="yes">Remove All Markup</property>
-                    <property name="action-name">edit.clear-markup</property>
-                  </object>
-                </child>
-              </object>
-            </property>
           </object>
         </child>
       </object>

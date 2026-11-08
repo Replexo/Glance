@@ -57,6 +57,10 @@ mod imp {
         shortcut_controller: TemplateChild<gtk::ShortcutController>,
         #[template_child]
         mode_switcher: TemplateChild<adw::ToggleGroup>,
+        #[template_child]
+        compare: TemplateChild<gtk::Button>,
+        #[template_child]
+        clear_markup: TemplateChild<gtk::Button>,
 
         #[property(get, construct_only)]
         original_image: OnceCell<LpImage>,
@@ -137,6 +141,38 @@ mod imp {
                 .bidirectional()
                 .sync_create()
                 .build();
+
+            // Compare only makes sense for adjustments, clearing for markup
+            obj.edit_crop().connect_mode_notify(glib::clone!(
+                #[weak]
+                obj,
+                move |edit_crop| {
+                    let imp = obj.imp();
+                    imp.compare.set_visible(edit_crop.mode() == "adjust");
+                    imp.clear_markup.set_visible(edit_crop.mode() == "markup");
+                }
+            ));
+            self.compare.set_visible(false);
+            self.clear_markup.set_visible(false);
+
+            // Holding the button shows the picture without adjustments
+            let hold = gtk::GestureClick::new();
+            hold.connect_pressed(glib::clone!(
+                #[weak]
+                obj,
+                move |_, _, _, _| obj.show_original(true)
+            ));
+            hold.connect_released(glib::clone!(
+                #[weak]
+                obj,
+                move |_, _, _, _| obj.show_original(false)
+            ));
+            hold.connect_cancel(glib::clone!(
+                #[weak]
+                obj,
+                move |_, _| obj.show_original(false)
+            ));
+            self.compare.add_controller(hold);
 
             glib::spawn_future_local(glib::clone!(
                 #[weak]
@@ -630,6 +666,15 @@ impl LpEditWindow {
         operations.push(operation);
 
         self.set_operations(Some(Arc::new(Operations::new(operations))));
+    }
+
+    fn show_original(&self, original: bool) {
+        let adjustments = if original {
+            Adjustments::default()
+        } else {
+            self.adjustments()
+        };
+        self.edit_crop().image().set_adjustments(adjustments);
     }
 
     pub fn adjustments(&self) -> Adjustments {

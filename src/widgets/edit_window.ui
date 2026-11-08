@@ -2,7 +2,7 @@
 <interface>
   <template class="LpEditWindow" parent="AdwBin">
     <style>
-      <class name="glint-editor" />
+      <class name="glint-editor"/>
     </style>
     <child>
       <object class="GtkShortcutController" id="shortcut_controller">
@@ -14,16 +14,54 @@
         <property name="top-bar-style">raised</property>
         <property name="content">
           <object class="GtkOverlay">
-            <property name="child" bind-source="LpEditWindow" bind-property="edit_crop" />
+            <property name="child" bind-source="LpEditWindow" bind-property="edit_crop"/>
+            <child type="overlay">
+              <object class="GtkBox" id="history_pill">
+                <property name="margin-end">12</property>
+                <property name="margin-top">12</property>
+                <property name="halign">end</property>
+                <property name="valign">start</property>
+                <style>
+                  <class name="glint-pill"/>
+                </style>
+                <child>
+                  <object class="GtkButton" id="compare">
+                    <property name="icon-name">glint-compare-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Hold to Show Original</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="icon-name">glint-undo-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Undo</property>
+                    <property name="action-name">edit.undo</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="icon-name">glint-redo-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Redo</property>
+                    <property name="action-name">edit.redo</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="clear_markup">
+                    <property name="icon-name">glint-clear-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Remove All Markup</property>
+                    <property name="action-name">edit.clear-markup</property>
+                  </object>
+                </child>
+              </object>
+            </child>
             <child type="overlay">
               <object class="GtkRevealer" id="saving_revealer">
                 <property name="transition-type">crossfade</property>
                 <property name="transition-duration">500</property>
-                <property name="can-target" bind-source="saving_revealer" bind-property="reveal-child" bind-flags="sync-create" />
+                <property name="can-target" bind-source="saving_revealer" bind-property="reveal-child" bind-flags="sync-create"/>
                 <property name="child">
                   <object class="AdwBin">
                     <style>
-                      <class name="saving-overlay" />
+                      <class name="saving-overlay"/>
                     </style>
                     <property name="child">
                       <object class="GtkRevealer" id="saving_info">
@@ -44,7 +82,7 @@
                               <object class="GtkLabel" id="saving_status">
                                 <property name="label">Preparing to Save Image</property>
                                 <style>
-                                  <class name="title-2" />
+                                  <class name="title-2"/>
                                 </style>
                               </object>
                             </child>
@@ -68,7 +106,7 @@
                 <property name="use-underline">true</property>
                 <property name="action-name">edit.cancel</property>
                 <style>
-                  <class name="cancel" />
+                  <class name="cancel"/>
                 </style>
               </object>
             </child>
@@ -77,8 +115,8 @@
                 <property name="active-name">crop</property>
                 <property name="homogeneous">false</property>
                 <style>
-                  <class name="flat" />
-                  <class name="mode-switcher" />
+                  <class name="flat"/>
+                  <class name="mode-switcher"/>
                 </style>
                 <child>
                   <object class="AdwToggle">
@@ -126,12 +164,12 @@
                 <property name="label" translatable="yes">_Save</property>
                 <property name="use-underline">true</property>
                 <style>
-                  <class name="suggested-action" />
+                  <class name="suggested-action"/>
                 </style>
                 <property name="popover">
                   <object class="GtkPopover">
                     <style>
-                      <class name="menu" />
+                      <class name="menu"/>
                     </style>
                     <property name="child">
                       <object class="GtkListBox">
@@ -155,8 +193,8 @@
                                     <property name="label" translatable="yes">Save changes and keep original.</property>
                                     <property name="xalign">0</property>
                                     <style>
-                                      <class name="dimmed" />
-                                      <class name="caption" />
+                                      <class name="dimmed"/>
+                                      <class name="caption"/>
                                     </style>
                                   </object>
                                 </child>
@@ -183,8 +221,8 @@
                                     <property name="label" translatable="yes">Original image will be moved to the trash.</property>
                                     <property name="xalign">0</property>
                                     <style>
-                                      <class name="dimmed" />
-                                      <class name="caption" />
+                                      <class name="dimmed"/>
+                                      <class name="caption"/>
                                     </style>
                                   </object>
                                 </child>
