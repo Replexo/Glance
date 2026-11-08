@@ -1,6 +1,8 @@
-<div align="center">
+<p align="center">
+  <img src="data/icons/hicolor/scalable/apps/io.github.Replexo.Glance.svg" width="80" alt="Glance icon">
+</p>
 
-<img src="data/icons/hicolor/scalable/apps/io.github.Replexo.Glance.svg" width="128" alt="Glance icon">
+<div align="center">
 
 # Glance
 
@@ -47,13 +49,15 @@ Free or fixed aspect ratios, rotate, flip and resize.
 
 ## Install
 
-Download `glance-1.0.flatpak` from the [latest release](https://github.com/Replexo/Glance/releases/latest), then install it:
+Glance is coming to Flathub. Until then, build and install the Flatpak from this repository:
 
 ```sh
-flatpak install glance-1.0.flatpak
+git clone https://github.com/Replexo/Glance.git
+cd Glance
+flatpak-builder --user --install --install-deps-from=flathub build-flatpak build-aux/flatpak/io.github.Replexo.Glance.json
 ```
 
-Glance runs on the GNOME 51 runtime from [Flathub](https://flathub.org/setup), which Flatpak installs if it is missing.
+This needs `flatpak-builder` and the [Flathub remote](https://flathub.org/setup). You can also [build Glance natively](#build-from-source).
 
 ## Keyboard shortcuts
 
@@ -89,11 +93,6 @@ To build a development version with its own app ID, so it can sit next to an ins
 meson setup builddir -Dprofile=dev -Dapp_id_suffix=.Devel
 ```
 
-To build and install the Flatpak locally:
-
-```sh
-flatpak-builder --user --install build-flatpak build-aux/flatpak/io.github.Replexo.Glance.json
-```
 
 ## Contributing
 
