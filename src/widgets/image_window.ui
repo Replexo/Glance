@@ -37,6 +37,10 @@
         <attribute name="action">win.set-background</attribute>
       </item>
       <item>
+        <attribute name="label" translatable="yes">_Make Default Image Viewer</attribute>
+        <attribute name="action">app.make-default</attribute>
+      </item>
+      <item>
         <attribute name="label" translatable="yes">_Delete</attribute>
         <attribute name="action">win.trash</attribute>
       </item>

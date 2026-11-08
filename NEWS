@@ -7,3 +7,4 @@ First release of Glance, a fork of Loupe 51.1.
 - Crop: aspect ratios, rotate, flip and resize.
 - Undo and redo for all edits, and zoom in the editor.
 - Keyboard shortcuts for the markup tools.
+- Make Default Image Viewer in the main menu.

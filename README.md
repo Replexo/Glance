@@ -13,6 +13,7 @@ Everything Loupe does, including fast, sandboxed image loading, gestures, zoom, 
 - **Crop:** free or fixed aspect ratios, rotate, flip and resize.
 - Undo and redo across all edits, and zoom inside the editor.
 - **Saving:** save a copy, or replace the original and move it to the trash.
+- **Default viewer:** choose **Make Default Image Viewer** in the menu to open every supported image type with Glance.
 
 ## Keyboard shortcuts in the editor
 

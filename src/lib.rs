@@ -58,6 +58,7 @@ use gtk::gio::{self};
 pub mod about;
 pub mod application;
 pub mod config;
+pub mod default_app;
 pub mod decoder;
 pub mod editing;
 pub mod file_model;

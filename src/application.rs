@@ -24,6 +24,8 @@
 use adw::prelude::*;
 use adw::subclass::prelude::*;
 
+use gettextrs::gettext;
+
 use crate::config;
 use crate::deps::*;
 use crate::widgets::LpWindow;
@@ -37,12 +39,15 @@ mod imp {
     #[derive(Debug)]
     pub struct LpApplication {
         pub settings: gio::Settings,
+        /// Watches the default apps for the menu item
+        pub defaults_monitor: std::cell::RefCell<Option<gio::FileMonitor>>,
     }
 
     impl Default for LpApplication {
         fn default() -> Self {
             Self {
                 settings: gio::Settings::new(config::APP_ID),
+                defaults_monitor: Default::default(),
             }
         }
     }
@@ -141,6 +146,9 @@ impl LpApplication {
                     }
                 })
                 .build(),
+            gio::ActionEntryBuilder::new("make-default")
+                .activate(|app: &Self, _, _| app.make_default())
+                .build(),
             gio::ActionEntryBuilder::new("new-window")
                 .activate(|app: &Self, _, _| {
                     let win = LpWindow::new(app);
@@ -151,11 +159,67 @@ impl LpApplication {
         ];
 
         self.add_action_entries(actions);
+        self.update_make_default();
+        self.watch_defaults();
 
         self.set_accels_for_action("app.help", &["F1"]);
         self.set_accels_for_action("app.quit", &["<Ctrl>Q"]);
         self.set_accels_for_action("window.close", &["<Ctrl>W"]);
         self.set_accels_for_action("app.new-window", &["<Ctrl>N"]);
+    }
+
+    /// Makes Glance the default image viewer, after the user asked for it
+    fn make_default(&self) {
+        let window = self.active_window().and_downcast::<LpWindow>();
+        match crate::default_app::make_default() {
+            Ok(_) => {
+                if let Some(window) = window {
+                    window.show_toast(
+                        &gettext("Glance is now the default image viewer"),
+                        adw::ToastPriority::High,
+                    );
+                }
+            }
+            Err(err) => {
+                tracing::error!("Failed to set the default image viewer: {err:#}");
+                if let Some(window) = window {
+                    window.show_toast(
+                        &gettext("Could not make Glance the default image viewer"),
+                        adw::ToastPriority::High,
+                    );
+                }
+            }
+        }
+        self.update_make_default();
+    }
+
+    /// Greys out the menu item while Glance is the default already, or
+    /// when the desktop file is not installed
+    fn update_make_default(&self) {
+        if let Some(action) = self
+            .lookup_action("make-default")
+            .and_downcast::<gio::SimpleAction>()
+        {
+            action.set_enabled(
+                crate::default_app::is_available() && !crate::default_app::is_default(),
+            );
+        }
+    }
+
+    /// Follows default apps changed elsewhere, like in the system settings
+    fn watch_defaults(&self) {
+        let file = gio::File::for_path(crate::default_app::mimeapps_path());
+        match file.monitor_file(gio::FileMonitorFlags::NONE, gio::Cancellable::NONE) {
+            Ok(monitor) => {
+                monitor.connect_changed(glib::clone!(
+                    #[weak(rename_to = app)]
+                    self,
+                    move |_, _, _, _| app.update_make_default()
+                ));
+                self.imp().defaults_monitor.replace(Some(monitor));
+            }
+            Err(err) => tracing::debug!("Not watching default apps: {err}"),
+        }
     }
 
     pub fn show_help(&self) {
