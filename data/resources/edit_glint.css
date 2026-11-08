@@ -145,9 +145,10 @@
 }
 
 
+/* A radius like 9999px makes GTK size the popover surface from it */
 .glint-editor popover.glint-chips > contents {
   padding: 0;
-  border-radius: 9999px;
+  border-radius: 22px;
 }
 
 .glint-editor popover.glint-chips .glint-pill {
