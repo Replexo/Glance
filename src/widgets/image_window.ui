@@ -128,7 +128,7 @@
                 <child type="end">
                   <object class="GtkButton">
                     <property name="action-name">win.edit</property>
-                    <property name="icon-name">crop-symbolic</property>
+                    <property name="icon-name">glint-edit-symbolic</property>
                     <property name="tooltip-text" translatable="yes">Edit Image</property>
                   </object>
                 </child>

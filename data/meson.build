@@ -128,5 +128,5 @@ test(
   args: ['--strict', '--dry-run', meson.current_source_dir()],
 )
 
-# Licence of the bundled coolicons
-install_data('COPYING.coolicons', install_dir: datadir / 'licenses' / meson.project_name())
+# Licence of the bundled MingCute icons
+install_data('COPYING.mingcute', install_dir: datadir / 'licenses' / meson.project_name())

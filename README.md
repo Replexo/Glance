@@ -6,7 +6,7 @@ Based on Loupe by the GNOME project (https://gitlab.gnome.org/GNOME/loupe), GPL-
 
 ## Credits
 
-- Editor icons: [coolicons](https://github.com/krystonschwarze/coolicons) by Kryston Schwarze, MIT (see `data/COPYING.coolicons`), with strokes converted to fills for GTK.
+- Icons: [MingCute Icons](https://www.mingcute.com/), Apache-2.0 (see `data/COPYING.mingcute`), with the fill colour set to black so GTK can recolour them.
 - Markup tools follow the set offered by [Gradia](https://github.com/AlexanderVanhee/Gradia).
 
 ## Build
