@@ -7,10 +7,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Loupe main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/loupe/-/issues\n"
-"POT-Creation-Date: 2026-09-01 12:44+0000\n"
-"PO-Revision-Date: 2026-09-04 13:13+0200\n"
-"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-08 18:39+0100\n"
+"PO-Revision-Date: 2026-11-09 00:00+0100\n"
+"Last-Translator: gnacho <hnacho@proton.me>\n"
 "Language-Team: Spanish <l10n-es@gnome.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -19,50 +19,85 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Gtranslator 50.0\n"
 
-#: data/org.gnome.Loupe.desktop.in.in:2
-#: data/org.gnome.Loupe.metainfo.xml.in.in:6 src/about.rs:32
+#: data/io.github.Replexo.Glance.desktop.in.in:2
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:6
 #: src/widgets/image_window.rs:879
+msgid "Glance"
+msgstr "Glance"
+
+#: data/io.github.Replexo.Glance.desktop.in.in:3
 msgid "Image Viewer"
 msgstr "Visor de imágenes"
 
-#: data/org.gnome.Loupe.desktop.in.in:3
-#: data/org.gnome.Loupe.metainfo.xml.in.in:13
+#: data/io.github.Replexo.Glance.desktop.in.in:4
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:10
 msgid "View and edit images"
 msgstr "Ver y editar imágenes"
 
-#: data/org.gnome.Loupe.desktop.in.in:11
-msgid "Picture;Graphics;Loupe;"
-msgstr "Imagen;Gráficos;Loupe;"
+#: data/io.github.Replexo.Glance.desktop.in.in:12
+msgid "Picture;Graphics;Loupe;Glance;"
+msgstr "Imagen;Gráficos;Loupe;Glance;"
 
-#: data/org.gnome.Loupe.gschema.xml.in:6
+#: data/io.github.Replexo.Glance.gschema.xml.in:6
 msgid "Show the image properties sidebar"
 msgstr "Mostrar la barra lateral de propiedades de la imagen"
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.Loupe.metainfo.xml.in.in:8
-#: data/org.gnome.Loupe.metainfo.xml.in.in:10 src/about.rs:35
-msgid "The GNOME Project"
-msgstr "El Proyecto GNOME"
-
-#: data/org.gnome.Loupe.metainfo.xml.in.in:15
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:12
 msgid ""
-"Explore images, view their metadata, and make quick edits by cropping, "
-"rotating, or flipping them."
+"Glance is an image viewer with built-in editing. Browse your images, view "
+"their metadata, and make quick edits without opening a separate editor."
 msgstr ""
-"Explore imágenes, vea sus metadatos y realice ediciones rápidas "
-"recortándolas, rotándolas o volteándolas."
+"Glance es un visor de imágenes con edición integrada. Explore sus "
+"imágenes, consulte sus metadatos y haga retoques rápidos sin abrir un "
+"editor aparte."
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:28
-msgid "Main Window"
-msgstr "Ventana principal"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:14
+msgid ""
+"Mark up images with a brush, highlighter, lines, arrows, shapes and text"
+msgstr ""
+"Anote imágenes con un pincel, un rotulador, líneas, flechas, formas y "
+"texto"
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:32
-msgid "Crop Tool"
-msgstr "Herramienta de recorte"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:15
+msgid "Adjust brightness, contrast, highlights, shadows and saturation"
+msgstr ""
+"Ajuste el brillo, el contraste, las luces, las sombras y la saturación"
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:36
-msgid "Image Properties Panel"
-msgstr "Panel de propiedades de imagen"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:16
+msgid "Crop to an aspect ratio, rotate, flip and resize"
+msgstr "Recorte con una relación de aspecto, gire, voltee y cambie el tamaño"
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:17
+msgid "Undo and redo every edit, and save a copy or replace the original"
+msgstr ""
+"Deshaga y rehaga cualquier edición, y guarde una copia o sustituya el "
+"original"
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:19
+msgid "Glance is based on Loupe, the GNOME image viewer."
+msgstr "Glance está basado en Loupe, el visor de imágenes de GNOME."
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:28
+msgid "Marking up an image"
+msgstr "Anotación de una imagen"
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:32
+msgid "Adjusting colours"
+msgstr "Ajuste de colores"
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:36
+msgid "Cropping"
+msgstr "Recorte"
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:76
+msgid ""
+"First release of Glance, based on Loupe 51.1. It adds Markup, Adjust and "
+"Crop editing views, undo and redo, zoom in the editor, and keyboard "
+"shortcuts for the markup tools."
+msgstr ""
+"Primera versión de Glance, basada en Loupe 51.1. Añade las vistas de "
+"edición Anotaciones, Ajustar y Recortar, deshacer y rehacer, zoom en el "
+"editor y atajos de teclado para las herramientas de anotación."
 
 #: data/resources/shortcuts-dialog.ui:6
 msgctxt "shortcut window"
@@ -150,13 +185,13 @@ msgid "Rotate Image"
 msgstr "Rotar imagen"
 
 #: data/resources/shortcuts-dialog.ui:119
-#: data/resources/shortcuts-dialog.ui:253
+#: data/resources/shortcuts-dialog.ui:259
 msgctxt "shortcut window"
 msgid "Rotate Clockwise"
 msgstr "Rota en sentido horario"
 
 #: data/resources/shortcuts-dialog.ui:125
-#: data/resources/shortcuts-dialog.ui:259
+#: data/resources/shortcuts-dialog.ui:265
 msgctxt "shortcut window"
 msgid "Rotate Counterclockwise"
 msgstr "Rota en sentido anti-horario"
@@ -253,53 +288,105 @@ msgstr "Abrir vista de edicion"
 
 #: data/resources/shortcuts-dialog.ui:235
 msgctxt "shortcut window"
+msgid "Crop"
+msgstr "Recortar"
+
+#: data/resources/shortcuts-dialog.ui:241
+msgctxt "shortcut window"
 msgid "Replace Original"
 msgstr "Reemplazar original"
 
-#: data/resources/shortcuts-dialog.ui:241
+#: data/resources/shortcuts-dialog.ui:247
 msgctxt "shortcut window"
 msgid "Save As"
 msgstr "Guardar como"
 
-#: data/resources/shortcuts-dialog.ui:247
+#: data/resources/shortcuts-dialog.ui:253
 msgctxt "shortcut window"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: data/resources/shortcuts-dialog.ui:265
+#: data/resources/shortcuts-dialog.ui:271
 msgctxt "shortcut window"
 msgid "Mirror Horizontally"
 msgstr "Espejar horizontalmente"
 
-#: data/resources/shortcuts-dialog.ui:271
+#: data/resources/shortcuts-dialog.ui:277
 msgctxt "shortcut window"
 msgid "Mirror Vertically"
 msgstr "Espejar verticalmente"
 
-#: data/resources/shortcuts-dialog.ui:277
+#: data/resources/shortcuts-dialog.ui:283
 msgctxt "shortcut window"
 msgid "Apply Crop"
 msgstr "Aplicar recorte"
 
-#. Translators: Replace "translator-credits" with your names, one name per
-#. line
-#: src/about.rs:45
+#: data/resources/shortcuts-dialog.ui:291
+msgctxt "shortcut window"
+msgid "Markup"
+msgstr "Anotaciones"
+
+#: data/resources/shortcuts-dialog.ui:294
+msgctxt "shortcut window"
+msgid "Select, Move and Resize Markup"
+msgstr "Seleccionar, mover y redimensionar anotaciones"
+
+#: data/resources/shortcuts-dialog.ui:300
+msgctxt "shortcut window"
+msgid "Brush"
+msgstr "Pincel"
+
+#: data/resources/shortcuts-dialog.ui:306
+msgctxt "shortcut window"
+msgid "Line"
+msgstr "Línea"
+
+#: data/resources/shortcuts-dialog.ui:312
+msgctxt "shortcut window"
+msgid "Arrow"
+msgstr "Flecha"
+
+#: data/resources/shortcuts-dialog.ui:318
+msgctxt "shortcut window"
+msgid "Rectangle"
+msgstr "Rectángulo"
+
+#: data/resources/shortcuts-dialog.ui:324
+msgctxt "shortcut window"
+msgid "Ellipse"
+msgstr "Elipse"
+
+#: data/resources/shortcuts-dialog.ui:330
+msgctxt "shortcut window"
+msgid "Text"
+msgstr "Texto"
+
+#: data/resources/shortcuts-dialog.ui:336
+msgctxt "shortcut window"
+msgid "Eraser"
+msgstr "Goma de borrar"
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: src/about.rs:41
 msgid "translator-credits"
 msgstr ""
 "Daniel Mustieles <daniel.mustieles@gmail.com>, 2023\n"
-"Julián Villodre <jvillodrede@gmail.com>, 2024"
+"Julián Villodre <jvillodrede@gmail.com>, 2024\n"
+"gnacho <hnacho@proton.me>, 2026"
 
-#: src/about.rs:46
-msgid "Copyright © 2020–2024 Christopher Davis et al."
-msgstr "Copyright © 2020–2024 Christopher Davis y otros"
+#: src/application.rs:178
+msgid "Glance is now the default image viewer"
+msgstr "Glance es ahora el visor de imágenes predeterminado"
+
+#: src/application.rs:187
+msgid "Could not make Glance the default image viewer"
+msgstr "No se pudo establecer Glance como visor de imágenes predeterminado"
 
 #: src/file_model.rs:211
 msgid "Could not list other files in directory."
 msgstr "No se pudieron listar los archivos de la carpeta"
 
-#. Translators: Display of the f-number
-#. <https://en.wikipedia.org/wiki/F-number>. {} will be replaced with the
-#. number
+#. Translators: Display of the f-number <https://en.wikipedia.org/wiki/F-number>. {} will be replaced with the number
 #: src/metadata.rs:270
 msgid "\\u{192}\\u{2215}{}"
 msgstr "\\u{192}\\u{2215}{}"
@@ -380,10 +467,8 @@ msgid "Gamma 2.4"
 msgstr "Gamma 2.4"
 
 #. / Returns localized date + time format
-#. Translators: This is the date and time format we use in metadata output
-#. etc.
-#. The format has to follow
-#. <https://docs.gtk.org/glib/method.DateTime.format.html>
+#. Translators: This is the date and time format we use in metadata output etc.
+#. The format has to follow <https://docs.gtk.org/glib/method.DateTime.format.html>
 #. The default is already translated. Don't change if you are not sure what to
 #. use.
 #: src/util.rs:39
@@ -398,108 +483,97 @@ msgstr "Falló al restaurar la imagen de la papelera"
 msgid "Drop Image to View"
 msgstr "Soltar imagen en la vista"
 
-#: src/widgets/edit/crop.rs:363
-msgid "Failed to Edit Image"
-msgstr "Falló al editar la imagen"
+#: src/widgets/edit/adjust.rs:34 src/widgets/edit/adjust.ui:11
+#: src/widgets/edit/adjust.ui:43
+msgid "Brightness"
+msgstr "Brillo"
 
-#: src/widgets/edit/crop.ui:6
+#: src/widgets/edit/adjust.rs:35 src/widgets/edit/adjust.ui:72
+msgid "Contrast"
+msgstr "Contraste"
+
+#: src/widgets/edit/adjust.rs:36 src/widgets/edit/adjust.ui:101
+msgid "Highlights"
+msgstr "Luces"
+
+#: src/widgets/edit/adjust.rs:37 src/widgets/edit/adjust.ui:130
+msgid "Shadows"
+msgstr "Sombras"
+
+#: src/widgets/edit/adjust.rs:38 src/widgets/edit/adjust.ui:159
+msgid "Saturation"
+msgstr "Saturación"
+
+#: src/widgets/edit/color_card.rs:204
+msgid "Hex Color"
+msgstr "Color hexadecimal"
+
+#: src/widgets/edit/crop.rs:41 src/widgets/edit/crop.ui:88
+#: src/widgets/edit/crop.ui:112
 msgid "Free"
 msgstr "Libre"
 
-#: src/widgets/edit/crop.ui:11
+#: src/widgets/edit/crop.rs:42 src/widgets/edit/crop.ui:122
 msgid "Original"
 msgstr "Original"
 
-#: src/widgets/edit/crop.ui:16
+#: src/widgets/edit/crop.rs:43 src/widgets/edit/crop.ui:132
 msgid "Square"
 msgstr "Cuadrado"
 
-#: src/widgets/edit/crop.ui:21
-msgid "5:4"
-msgstr "5:4"
+#: src/widgets/edit/crop.rs:842
+msgid "Failed to Edit Image"
+msgstr "Falló al editar la imagen"
 
-#: src/widgets/edit/crop.ui:26
-msgid "4:3"
-msgstr "4:3"
-
-#: src/widgets/edit/crop.ui:31
-msgid "3:2"
-msgstr "3:2"
-
-#: src/widgets/edit/crop.ui:36
-msgid "16:9"
-msgstr "16:9"
-
-#: src/widgets/edit/crop.ui:77 src/widgets/edit/crop.ui:364
+#: src/widgets/edit/crop.ui:83
 msgid "Aspect Ratio"
 msgstr "Proporción de aspecto"
 
-#: src/widgets/edit/crop.ui:91
-msgid "_Free"
-msgstr "_Libre"
+#: src/widgets/edit/crop.ui:142
+msgid "5:4"
+msgstr "5:4"
 
-#: src/widgets/edit/crop.ui:109
-msgid "_Original"
-msgstr "_Original"
+#: src/widgets/edit/crop.ui:152
+msgid "4:3"
+msgstr "4:3"
 
-#: src/widgets/edit/crop.ui:127
-msgid "_Square"
-msgstr "C_uadrado"
+#: src/widgets/edit/crop.ui:162
+msgid "3:2"
+msgstr "3:2"
 
-#: src/widgets/edit/crop.ui:145
-msgid "_5:4"
-msgstr "_5:4"
+#: src/widgets/edit/crop.ui:172
+msgid "16:9"
+msgstr "16:9"
 
-#: src/widgets/edit/crop.ui:166
-msgid "_4:3"
-msgstr "_4:3"
+#: src/widgets/edit/crop.ui:188
+msgid "Landscape"
+msgstr "Horizontal"
 
-#: src/widgets/edit/crop.ui:187
-msgid "_3:2"
-msgstr "_3:2"
-
-#: src/widgets/edit/crop.ui:208
-msgid "_16:9"
-msgstr "_16:9"
-
-#: src/widgets/edit/crop.ui:231 src/widgets/edit/crop.ui:377
-msgid "Orientation Landscape"
-msgstr "Apaisado"
-
-#: src/widgets/edit/crop.ui:240 src/widgets/edit/crop.ui:389
-msgid "Orientation Portrait"
+#: src/widgets/edit/crop.ui:196
+msgid "Portrait"
 msgstr "Vertical"
 
-#: src/widgets/edit/crop.ui:252 src/widgets/image_page.ui:15
-#: src/widgets/image_window.ui:25
-msgid "Rotate"
-msgstr "Rotar"
-
-#: src/widgets/edit/crop.ui:261 src/widgets/edit/crop.ui:407
+#: src/widgets/edit/crop.ui:217
 msgid "Rotate Counter Clockwise"
 msgstr "Rota en sentido anti-horario"
 
-#: src/widgets/edit/crop.ui:268
+#: src/widgets/edit/crop.ui:224
 msgid "Rotate Clockwise"
 msgstr "Rotar en el sentido de las agujas del reloj"
 
-#: src/widgets/edit/crop.ui:278
-msgid "Flip"
-msgstr "Voltear"
-
-#: src/widgets/edit/crop.ui:287 src/widgets/edit/crop.ui:415
+#: src/widgets/edit/crop.ui:231
 msgid "Mirror Horizontally"
 msgstr "Espejar horizontalmente"
 
-#: src/widgets/edit/crop.ui:294
-msgid "Mirror Vertically"
-msgstr "Espejar verticalmente"
+#: src/widgets/edit/crop.ui:238
+msgid "Resize"
+msgstr "Redimensionar"
 
-#: src/widgets/edit/crop.ui:306 src/widgets/edit/crop.ui:429
+#: src/widgets/edit/crop.ui:249
 msgid "_Reset"
 msgstr "_Restablecer"
 
-#: src/widgets/edit/crop.ui:307 src/widgets/edit/crop.ui:431
+#: src/widgets/edit/crop.ui:251
 msgid "Undo Changes in this View"
 msgstr "Deshacer los cambios en esta vista"
 
@@ -507,47 +581,183 @@ msgstr "Deshacer los cambios en esta vista"
 msgid "Crop Selection"
 msgstr "Recortar la selección"
 
+#: src/widgets/edit/markup.ui:27
+msgid "Choose a Color"
+msgstr "Elija un color"
+
+#: src/widgets/edit/markup.ui:59
+msgid "Blue"
+msgstr "Azul"
+
+#: src/widgets/edit/markup.ui:79
+msgid "Yellow"
+msgstr "Amarillo"
+
+#: src/widgets/edit/markup.ui:99
+msgid "Red"
+msgstr "Rojo"
+
+#: src/widgets/edit/markup.ui:119
+msgid "Orange"
+msgstr "Naranja"
+
+#: src/widgets/edit/markup.ui:139
+msgid "Green"
+msgstr "Verde"
+
+#: src/widgets/edit/markup.ui:171
+msgid "Outline"
+msgstr "Contorno"
+
+#: src/widgets/edit/markup.ui:179
+msgid "Filled"
+msgstr "Relleno"
+
+#: src/widgets/edit/markup.ui:196
+msgid "Thin"
+msgstr "Fina"
+
+#: src/widgets/edit/markup.ui:214 src/widgets/edit/markup.ui:294
+msgid "Medium"
+msgstr "Medio"
+
+#: src/widgets/edit/markup.ui:232
+msgid "Thick"
+msgstr "Gruesa"
+
+#: src/widgets/edit/markup.ui:250
+msgid "Very Thick"
+msgstr "Muy gruesa"
+
+#: src/widgets/edit/markup.ui:279
+msgid "Small"
+msgstr "Pequeño"
+
+#: src/widgets/edit/markup.ui:309
+msgid "Large"
+msgstr "Grande"
+
+#: src/widgets/edit/markup.ui:324
+msgid "Very Large"
+msgstr "Muy grande"
+
+#: src/widgets/edit/markup.ui:344
+msgid "Sans"
+msgstr "Sans"
+
+#: src/widgets/edit/markup.ui:359
+msgid "Serif"
+msgstr "Serif"
+
+#: src/widgets/edit/markup.ui:374
+msgid "Monospace"
+msgstr "Monoespaciada"
+
+#: src/widgets/edit/markup.ui:389
+msgid "Handwriting"
+msgstr "Manuscrita"
+
+#: src/widgets/edit/markup.ui:427
+msgid "Move, Resize and Rotate"
+msgstr "Mover, redimensionar y rotar"
+
+#: src/widgets/edit/markup.ui:435
+msgid "Paintbrush"
+msgstr "Pincel"
+
+#: src/widgets/edit/markup.ui:443
+msgid "Highlighter"
+msgstr "Rotulador"
+
+#: src/widgets/edit/markup.ui:451
+msgid "Line"
+msgstr "Línea"
+
+#: src/widgets/edit/markup.ui:459
+msgid "Arrow"
+msgstr "Flecha"
+
+#: src/widgets/edit/markup.ui:467
+msgid "Rectangle"
+msgstr "Rectángulo"
+
+#: src/widgets/edit/markup.ui:475
+msgid "Circle"
+msgstr "Círculo"
+
+#: src/widgets/edit/markup.ui:483
+msgid "Text"
+msgstr "Texto"
+
+#: src/widgets/edit/markup.ui:491
+msgid "Eraser"
+msgstr "Goma de borrar"
+
+#: src/widgets/edit/resize_dialog.ui:4
+msgid "Resize Image"
+msgstr "Redimensionar imagen"
+
+#: src/widgets/edit/resize_dialog.ui:15 src/widgets/edit_window.ui:101
+msgid "_Cancel"
+msgstr "C_ancelar"
+
+#: src/widgets/edit/resize_dialog.ui:22
+msgid "_Resize"
+msgstr "_Redimensionar"
+
+#: src/widgets/edit/resize_dialog.ui:50 src/widgets/print.rs:787
+msgid "_Width"
+msgstr "_Anchura"
+
+#: src/widgets/edit/resize_dialog.ui:90
+msgid "_Height"
+msgstr "A_ltura"
+
+#: src/widgets/edit/resize_dialog.ui:139
+msgid "Size in Percent"
+msgstr "Tamaño en porcentaje"
+
 #. Translators: Filename suffix, {} is replaced by a number
-#: src/widgets/edit_window.rs:207
+#: src/widgets/edit_window.rs:368
 #, rust-format
 msgid " (Edited)"
 msgid_plural " (Edited {})"
 msgstr[0] " (Editado)"
 msgstr[1] " (Editado {})"
 
-#: src/widgets/edit_window.rs:292
+#: src/widgets/edit_window.rs:453
 msgid "Moving Original to Trash"
 msgstr "Mover el original a la papelera"
 
-#: src/widgets/edit_window.rs:306 src/widgets/edit_window.rs:335
+#: src/widgets/edit_window.rs:467 src/widgets/edit_window.rs:496
 msgid "Failed to save image."
 msgstr "Falló al guardar la imagen."
 
-#: src/widgets/edit_window.rs:315
+#: src/widgets/edit_window.rs:476
 msgid "Finalizing Save Operation"
 msgstr "Finalizando la operación de guardar"
 
-#: src/widgets/edit_window.rs:367
+#: src/widgets/edit_window.rs:531
 msgid "Editing Image"
 msgstr "Editando la imagen"
 
-#: src/widgets/edit_window.rs:384
+#: src/widgets/edit_window.rs:554 src/widgets/edit_window.rs:581
 msgid "Failed to edit image."
 msgstr "Falló al editar la imagen."
 
-#: src/widgets/edit_window.rs:391
+#: src/widgets/edit_window.rs:610
 msgid "Saving Image"
 msgstr "Guardando imagen"
 
-#: src/widgets/edit_window.rs:410
+#: src/widgets/edit_window.rs:622
 msgid "Failed to Save Image"
 msgstr "Falló al guardar la imagen."
 
-#: src/widgets/edit_window.rs:526
+#: src/widgets/edit_window.rs:991
 msgid "Save Changes?"
 msgstr "¿Guardar cambios?"
 
-#: src/widgets/edit_window.rs:528
+#: src/widgets/edit_window.rs:993
 msgid ""
 "There are unsaved image editing changes. Closing without saving will "
 "permanently lose these modifications."
@@ -555,41 +765,73 @@ msgstr ""
 "Hay cambios de edición de imágenes no guardados. Cerrar sin guardar perderá "
 "permanentemente estas modificaciones."
 
-#: src/widgets/edit_window.rs:532 src/widgets/image_window.rs:700
+#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:700
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/widgets/edit_window.rs:533
+#: src/widgets/edit_window.rs:998
 msgid "Discard"
 msgstr "Descartar"
 
-#: src/widgets/edit_window.rs:534
+#: src/widgets/edit_window.rs:999
 msgid "Save"
 msgstr "Guardar"
 
-#: src/widgets/edit_window.ui:64
-msgid "_Cancel"
-msgstr "C_ancelar"
+#: src/widgets/edit_window.ui:33
+msgid "Hold to Show Original"
+msgstr "Mantener pulsado para ver el original"
 
-#: src/widgets/edit_window.ui:71
+#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:636
+msgid "Undo"
+msgstr "Deshacer"
+
+#: src/widgets/edit_window.ui:46
+msgid "Redo"
+msgstr "Rehacer"
+
+#: src/widgets/edit_window.ui:120
+msgid "Crop"
+msgstr "Recortar"
+
+#: src/widgets/edit_window.ui:124
+msgid "Cr_op"
+msgstr "Re_cortar"
+
+#: src/widgets/edit_window.ui:133
+msgid "Adjust"
+msgstr "Ajustar"
+
+#: src/widgets/edit_window.ui:137
+msgid "A_djust"
+msgstr "A_justar"
+
+#: src/widgets/edit_window.ui:146
+msgid "Markup"
+msgstr "Anotaciones"
+
+#: src/widgets/edit_window.ui:150
+msgid "_Markup"
+msgstr "_Anotaciones"
+
+#: src/widgets/edit_window.ui:160
 msgid "_Save"
 msgstr "_Guardar"
 
-#: src/widgets/edit_window.ui:92
-msgid "_Save As…"
-msgstr "Guardar _como…"
+#: src/widgets/edit_window.ui:181
+msgid "_Save a Copy…"
+msgstr "_Guardar una copia…"
 
-#: src/widgets/edit_window.ui:100
-msgid "Keep original and create a new file"
-msgstr "Mantener el original y crear un archivo nuevo"
+#: src/widgets/edit_window.ui:189
+msgid "Save changes and keep original."
+msgstr "Guardar los cambios y conservar el original."
 
-#: src/widgets/edit_window.ui:120
+#: src/widgets/edit_window.ui:209
 msgid "_Replace Original"
 msgstr "_Reemplazar original"
 
-#: src/widgets/edit_window.ui:128
-msgid "Original image will be moved to the trash"
-msgstr "La imagen original se moverá a la papelera"
+#: src/widgets/edit_window.ui:217
+msgid "Original image will be moved to the trash."
+msgstr "La imagen original se moverá a la papelera."
 
 #: src/widgets/error_details.rs:80
 msgid ""
@@ -665,11 +907,15 @@ msgstr "_Abrir con…"
 msgid "_Print…"
 msgstr "_Imprimir…"
 
+#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:25
+msgid "Rotate"
+msgstr "Rotar"
+
 #: src/widgets/image_page.ui:26 src/widgets/image_window.ui:36
 msgid "_Set as Background…"
 msgstr "_Establecer como fondo…"
 
-#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:40
+#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:44
 msgid "_Delete"
 msgstr "E_liminar"
 
@@ -689,11 +935,11 @@ msgstr "Más _información"
 msgid "_Reload"
 msgstr "Re_cargar"
 
-#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:101
+#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:105
 msgid "Rotate Left"
 msgstr "Rotar a la izquierda"
 
-#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:111
+#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:115
 msgid "Rotate Right"
 msgstr "Rotar a la derecha"
 
@@ -759,10 +1005,6 @@ msgstr "Imagen copiada al portapapeles"
 msgid "Image moved to trash"
 msgstr "Imagen movida a la papelera"
 
-#: src/widgets/image_window.rs:636
-msgid "Undo"
-msgstr "Deshacer"
-
 #: src/widgets/image_window.rs:666
 msgid "Failed to move image to trash"
 msgstr "Falló al mover la imagen a la papelera"
@@ -792,43 +1034,47 @@ msgstr "_Ventana nueva"
 msgid "_Open…"
 msgstr "_Abrir…"
 
-#: src/widgets/image_window.ui:46
+#: src/widgets/image_window.ui:40
+msgid "_Make Default Image Viewer"
+msgstr "_Usar como visor de imágenes predeterminado"
+
+#: src/widgets/image_window.ui:50
 msgid "_Help"
 msgstr "A_yuda"
 
-#: src/widgets/image_window.ui:50
+#: src/widgets/image_window.ui:54
 msgid "_Keyboard Shortcuts"
 msgstr "Atajos del _teclado"
 
-#: src/widgets/image_window.ui:54
-msgid "_About Image Viewer"
-msgstr "_Acerca del visor de imágenes"
+#: src/widgets/image_window.ui:58
+msgid "_About Glance"
+msgstr "_Acerca de Glance"
 
-#: src/widgets/image_window.ui:87
+#: src/widgets/image_window.ui:91
 msgid "Toggle Fullscreen"
 msgstr "Conmutar el modo a pantalla completa"
 
-#: src/widgets/image_window.ui:93
+#: src/widgets/image_window.ui:97
 msgid "Main Menu"
 msgstr "Menú principal"
 
-#: src/widgets/image_window.ui:125
+#: src/widgets/image_window.ui:129
 msgid "Image Properties"
 msgstr "Propiedades de la imagen"
 
-#: src/widgets/image_window.ui:132
+#: src/widgets/image_window.ui:136
 msgid "Edit Image"
 msgstr "Editar imagen"
 
-#: src/widgets/image_window.ui:220
+#: src/widgets/image_window.ui:224
 msgid "View and Edit Images"
 msgstr "Ver y editar imágenes"
 
-#: src/widgets/image_window.ui:221
+#: src/widgets/image_window.ui:225
 msgid "Drag and drop images here"
 msgstr "Arrastrar y soltar imágenes aquí"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:229
 msgid "_Open Files…"
 msgstr "_Abrir archivos…"
 
@@ -881,13 +1127,9 @@ msgstr "Continuar…"
 msgid "Print Image"
 msgstr "Imprimir imagen"
 
-#: src/widgets/print.rs:801
+#: src/widgets/print.rs:784
 msgid "_Scale"
 msgstr "_Escala"
-
-#: src/widgets/print.rs:804
-msgid "_Width"
-msgstr "_Anchura"
 
 #. Translators: Go back to previous page
 #: src/widgets/print.ui:29
@@ -1120,9 +1362,61 @@ msgstr "Perfil ICC"
 msgid "CICP"
 msgstr "CICP"
 
-#: src/widgets/window.rs:254
+#: src/widgets/window.rs:249
 msgid "Show Details"
 msgstr "Mostrar detalles"
+
+#~ msgid "The GNOME Project"
+#~ msgstr "El Proyecto GNOME"
+
+#~ msgid ""
+#~ "Explore images, view their metadata, and make quick edits by cropping, "
+#~ "rotating, or flipping them."
+#~ msgstr ""
+#~ "Explore imágenes, vea sus metadatos y realice ediciones rápidas "
+#~ "recortándolas, rotándolas o volteándolas."
+
+#~ msgid "Main Window"
+#~ msgstr "Ventana principal"
+
+#~ msgid "Image Properties Panel"
+#~ msgstr "Panel de propiedades de imagen"
+
+#~ msgid "Copyright © 2020–2024 Christopher Davis et al."
+#~ msgstr "Copyright © 2020–2024 Christopher Davis y otros"
+
+#~ msgid "_Free"
+#~ msgstr "_Libre"
+
+#~ msgid "_Original"
+#~ msgstr "_Original"
+
+#~ msgid "_Square"
+#~ msgstr "C_uadrado"
+
+#~ msgid "_5:4"
+#~ msgstr "_5:4"
+
+#~ msgid "_4:3"
+#~ msgstr "_4:3"
+
+#~ msgid "_3:2"
+#~ msgstr "_3:2"
+
+#~ msgid "_16:9"
+#~ msgstr "_16:9"
+
+#~ msgid "Orientation Portrait"
+#~ msgstr "Vertical"
+
+#~ msgid "Flip"
+#~ msgstr "Voltear"
+
+#~ msgid "Mirror Vertically"
+#~ msgstr "Espejar verticalmente"
+
+#~ msgid "Keep original and create a new file"
+#~ msgstr "Mantener el original y crear un archivo nuevo"
 
 #, fuzzy
 #~ msgid "Browse through your images and inspect their metadata with:"
@@ -1188,10 +1482,6 @@ msgstr "Mostrar detalles"
 #, fuzzy
 #~ msgid "Print settings to position the image on the page"
 #~ msgstr "Configuración de impresión para colocar la imagen en la página"
-
-#, fuzzy
-#~ msgid "_About Loupe"
-#~ msgstr "_Acerca de la lupa"
 
 #, fuzzy
 #~ msgid "File does not exist"
