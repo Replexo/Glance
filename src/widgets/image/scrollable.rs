@@ -73,7 +73,7 @@ impl imp::LpImage {
 
         let hadjustment = obj.hadj();
         // round to application pixels to avoid tiny rounding errors from zoom
-        let content_width = self.round_f64(self.image_displayed_width());
+        let content_width = self.round_f64(self.content_width());
         let widget_width = self.widget_width();
 
         hadjustment.configure(
@@ -93,7 +93,7 @@ impl imp::LpImage {
 
         let vadjustment = obj.vadj();
         // round to application pixels to avoid tiny rounding errors from zoom
-        let content_height = self.round_f64(self.image_displayed_height());
+        let content_height = self.round_f64(self.content_height());
         let widget_height = self.widget_height();
 
         vadjustment.configure(
@@ -132,11 +132,22 @@ impl imp::LpImage {
     }
 
     pub fn max_hadjustment_value(&self) -> f64 {
-        f64::max(self.image_displayed_width() - self.widget_width(), 0.)
+        f64::max(self.content_width() - self.widget_width(), 0.)
     }
 
     pub fn max_vadjustment_value(&self) -> f64 {
-        f64::max(self.image_displayed_height() - self.widget_height(), 0.)
+        f64::max(self.content_height() - self.widget_height(), 0.)
+    }
+
+    /// Scrollable width: the image plus the fit insets
+    pub(super) fn content_width(&self) -> f64 {
+        let (left, _, right, _) = self.fit_insets.get();
+        self.image_displayed_width() + left + right
+    }
+
+    pub(super) fn content_height(&self) -> f64 {
+        let (_, top, _, bottom) = self.fit_insets.get();
+        self.image_displayed_height() + top + bottom
     }
 }
 

@@ -17,7 +17,7 @@
 
 //! Shows an resizable cropping selection
 
-use std::cell::{OnceCell, RefCell};
+use std::cell::{Cell, OnceCell, RefCell};
 use std::sync::Arc;
 
 use adw::prelude::*;
@@ -88,6 +88,8 @@ mod imp {
         #[template_child]
         pub(super) selection: TemplateChild<LpEditCropSelection>,
         #[template_child]
+        canvas: TemplateChild<gtk::Overlay>,
+        #[template_child]
         mode_stack: TemplateChild<gtk::Stack>,
         #[template_child]
         pub(super) adjust: TemplateChild<LpEditAdjust>,
@@ -111,6 +113,11 @@ mod imp {
         /// Active editing view: `crop`, `adjust` or `markup`
         #[property(get, set = Self::set_mode, explicit_notify)]
         mode: RefCell<String>,
+
+        /// Pointer position, for zooming with the scroll wheel
+        pointer: Cell<Option<(f64, f64)>>,
+        /// Zoom level when a pinch started
+        pinch_zoom: Cell<f64>,
     }
 
     #[glib::object_subclass]
@@ -216,6 +223,7 @@ mod imp {
             // Same colour as the editor's canvas
             self.image
                 .set_fixed_background_color(Some(gdk::RGBA::new(0.059, 0.059, 0.067, 1.)));
+            self.setup_zoom();
 
             let actions = gio::SimpleActionGroup::new();
             actions.add_action(&gio::PropertyAction::new(
@@ -375,6 +383,172 @@ mod imp {
     impl BinImpl for LpEditCrop {}
 
     impl LpEditCrop {
+        /// Pinch, Ctrl+scroll and scrolling move the picture in Adjust and
+        /// Markup; Crop always shows the whole picture
+        fn setup_zoom(&self) {
+            let obj = self.obj();
+
+            // Without an adjustment that redraws, panning would not show
+            self.image
+                .set_property("hadjustment", gtk::Adjustment::default());
+            self.image
+                .set_property("vadjustment", gtk::Adjustment::default());
+            for adjustment in [self.image.hadj(), self.image.vadj()] {
+                adjustment.connect_value_changed(glib::clone!(
+                    #[weak]
+                    obj,
+                    move |_| obj.imp().markup_canvas.queue_draw()
+                ));
+            }
+            self.image.connect_zoom_notify(glib::clone!(
+                #[weak]
+                obj,
+                move |_| {
+                    let imp = obj.imp();
+                    imp.markup_canvas.queue_draw();
+                    // Best fit changes when the pills change height
+                    if !imp.selection.cropped() {
+                        imp.selection.reset();
+                    }
+                    imp.selection.queue_allocate();
+                }
+            ));
+
+            // Best fit keeps the picture clear of the pills at the bottom
+            self.canvas.connect_get_child_position(glib::clone!(
+                #[weak]
+                obj,
+                #[upgrade_or]
+                None,
+                move |canvas, widget| {
+                    let imp = obj.imp();
+                    if widget == imp.mode_stack.upcast_ref::<gtk::Widget>() {
+                        // The stack is centred, so it gets its natural size
+                        let (_, width, _, _) = widget.measure(gtk::Orientation::Horizontal, -1);
+                        let (_, pills, _, _) = widget
+                            .measure(gtk::Orientation::Vertical, width.min(canvas.width()));
+                        imp.image.set_fit_insets((18., 18., 18., pills as f64 + 12.));
+                    }
+                    None
+                }
+            ));
+
+            let motion = gtk::EventControllerMotion::new();
+            motion.connect_motion(glib::clone!(
+                #[weak]
+                obj,
+                move |_, x, y| obj.imp().pointer.set(Some((x, y)))
+            ));
+            motion.connect_leave(glib::clone!(
+                #[weak]
+                obj,
+                move |_| obj.imp().pointer.set(None)
+            ));
+            self.canvas.add_controller(motion);
+
+            let scroll = gtk::EventControllerScroll::new(
+                gtk::EventControllerScrollFlags::BOTH_AXES,
+            );
+            scroll.set_propagation_phase(gtk::PropagationPhase::Capture);
+            scroll.connect_scroll(glib::clone!(
+                #[weak]
+                obj,
+                #[upgrade_or]
+                glib::Propagation::Proceed,
+                move |controller, dx, dy| obj.imp().scroll(controller, dx, dy)
+            ));
+            self.canvas.add_controller(scroll);
+
+            let pinch = gtk::GestureZoom::new();
+            pinch.set_propagation_phase(gtk::PropagationPhase::Capture);
+            pinch.connect_begin(glib::clone!(
+                #[weak]
+                obj,
+                move |gesture, _| {
+                    let imp = obj.imp();
+                    if imp.zoomable() {
+                        // Stops the markup tools from drawing with two fingers
+                        gesture.set_state(gtk::EventSequenceState::Claimed);
+                        imp.pinch_zoom.set(imp.image.zoom());
+                    } else {
+                        gesture.set_state(gtk::EventSequenceState::Denied);
+                    }
+                }
+            ));
+            pinch.connect_scale_changed(glib::clone!(
+                #[weak]
+                obj,
+                move |gesture, scale| {
+                    let imp = obj.imp();
+                    if let Some(center) = gesture.bounding_box_center() {
+                        imp.zoom_at(imp.pinch_zoom.get() * scale, center);
+                    }
+                }
+            ));
+            self.canvas.add_controller(pinch);
+        }
+
+        /// Scrolling over the pills is for their sliders and buttons
+        fn pointer_over_pills(&self) -> bool {
+            self.pointer.get().is_some_and(|(x, y)| {
+                self.canvas
+                    .pick(x, y, gtk::PickFlags::DEFAULT)
+                    .is_some_and(|widget| widget.is_ancestor(&*self.mode_stack))
+            })
+        }
+
+        pub(super) fn zoomable(&self) -> bool {
+            self.mode.borrow().as_str() != "crop"
+        }
+
+        /// Zooms with the image point under `position` staying in place,
+        /// never below best fit
+        fn zoom_at(&self, zoom: f64, position: (f64, f64)) {
+            let zoom = zoom.max(self.image.best_fit_zoom());
+            self.image.zoom_at(zoom, position);
+        }
+
+        fn scroll(
+            &self,
+            controller: &gtk::EventControllerScroll,
+            dx: f64,
+            dy: f64,
+        ) -> glib::Propagation {
+            if !self.zoomable() || self.pointer_over_pills() {
+                return glib::Propagation::Proceed;
+            }
+
+            let wheel = controller.unit() == gdk::ScrollUnit::Wheel;
+            if controller
+                .current_event_state()
+                .contains(gdk::ModifierType::CONTROL_MASK)
+            {
+                let factor = if wheel {
+                    1.25_f64.powf(-dy)
+                } else {
+                    (1. - dy / 200.).max(0.1)
+                };
+                let center = (
+                    self.image.width() as f64 / 2.,
+                    self.image.height() as f64 / 2.,
+                );
+                let position = self.pointer.get().unwrap_or(center);
+                self.zoom_at(self.image.zoom() * factor, position);
+                return glib::Propagation::Stop;
+            }
+
+            if self.image.is_best_fit() {
+                return glib::Propagation::Proceed;
+            }
+            // Wheel steps are lines, touchpads give pixels
+            let step = if wheel { 48. } else { 1. };
+            let hadj = self.image.hadj();
+            let vadj = self.image.vadj();
+            hadj.set_value((hadj.value() + dx * step).clamp(0., hadj.upper() - hadj.page_size()));
+            vadj.set_value((vadj.value() + dy * step).clamp(0., vadj.upper() - vadj.page_size()));
+            glib::Propagation::Stop
+        }
+
         fn reset_selection(&self) {
             self.selection.reset();
         }
@@ -534,6 +708,14 @@ mod imp {
             }
 
             let is_crop = mode == "crop";
+            // The crop selection needs the whole picture
+            if is_crop && !self.image.is_best_fit() {
+                let center = (
+                    self.image.width() as f64 / 2.,
+                    self.image.height() as f64 / 2.,
+                );
+                self.image.zoom_at(self.image.best_fit_zoom(), center);
+            }
             self.size_label.set_visible(is_crop);
             if !is_crop {
                 self.aspect_button.popdown();
@@ -611,6 +793,19 @@ impl LpEditCrop {
 
     pub fn image(&self) -> LpImage {
         self.imp().image.clone()
+    }
+
+    /// Zooms in or out a step, or back to best fit, outside Crop
+    pub fn zoom_step(&self, direction: i32) {
+        let imp = self.imp();
+        if !imp.zoomable() {
+            return;
+        }
+        match direction {
+            0 => imp.image.zoom_best_fit(),
+            d if d > 0 => imp.image.zoom_in_center(),
+            _ => imp.image.zoom_out_center(),
+        }
     }
 
     pub fn markup_canvas(&self) -> LpMarkupCanvas {

@@ -59,8 +59,6 @@ mod imp {
         mode_switcher: TemplateChild<adw::ToggleGroup>,
         #[template_child]
         compare: TemplateChild<gtk::Button>,
-        #[template_child]
-        clear_markup: TemplateChild<gtk::Button>,
 
         #[property(get, construct_only)]
         original_image: OnceCell<LpImage>,
@@ -116,7 +114,6 @@ mod imp {
             });
 
             klass.install_action("edit.undo", None, |obj, _, _| obj.undo());
-            klass.install_action("edit.clear-markup", None, |obj, _, _| obj.clear_markup());
             klass.install_action("edit.redo", None, |obj, _, _| obj.redo());
 
             klass.install_action("edit.cancel", None, move |obj, _, _| {
@@ -142,18 +139,15 @@ mod imp {
                 .sync_create()
                 .build();
 
-            // Compare only makes sense for adjustments, clearing for markup
+            // Compare only makes sense for adjustments
             obj.edit_crop().connect_mode_notify(glib::clone!(
                 #[weak]
                 obj,
                 move |edit_crop| {
-                    let imp = obj.imp();
-                    imp.compare.set_visible(edit_crop.mode() == "adjust");
-                    imp.clear_markup.set_visible(edit_crop.mode() == "markup");
+                    obj.imp().compare.set_visible(edit_crop.mode() == "adjust");
                 }
             ));
             self.compare.set_visible(false);
-            self.clear_markup.set_visible(false);
 
             // Holding the button shows the picture without adjustments
             let hold = gtk::GestureClick::new();
@@ -217,7 +211,6 @@ mod imp {
             ));
 
             obj.update_history_actions();
-            obj.action_set_enabled("edit.clear-markup", false);
 
             self.shortcut_controller.add_shortcut(gtk::Shortcut::new(
                 Some(gtk::KeyvalTrigger::new(
@@ -225,6 +218,73 @@ mod imp {
                     gdk::ModifierType::NO_MODIFIER_MASK,
                 )),
                 Some(gtk::NamedAction::new("edit.cancel")),
+            ));
+
+            // Ctrl + and Ctrl − zoom, Ctrl 0 goes back to best fit
+            for (keys, direction) in [
+                (&[gdk::Key::plus, gdk::Key::equal, gdk::Key::KP_Add][..], 1),
+                (&[gdk::Key::minus, gdk::Key::KP_Subtract][..], -1),
+                (&[gdk::Key::_0, gdk::Key::KP_0][..], 0),
+            ] {
+                for key in keys {
+                    self.shortcut_controller.add_shortcut(gtk::Shortcut::new(
+                        Some(gtk::KeyvalTrigger::new(*key, gdk::ModifierType::CONTROL_MASK)),
+                        Some(gtk::CallbackAction::new(glib::clone!(
+                            #[weak]
+                            obj,
+                            #[upgrade_or]
+                            glib::Propagation::Proceed,
+                            move |_, _| {
+                                obj.edit_crop().zoom_step(direction);
+                                glib::Propagation::Stop
+                            }
+                        ))),
+                    ));
+                }
+            }
+
+            // Single keys for views and tools; text fields and typed text
+            // take the keys first
+            self.shortcut_controller.add_shortcut(gtk::Shortcut::new(
+                Some(gtk::KeyvalTrigger::new(
+                    gdk::Key::c,
+                    gdk::ModifierType::NO_MODIFIER_MASK,
+                )),
+                Some(gtk::CallbackAction::new(glib::clone!(
+                    #[weak]
+                    obj,
+                    #[upgrade_or]
+                    glib::Propagation::Proceed,
+                    move |_, _| {
+                        if obj.dialog_open() {
+                            return glib::Propagation::Proceed;
+                        }
+                        obj.edit_crop().set_mode("crop");
+                        glib::Propagation::Stop
+                    }
+                ))),
+            ));
+            self.shortcut_controller.add_shortcut(gtk::Shortcut::new(
+                Some(gtk::KeyvalTrigger::new(
+                    gdk::Key::b,
+                    gdk::ModifierType::NO_MODIFIER_MASK,
+                )),
+                Some(gtk::CallbackAction::new(glib::clone!(
+                    #[weak]
+                    obj,
+                    #[upgrade_or]
+                    glib::Propagation::Proceed,
+                    move |_, _| {
+                        if obj.dialog_open() {
+                            return glib::Propagation::Proceed;
+                        }
+                        let edit_crop = obj.edit_crop();
+                        edit_crop.set_mode("markup");
+                        let _ = edit_crop
+                            .activate_action("edit-markup.tool", Some(&"brush".to_variant()));
+                        glib::Propagation::Stop
+                    }
+                ))),
             ));
         }
     }
@@ -700,6 +760,13 @@ impl LpEditWindow {
         imp.update_save_state(false);
     }
 
+    /// Whether a dialog like Resize covers the editor
+    fn dialog_open(&self) -> bool {
+        self.root()
+            .and_downcast::<adw::ApplicationWindow>()
+            .is_some_and(|window| window.visible_dialog().is_some())
+    }
+
     pub fn markup(&self) -> Arc<Vec<Shape>> {
         self.imp().markup.borrow().clone()
     }
@@ -733,18 +800,8 @@ impl LpEditWindow {
         }
     }
 
-    pub fn clear_markup(&self) {
-        self.edit_crop().markup_canvas().finish_text();
-        if !self.markup().is_empty() {
-            self.record(None);
-            self.edit_crop().markup_canvas().clear_selection();
-            self.set_markup_list(Arc::new(Vec::new()));
-        }
-    }
-
     fn set_markup_list(&self, markup: Arc<Vec<Shape>>) {
         let imp = self.imp();
-        self.action_set_enabled("edit.clear-markup", !markup.is_empty());
         imp.markup.replace(markup);
         self.edit_crop().markup_changed();
         imp.update_save_state(false);

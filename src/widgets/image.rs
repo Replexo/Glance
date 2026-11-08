@@ -214,6 +214,12 @@ mod imp {
         /// Determines what `best-fit` does
         #[property(get, set=Self::set_fit_mode, builder(FitMode::default()))]
         pub(super) fit_mode: Cell<FitMode>,
+        /// Space at the left, top, right and bottom edge that is covered by
+        /// other widgets
+        ///
+        /// Best fit keeps the image out of it, and a larger zoom can scroll
+        /// the image edges out of it.
+        pub(super) fit_insets: Cell<(f64, f64, f64, f64)>,
         /// Min zoom level is reached, stored to only send signals on change
         #[property(get, set)]
         pub(super) is_min_zoom: Cell<bool>,

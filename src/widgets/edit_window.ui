@@ -44,13 +44,6 @@
                     <property name="action-name">edit.redo</property>
                   </object>
                 </child>
-                <child>
-                  <object class="GtkButton" id="clear_markup">
-                    <property name="icon-name">glint-clear-symbolic</property>
-                    <property name="tooltip-text" translatable="yes">Remove All Markup</property>
-                    <property name="action-name">edit.clear-markup</property>
-                  </object>
-                </child>
               </object>
             </child>
             <child type="overlay">

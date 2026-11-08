@@ -62,8 +62,6 @@ impl WidgetImpl for imp::LpImage {
         let obj = self.obj();
         let widget_width = self.widget_width();
         let widget_height = self.widget_height();
-        let display_width = self.image_displayed_width();
-        let display_height = self.image_displayed_height();
 
         let applicable_zoom = self.applicable_zoom();
 
@@ -102,11 +100,11 @@ impl WidgetImpl for imp::LpImage {
 
         // Apply the scrolling position to the image
         let hadj: gtk::Adjustment = obj.hadj();
-        let x = -(hadj.value() - (hadj.upper() - display_width) / 2.);
+        let x = -(hadj.value() - (hadj.upper() - self.content_width()) / 2.);
         snapshot.translate(&graphene::Point::new(self.round_f64(x) as f32, 0.));
 
         let vadj = obj.vadj();
-        let y = -(vadj.value() - (vadj.upper() - display_height) / 2.);
+        let y = -(vadj.value() - (vadj.upper() - self.content_height()) / 2.);
         snapshot.translate(&graphene::Point::new(0., self.round_f64(y) as f32));
 
         // Centering in widget when no scrolling (black bars around image)
@@ -296,8 +294,9 @@ impl imp::LpImage {
         let obj = self.obj();
 
         let scaling = self.scaling() as f32;
-        let x = obj.hadj().value() as f32 * scaling;
-        let y = obj.vadj().value() as f32 * scaling;
+        // The visible part of the image starts after the fit insets
+        let x = f64::max(obj.hadj().value() - obj.image_rendering_x(), 0.) as f32 * scaling;
+        let y = f64::max(obj.vadj().value() - obj.image_rendering_y(), 0.) as f32 * scaling;
         let width = self.widget_width() as f32 * scaling;
         let height = self.widget_height() as f32 * scaling;
 
@@ -379,20 +378,20 @@ impl LpImage {
     pub fn image_rendering_x(&self) -> f64 {
         let imp = self.imp();
         let widget_width = imp.widget_width();
-        let display_width = imp.image_displayed_width();
+        let (left, _, _, _) = imp.fit_insets.get();
 
         // Centering in widget when no scrolling (black bars around image)
         //
         // Round to pixel values to not have a half pixel offset to physical pixels
         // The offset would leading to a blurry output
-        imp.round_f64(f64::max((widget_width - display_width) / 2.0, 0.))
+        imp.round_f64(left + f64::max((widget_width - imp.content_width()) / 2.0, 0.))
     }
 
     pub fn image_rendering_y(&self) -> f64 {
         let imp = self.imp();
         let widget_height = imp.widget_height();
-        let display_height = imp.image_displayed_height();
-        imp.round_f64(f64::max((widget_height - display_height) / 2.0, 0.))
+        let (_, top, _, _) = imp.fit_insets.get();
+        imp.round_f64(top + f64::max((widget_height - imp.content_height()) / 2.0, 0.))
     }
 
     pub fn image_rendering_width(&self) -> f64 {

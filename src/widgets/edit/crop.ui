@@ -2,15 +2,7 @@
 <interface>
   <template class="LpEditCrop" parent="AdwBin">
     <property name="child">
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkOverlay">
-            <property name="vexpand">true</property>
-            <property name="margin-top">18</property>
-            <property name="margin-end">18</property>
-            <property name="margin-bottom">12</property>
-            <property name="margin-start">18</property>
+      <object class="GtkOverlay" id="canvas">
             <child>
               <object class="LpImage" id="image">
                 <property name="sensitive">false</property>
@@ -27,8 +19,8 @@
               <object class="GtkLabel" id="size_label">
                 <property name="halign">start</property>
                 <property name="valign">start</property>
-                <property name="margin-top">8</property>
-                <property name="margin-start">8</property>
+                <property name="margin-top">26</property>
+                <property name="margin-start">26</property>
                 <property name="can-target">false</property>
                 <style>
                   <class name="glint-name"/>
@@ -36,10 +28,11 @@
                 </style>
               </object>
             </child>
-          </object>
-        </child>
-        <child>
+            <!-- Floats over the picture, which can be zoomed under it -->
+            <child type="overlay">
           <object class="GtkStack" id="mode_stack">
+            <property name="halign">center</property>
+            <property name="valign">end</property>
             <property name="hhomogeneous">false</property>
             <property name="transition-type">crossfade</property>
             <property name="vhomogeneous">false</property>

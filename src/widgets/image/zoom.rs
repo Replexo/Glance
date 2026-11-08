@@ -45,7 +45,8 @@ impl imp::LpImage {
             self.untransformed_dimensions().1 as f64 / self.scaling(),
         );
         let texture_aspect_ratio = image_width / image_height;
-        let widget_aspect_ratio = self.widget_width() / self.widget_height();
+        let (available_width, available_height) = self.available_size();
+        let widget_aspect_ratio = available_width / available_height;
 
         let max_zoom_factor = match self.fit_mode.get() {
             // Do not allow to zoom larger than original size
@@ -55,15 +56,15 @@ impl imp::LpImage {
         };
 
         let default_zoom = if texture_aspect_ratio > widget_aspect_ratio {
-            (self.widget_width() / image_width).min(max_zoom_factor)
+            (available_width / image_width).min(max_zoom_factor)
         } else {
-            (self.widget_height() / image_height).min(max_zoom_factor)
+            (available_height / image_height).min(max_zoom_factor)
         };
 
         let rotated_zoom = if 1. / texture_aspect_ratio > widget_aspect_ratio {
-            (self.widget_width() / image_height).min(max_zoom_factor)
+            (available_width / image_height).min(max_zoom_factor)
         } else {
-            (self.widget_height() / image_width).min(max_zoom_factor)
+            (available_height / image_width).min(max_zoom_factor)
         };
 
         rotated * rotated_zoom + (1. - rotated) * default_zoom
@@ -86,6 +87,15 @@ impl imp::LpImage {
             }
             self.configure_adjustments();
         }
+    }
+
+    /// Widget size without the fit insets
+    pub(super) fn available_size(&self) -> (f64, f64) {
+        let (left, top, right, bottom) = self.fit_insets.get();
+        (
+            f64::max(self.widget_width() - left - right, 1.),
+            f64::max(self.widget_height() - top - bottom, 1.),
+        )
     }
 
     pub(super) fn applicable_zoom(&self) -> f64 {
@@ -146,9 +156,10 @@ impl imp::LpImage {
         zoom: f64,
     ) -> (f64, f64) {
         let zoom = self.applicable_zoom_for(zoom);
+        let (left, top, _, _) = self.fit_insets.get();
 
         // Transform image coordiantes to view coordinates
-        let (img_x, img_y) = (img_x * zoom, img_y * zoom);
+        let (img_x, img_y) = (img_x * zoom + left, img_y * zoom + top);
 
         let h_adj = f64::max(0., img_x - cur_x);
         let v_adj = f64::max(0., img_y - cur_y);
@@ -428,5 +439,38 @@ impl LpImage {
 
     pub fn is_best_fit(&self) -> bool {
         self.imp().best_fit.get()
+    }
+
+    /// Sets the space at the edges that other widgets cover, see
+    /// `fit_insets`
+    pub fn set_fit_insets(&self, insets: (f64, f64, f64, f64)) {
+        let imp = self.imp();
+        if imp.fit_insets.replace(insets) != insets {
+            imp.configure_best_fit();
+            imp.configure_adjustments();
+            // Widgets drawn on top follow the new best fit
+            self.notify_zoom();
+            self.queue_draw();
+        }
+    }
+
+    /// Zoom level at which the image fits between the insets
+    pub fn best_fit_zoom(&self) -> f64 {
+        self.imp().zoom_level_best_fit()
+    }
+
+    /// Zooms without animation, keeping the image point under the widget
+    /// point `position` in place
+    pub fn zoom_at(&self, zoom: f64, position: (f64, f64)) {
+        let imp = self.imp();
+        // A running zoom animation would override this level
+        imp.zoom_animation().pause();
+        let zoom = zoom.min(imp.max_zoom());
+        let target = self.widget_to_img_coord(position);
+        imp.zoom_cursor_target.set(Some(target));
+        imp.set_zoom_aiming(zoom, Some(position));
+        imp.zoom_cursor_target.set(None);
+        imp.set_zoom_target(self.zoom());
+        self.set_best_fit(zoom <= imp.zoom_level_best_fit());
     }
 }

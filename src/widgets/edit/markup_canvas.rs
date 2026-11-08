@@ -742,7 +742,11 @@ fn image_transform(image: &LpImage) -> Option<(f64, f64, f64)> {
     }
 
     let scale = image.image_rendering_width() / width as f64;
-    Some((image.image_rendering_x(), image.image_rendering_y(), scale))
+    Some((
+        image.image_rendering_x() - image.hadj().value(),
+        image.image_rendering_y() - image.vadj().value(),
+        scale,
+    ))
 }
 
 glib::wrapper! {
