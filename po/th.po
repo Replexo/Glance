@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/loupe/-/issues\n"
-"POT-Creation-Date: 2024-09-13 14:04+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-09 00:39+0100\n"
 "PO-Revision-Date: 2024-10-12 21:16+0700\n"
 "Last-Translator: Atirut Wattanamongkol <atirut.wattanamongkol@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -19,401 +19,1159 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.5\n"
 
-#: data/org.gnome.Loupe.desktop.in.in:3
-#: data/org.gnome.Loupe.metainfo.xml.in.in:6 src/about.rs:29 src/window.rs:881
+#: data/io.github.Replexo.Glance.desktop.in.in:2
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:6
+#: src/widgets/image_window.rs:879
+#, fuzzy
+#| msgid "Cancel"
+msgid "Glance"
+msgstr "ยกเลิก"
+
+#: data/io.github.Replexo.Glance.desktop.in.in:3
 msgid "Image Viewer"
 msgstr "โปรแกรมดูภาพ"
 
-#: data/org.gnome.Loupe.desktop.in.in:11
-msgid "Picture;Graphics;Loupe;"
+#: data/io.github.Replexo.Glance.desktop.in.in:4
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:10
+#, fuzzy
+#| msgid "View images"
+msgid "View and edit images"
+msgstr "ดูภาพต่างๆ"
+
+#: data/io.github.Replexo.Glance.desktop.in.in:12
+#, fuzzy
+#| msgid "Picture;Graphics;Loupe;"
+msgid "Picture;Graphics;Loupe;Glance;"
 msgstr "รูปภาพ;กราฟิก;Loupe;"
 
-#: data/org.gnome.Loupe.gschema.xml.in:6
+#: data/io.github.Replexo.Glance.gschema.xml.in:6
 msgid "Show the image properties sidebar"
 msgstr ""
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.Loupe.metainfo.xml.in.in:8 src/about.rs:32
-msgid "The GNOME Project"
-msgstr "โครงการ GNOME"
-
-#: data/org.gnome.Loupe.metainfo.xml.in.in:13
-msgid "View images"
-msgstr "ดูภาพต่างๆ"
-
-#: data/org.gnome.Loupe.metainfo.xml.in.in:15
-msgid "Browse through your images and inspect their metadata with:"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:12
+msgid ""
+"Glance is an image viewer with built-in editing. Browse your images, view "
+"their metadata, and make quick edits without opening a separate editor."
 msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:17
-msgid "Fast GPU accelerated image rendering"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:14
+msgid ""
+"Mark up images with a brush, highlighter, lines, arrows, shapes and text"
 msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:18
-msgid "Tiled rendering for vector graphics"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:15
+msgid "Adjust brightness, contrast, highlights, shadows and saturation"
 msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:19
-msgid "Extendable and sandboxed image decoding"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:16
+msgid "Crop to an aspect ratio, rotate, flip and resize"
 msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:20
-msgid "Accessible presentation of the most important metadata."
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:17
+msgid "Undo and redo every edit, and save a copy or replace the original"
 msgstr ""
 
-#: data/resources/gtk/help-overlay.ui:11
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:19
+msgid "Glance is based on Loupe, the GNOME image viewer."
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:28
+msgid "Marking up an image"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:32
+msgid "Adjusting colours"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:36
+msgid "Cropping"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:76
+msgid ""
+"First release of Glance, based on Loupe 51.1. It adds Markup, Adjust and "
+"Crop editing views, undo and redo, zoom in the editor, and keyboard "
+"shortcuts for the markup tools."
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:6
 msgctxt "shortcut window"
 msgid "General Shortcuts"
 msgstr "แป้นลัดทั่วไป"
 
-#: data/resources/gtk/help-overlay.ui:14
+#: data/resources/shortcuts-dialog.ui:9
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Copy Image or Metadata to Clipboard"
 msgctxt "shortcut window"
-msgid "Show Main Menu"
-msgstr "แสดงเมนูหลัก"
-
-#: data/resources/gtk/help-overlay.ui:20
-msgctxt "shortcut window"
-msgid "Copy Image or Metadata to Clipboard"
+msgid "Copy Image or Selected Text to Clipboard"
 msgstr "คัดลอกภาพหรือข้อมูลเมตาลงคลิปบอร์ด"
 
-#: data/resources/gtk/help-overlay.ui:26
+#: data/resources/shortcuts-dialog.ui:15
 msgctxt "shortcut window"
 msgid "Move Image to Trash"
 msgstr "ย้ายภาพลงถังขยะ"
 
-#: data/resources/gtk/help-overlay.ui:32
+#: data/resources/shortcuts-dialog.ui:21
 msgctxt "shortcut window"
 msgid "Permanently Delete Image"
 msgstr "ลบภาพอย่างถาวร"
 
-#: data/resources/gtk/help-overlay.ui:38
+#: data/resources/shortcuts-dialog.ui:27
 msgctxt "shortcut window"
-msgid "Toggle Image Properties"
+msgid "Open Image with Other App"
 msgstr ""
 
-#: data/resources/gtk/help-overlay.ui:44
+#: data/resources/shortcuts-dialog.ui:33
 msgctxt "shortcut window"
 msgid "Set as Background"
 msgstr "ตั้งเป็นพื้นหลัง"
 
-#: data/resources/gtk/help-overlay.ui:50
-msgctxt "shortcut window"
-msgid "Toggle Fullscreen"
-msgstr ""
-
-#: data/resources/gtk/help-overlay.ui:56
-msgctxt "shortcut window"
-msgid "Leave Fullscreen"
-msgstr ""
-
-#: data/resources/gtk/help-overlay.ui:62
+#: data/resources/shortcuts-dialog.ui:39
 msgctxt "shortcut window"
 msgid "New Window"
 msgstr "หน้าต่างใหม่"
 
-#: data/resources/gtk/help-overlay.ui:68
+#: data/resources/shortcuts-dialog.ui:45
 msgctxt "shortcut window"
 msgid "Open Help"
 msgstr "เปิดวิธีใช้"
 
-#: data/resources/gtk/help-overlay.ui:74
+#: data/resources/shortcuts-dialog.ui:51
 msgctxt "shortcut window"
 msgid "Show Keyboard Shortcuts"
 msgstr "แสดงแป้นลัด"
 
-#: data/resources/gtk/help-overlay.ui:80
+#: data/resources/shortcuts-dialog.ui:57
 msgctxt "shortcut window"
 msgid "Close Window"
 msgstr "ปิดหน้าต่าง"
 
-#: data/resources/gtk/help-overlay.ui:86
+#: data/resources/shortcuts-dialog.ui:63
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "ออก"
 
-#: data/resources/gtk/help-overlay.ui:94
+#: data/resources/shortcuts-dialog.ui:71
 msgctxt "shortcut window"
 msgid "Navigate Images"
 msgstr "เปลี่ยนภาพ"
 
-#: data/resources/gtk/help-overlay.ui:98 data/resources/gtk/help-overlay.ui:112
-#: data/resources/gtk/help-overlay.ui:224
-#: data/resources/gtk/help-overlay.ui:238
+#: data/resources/shortcuts-dialog.ui:75 data/resources/shortcuts-dialog.ui:89
 msgctxt "shortcut window"
 msgid "Next Image"
 msgstr "ภาพต่อไป"
 
-#: data/resources/gtk/help-overlay.ui:105
-#: data/resources/gtk/help-overlay.ui:119
-#: data/resources/gtk/help-overlay.ui:231
-#: data/resources/gtk/help-overlay.ui:245
+#: data/resources/shortcuts-dialog.ui:82 data/resources/shortcuts-dialog.ui:96
 msgctxt "shortcut window"
 msgid "Previous Image"
 msgstr "ภาพที่แล้ว"
 
-#: data/resources/gtk/help-overlay.ui:125
+#: data/resources/shortcuts-dialog.ui:102
 msgctxt "shortcut window"
 msgid "First Image"
 msgstr "ภาพแรก"
 
-#: data/resources/gtk/help-overlay.ui:131
+#: data/resources/shortcuts-dialog.ui:108
 msgctxt "shortcut window"
 msgid "Last Image"
 msgstr "ภาพสุดท้าย"
 
-#: data/resources/gtk/help-overlay.ui:139
+#: data/resources/shortcuts-dialog.ui:116
 msgctxt "shortcut window"
 msgid "Rotate Image"
 msgstr "หมุนภาพ"
 
-#: data/resources/gtk/help-overlay.ui:142
-#: data/resources/gtk/help-overlay.ui:263
+#: data/resources/shortcuts-dialog.ui:119
+#: data/resources/shortcuts-dialog.ui:259
 msgctxt "shortcut window"
 msgid "Rotate Clockwise"
 msgstr "หมุนตามเข็มนาฬิกา"
 
-#: data/resources/gtk/help-overlay.ui:148
-#: data/resources/gtk/help-overlay.ui:269
+#: data/resources/shortcuts-dialog.ui:125
+#: data/resources/shortcuts-dialog.ui:265
 msgctxt "shortcut window"
 msgid "Rotate Counterclockwise"
 msgstr "หมุนทวนเข็มนาฬิกา"
 
-#: data/resources/gtk/help-overlay.ui:156
+#: data/resources/shortcuts-dialog.ui:133
 msgctxt "shortcut window"
 msgid "Zoom Image"
 msgstr "ซูมภาพ"
 
-#: data/resources/gtk/help-overlay.ui:159
-#: data/resources/gtk/help-overlay.ui:251
+#: data/resources/shortcuts-dialog.ui:136
 msgctxt "shortcut window"
 msgid "Zoom In"
 msgstr "ซูมเข้า"
 
-#: data/resources/gtk/help-overlay.ui:165
-#: data/resources/gtk/help-overlay.ui:257
+#: data/resources/shortcuts-dialog.ui:142
 msgctxt "shortcut window"
 msgid "Zoom Out"
 msgstr "ซูมออก"
 
-#: data/resources/gtk/help-overlay.ui:171
+#: data/resources/shortcuts-dialog.ui:148
 msgctxt "shortcut window"
 msgid "Best Fit"
 msgstr "ขนาดพอดี"
 
-#: data/resources/gtk/help-overlay.ui:177
+#: data/resources/shortcuts-dialog.ui:154
 msgctxt "shortcut window"
 msgid "Original Scale"
 msgstr "ขนาดต้นฉบับ"
 
-#: data/resources/gtk/help-overlay.ui:183
+#: data/resources/shortcuts-dialog.ui:160
 msgctxt "shortcut window"
 msgid "200% Scale"
 msgstr "ขนาด 200%"
 
-#: data/resources/gtk/help-overlay.ui:191
+#: data/resources/shortcuts-dialog.ui:168
 msgctxt "shortcut window"
 msgid "Pan View"
 msgstr ""
 
-#: data/resources/gtk/help-overlay.ui:194
+#: data/resources/shortcuts-dialog.ui:171
 msgctxt "shortcut window"
 msgid "Pan Left"
 msgstr ""
 
-#: data/resources/gtk/help-overlay.ui:200
+#: data/resources/shortcuts-dialog.ui:177
 msgctxt "shortcut window"
 msgid "Pan Right"
 msgstr ""
 
-#: data/resources/gtk/help-overlay.ui:206
+#: data/resources/shortcuts-dialog.ui:183
 msgctxt "shortcut window"
 msgid "Pan Up"
 msgstr ""
 
-#: data/resources/gtk/help-overlay.ui:212
+#: data/resources/shortcuts-dialog.ui:189
 msgctxt "shortcut window"
 msgid "Pan Down"
 msgstr ""
 
-#: data/resources/gtk/help-overlay.ui:220
+#: data/resources/shortcuts-dialog.ui:197
 msgctxt "shortcut window"
-msgid "Gestures"
-msgstr "ท่าทาง"
+msgid "View"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:200
+msgctxt "shortcut window"
+msgid "Toggle Fullscreen"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:206
+msgctxt "shortcut window"
+msgid "Leave Fullscreen"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:212
+msgctxt "shortcut window"
+msgid "Toggle Image Properties"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:218
+msgctxt "shortcut window"
+msgid "Show Main Menu"
+msgstr "แสดงเมนูหลัก"
+
+#: data/resources/shortcuts-dialog.ui:226
+msgctxt "shortcut window"
+msgid "Editing"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:229
+msgctxt "shortcut window"
+msgid "Open Editing View"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:235
+msgctxt "shortcut window"
+msgid "Crop"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:241
+msgctxt "shortcut window"
+msgid "Replace Original"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:247
+msgctxt "shortcut window"
+msgid "Save As"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:253
+#, fuzzy
+#| msgid "Cancel"
+msgctxt "shortcut window"
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+#: data/resources/shortcuts-dialog.ui:271
+#, fuzzy
+#| msgid "_Horizontal"
+msgctxt "shortcut window"
+msgid "Mirror Horizontally"
+msgstr "แนว_นอน"
+
+#: data/resources/shortcuts-dialog.ui:277
+#, fuzzy
+#| msgid "_Vertical"
+msgctxt "shortcut window"
+msgid "Mirror Vertically"
+msgstr "แนว_ตั้ง"
+
+#: data/resources/shortcuts-dialog.ui:283
+msgctxt "shortcut window"
+msgid "Apply Crop"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:291
+msgctxt "shortcut window"
+msgid "Markup"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:294
+msgctxt "shortcut window"
+msgid "Select, Move and Resize Markup"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:300
+msgctxt "shortcut window"
+msgid "Brush"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:306
+msgctxt "shortcut window"
+msgid "Line"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:312
+msgctxt "shortcut window"
+msgid "Arrow"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:318
+msgctxt "shortcut window"
+msgid "Rectangle"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:324
+msgctxt "shortcut window"
+msgid "Ellipse"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:330
+msgctxt "shortcut window"
+msgid "Text"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:336
+msgctxt "shortcut window"
+msgid "Eraser"
+msgstr ""
 
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/about.rs:41
 msgid "translator-credits"
 msgstr "Atirut Wattanamongkol <atirut.wattanamongkol@gmail.com>"
 
-#: src/about.rs:42
-msgid "Copyright © 2020–2024 Christopher Davis et al."
+#: src/application.rs:178
+msgid "Glance is now the default image viewer"
 msgstr ""
 
-#: src/file_model.rs:129
+#: src/application.rs:187
+msgid "Could not make Glance the default image viewer"
+msgstr ""
+
+#: src/file_model.rs:211
 msgid "Could not list other files in directory."
 msgstr ""
 
-#. Translators: short for "north" in GPS coordinate
-#: src/metadata/gps.rs:165
-msgid "N"
-msgstr ""
-
-#. Translators: short for "south" in GPS coordinate
-#: src/metadata/gps.rs:168
-msgid "S"
-msgstr ""
-
-#. Translators: short for "east" in GPS coordinate
-#: src/metadata/gps.rs:190
-msgid "E"
-msgstr ""
-
-#. Translators: short for "west" in GPS coordinate
-#: src/metadata/gps.rs:193
-msgid "W"
+#. Translators: Display of the f-number <https://en.wikipedia.org/wiki/F-number>. {} will be replaced with the number
+#: src/metadata.rs:270
+msgid "\\u{192}\\u{2215}{}"
 msgstr ""
 
 #. Translators: Fractional exposure time (photography) in seconds
-#: src/metadata/mod.rs:262
+#: src/metadata.rs:283
 msgid "1\\u{2215}{}\\u{202F}s"
 msgstr ""
 
 #. Translators: Exposure time (photography) in seconds
-#: src/metadata/mod.rs:270
+#: src/metadata.rs:291
 msgid "{}\\u{202F}s"
 msgstr ""
 
-#. Translators: Unit for focal length in millimeters
-#: src/metadata/mod.rs:296
+#: src/metadata.rs:305
 msgid "{}\\u{202F}mm"
 msgstr ""
 
+#. Translators: short for "north" in GPS coordinate
+#: src/metadata.rs:395
+msgid "N"
+msgstr ""
+
+#. Translators: short for "south" in GPS coordinate
+#: src/metadata.rs:399
+msgid "S"
+msgstr ""
+
+#. Translators: short for "east" in GPS coordinate
+#: src/metadata.rs:408
+msgid "E"
+msgstr ""
+
+#. Translators: short for "west" in GPS coordinate
+#: src/metadata.rs:412
+msgid "W"
+msgstr ""
+
+#: src/metadata.rs:492
+msgid "DCI P3"
+msgstr ""
+
+#: src/metadata.rs:493
+msgid "Display P3"
+msgstr ""
+
+#: src/metadata.rs:494
+msgid "Rec.2020"
+msgstr ""
+
+#: src/metadata.rs:495
+msgid "sRGB"
+msgstr ""
+
+#: src/metadata.rs:496 src/metadata.rs:504
+msgid "Unspecified"
+msgstr ""
+
+#: src/metadata.rs:497 src/metadata.rs:506 src/metadata.rs:516
+#, rust-format
+msgid "Unknown ({})"
+msgstr ""
+
+#: src/metadata.rs:503
+msgid "ICtCp"
+msgstr ""
+
+#: src/metadata.rs:512
+msgid "DCI"
+msgstr ""
+
+#: src/metadata.rs:513
+msgid "PQ"
+msgstr ""
+
+#: src/metadata.rs:514
+msgid "Gamma 2.4"
+msgstr ""
+
+#. / Returns localized date + time format
 #. Translators: This is the date and time format we use in metadata output etc.
 #. The format has to follow <https://docs.gtk.org/glib/method.DateTime.format.html>
 #. The default is already translated. Don't change if you are not sure what to
 #. use.
-#: src/util/mod.rs:37
-#, c-format
+#: src/util.rs:39
 msgid "%x %X"
 msgstr ""
 
-#: src/util/mod.rs:180 src/window.rs:702
+#: src/util.rs:182
 msgid "Failed to restore image from trash"
 msgstr "เรียกคืนภาพจากถังขยะไม่สำเร็จ"
 
-#: src/util/mod.rs:201
-msgid "Failed to open image"
+#: src/widgets/drag_overlay.ui:15
+#, fuzzy
+#| msgid "Image Viewer"
+msgid "Drop Image to View"
+msgstr "โปรแกรมดูภาพ"
+
+#: src/widgets/edit/adjust.rs:34 src/widgets/edit/adjust.ui:11
+#: src/widgets/edit/adjust.ui:43
+msgid "Brightness"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:35 src/widgets/edit/adjust.ui:72
+msgid "Contrast"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:36 src/widgets/edit/adjust.ui:101
+msgid "Highlights"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:37 src/widgets/edit/adjust.ui:130
+msgid "Shadows"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:38 src/widgets/edit/adjust.ui:159
+msgid "Saturation"
+msgstr ""
+
+#: src/widgets/edit/color_card.rs:204
+msgid "Hex Color"
+msgstr ""
+
+#: src/widgets/edit/crop.rs:41 src/widgets/edit/crop.ui:88
+#: src/widgets/edit/crop.ui:112
+msgid "Free"
+msgstr ""
+
+#: src/widgets/edit/crop.rs:42 src/widgets/edit/crop.ui:122
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Original Scale"
+msgid "Original"
+msgstr "ขนาดต้นฉบับ"
+
+#: src/widgets/edit/crop.rs:43 src/widgets/edit/crop.ui:132
+msgid "Square"
+msgstr ""
+
+#: src/widgets/edit/crop.rs:842
+#, fuzzy
+#| msgid "Failed to delete image"
+msgid "Failed to Edit Image"
+msgstr "ลบภาพไม่สำเร็จ"
+
+#: src/widgets/edit/crop.ui:83
+msgid "Aspect Ratio"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:142
+msgid "5:4"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:152
+msgid "4:3"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:162
+msgid "3:2"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:172
+msgid "16:9"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:188
+msgid "Landscape"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:196
+msgid "Portrait"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:217
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Rotate Counterclockwise"
+msgid "Rotate Counter Clockwise"
+msgstr "หมุนทวนเข็มนาฬิกา"
+
+#: src/widgets/edit/crop.ui:224
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Rotate Clockwise"
+msgid "Rotate Clockwise"
+msgstr "หมุนตามเข็มนาฬิกา"
+
+#: src/widgets/edit/crop.ui:231
+#, fuzzy
+#| msgid "_Horizontal"
+msgid "Mirror Horizontally"
+msgstr "แนว_นอน"
+
+#: src/widgets/edit/crop.ui:238
+msgid "Resize"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:249
+msgid "_Reset"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:251
+msgid "Undo Changes in this View"
+msgstr ""
+
+#: src/widgets/edit/crop_selection.ui:46
+msgid "Crop Selection"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:27
+msgid "Choose a Color"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:59
+msgid "Blue"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:79
+msgid "Yellow"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:99
+msgid "Red"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:119
+msgid "Orange"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:139
+msgid "Green"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:171
+msgid "Outline"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:179
+msgid "Filled"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:196
+msgid "Thin"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:214 src/widgets/edit/markup.ui:294
+msgid "Medium"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:232
+msgid "Thick"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:250
+msgid "Very Thick"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:279
+msgid "Small"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:309
+msgid "Large"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:324
+msgid "Very Large"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:344
+msgid "Sans"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:359
+msgid "Serif"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:374
+msgid "Monospace"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:389
+msgid "Handwriting"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:427
+msgid "Move, Resize and Rotate"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:435
+msgid "Paintbrush"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:443
+msgid "Highlighter"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:451
+msgid "Line"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:459
+msgid "Arrow"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:467
+msgid "Rectangle"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:475
+msgid "Circle"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:483
+msgid "Text"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:491
+msgid "Eraser"
+msgstr ""
+
+#: src/widgets/edit/resize_dialog.ui:4
+#, fuzzy
+#| msgid "View Images"
+msgid "Resize Image"
+msgstr "ดูภาพต่างๆ"
+
+#: src/widgets/edit/resize_dialog.ui:15 src/widgets/edit_window.ui:101
+#, fuzzy
+#| msgid "Cancel"
+msgid "_Cancel"
+msgstr "ยกเลิก"
+
+#: src/widgets/edit/resize_dialog.ui:22
+msgid "_Resize"
+msgstr ""
+
+#: src/widgets/edit/resize_dialog.ui:50 src/widgets/print.rs:787
+msgid "_Width"
+msgstr "ความ_กว้าง"
+
+#: src/widgets/edit/resize_dialog.ui:90
+#, fuzzy
+#| msgid "H_eight"
+msgid "_Height"
+msgstr "ความ_สูง"
+
+#: src/widgets/edit/resize_dialog.ui:139
+msgid "Size in Percent"
+msgstr ""
+
+#. Translators: Filename suffix, {} is replaced by a number
+#: src/widgets/edit_window.rs:368
+#, rust-format
+msgid " (Edited)"
+msgid_plural " (Edited {})"
+msgstr[0] ""
+
+#: src/widgets/edit_window.rs:453
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Move Image to Trash"
+msgid "Moving Original to Trash"
+msgstr "ย้ายภาพลงถังขยะ"
+
+#: src/widgets/edit_window.rs:467 src/widgets/edit_window.rs:496
+#, fuzzy
+#| msgid "Failed to open image"
+msgid "Failed to save image."
 msgstr "เปิดภาพไม่สำเร็จ"
 
-#: src/widgets/image_page.ui:6 src/window.ui:16
+#: src/widgets/edit_window.rs:476
+msgid "Finalizing Save Operation"
+msgstr ""
+
+#: src/widgets/edit_window.rs:531
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "First Image"
+msgid "Editing Image"
+msgstr "ภาพแรก"
+
+#: src/widgets/edit_window.rs:554 src/widgets/edit_window.rs:581
+#, fuzzy
+#| msgid "Failed to delete image"
+msgid "Failed to edit image."
+msgstr "ลบภาพไม่สำเร็จ"
+
+#: src/widgets/edit_window.rs:610
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Navigate Images"
+msgid "Saving Image"
+msgstr "เปลี่ยนภาพ"
+
+#: src/widgets/edit_window.rs:622
+#, fuzzy
+#| msgid "Failed to open image"
+msgid "Failed to Save Image"
+msgstr "เปิดภาพไม่สำเร็จ"
+
+#: src/widgets/edit_window.rs:991
+msgid "Save Changes?"
+msgstr ""
+
+#: src/widgets/edit_window.rs:993
+msgid ""
+"There are unsaved image editing changes. Closing without saving will "
+"permanently lose these modifications."
+msgstr ""
+
+#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:700
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+#: src/widgets/edit_window.rs:998
+msgid "Discard"
+msgstr ""
+
+#: src/widgets/edit_window.rs:999
+msgid "Save"
+msgstr ""
+
+#: src/widgets/edit_window.ui:33
+msgid "Hold to Show Original"
+msgstr ""
+
+#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:636
+msgid "Undo"
+msgstr "เลิกทำ"
+
+#: src/widgets/edit_window.ui:46
+msgid "Redo"
+msgstr ""
+
+#: src/widgets/edit_window.ui:120
+msgid "Crop"
+msgstr ""
+
+#: src/widgets/edit_window.ui:124
+msgid "Cr_op"
+msgstr ""
+
+#: src/widgets/edit_window.ui:133
+msgid "Adjust"
+msgstr ""
+
+#: src/widgets/edit_window.ui:137
+msgid "A_djust"
+msgstr ""
+
+#: src/widgets/edit_window.ui:146
+msgid "Markup"
+msgstr ""
+
+#: src/widgets/edit_window.ui:150
+msgid "_Markup"
+msgstr ""
+
+#: src/widgets/edit_window.ui:160
+msgid "_Save"
+msgstr ""
+
+#: src/widgets/edit_window.ui:181
+msgid "_Save a Copy…"
+msgstr ""
+
+#: src/widgets/edit_window.ui:189
+msgid "Save changes and keep original."
+msgstr ""
+
+#: src/widgets/edit_window.ui:209
+msgid "_Replace Original"
+msgstr ""
+
+#: src/widgets/edit_window.ui:217
+#, fuzzy
+#| msgid "Image moved to trash"
+msgid "Original image will be moved to the trash."
+msgstr "ย้ายภาพไปลงขยะแล้ว"
+
+#: src/widgets/error_details.rs:80
+msgid ""
+"The following error occurred. If you think this is an issue with the "
+"program, please include this information when you report the error."
+msgstr ""
+
+#: src/widgets/error_details.ui:4
+msgid "Error Details"
+msgstr ""
+
+#: src/widgets/error_details.ui:19
+msgid ""
+"The image loader reported the following when trying to load or edit the "
+"image. Please include this information when you report an error. If "
+"possible, please also provide the image that causes the issue."
+msgstr ""
+
+#: src/widgets/error_details.ui:24
+msgid "Error Message"
+msgstr ""
+
+#: src/widgets/error_details.ui:28
+msgid "Copy Error Message"
+msgstr ""
+
+#: src/widgets/error_details.ui:68
+msgid "Report _Issue"
+msgstr ""
+
+#: src/widgets/image_page.rs:225
+#, rust-format
+msgid ""
+"No image loaders available. Maybe the “glycin-loaders” package with "
+"compatibility version “{}” is not installed."
+msgstr ""
+
+#: src/widgets/image_page.rs:243
+#, rust-format
+msgid "The image format “{} ({})” is known but not installed."
+msgstr ""
+
+#: src/widgets/image_page.rs:251
+#, rust-format
+msgid "Unknown image format “{} ({}).”"
+msgstr ""
+
+#: src/widgets/image_page.rs:260
+msgid "There is not enough free memory available to load this image."
+msgstr ""
+
+#: src/widgets/image_page.rs:267
+#, fuzzy, rust-format
+#| msgid "Failed to open image"
+msgid "Failed to load image file: {}"
+msgstr "เปิดภาพไม่สำเร็จ"
+
+#: src/widgets/image_page.rs:272
+msgid "Either the image file is corrupted or it contains unsupported elements."
+msgstr ""
+
+#: src/widgets/image_page.ui:6 src/widgets/image_window.ui:16
 msgid "_Open With…"
 msgstr "เ_ปิดด้วย…"
 
-#: src/widgets/image_page.ui:14 src/window.ui:24
+#: src/widgets/image_page.ui:10 src/widgets/image_window.ui:20
 msgid "_Print…"
 msgstr "_พิมพ์…"
 
-#: src/widgets/image_page.ui:18
-msgid "_Copy"
-msgstr "_คัดลอก"
-
-#: src/widgets/image_page.ui:23 src/window.ui:29
+#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:25
 msgid "Rotate"
 msgstr "หมุน"
 
-#: src/widgets/image_page.ui:34 src/window.ui:40
+#: src/widgets/image_page.ui:26 src/widgets/image_window.ui:36
 msgid "_Set as Background…"
 msgstr "_ตั้งเป็นพื้นหลัง…"
+
+#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:44
+#, fuzzy
+#| msgid "Delete"
+msgid "_Delete"
+msgstr "ลบ"
+
+#: src/widgets/image_page.ui:34
+msgid "_Copy"
+msgstr "_คัดลอก"
 
 #: src/widgets/image_page.ui:63
 msgid "Could not Load Image"
 msgstr "ไม่สามารถโหลดภาพได้"
 
-#: src/widgets/image_page.ui:97 src/window.ui:106
+#: src/widgets/image_page.ui:71
+msgid "More _Information"
+msgstr ""
+
+#: src/widgets/image_page.ui:81
+msgid "_Reload"
+msgstr ""
+
+#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:105
 msgid "Rotate Left"
 msgstr "หมุนไปทางซ้าย"
 
-#: src/widgets/image_page.ui:107 src/window.ui:116
+#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:115
 msgid "Rotate Right"
 msgstr "หมุนไปทางขวา"
 
 #. Translators: This is a toast notification, informing the user that
 #. an image has been set as background.
-#: src/widgets/image_view.rs:682
+#: src/widgets/image_view.rs:870
 msgid "Set as background."
 msgstr "ตั้งเป็นพื้นหลัง"
 
-#: src/widgets/image_view.rs:695
+#: src/widgets/image_view.rs:876
 msgid "Could not set background."
 msgstr "ไม่สามารถตั้งพื้นหลังได้"
 
-#: src/widgets/image_view.ui:27
+#: src/widgets/image_view.ui:26
 msgid "Previous Image"
 msgstr "ภาพที่แล้ว"
 
-#: src/widgets/image_view.ui:38
+#: src/widgets/image_view.ui:36
 msgid "Next Image"
 msgstr "ภาพต่อไป"
 
-#: src/widgets/image_view.ui:63
+#: src/widgets/image_view.ui:66
 msgid "Zoom Out"
 msgstr "ซูมออก"
 
-#: src/widgets/image_view.ui:74
+#: src/widgets/image_view.ui:77
 msgid "Zoom In"
 msgstr "ซูมเข้า"
 
-#: src/widgets/image_view.ui:85
+#: src/widgets/image_view.ui:92
+msgid "Toggle Zoom"
+msgstr ""
+
+#: src/widgets/image_view.ui:100
+msgid "Zoom to Specific Level"
+msgstr ""
+
+#: src/widgets/image_view.ui:229
+msgid "Custom Zoom Level"
+msgstr ""
+
+#: src/widgets/image_view.ui:235
+msgid "Zoom to Specified Level"
+msgstr ""
+
+#: src/widgets/image_window.rs:509
+msgid "Supported image formats"
+msgstr ""
+
+#: src/widgets/image_window.rs:515
+msgid "All files"
+msgstr ""
+
+#: src/widgets/image_window.rs:522
+msgid "Open Image"
+msgstr ""
+
+#: src/widgets/image_window.rs:614
+msgid "Image copied to clipboard"
+msgstr "คัดลอกภาพลงคลิปบอร์ดแล้ว"
+
+#: src/widgets/image_window.rs:635
+msgid "Image moved to trash"
+msgstr "ย้ายภาพไปลงขยะแล้ว"
+
+#: src/widgets/image_window.rs:666
+msgid "Failed to move image to trash"
+msgstr "ย้ายภาพลงถังขยะไม่สำเร็จ"
+
+#: src/widgets/image_window.rs:690
+msgid "Permanently Delete Image?"
+msgstr "ลบภาพอย่างถาวรหรือไม่?"
+
+#: src/widgets/image_window.rs:692
+#, rust-format
+msgid "After deleting the image “{}” it will be permanently lost."
+msgstr "ภาพ “{}” จะหายไปอย่างถาวรหลังจากการลบ"
+
+#: src/widgets/image_window.rs:701
+msgid "Delete"
+msgstr "ลบ"
+
+#: src/widgets/image_window.rs:712
+msgid "Failed to delete image"
+msgstr "ลบภาพไม่สำเร็จ"
+
+#: src/widgets/image_window.ui:6
+msgid "_New Window"
+msgstr "หน้าต่างให_ม่"
+
+#: src/widgets/image_window.ui:10
+msgid "_Open…"
+msgstr "เ_ปิด"
+
+#: src/widgets/image_window.ui:40
+#, fuzzy
+#| msgid "_About Image Viewer"
+msgid "_Make Default Image Viewer"
+msgstr "เ_กี่ยวกับโปรแกรมดูภาพ"
+
+#: src/widgets/image_window.ui:50
+msgid "_Help"
+msgstr "_วิธีใช้"
+
+#: src/widgets/image_window.ui:54
+msgid "_Keyboard Shortcuts"
+msgstr "แ_ป้นลัด"
+
+#: src/widgets/image_window.ui:58
+msgid "_About Glance"
+msgstr ""
+
+#: src/widgets/image_window.ui:91
 msgid "Toggle Fullscreen"
 msgstr "สลับแบบเต็มหน้าจอ"
 
-#: src/widgets/print.rs:116
+#: src/widgets/image_window.ui:97
+msgid "Main Menu"
+msgstr "เมนูหลัก"
+
+#: src/widgets/image_window.ui:129
+msgid "Image Properties"
+msgstr "คุณสมบัติภาพ"
+
+#: src/widgets/image_window.ui:136
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "First Image"
+msgid "Edit Image"
+msgstr "ภาพแรก"
+
+#: src/widgets/image_window.ui:224
+#, fuzzy
+#| msgid "View Images"
+msgid "View and Edit Images"
+msgstr "ดูภาพต่างๆ"
+
+#: src/widgets/image_window.ui:225
+msgid "Drag and drop images here"
+msgstr "ลากและวางภาพลงที่นี่"
+
+#: src/widgets/image_window.ui:229
+msgid "_Open Files…"
+msgstr "เ_ปิดไฟล์"
+
+#: src/widgets/print.rs:109
 msgid "Top"
 msgstr "บน"
 
-#: src/widgets/print.rs:117
+#: src/widgets/print.rs:110
 msgid "Center"
 msgstr "กลาง"
 
-#: src/widgets/print.rs:118
+#: src/widgets/print.rs:111
 msgid "Bottom"
 msgstr "ล่าง"
 
-#: src/widgets/print.rs:119
+#: src/widgets/print.rs:112
 msgid "Left"
 msgstr "ซ้าย"
 
-#: src/widgets/print.rs:120
+#: src/widgets/print.rs:113
 msgid "Right"
 msgstr "ขวา"
 
 #. Translators: Shorthand for centimeter
-#: src/widgets/print.rs:156
+#: src/widgets/print.rs:149
 msgid "cm"
 msgstr "ซม."
 
 #. Translators: Shorthand for inch
-#: src/widgets/print.rs:158
+#: src/widgets/print.rs:151
 msgid "in"
 msgstr "นิ้ว"
 
 #. Translators: Shorthand for pixel
-#: src/widgets/print.rs:160
+#: src/widgets/print.rs:153
 msgid "px"
 msgstr "พิกเซล"
 
 #. Translators: {} is a placeholder for the filename
-#: src/widgets/print.rs:382
+#: src/widgets/print.rs:365
+#, rust-format
 msgid "Print “{}”"
 msgstr "พิมพ์ “{}”"
 
-#: src/widgets/print.rs:803
+#: src/widgets/print.rs:472
+msgid "Continue…"
+msgstr ""
+
+#: src/widgets/print.rs:473
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "First Image"
+msgid "Print Image"
+msgstr "ภาพแรก"
+
+#: src/widgets/print.rs:784
 msgid "_Scale"
 msgstr "_ขนาด"
-
-#: src/widgets/print.rs:806
-msgid "_Width"
-msgstr "ความ_กว้าง"
 
 #. Translators: Go back to previous page
 #: src/widgets/print.ui:29
@@ -460,7 +1218,7 @@ msgstr "แนว_นอน"
 msgid "_Vertical"
 msgstr "แนว_ตั้ง"
 
-#: src/widgets/print.ui:142 src/widgets/properties_view.ui:53
+#: src/widgets/print.ui:142 src/widgets/properties_view.ui:56
 msgid "Image Size"
 msgstr "ขนาดภาพ"
 
@@ -476,186 +1234,178 @@ msgstr "เ_ต็มพื้นที่ว่าง"
 msgid "H_eight"
 msgstr "ความ_สูง"
 
-#: src/widgets/properties_view.rs:234
+#: src/widgets/properties_view.rs:284
 msgid "Unknown"
 msgstr ""
 
 #. Translators: Addition of image being transparent to format name
-#: src/widgets/properties_view.rs:238
+#: src/widgets/properties_view.rs:288
 msgid ", transparent"
 msgstr ", โปร่งใส"
 
 #. Translators: Addition of image being grayscale to format name
-#: src/widgets/properties_view.rs:243
+#: src/widgets/properties_view.rs:293
 msgid ", grayscale"
 msgstr ""
 
 #. Translators: Addition of bit size to format name
-#: src/widgets/properties_view.rs:248
+#: src/widgets/properties_view.rs:298
 msgid ", {}\\u{202F}bit"
 msgstr ""
 
-#: src/widgets/properties_view.rs:299
+#: src/widgets/properties_view.rs:315
+msgid "{}\\u{202F}\\u{D7}\\u{202F}{}"
+msgstr ""
+
+#. Translators: Shorthand for centimeter
+#: src/widgets/properties_view.rs:354
+msgid " cm"
+msgstr ""
+
+#. Translators: Shorthand for inch
+#: src/widgets/properties_view.rs:358
+msgid "″"
+msgstr ""
+
+#. Translators: Shorthand for meter
+#: src/widgets/properties_view.rs:362
+msgid " m"
+msgstr ""
+
+#. Translators: Shorthand for millimeter
+#: src/widgets/properties_view.rs:366
+msgid " mm"
+msgstr ""
+
+#. Translators: Shorthand for pica (unit)
+#: src/widgets/properties_view.rs:370
+msgid " pc"
+msgstr ""
+
+#. Translators: Shorthand for pica (unit)
+#: src/widgets/properties_view.rs:374
+msgid " pt"
+msgstr ""
+
+#: src/widgets/properties_view.rs:386
+msgid "{}{}\\u{202F}\\u{D7}\\u{202F}{}{}"
+msgstr ""
+
+#: src/widgets/properties_view.rs:403
+msgid "{}\\u{202F}DPI"
+msgstr ""
+
+#: src/widgets/properties_view.rs:407
+msgid "{}\\u{202F}DPI\\u{202F}\\u{D7}\\u{202F}{}\\u{202F}DPI"
+msgstr ""
+
+#: src/widgets/properties_view.rs:435
 msgid "Image Coordinates Copied"
 msgstr ""
 
-#: src/widgets/properties_view.ui:19
+#: src/widgets/properties_view.ui:20
 msgid "Folder"
 msgstr "โฟลเดอร์"
 
-#: src/widgets/properties_view.ui:26
+#: src/widgets/properties_view.ui:28
 msgid "Open Containing Folder"
 msgstr ""
 
-#: src/widgets/properties_view.ui:39
+#: src/widgets/properties_view.ui:41
 msgid "URI"
 msgstr ""
 
-#: src/widgets/properties_view.ui:62
+#: src/widgets/properties_view.ui:66
+#, fuzzy
+#| msgid "File Size"
+msgid "Physical Size"
+msgstr "ขนาดไฟล์"
+
+#: src/widgets/properties_view.ui:76
+msgid "Resolution"
+msgstr ""
+
+#: src/widgets/properties_view.ui:86
 msgid "Image Format"
 msgstr "ฟอร์แมตภาพ"
 
-#: src/widgets/properties_view.ui:71
+#: src/widgets/properties_view.ui:96
 msgid "File Size"
 msgstr "ขนาดไฟล์"
 
-#: src/widgets/properties_view.ui:84
+#: src/widgets/properties_view.ui:110
 msgid "File Created"
 msgstr "สร้างเมื่อ"
 
-#: src/widgets/properties_view.ui:93
+#: src/widgets/properties_view.ui:120
 msgid "File Modified"
 msgstr "แก้ไขเมื่อ"
 
 #. Translators: This is a label for GPS coordinates
-#: src/widgets/properties_view.ui:106
+#: src/widgets/properties_view.ui:134
 msgid "Location"
 msgstr "สถานที่"
 
-#: src/widgets/properties_view.ui:116
+#: src/widgets/properties_view.ui:145
 msgid "Copy Coordinates"
 msgstr ""
 
-#: src/widgets/properties_view.ui:127
+#: src/widgets/properties_view.ui:156
 msgid "Open Location"
 msgstr ""
 
-#: src/widgets/properties_view.ui:140
+#: src/widgets/properties_view.ui:169
 msgid "Originally Created"
 msgstr ""
 
-#: src/widgets/properties_view.ui:149
+#: src/widgets/properties_view.ui:179
+msgid "Creator"
+msgstr ""
+
+#: src/widgets/properties_view.ui:189
+msgid "Copyright"
+msgstr ""
+
+#: src/widgets/properties_view.ui:199
+msgid "Comment"
+msgstr ""
+
+#: src/widgets/properties_view.ui:209
 msgid "Aperture"
 msgstr ""
 
-#: src/widgets/properties_view.ui:158
+#: src/widgets/properties_view.ui:219
 msgid "Exposure"
 msgstr ""
 
-#: src/widgets/properties_view.ui:167
+#: src/widgets/properties_view.ui:229
 msgid "ISO"
 msgstr ""
 
-#: src/widgets/properties_view.ui:176
+#: src/widgets/properties_view.ui:239
 msgid "Focal Length"
 msgstr ""
 
-#: src/widgets/properties_view.ui:185
+#: src/widgets/properties_view.ui:249
 msgid "Maker, Model"
 msgstr ""
 
-#: src/window.rs:569
-msgid "Supported image formats"
+#: src/widgets/properties_view.ui:259
+msgid "Lens"
 msgstr ""
 
-#: src/window.rs:575
-msgid "All files"
+#: src/widgets/properties_view.ui:269
+msgid "Software"
 msgstr ""
 
-#: src/window.rs:582
-msgid "Open Image"
+#: src/widgets/properties_view.ui:279
+msgid "ICC Profile"
 msgstr ""
 
-#: src/window.rs:668
-msgid "Image copied to clipboard"
-msgstr "คัดลอกภาพลงคลิปบอร์ดแล้ว"
+#: src/widgets/properties_view.ui:289
+msgid "CICP"
+msgstr ""
 
-#: src/window.rs:689
-msgid "Image moved to trash"
-msgstr "ย้ายภาพไปลงขยะแล้ว"
-
-#: src/window.rs:690
-msgid "Undo"
-msgstr "เลิกทำ"
-
-#: src/window.rs:716
-msgid "Failed to move image to trash"
-msgstr "ย้ายภาพลงถังขยะไม่สำเร็จ"
-
-#: src/window.rs:742
-msgid "Permanently Delete Image?"
-msgstr "ลบภาพอย่างถาวรหรือไม่?"
-
-#: src/window.rs:744
-msgid "After deleting the image “{}” it will be permanently lost."
-msgstr "ภาพ “{}” จะหายไปอย่างถาวรหลังจากการลบ"
-
-#: src/window.rs:752
-msgid "Cancel"
-msgstr "ยกเลิก"
-
-#: src/window.rs:753
-msgid "Delete"
-msgstr "ลบ"
-
-#: src/window.rs:764
-msgid "Failed to delete image"
-msgstr "ลบภาพไม่สำเร็จ"
-
-#: src/window.ui:6
-msgid "_New Window"
-msgstr "หน้าต่างให_ม่"
-
-#: src/window.ui:10
-msgid "_Open…"
-msgstr "เ_ปิด"
-
-#: src/window.ui:46
-msgid "_Help"
-msgstr "_วิธีใช้"
-
-#: src/window.ui:50
-msgid "_Keyboard Shortcuts"
-msgstr "แ_ป้นลัด"
-
-#: src/window.ui:54
-msgid "_About Image Viewer"
-msgstr "เ_กี่ยวกับโปรแกรมดูภาพ"
-
-#: src/window.ui:85
-msgid "Copy to Clipboard"
-msgstr "คัดลอกลงคลิปบอร์ด"
-
-#: src/window.ui:92
-msgid "Move to Trash"
-msgstr "ย้ายไปถังขยะ"
-
-#: src/window.ui:98
-msgid "Main Menu"
-msgstr "เมนูหลัก"
-
-#: src/window.ui:130
-msgid "Image Properties"
-msgstr "คุณสมบัติภาพ"
-
-#: src/window.ui:174
-msgid "View Images"
-msgstr "ดูภาพต่างๆ"
-
-#: src/window.ui:175
-msgid "Drag and drop images here"
-msgstr "ลากและวางภาพลงที่นี่"
-
-#: src/window.ui:179
-msgid "_Open Files…"
-msgstr "เ_ปิดไฟล์"
+#: src/widgets/window.rs:249
+msgid "Show Details"
+msgstr ""

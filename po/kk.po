@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: loupe main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/loupe/-/issues\n"
-"POT-Creation-Date: 2026-07-20 19:42+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-09 00:39+0100\n"
 "PO-Revision-Date: 2026-07-30 11:31+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
@@ -18,50 +18,78 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.9\n"
 
-#: data/org.gnome.Loupe.desktop.in.in:2
-#: data/org.gnome.Loupe.metainfo.xml.in.in:6 src/about.rs:32
+#: data/io.github.Replexo.Glance.desktop.in.in:2
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:6
 #: src/widgets/image_window.rs:879
+#, fuzzy
+#| msgid "Cancel"
+msgid "Glance"
+msgstr "Бас тарту"
+
+#: data/io.github.Replexo.Glance.desktop.in.in:3
 msgid "Image Viewer"
 msgstr "Суреттер көрсетушісі"
 
-#: data/org.gnome.Loupe.desktop.in.in:3
-#: data/org.gnome.Loupe.metainfo.xml.in.in:13
+#: data/io.github.Replexo.Glance.desktop.in.in:4
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:10
 msgid "View and edit images"
 msgstr "Суреттерді қарау және түзету"
 
-#: data/org.gnome.Loupe.desktop.in.in:11
-msgid "Picture;Graphics;Loupe;"
+#: data/io.github.Replexo.Glance.desktop.in.in:12
+#, fuzzy
+#| msgid "Picture;Graphics;Loupe;"
+msgid "Picture;Graphics;Loupe;Glance;"
 msgstr "Picture;Graphics;Loupe;Сурет;Графика;"
 
-#: data/org.gnome.Loupe.gschema.xml.in:6
+#: data/io.github.Replexo.Glance.gschema.xml.in:6
 msgid "Show the image properties sidebar"
 msgstr "Сурет қасиеттері бүйір панелін көрсету"
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.Loupe.metainfo.xml.in.in:8
-#: data/org.gnome.Loupe.metainfo.xml.in.in:10 src/about.rs:35
-msgid "The GNOME Project"
-msgstr "GNOME жобасы"
-
-#: data/org.gnome.Loupe.metainfo.xml.in.in:15
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:12
 msgid ""
-"Explore images, view their metadata, and make quick edits by cropping, "
-"rotating, or flipping them."
+"Glance is an image viewer with built-in editing. Browse your images, view "
+"their metadata, and make quick edits without opening a separate editor."
 msgstr ""
-"Суреттерді зерттеу, олардың метадеректерін қарау және қию, бұру немесе "
-"айналдыру арқылы жылдам өңдеулер жасау."
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:28
-msgid "Main Window"
-msgstr "Негізгі терезе"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:14
+msgid ""
+"Mark up images with a brush, highlighter, lines, arrows, shapes and text"
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:32
-msgid "Crop Tool"
-msgstr "Қиып жіберу сайманы"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:15
+msgid "Adjust brightness, contrast, highlights, shadows and saturation"
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:36
-msgid "Image Properties Panel"
-msgstr "Сурет қасиеттерінің панелі"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:16
+msgid "Crop to an aspect ratio, rotate, flip and resize"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:17
+msgid "Undo and redo every edit, and save a copy or replace the original"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:19
+msgid "Glance is based on Loupe, the GNOME image viewer."
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:28
+msgid "Marking up an image"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:32
+msgid "Adjusting colours"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:36
+msgid "Cropping"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:76
+msgid ""
+"First release of Glance, based on Loupe 51.1. It adds Markup, Adjust and "
+"Crop editing views, undo and redo, zoom in the editor, and keyboard "
+"shortcuts for the markup tools."
+msgstr ""
 
 #: data/resources/shortcuts-dialog.ui:6
 msgctxt "shortcut window"
@@ -149,13 +177,13 @@ msgid "Rotate Image"
 msgstr "Суретті бұру"
 
 #: data/resources/shortcuts-dialog.ui:119
-#: data/resources/shortcuts-dialog.ui:253
+#: data/resources/shortcuts-dialog.ui:259
 msgctxt "shortcut window"
 msgid "Rotate Clockwise"
 msgstr "Сағат тілі бойымен бұру"
 
 #: data/resources/shortcuts-dialog.ui:125
-#: data/resources/shortcuts-dialog.ui:259
+#: data/resources/shortcuts-dialog.ui:265
 msgctxt "shortcut window"
 msgid "Rotate Counterclockwise"
 msgstr "Сағат тілі бойына қарсы бұру"
@@ -251,136 +279,187 @@ msgid "Open Editing View"
 msgstr "Түзету көрінісін ашу"
 
 #: data/resources/shortcuts-dialog.ui:235
+#, fuzzy
+#| msgid "Crop Tool"
+msgctxt "shortcut window"
+msgid "Crop"
+msgstr "Қиып жіберу сайманы"
+
+#: data/resources/shortcuts-dialog.ui:241
 msgctxt "shortcut window"
 msgid "Replace Original"
 msgstr "Түпнұсқаны алмастыру"
 
-#: data/resources/shortcuts-dialog.ui:241
+#: data/resources/shortcuts-dialog.ui:247
 msgctxt "shortcut window"
 msgid "Save As"
 msgstr "Қалай сақтау"
 
-#: data/resources/shortcuts-dialog.ui:247
+#: data/resources/shortcuts-dialog.ui:253
 msgctxt "shortcut window"
 msgid "Cancel"
 msgstr "Бас тарту"
 
-#: data/resources/shortcuts-dialog.ui:265
+#: data/resources/shortcuts-dialog.ui:271
 msgctxt "shortcut window"
 msgid "Mirror Horizontally"
 msgstr "Горизонталды айналау"
 
-#: data/resources/shortcuts-dialog.ui:271
+#: data/resources/shortcuts-dialog.ui:277
 msgctxt "shortcut window"
 msgid "Mirror Vertically"
 msgstr "Вертикалды айналау"
 
-#: data/resources/shortcuts-dialog.ui:277
+#: data/resources/shortcuts-dialog.ui:283
 msgctxt "shortcut window"
 msgid "Apply Crop"
 msgstr "Қиюды іске асыру"
 
-#. Translators: Replace "translator-credits" with your names, one name per
-#. line
-#: src/about.rs:45
+#: data/resources/shortcuts-dialog.ui:291
+msgctxt "shortcut window"
+msgid "Markup"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:294
+msgctxt "shortcut window"
+msgid "Select, Move and Resize Markup"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:300
+msgctxt "shortcut window"
+msgid "Brush"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:306
+msgctxt "shortcut window"
+msgid "Line"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:312
+msgctxt "shortcut window"
+msgid "Arrow"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:318
+msgctxt "shortcut window"
+msgid "Rectangle"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:324
+msgctxt "shortcut window"
+msgid "Ellipse"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:330
+msgctxt "shortcut window"
+msgid "Text"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:336
+msgctxt "shortcut window"
+msgid "Eraser"
+msgstr ""
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: src/about.rs:41
 msgid "translator-credits"
 msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>"
 
-#: src/about.rs:46
-msgid "Copyright © 2020–2024 Christopher Davis et al."
-msgstr "Copyright © 2020–2024 Christopher Davis et al."
+#: src/application.rs:178
+msgid "Glance is now the default image viewer"
+msgstr ""
+
+#: src/application.rs:187
+msgid "Could not make Glance the default image viewer"
+msgstr ""
 
 #: src/file_model.rs:211
 msgid "Could not list other files in directory."
 msgstr "Бумадағы басқа файлдарды тізімдеу мүмкін болмады."
 
-#. Translators: Display of the f-number
-#. <https://en.wikipedia.org/wiki/F-number>. {} will be replaced with the
-#. number
-#: src/metadata.rs:271
+#. Translators: Display of the f-number <https://en.wikipedia.org/wiki/F-number>. {} will be replaced with the number
+#: src/metadata.rs:270
 msgid "\\u{192}\\u{2215}{}"
 msgstr "\\u{192}\\u{2215}{}"
 
 #. Translators: Fractional exposure time (photography) in seconds
-#: src/metadata.rs:284
+#: src/metadata.rs:283
 msgid "1\\u{2215}{}\\u{202F}s"
 msgstr "1\\u{2215}{}\\u{202F}с"
 
 #. Translators: Exposure time (photography) in seconds
-#: src/metadata.rs:292
+#: src/metadata.rs:291
 msgid "{}\\u{202F}s"
 msgstr "{}\\u{202F}с"
 
-#: src/metadata.rs:306
+#: src/metadata.rs:305
 msgid "{}\\u{202F}mm"
 msgstr "{}\\u{202F}мм"
 
 #. Translators: short for "north" in GPS coordinate
-#: src/metadata.rs:396
+#: src/metadata.rs:395
 msgid "N"
 msgstr "С"
 
 #. Translators: short for "south" in GPS coordinate
-#: src/metadata.rs:400
+#: src/metadata.rs:399
 msgid "S"
 msgstr "О"
 
 #. Translators: short for "east" in GPS coordinate
-#: src/metadata.rs:409
+#: src/metadata.rs:408
 msgid "E"
 msgstr "Ш"
 
 #. Translators: short for "west" in GPS coordinate
-#: src/metadata.rs:413
+#: src/metadata.rs:412
 msgid "W"
 msgstr "Б"
 
-#: src/metadata.rs:493
+#: src/metadata.rs:492
 msgid "DCI P3"
 msgstr "DCI P3"
 
-#: src/metadata.rs:494
+#: src/metadata.rs:493
 msgid "Display P3"
 msgstr "Display P3"
 
-#: src/metadata.rs:495
+#: src/metadata.rs:494
 msgid "Rec.2020"
 msgstr "Rec.2020"
 
-#: src/metadata.rs:496
+#: src/metadata.rs:495
 msgid "sRGB"
 msgstr "sRGB"
 
-#: src/metadata.rs:497 src/metadata.rs:505
+#: src/metadata.rs:496 src/metadata.rs:504
 msgid "Unspecified"
 msgstr "Көрсетілмеген"
 
-#: src/metadata.rs:498 src/metadata.rs:507 src/metadata.rs:517
+#: src/metadata.rs:497 src/metadata.rs:506 src/metadata.rs:516
 #, rust-format
 msgid "Unknown ({})"
 msgstr "Белгісіз ({})"
 
-#: src/metadata.rs:504
+#: src/metadata.rs:503
 msgid "ICtCp"
 msgstr "ICtCp"
 
-#: src/metadata.rs:513
+#: src/metadata.rs:512
 msgid "DCI"
 msgstr "DCI"
 
-#: src/metadata.rs:514
+#: src/metadata.rs:513
 msgid "PQ"
 msgstr "PQ"
 
-#: src/metadata.rs:515
+#: src/metadata.rs:514
 msgid "Gamma 2.4"
 msgstr "Гамма 2.4"
 
 #. / Returns localized date + time format
-#. Translators: This is the date and time format we use in metadata output
-#. etc.
-#. The format has to follow
-#. <https://docs.gtk.org/glib/method.DateTime.format.html>
+#. Translators: This is the date and time format we use in metadata output etc.
+#. The format has to follow <https://docs.gtk.org/glib/method.DateTime.format.html>
 #. The default is already translated. Don't change if you are not sure what to
 #. use.
 #: src/util.rs:39
@@ -395,108 +474,99 @@ msgstr "Суретті қоқыс шелегінен қайтару сәтсіз
 msgid "Drop Image to View"
 msgstr "Көру үшін суретті тастаңыз"
 
-#: src/widgets/edit/crop.rs:363
-msgid "Failed to Edit Image"
-msgstr "Суретті түзету сәтсіз аяқталды"
+#: src/widgets/edit/adjust.rs:34 src/widgets/edit/adjust.ui:11
+#: src/widgets/edit/adjust.ui:43
+msgid "Brightness"
+msgstr ""
 
-#: src/widgets/edit/crop.ui:6
+#: src/widgets/edit/adjust.rs:35 src/widgets/edit/adjust.ui:72
+msgid "Contrast"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:36 src/widgets/edit/adjust.ui:101
+msgid "Highlights"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:37 src/widgets/edit/adjust.ui:130
+msgid "Shadows"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:38 src/widgets/edit/adjust.ui:159
+msgid "Saturation"
+msgstr ""
+
+#: src/widgets/edit/color_card.rs:204
+msgid "Hex Color"
+msgstr ""
+
+#: src/widgets/edit/crop.rs:41 src/widgets/edit/crop.ui:88
+#: src/widgets/edit/crop.ui:112
 msgid "Free"
 msgstr "Еркін"
 
-#: src/widgets/edit/crop.ui:11
+#: src/widgets/edit/crop.rs:42 src/widgets/edit/crop.ui:122
 msgid "Original"
 msgstr "Түпнұсқа"
 
-#: src/widgets/edit/crop.ui:16
+#: src/widgets/edit/crop.rs:43 src/widgets/edit/crop.ui:132
 msgid "Square"
 msgstr "Шаршы"
 
-#: src/widgets/edit/crop.ui:21
-msgid "5:4"
-msgstr "5:4"
+#: src/widgets/edit/crop.rs:842
+msgid "Failed to Edit Image"
+msgstr "Суретті түзету сәтсіз аяқталды"
 
-#: src/widgets/edit/crop.ui:26
-msgid "4:3"
-msgstr "4:3"
-
-#: src/widgets/edit/crop.ui:31
-msgid "3:2"
-msgstr "3:2"
-
-#: src/widgets/edit/crop.ui:36
-msgid "16:9"
-msgstr "16:9"
-
-#: src/widgets/edit/crop.ui:77 src/widgets/edit/crop.ui:364
+#: src/widgets/edit/crop.ui:83
 msgid "Aspect Ratio"
 msgstr "Жақтар арақатынасы"
 
-#: src/widgets/edit/crop.ui:91
-msgid "_Free"
-msgstr "_Еркін"
+#: src/widgets/edit/crop.ui:142
+msgid "5:4"
+msgstr "5:4"
 
-#: src/widgets/edit/crop.ui:109
-msgid "_Original"
-msgstr "_Түпнұсқа"
+#: src/widgets/edit/crop.ui:152
+msgid "4:3"
+msgstr "4:3"
 
-#: src/widgets/edit/crop.ui:127
-msgid "_Square"
-msgstr "_Шаршы"
+#: src/widgets/edit/crop.ui:162
+msgid "3:2"
+msgstr "3:2"
 
-#: src/widgets/edit/crop.ui:145
-msgid "_5:4"
-msgstr "_5:4"
+#: src/widgets/edit/crop.ui:172
+msgid "16:9"
+msgstr "16:9"
 
-#: src/widgets/edit/crop.ui:166
-msgid "_4:3"
-msgstr "_4:3"
-
-#: src/widgets/edit/crop.ui:187
-msgid "_3:2"
-msgstr "_3:2"
-
-#: src/widgets/edit/crop.ui:208
-msgid "_16:9"
-msgstr "_16:9"
-
-#: src/widgets/edit/crop.ui:231 src/widgets/edit/crop.ui:377
-msgid "Orientation Landscape"
+#: src/widgets/edit/crop.ui:188
+#, fuzzy
+#| msgid "Orientation Landscape"
+msgid "Landscape"
 msgstr "Альбомдық бағдар"
 
-#: src/widgets/edit/crop.ui:240 src/widgets/edit/crop.ui:389
-msgid "Orientation Portrait"
-msgstr "Кітаптық бағдар"
+#: src/widgets/edit/crop.ui:196
+msgid "Portrait"
+msgstr ""
 
-#: src/widgets/edit/crop.ui:252 src/widgets/image_page.ui:15
-#: src/widgets/image_window.ui:25
-msgid "Rotate"
-msgstr "Бұру"
-
-#: src/widgets/edit/crop.ui:261 src/widgets/edit/crop.ui:407
+#: src/widgets/edit/crop.ui:217
 msgid "Rotate Counter Clockwise"
 msgstr "Сағат тіліне қарсы бұру"
 
-#: src/widgets/edit/crop.ui:268
+#: src/widgets/edit/crop.ui:224
 msgid "Rotate Clockwise"
 msgstr "Сағат тілімен бұру"
 
-#: src/widgets/edit/crop.ui:278
-msgid "Flip"
-msgstr "Айналдыру"
-
-#: src/widgets/edit/crop.ui:287 src/widgets/edit/crop.ui:415
+#: src/widgets/edit/crop.ui:231
 msgid "Mirror Horizontally"
 msgstr "Горизонталды шағылыстыру"
 
-#: src/widgets/edit/crop.ui:294
-msgid "Mirror Vertically"
-msgstr "Вертикалды шағылыстыру"
+#: src/widgets/edit/crop.ui:238
+msgid "Resize"
+msgstr ""
 
-#: src/widgets/edit/crop.ui:306 src/widgets/edit/crop.ui:429
+#: src/widgets/edit/crop.ui:249
 msgid "_Reset"
 msgstr "Қа_лпына келтіру"
 
-#: src/widgets/edit/crop.ui:307 src/widgets/edit/crop.ui:431
+#: src/widgets/edit/crop.ui:251
 msgid "Undo Changes in this View"
 msgstr "Осы көріністегі өзгерістерді болдырмау"
 
@@ -504,47 +574,195 @@ msgstr "Осы көріністегі өзгерістерді болдырма�
 msgid "Crop Selection"
 msgstr "Таңдалғанды қиып алу"
 
+#: src/widgets/edit/markup.ui:27
+msgid "Choose a Color"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:59
+msgid "Blue"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:79
+msgid "Yellow"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:99
+#, fuzzy
+#| msgid "_Reload"
+msgid "Red"
+msgstr "Қ_айта жүктеу"
+
+#: src/widgets/edit/markup.ui:119
+msgid "Orange"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:139
+msgid "Green"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:171
+msgid "Outline"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:179
+msgid "Filled"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:196
+msgid "Thin"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:214 src/widgets/edit/markup.ui:294
+msgid "Medium"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:232
+msgid "Thick"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:250
+msgid "Very Thick"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:279
+msgid "Small"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:309
+msgid "Large"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:324
+msgid "Very Large"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:344
+msgid "Sans"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:359
+msgid "Serif"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:374
+msgid "Monospace"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:389
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Editing"
+msgid "Handwriting"
+msgstr "Түзету"
+
+#: src/widgets/edit/markup.ui:427
+msgid "Move, Resize and Rotate"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:435
+msgid "Paintbrush"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:443
+msgid "Highlighter"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:451
+msgid "Line"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:459
+msgid "Arrow"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:467
+msgid "Rectangle"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:475
+msgid "Circle"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:483
+msgid "Text"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:491
+msgid "Eraser"
+msgstr ""
+
+#: src/widgets/edit/resize_dialog.ui:4
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Rotate Image"
+msgid "Resize Image"
+msgstr "Суретті бұру"
+
+#: src/widgets/edit/resize_dialog.ui:15 src/widgets/edit_window.ui:101
+msgid "_Cancel"
+msgstr "Ба_с тарту"
+
+#: src/widgets/edit/resize_dialog.ui:22
+#, fuzzy
+#| msgid "_Reset"
+msgid "_Resize"
+msgstr "Қа_лпына келтіру"
+
+#: src/widgets/edit/resize_dialog.ui:50 src/widgets/print.rs:787
+msgid "_Width"
+msgstr "_Ені"
+
+#: src/widgets/edit/resize_dialog.ui:90
+#, fuzzy
+#| msgid "H_eight"
+msgid "_Height"
+msgstr "Б_иіктігі"
+
+#: src/widgets/edit/resize_dialog.ui:139
+msgid "Size in Percent"
+msgstr ""
+
 #. Translators: Filename suffix, {} is replaced by a number
-#: src/widgets/edit_window.rs:199
+#: src/widgets/edit_window.rs:368
 #, rust-format
 msgid " (Edited)"
 msgid_plural " (Edited {})"
 msgstr[0] " (Түзетілген)"
 msgstr[1] " (Түзетілген {})"
 
-#: src/widgets/edit_window.rs:283
+#: src/widgets/edit_window.rs:453
 msgid "Moving Original to Trash"
 msgstr "Бастапқыны қоқыс шелегіне жылжыту"
 
-#: src/widgets/edit_window.rs:297 src/widgets/edit_window.rs:326
+#: src/widgets/edit_window.rs:467 src/widgets/edit_window.rs:496
 msgid "Failed to save image."
 msgstr "Суретті сақтау сәтсіз аяқталды."
 
-#: src/widgets/edit_window.rs:306
+#: src/widgets/edit_window.rs:476
 msgid "Finalizing Save Operation"
 msgstr "Сақтау операциясын аяқтау"
 
-#: src/widgets/edit_window.rs:357
+#: src/widgets/edit_window.rs:531
 msgid "Editing Image"
 msgstr "Суретті түзету"
 
-#: src/widgets/edit_window.rs:374
+#: src/widgets/edit_window.rs:554 src/widgets/edit_window.rs:581
 msgid "Failed to edit image."
 msgstr "Суретті түзету сәтсіз аяқталды."
 
-#: src/widgets/edit_window.rs:381
+#: src/widgets/edit_window.rs:610
 msgid "Saving Image"
 msgstr "Суретті сақтау"
 
-#: src/widgets/edit_window.rs:400
+#: src/widgets/edit_window.rs:622
 msgid "Failed to Save Image"
 msgstr "Суретті сақтау сәтсіз аяқталды"
 
-#: src/widgets/edit_window.rs:515
+#: src/widgets/edit_window.rs:991
 msgid "Save Changes?"
 msgstr "Өзгерістерді сақтау керек пе?"
 
-#: src/widgets/edit_window.rs:517
+#: src/widgets/edit_window.rs:993
 msgid ""
 "There are unsaved image editing changes. Closing without saving will "
 "permanently lose these modifications."
@@ -552,40 +770,78 @@ msgstr ""
 "Суретті өңдеу бойынша сақталмаған өзгерістер бар. Сақтамай жабу бұл "
 "өзгертулердің толығымен жоғалуына әкеледі."
 
-#: src/widgets/edit_window.rs:521 src/widgets/image_window.rs:700
+#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:700
 msgid "Cancel"
 msgstr "Бас тарту"
 
-#: src/widgets/edit_window.rs:522
+#: src/widgets/edit_window.rs:998
 msgid "Discard"
 msgstr "Тастау"
 
-#: src/widgets/edit_window.rs:523
+#: src/widgets/edit_window.rs:999
 msgid "Save"
 msgstr "Сақтау"
 
-#: src/widgets/edit_window.ui:64
-msgid "_Cancel"
-msgstr "Ба_с тарту"
+#: src/widgets/edit_window.ui:33
+msgid "Hold to Show Original"
+msgstr ""
 
-#: src/widgets/edit_window.ui:71
+#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:636
+msgid "Undo"
+msgstr "Болдырмау"
+
+#: src/widgets/edit_window.ui:46
+msgid "Redo"
+msgstr ""
+
+#: src/widgets/edit_window.ui:120
+#, fuzzy
+#| msgid "Crop Tool"
+msgid "Crop"
+msgstr "Қиып жіберу сайманы"
+
+#: src/widgets/edit_window.ui:124
+msgid "Cr_op"
+msgstr ""
+
+#: src/widgets/edit_window.ui:133
+msgid "Adjust"
+msgstr ""
+
+#: src/widgets/edit_window.ui:137
+msgid "A_djust"
+msgstr ""
+
+#: src/widgets/edit_window.ui:146
+msgid "Markup"
+msgstr ""
+
+#: src/widgets/edit_window.ui:150
+msgid "_Markup"
+msgstr ""
+
+#: src/widgets/edit_window.ui:160
 msgid "_Save"
 msgstr "_Сақтау"
 
-#: src/widgets/edit_window.ui:92
-msgid "_Save As…"
+#: src/widgets/edit_window.ui:181
+#, fuzzy
+#| msgid "_Save As…"
+msgid "_Save a Copy…"
 msgstr "Қалайша _сақтау…"
 
-#: src/widgets/edit_window.ui:100
-msgid "Keep original and create a new file"
-msgstr "Түпнұсқасын сақтап, жаңа файл жасау"
+#: src/widgets/edit_window.ui:189
+msgid "Save changes and keep original."
+msgstr ""
 
-#: src/widgets/edit_window.ui:120
+#: src/widgets/edit_window.ui:209
 msgid "_Replace Original"
 msgstr "_Түпнұсқасын алмастыру"
 
-#: src/widgets/edit_window.ui:128
-msgid "Original image will be moved to the trash"
+#: src/widgets/edit_window.ui:217
+#, fuzzy
+#| msgid "Original image will be moved to the trash"
+msgid "Original image will be moved to the trash."
 msgstr "Түпнұсқа сурет себетке жылжытылады"
 
 #: src/widgets/error_details.rs:80
@@ -593,8 +849,8 @@ msgid ""
 "The following error occurred. If you think this is an issue with the "
 "program, please include this information when you report the error."
 msgstr ""
-"Келесі қате орын алды. Егер бұл бағдарлама қатесі деп ойласаңыз, қате "
-"туралы хабарлаған кезде осы ақпаратты қоса жіберіңіз."
+"Келесі қате орын алды. Егер бұл бағдарлама қатесі деп ойласаңыз, қате туралы "
+"хабарлаған кезде осы ақпаратты қоса жіберіңіз."
 
 #: src/widgets/error_details.ui:4
 msgid "Error Details"
@@ -651,8 +907,7 @@ msgid "Failed to load image file: {}"
 msgstr "Сурет файлын жүктеу сәтсіз аяқталды: {}"
 
 #: src/widgets/image_page.rs:272
-msgid ""
-"Either the image file is corrupted or it contains unsupported elements."
+msgid "Either the image file is corrupted or it contains unsupported elements."
 msgstr ""
 "Сурет файлы зақымдалған болуы мүмкін, немесе оның ішінде қолдау "
 "көрсетілмейтін элементтер бар."
@@ -665,11 +920,15 @@ msgstr "_Көмегімен ашу…"
 msgid "_Print…"
 msgstr "Бас_паға шығару…"
 
+#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:25
+msgid "Rotate"
+msgstr "Бұру"
+
 #: src/widgets/image_page.ui:26 src/widgets/image_window.ui:36
 msgid "_Set as Background…"
 msgstr "Фон ретінде ор_нату…"
 
-#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:40
+#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:44
 msgid "_Delete"
 msgstr "Ө_шіру"
 
@@ -689,21 +948,21 @@ msgstr "Көбірек _ақпарат"
 msgid "_Reload"
 msgstr "Қ_айта жүктеу"
 
-#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:101
+#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:105
 msgid "Rotate Left"
 msgstr "Солға бұру"
 
-#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:111
+#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:115
 msgid "Rotate Right"
 msgstr "Оңға бұру"
 
 #. Translators: This is a toast notification, informing the user that
 #. an image has been set as background.
-#: src/widgets/image_view.rs:866
+#: src/widgets/image_view.rs:870
 msgid "Set as background."
 msgstr "Фон ретінде орнату."
 
-#: src/widgets/image_view.rs:872
+#: src/widgets/image_view.rs:876
 msgid "Could not set background."
 msgstr "Фонды орнату мүмкін болмады."
 
@@ -759,10 +1018,6 @@ msgstr "Сурет алмасу буферіне көшірілді"
 msgid "Image moved to trash"
 msgstr "Сурет қоқыс шелегіне тасталды"
 
-#: src/widgets/image_window.rs:636
-msgid "Undo"
-msgstr "Болдырмау"
-
 #: src/widgets/image_window.rs:666
 msgid "Failed to move image to trash"
 msgstr "Суретті қоқыс шелегіне тастау сәтсіз аяқталды"
@@ -792,43 +1047,49 @@ msgstr "Жаңа тере_зе"
 msgid "_Open…"
 msgstr "_Ашу…"
 
-#: src/widgets/image_window.ui:46
+#: src/widgets/image_window.ui:40
+#, fuzzy
+#| msgid "_About Image Viewer"
+msgid "_Make Default Image Viewer"
+msgstr "Суреттерді көрсетуші тур_алы"
+
+#: src/widgets/image_window.ui:50
 msgid "_Help"
 msgstr "_Көмек"
 
-#: src/widgets/image_window.ui:50
+#: src/widgets/image_window.ui:54
 msgid "_Keyboard Shortcuts"
 msgstr "_Пернетақта жарлықтары"
 
-#: src/widgets/image_window.ui:54
-msgid "_About Image Viewer"
-msgstr "Суреттерді көрсетуші тур_алы"
+#: src/widgets/image_window.ui:58
+msgid "_About Glance"
+msgstr ""
 
-#: src/widgets/image_window.ui:87
+#: src/widgets/image_window.ui:91
 msgid "Toggle Fullscreen"
 msgstr "Толық экранға/одан шығу"
 
-#: src/widgets/image_window.ui:93
+#: src/widgets/image_window.ui:97
 msgid "Main Menu"
 msgstr "Басты мәзір"
 
-#: src/widgets/image_window.ui:125
+#: src/widgets/image_window.ui:129
 msgid "Image Properties"
 msgstr "Сурет қасиеттері"
 
-#: src/widgets/image_window.ui:132
+#: src/widgets/image_window.ui:136
 msgid "Edit Image"
 msgstr "Суретті түзету"
 
-#: src/widgets/image_window.ui:220
+#: src/widgets/image_window.ui:224
 msgid "View and Edit Images"
 msgstr "Суреттерді қарау және түзету"
 
-#: src/widgets/image_window.ui:221
+#: src/widgets/image_window.ui:225
 msgid "Drag and drop images here"
 msgstr "Суреттерді тартып әкеліп, осында тастаңыз"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:229
 msgid "_Open Files…"
 msgstr "Файлдарды а_шу…"
 
@@ -868,26 +1129,22 @@ msgid "px"
 msgstr "пикс"
 
 #. Translators: {} is a placeholder for the filename
-#: src/widgets/print.rs:366
+#: src/widgets/print.rs:365
 #, rust-format
 msgid "Print “{}”"
 msgstr "\"{}\" баспаға шығару"
 
-#: src/widgets/print.rs:473
+#: src/widgets/print.rs:472
 msgid "Continue…"
 msgstr "Жалғастыру…"
 
-#: src/widgets/print.rs:474
+#: src/widgets/print.rs:473
 msgid "Print Image"
 msgstr "Суретті басып шығару"
 
-#: src/widgets/print.rs:802
+#: src/widgets/print.rs:784
 msgid "_Scale"
 msgstr "Ма_сштаб"
-
-#: src/widgets/print.rs:805
-msgid "_Width"
-msgstr "_Ені"
 
 #. Translators: Go back to previous page
 #: src/widgets/print.ui:29
@@ -1120,35 +1377,6 @@ msgstr "ICC профилі"
 msgid "CICP"
 msgstr "CICP"
 
-#: src/widgets/window.rs:254
+#: src/widgets/window.rs:249
 msgid "Show Details"
 msgstr "Мәліметтерді көрсету"
-
-#~ msgid "Browse through your images and inspect their metadata with:"
-#~ msgstr ""
-#~ "Суреттеріңізді қарап шығу және олардың метадеректерін келесімен тексеру:"
-
-#~ msgid "Fast GPU accelerated image rendering"
-#~ msgstr "GPU арқылы үдетілген суреттерді жылдам қарау"
-
-#~ msgid "Tiled rendering for vector graphics"
-#~ msgstr "Векторлық графика үшін плиткалы рендеринг"
-
-#~ msgid "Extendable and sandboxed image decoding"
-#~ msgstr "Кеңейтілетін және суретті құмсалғышта декодтау"
-
-#~ msgid "Accessible presentation of the most important metadata."
-#~ msgstr "Ең маңызды метадеректердің қолжетімді көрсетілімі."
-
-#~ msgctxt "shortcut window"
-#~ msgid "Gestures"
-#~ msgstr "Ымдар"
-
-#~ msgid "Copy to Clipboard"
-#~ msgstr "Алмасу буферіне көшіру"
-
-#~ msgid "Move to Trash"
-#~ msgstr "Қоқыс шелегіне тастау"
-
-#~ msgid "The Loupe Team"
-#~ msgstr "Loupe әзірлеу тобы"

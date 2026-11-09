@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: loupe main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/loupe/-/issues\n"
-"POT-Creation-Date: 2023-08-21 16:23+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-09 00:39+0100\n"
 "PO-Revision-Date: 2023-09-02 08:40-0700\n"
 "Last-Translator: A S Alam <aalam@satluj.org>\n"
 "Language-Team: Punjabi <punjab-translation@googlegroups.com>\n"
@@ -19,594 +19,1440 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 23.04.3\n"
 
-#: data/gtk/image_page.ui:6 data/gtk/window.ui:16
-msgid "_Open With…"
-msgstr "…ਨਾਲ ਖੋਲ੍ਹੋ(_O)"
+#: data/io.github.Replexo.Glance.desktop.in.in:2
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:6
+#: src/widgets/image_window.rs:879
+#, fuzzy
+#| msgid "Cancel"
+msgid "Glance"
+msgstr "ਰੱਦ ਕਰੋ"
 
-#: data/gtk/image_page.ui:14 data/gtk/window.ui:24
-msgid "_Print…"
-msgstr "…ਪਰਿੰਟ ਕਰੋ(_P)"
-
-#: data/gtk/image_page.ui:18
-msgid "_Copy"
-msgstr "ਕਾਪੀ ਕਰੋ(_C)"
-
-#: data/gtk/image_page.ui:23 data/gtk/window.ui:29
-msgid "Rotate"
-msgstr "ਘੁੰਮਾਓ"
-
-#: data/gtk/image_page.ui:34 data/gtk/window.ui:40
-msgid "_Set as Background…"
-msgstr "…ਬੈਕਗਰਾਊਂਡ ਵਜੋਂ ਲਾਓ(_S)"
-
-#: data/gtk/image_page.ui:63
-msgid "Could not Load Image"
-msgstr "ਚਿੱਤਰ ਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ"
-
-#: data/gtk/image_page.ui:97 data/gtk/window.ui:129
-msgid "Rotate Left"
-msgstr "ਖੱਬੇ ਘੁੰਮਾਓ"
-
-#: data/gtk/image_page.ui:107 data/gtk/window.ui:139
-msgid "Rotate Right"
-msgstr "ਸੱਜੇ ਘੁੰਮਾਓ"
-
-#: data/gtk/image_view.ui:30
-msgid "Previous Image"
-msgstr "ਪਿਛਲਾ ਚਿੱਤਰ"
-
-#: data/gtk/image_view.ui:41
-msgid "Next Image"
-msgstr "ਅਗਲੀ ਚਿੱਤਰ"
-
-#: data/gtk/image_view.ui:66
-msgid "Zoom Out"
-msgstr "ਜ਼ੂਮ ਆਉਟ"
-
-#: data/gtk/image_view.ui:77
-msgid "Zoom In"
-msgstr "ਜ਼ੂਮ ਇਨ"
-
-#: data/gtk/image_view.ui:95
-msgid "Toggle Fullscreen"
-msgstr "ਪੂਰੀ ਸਕਰੀਨ ਬਦਲੋ"
-
-#. Translators: Go back to previous page
-#: data/gtk/print.ui:29
-msgid "Back"
-msgstr "ਪਿੱਛੇ"
-
-#: data/gtk/print.ui:36
-msgid "Print"
-msgstr "ਪਰਿੰਟ"
-
-#: data/gtk/print.ui:54
-msgid "Layout"
-msgstr "ਲੇਆਉਟ"
-
-#: data/gtk/print.ui:57
-msgid "Orientation"
-msgstr "ਸਥਿਤੀ"
-
-#: data/gtk/print.ui:69
-msgid "Portrait Page Orientation"
-msgstr "ਪੋਰਟਰੇਟ ਸਫ਼ਾ ਸਥਿਤੀ"
-
-#: data/gtk/print.ui:77
-msgid "Landscape Page Orientation"
-msgstr "ਲੈਂਡਸਕੇਪ ਸਫ਼ਾ ਸਥਿਤੀ"
-
-#: data/gtk/print.ui:86
-msgid "Alignment"
-msgstr "ਸਫ਼ਬੰਦੀ"
-
-#: data/gtk/print.ui:104
-msgid "Margins"
-msgstr "ਹਾਸ਼ੀਏ"
-
-#: data/gtk/print.ui:107
-msgid "Margin Units"
-msgstr "ਹਾਸ਼ੀਏ ਦੀਆਂ ਇਕਾਈਆਂ"
-
-#: data/gtk/print.ui:124
-msgid "Horizontal"
-msgstr "ਲੇਟਵਾਂ"
-
-#: data/gtk/print.ui:129
-msgid "Vertical"
-msgstr "ਖੜ੍ਹਵਾਂ"
-
-#: data/gtk/print.ui:136 data/gtk/properties_view.ui:58
-msgid "Image Size"
-msgstr "ਚਿੱਤਰ ਦਾ ਆਕਾਰ"
-
-#: data/gtk/print.ui:139
-msgid "Image Size Units"
-msgstr "ਚਿੱਤਰ ਦਾ ਆਕਾਰ ਦੀਆਂ ਇਕਾਈਆਂ"
-
-#: data/gtk/print.ui:157
-msgid "Fill Space"
-msgstr "ਥਾਂ ਭਰੋ"
-
-#: data/gtk/print.ui:162
-msgid "Width"
-msgstr "ਚੌੜਾਈ"
-
-#: data/gtk/print.ui:167
-msgid "Height"
-msgstr "ਉਚਾਈ"
-
-#: data/gtk/properties_view.ui:29
-msgid "Folder"
-msgstr "ਫੋਲਡਰ"
-
-#: data/gtk/properties_view.ui:41
-msgid "Open Containing Folder"
-msgstr "ਰੱਖਣ ਵਾਲਾ ਫੋਲਡਰ ਖੋਲ੍ਹੋ"
-
-#: data/gtk/properties_view.ui:74
-msgid "Image Format"
-msgstr "ਚਿੱਤਰ ਫਾਰਮੈਟ"
-
-#: data/gtk/properties_view.ui:88
-msgid "File Size"
-msgstr "ਫਾਇਲ ਦਾ ਆਕਾਰ"
-
-#: data/gtk/properties_view.ui:106
-msgid "File Created"
-msgstr "ਫ਼ਾਇਲ ਨੂੰ ਬਣਾਇਆ ਗਿਆ"
-
-#: data/gtk/properties_view.ui:120
-msgid "File Modified"
-msgstr "ਫ਼ਾਇਲ ਨੂੰ ਸੋਧਿਆ ਗਿਆ"
-
-#: data/gtk/properties_view.ui:143
-msgid "Location"
-msgstr "ਟਿਕਾਣਾ"
-
-#: data/gtk/properties_view.ui:162
-msgid "Open Location"
-msgstr "ਟਿਕਾਣਾ ਖੋਲ੍ਹੋ"
-
-#: data/gtk/properties_view.ui:175
-msgid "Originally Created"
-msgstr "ਅਸਲੀ ਬਣਾਇਆ"
-
-#: data/gtk/properties_view.ui:196
-msgid "Aperture"
-msgstr "ਅਪਰਚਰ"
-
-#: data/gtk/properties_view.ui:217
-msgid "Exposure"
-msgstr "ਐਕਸਪੋਜ਼ਰ"
-
-#: data/gtk/properties_view.ui:238
-msgid "ISO"
-msgstr "ISO"
-
-#: data/gtk/properties_view.ui:259
-msgid "Focal Length"
-msgstr "ਫੋਕਲ ਲੰਬਾਈ"
-
-#: data/gtk/properties_view.ui:280
-msgid "Maker, Model"
-msgstr "ਮੇਕਰ, ਮਾਡਲ"
-
-#: data/gtk/window.ui:6
-msgid "_New Window"
-msgstr "ਨਵੀਂ ਵਿੰਡੋ(_N)"
-
-#: data/gtk/window.ui:10
-msgid "_Open…"
-msgstr "…ਖੋਲ੍ਹੋ(_O)"
-
-#: data/gtk/window.ui:46
-msgid "_Help"
-msgstr "ਮਦਦ(_H)"
-
-#: data/gtk/window.ui:50
-msgid "_Keyboard Shortcuts"
-msgstr "ਕੀ-ਬੋਰਡ ਸ਼ਾਰਟਕੱਟ(_K)"
-
-#: data/gtk/window.ui:54
-msgid "_About Image Viewer"
-msgstr "ਚਿੱਤਰ ਦਰਸ਼ਕ ਬਾਰੇ(_A)"
-
-#. If the file exists, get display name
-#: data/gtk/window.ui:64 data/org.gnome.Loupe.desktop.in.in:3
-#: data/org.gnome.Loupe.metainfo.xml.in.in:6 src/about.rs:28 src/window.rs:879
-#: src/window.rs:885
+#: data/io.github.Replexo.Glance.desktop.in.in:3
 msgid "Image Viewer"
 msgstr "ਚਿੱਤਰ ਦਰਸ਼ਕ"
 
-#: data/gtk/window.ui:108
-msgid "Copy to Clipboard"
-msgstr "ਕਲਿੱਪਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਕਰੋ"
-
-#: data/gtk/window.ui:115
-msgid "Move to Trash"
-msgstr "ਰੱਦੀ ਵਿੱਚ ਭੇਜੋ"
-
-#: data/gtk/window.ui:121
-msgid "Main Menu"
-msgstr "ਮੁੱਖ ਮੇਨੂ"
-
-#: data/gtk/window.ui:153
-msgid "Image Properties"
-msgstr "ਚਿੱਤਰ ਦੀ ਵਿਸ਼ੇਸ਼ਤਾ"
-
-#: data/gtk/window.ui:195
-msgid "View Images"
+#: data/io.github.Replexo.Glance.desktop.in.in:4
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:10
+#, fuzzy
+#| msgid "View images"
+msgid "View and edit images"
 msgstr "ਚਿੱਤਰ ਵੇਖੋ"
 
-#: data/gtk/window.ui:196
-msgid "Drag and drop images here"
-msgstr "ਚਿੱਤਰ ਚੱਕ ਕੇ ਇੱਥੇ ਸੁੱਟੋ"
-
-#: data/gtk/window.ui:200
-msgid "_Open Files…"
-msgstr "…ਫ਼ਾਇਲਾਂ ਖੋਲ੍ਹੋ(_O)"
-
-#: data/org.gnome.Loupe.desktop.in.in:11
-msgid "Picture;Slideshow;Graphics;Loupe;"
+#: data/io.github.Replexo.Glance.desktop.in.in:12
+#, fuzzy
+#| msgid "Picture;Slideshow;Graphics;Loupe;"
+msgid "Picture;Graphics;Loupe;Glance;"
 msgstr "ਤਸਵੀਰ;ਚਿੱਤਰ;ਸਲਾਈਡ-ਸ਼ੋ;ਗਰਾਫ਼ਿਕਸ;ਲੂਪ;"
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:7 src/about.rs:31
-msgid "The Loupe Team"
-msgstr "ਲੂਪ ਟੀਮ"
+#: data/io.github.Replexo.Glance.gschema.xml.in:6
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Toggle Image Properties"
+msgid "Show the image properties sidebar"
+msgstr "ਚਿੱਤਰ ਦੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਬਦਲੋ"
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:8
-msgid "View images"
-msgstr "ਚਿੱਤਰ ਵੇਖੋ"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:12
+msgid ""
+"Glance is an image viewer with built-in editing. Browse your images, view "
+"their metadata, and make quick edits without opening a separate editor."
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:10
-msgid "Browse through your images and inspect their metadata with:"
-msgstr "ਆਪਣੇ ਚਿੱਤਰਾਂ ਦੀ ਝਲਕ ਵੇਖੋ ਅਤੇ ਉਹਨਾਂ ਦੇ ਮੇਟਾਡਾਟੇ ਦੀ ਜਾਂਚ ਇਸ ਨਾਲ ਕਰੋ:"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:14
+msgid ""
+"Mark up images with a brush, highlighter, lines, arrows, shapes and text"
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:12
-msgid "Fast GPU accelerated image rendering"
-msgstr "ਤੇਜ਼ GPU ਚਿੱਤਰ ਪੇਸ਼ਕਾਰੀ"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:15
+msgid "Adjust brightness, contrast, highlights, shadows and saturation"
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:13
-msgid "Tiled rendering for vector graphics"
-msgstr "ਵੈਕਟਰ ਗਰਾਫ਼ਿਕਸ ਲਈ ਟਾਈਲ ਦੇ ਰੂਪ ਵਿੱਚ ਪੇਸ਼ਕਾਰੀ"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:16
+msgid "Crop to an aspect ratio, rotate, flip and resize"
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:14
-#| msgid "Extendable and sandboxed raster image decoding"
-msgid "Extendable and sandboxed image decoding"
-msgstr "ਫ਼ੈਲਣਯੋਗ ਅਤੇ ਸੈਂਡਬਾਕਸ ਚਿੱਤਰ ਡੀਕੋਡਿੰਗ"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:17
+msgid "Undo and redo every edit, and save a copy or replace the original"
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:15
-msgid "Accessible presentation of the most important metadata."
-msgstr "ਸਭ ਤੋਂ ਜ਼ਰੂਰੀ ਮੇਟਾਡਾਟੇ ਲਈ ਸੁਲੱਭਤਾ ਪੇਸ਼ਕਾਰੀ।"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:19
+msgid "Glance is based on Loupe, the GNOME image viewer."
+msgstr ""
 
-#: data/resources/gtk/help-overlay.ui:11
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:28
+msgid "Marking up an image"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:32
+msgid "Adjusting colours"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:36
+msgid "Cropping"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:76
+msgid ""
+"First release of Glance, based on Loupe 51.1. It adds Markup, Adjust and "
+"Crop editing views, undo and redo, zoom in the editor, and keyboard "
+"shortcuts for the markup tools."
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:6
 msgctxt "shortcut window"
 msgid "General Shortcuts"
 msgstr "ਆਮ ਸ਼ਾਰਟਕੱਟ"
 
-#: data/resources/gtk/help-overlay.ui:14
+#: data/resources/shortcuts-dialog.ui:9
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Copy Image to Clipboard"
 msgctxt "shortcut window"
-msgid "Show Main Menu"
-msgstr "ਮੁੱਖ ਮੇਨੂ ਵੇਖਾਓ"
-
-#: data/resources/gtk/help-overlay.ui:20
-msgctxt "shortcut window"
-msgid "Copy Image to Clipboard"
+msgid "Copy Image or Selected Text to Clipboard"
 msgstr "ਚਿੱਤਰ ਕਲਿੱਪਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਕਰੋ"
 
-#: data/resources/gtk/help-overlay.ui:26
+#: data/resources/shortcuts-dialog.ui:15
 msgctxt "shortcut window"
 msgid "Move Image to Trash"
 msgstr "ਚਿੱਤਰ ਰੱਦੀ ਵਿੱਚ ਭੇਜੋ"
 
-#: data/resources/gtk/help-overlay.ui:32
+#: data/resources/shortcuts-dialog.ui:21
+#, fuzzy
+#| msgid "Permanently Delete Image?"
 msgctxt "shortcut window"
-msgid "Toggle Image Properties"
-msgstr "ਚਿੱਤਰ ਦੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਬਦਲੋ"
+msgid "Permanently Delete Image"
+msgstr "ਚਿੱਤਰ ਪੱਕੇ ਤੌਰ ਉੱਤੇ ਹਟਾਉਣਾ ਹੈ?"
 
-#: data/resources/gtk/help-overlay.ui:38
+#: data/resources/shortcuts-dialog.ui:27
+msgctxt "shortcut window"
+msgid "Open Image with Other App"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:33
 msgctxt "shortcut window"
 msgid "Set as Background"
 msgstr "ਬੈਕਗਰਾਊਂਡ ਵਜੋਂ ਲਾਓ"
 
-#: data/resources/gtk/help-overlay.ui:44
-msgctxt "shortcut window"
-msgid "Toggle Fullscreen"
-msgstr "ਪੂਰੀ ਸਕਰੀਨ ਬਦਲੋ"
-
-#: data/resources/gtk/help-overlay.ui:50
-msgctxt "shortcut window"
-msgid "Leave Fullscreen"
-msgstr "ਪੂਰੀ ਸਕਰੀਨ ਛੱਡੋ"
-
-#: data/resources/gtk/help-overlay.ui:56
+#: data/resources/shortcuts-dialog.ui:39
 msgctxt "shortcut window"
 msgid "New Window"
 msgstr "ਨਵੀਂ ਵਿੰਡੋ"
 
-#: data/resources/gtk/help-overlay.ui:62
+#: data/resources/shortcuts-dialog.ui:45
 msgctxt "shortcut window"
 msgid "Open Help"
 msgstr "ਮਦਦ ਖੋਲ੍ਹੋ"
 
-#: data/resources/gtk/help-overlay.ui:68
+#: data/resources/shortcuts-dialog.ui:51
 msgctxt "shortcut window"
 msgid "Show Keyboard Shortcuts"
 msgstr "ਕੀਬੋਰਡ ਸ਼ਾਰਟਕੱਟ ਵੇਖਾਓ"
 
-#: data/resources/gtk/help-overlay.ui:74
+#: data/resources/shortcuts-dialog.ui:57
 msgctxt "shortcut window"
 msgid "Close Window"
 msgstr "ਵਿੰਡੋ ਬੰਦ ਕਰੋ"
 
-#: data/resources/gtk/help-overlay.ui:80
+#: data/resources/shortcuts-dialog.ui:63
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "ਬਾਹਰ"
 
-#: data/resources/gtk/help-overlay.ui:88
+#: data/resources/shortcuts-dialog.ui:71
 msgctxt "shortcut window"
 msgid "Navigate Images"
 msgstr "ਚਿੱਤਰਾਂ ਵਿੱਚ ਵੇਖੋ"
 
-#: data/resources/gtk/help-overlay.ui:92 data/resources/gtk/help-overlay.ui:106
-#: data/resources/gtk/help-overlay.ui:218
-#: data/resources/gtk/help-overlay.ui:232
+#: data/resources/shortcuts-dialog.ui:75 data/resources/shortcuts-dialog.ui:89
 msgctxt "shortcut window"
 msgid "Next Image"
 msgstr "ਅਗਲੀ ਚਿੱਤਰ"
 
-#: data/resources/gtk/help-overlay.ui:99 data/resources/gtk/help-overlay.ui:113
-#: data/resources/gtk/help-overlay.ui:225
-#: data/resources/gtk/help-overlay.ui:239
+#: data/resources/shortcuts-dialog.ui:82 data/resources/shortcuts-dialog.ui:96
 msgctxt "shortcut window"
 msgid "Previous Image"
 msgstr "ਪਿਛਲਾ ਚਿੱਤਰ"
 
-#: data/resources/gtk/help-overlay.ui:119
+#: data/resources/shortcuts-dialog.ui:102
 msgctxt "shortcut window"
 msgid "First Image"
 msgstr "ਪਹਿਲਾਂ ਚਿੱਤਰ"
 
-#: data/resources/gtk/help-overlay.ui:125
+#: data/resources/shortcuts-dialog.ui:108
 msgctxt "shortcut window"
 msgid "Last Image"
 msgstr "ਆਖਰੀ ਚਿੱਤਰ"
 
-#: data/resources/gtk/help-overlay.ui:133
+#: data/resources/shortcuts-dialog.ui:116
 msgctxt "shortcut window"
 msgid "Rotate Image"
 msgstr "ਚਿੱਤਰ ਘੁੰਮਾਓ"
 
-#: data/resources/gtk/help-overlay.ui:136
-#: data/resources/gtk/help-overlay.ui:257
+#: data/resources/shortcuts-dialog.ui:119
+#: data/resources/shortcuts-dialog.ui:259
 msgctxt "shortcut window"
 msgid "Rotate Clockwise"
 msgstr "ਸੱਜੇ ਦਾਅ ਘੁੰਮਾਓ"
 
-#: data/resources/gtk/help-overlay.ui:142
-#: data/resources/gtk/help-overlay.ui:263
+#: data/resources/shortcuts-dialog.ui:125
+#: data/resources/shortcuts-dialog.ui:265
 msgctxt "shortcut window"
 msgid "Rotate Counterclockwise"
 msgstr "ਖੱਬੇ ਦਾਅ ਘੁੰਮਾਓ"
 
-#: data/resources/gtk/help-overlay.ui:150
+#: data/resources/shortcuts-dialog.ui:133
 msgctxt "shortcut window"
 msgid "Zoom Image"
 msgstr "ਚਿੱਤਰ ਨੂੰ ਜ਼ੂਮ ਕਰੋ"
 
-#: data/resources/gtk/help-overlay.ui:153
-#: data/resources/gtk/help-overlay.ui:245
+#: data/resources/shortcuts-dialog.ui:136
 msgctxt "shortcut window"
 msgid "Zoom In"
 msgstr "ਜ਼ੂਮ ਇਨ"
 
-#: data/resources/gtk/help-overlay.ui:159
-#: data/resources/gtk/help-overlay.ui:251
+#: data/resources/shortcuts-dialog.ui:142
 msgctxt "shortcut window"
 msgid "Zoom Out"
 msgstr "ਜ਼ੂਮ ਆਉਟ"
 
-#: data/resources/gtk/help-overlay.ui:165
+#: data/resources/shortcuts-dialog.ui:148
 msgctxt "shortcut window"
 msgid "Best Fit"
 msgstr "ਸਭ ਤੋਂ ਵਧੀਆ ਫ਼ਿੱਟ"
 
-#: data/resources/gtk/help-overlay.ui:171
+#: data/resources/shortcuts-dialog.ui:154
 msgctxt "shortcut window"
 msgid "Original Scale"
 msgstr "ਅਸਲ ਸਕੇਲ"
 
-#: data/resources/gtk/help-overlay.ui:177
+#: data/resources/shortcuts-dialog.ui:160
 msgctxt "shortcut window"
 msgid "200% Scale"
 msgstr "200% ਸਕੇਲ"
 
-#: data/resources/gtk/help-overlay.ui:185
+#: data/resources/shortcuts-dialog.ui:168
 msgctxt "shortcut window"
 msgid "Pan View"
 msgstr "ਪੈਨ ਝਲਕ"
 
-#: data/resources/gtk/help-overlay.ui:188
+#: data/resources/shortcuts-dialog.ui:171
 msgctxt "shortcut window"
 msgid "Pan Left"
 msgstr "ਪੈਨ ਖੱਬੇ"
 
-#: data/resources/gtk/help-overlay.ui:194
+#: data/resources/shortcuts-dialog.ui:177
 msgctxt "shortcut window"
 msgid "Pan Right"
 msgstr "ਪੈਨ ਸੱਜੇ"
 
-#: data/resources/gtk/help-overlay.ui:200
+#: data/resources/shortcuts-dialog.ui:183
 msgctxt "shortcut window"
 msgid "Pan Up"
 msgstr "ਪੈਨ ਉੱਤੇ"
 
-#: data/resources/gtk/help-overlay.ui:206
+#: data/resources/shortcuts-dialog.ui:189
 msgctxt "shortcut window"
 msgid "Pan Down"
 msgstr "ਪੈਨ ਹੇਠਾਂ"
 
-#: data/resources/gtk/help-overlay.ui:214
+#: data/resources/shortcuts-dialog.ui:197
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Pan View"
 msgctxt "shortcut window"
-msgid "Gestures"
-msgstr "ਜੈਸਚਰ"
+msgid "View"
+msgstr "ਪੈਨ ਝਲਕ"
+
+#: data/resources/shortcuts-dialog.ui:200
+msgctxt "shortcut window"
+msgid "Toggle Fullscreen"
+msgstr "ਪੂਰੀ ਸਕਰੀਨ ਬਦਲੋ"
+
+#: data/resources/shortcuts-dialog.ui:206
+msgctxt "shortcut window"
+msgid "Leave Fullscreen"
+msgstr "ਪੂਰੀ ਸਕਰੀਨ ਛੱਡੋ"
+
+#: data/resources/shortcuts-dialog.ui:212
+msgctxt "shortcut window"
+msgid "Toggle Image Properties"
+msgstr "ਚਿੱਤਰ ਦੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਬਦਲੋ"
+
+#: data/resources/shortcuts-dialog.ui:218
+msgctxt "shortcut window"
+msgid "Show Main Menu"
+msgstr "ਮੁੱਖ ਮੇਨੂ ਵੇਖਾਓ"
+
+#: data/resources/shortcuts-dialog.ui:226
+msgctxt "shortcut window"
+msgid "Editing"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:229
+msgctxt "shortcut window"
+msgid "Open Editing View"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:235
+msgctxt "shortcut window"
+msgid "Crop"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:241
+msgctxt "shortcut window"
+msgid "Replace Original"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:247
+msgctxt "shortcut window"
+msgid "Save As"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:253
+#, fuzzy
+#| msgid "Cancel"
+msgctxt "shortcut window"
+msgid "Cancel"
+msgstr "ਰੱਦ ਕਰੋ"
+
+#: data/resources/shortcuts-dialog.ui:271
+#, fuzzy
+#| msgid "Horizontal"
+msgctxt "shortcut window"
+msgid "Mirror Horizontally"
+msgstr "ਲੇਟਵਾਂ"
+
+#: data/resources/shortcuts-dialog.ui:277
+#, fuzzy
+#| msgid "Vertical"
+msgctxt "shortcut window"
+msgid "Mirror Vertically"
+msgstr "ਖੜ੍ਹਵਾਂ"
+
+#: data/resources/shortcuts-dialog.ui:283
+msgctxt "shortcut window"
+msgid "Apply Crop"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:291
+msgctxt "shortcut window"
+msgid "Markup"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:294
+msgctxt "shortcut window"
+msgid "Select, Move and Resize Markup"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:300
+msgctxt "shortcut window"
+msgid "Brush"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:306
+msgctxt "shortcut window"
+msgid "Line"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:312
+msgctxt "shortcut window"
+msgid "Arrow"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:318
+msgctxt "shortcut window"
+msgid "Rectangle"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:324
+msgctxt "shortcut window"
+msgid "Ellipse"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:330
+msgctxt "shortcut window"
+msgid "Text"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:336
+msgctxt "shortcut window"
+msgid "Eraser"
+msgstr ""
 
 #. Translators: Replace "translator-credits" with your names, one name per line
-#: src/about.rs:40
+#: src/about.rs:41
 msgid "translator-credits"
 msgstr ""
 "ਅ ਸ ਆਲਮ (A S Alam) ੨੦੨੩\n"
 "Punjabi Linux www.punlinux.org"
 
-#: src/about.rs:41
-msgid "Copyright © 2020–2023 Christopher Davis et al."
-msgstr "Copyright © 2020–2023 Christopher Davis et al."
+#: src/application.rs:178
+msgid "Glance is now the default image viewer"
+msgstr ""
 
-#: src/file_model.rs:126
+#: src/application.rs:187
+msgid "Could not make Glance the default image viewer"
+msgstr ""
+
+#: src/file_model.rs:211
 msgid "Could not list other files in directory."
 msgstr "ਡਾਇਰੈਕਟਰੀ ਵਿੱਚੋਂ ਹੋਰ ਫ਼ਾਇਲਾਂ ਦੀ ਸੂਚੀ ਨਹੀਂ ਬਣਾਈ ਜਾ ਸਕੀ।"
 
+#. Translators: Display of the f-number <https://en.wikipedia.org/wiki/F-number>. {} will be replaced with the number
+#: src/metadata.rs:270
+msgid "\\u{192}\\u{2215}{}"
+msgstr ""
+
+#. Translators: Fractional exposure time (photography) in seconds
+#: src/metadata.rs:283
+msgid "1\\u{2215}{}\\u{202F}s"
+msgstr "1\\u{2215}{}\\u{202F}s"
+
+#. Translators: Exposure time (photography) in seconds
+#: src/metadata.rs:291
+#, fuzzy
+#| msgid "{}\\u{202F}mm"
+msgid "{}\\u{202F}s"
+msgstr "{}\\u{202F}mm"
+
+#: src/metadata.rs:305
+msgid "{}\\u{202F}mm"
+msgstr "{}\\u{202F}mm"
+
 #. Translators: short for "north" in GPS coordinate
-#: src/image_metadata/gps.rs:153
+#: src/metadata.rs:395
 msgid "N"
 msgstr "ਉ"
 
 #. Translators: short for "south" in GPS coordinate
-#: src/image_metadata/gps.rs:156
+#: src/metadata.rs:399
 msgid "S"
 msgstr "ਦੱ"
 
 #. Translators: short for "east" in GPS coordinate
-#: src/image_metadata/gps.rs:166
+#: src/metadata.rs:408
 msgid "E"
 msgstr "ਪੂ"
 
 #. Translators: short for "west" in GPS coordinate
-#: src/image_metadata/gps.rs:169
+#: src/metadata.rs:412
 msgid "W"
 msgstr "ਪੱ"
 
-#. Translators: Unit for exposure time in seconds
-#: src/image_metadata/mod.rs:164
-msgid "1\\u{2215}{}\\u{202F}s"
-msgstr "1\\u{2215}{}\\u{202F}s"
+#: src/metadata.rs:492
+msgid "DCI P3"
+msgstr ""
 
-#. Translators: Unit for focal length in millimeters
-#: src/image_metadata/mod.rs:189
-msgid "{}\\u{202F}mm"
-msgstr "{}\\u{202F}mm"
+#: src/metadata.rs:493
+msgid "Display P3"
+msgstr ""
 
+#: src/metadata.rs:494
+msgid "Rec.2020"
+msgstr ""
+
+#: src/metadata.rs:495
+msgid "sRGB"
+msgstr ""
+
+#: src/metadata.rs:496 src/metadata.rs:504
+msgid "Unspecified"
+msgstr ""
+
+#: src/metadata.rs:497 src/metadata.rs:506 src/metadata.rs:516
+#, rust-format
+msgid "Unknown ({})"
+msgstr ""
+
+#: src/metadata.rs:503
+msgid "ICtCp"
+msgstr ""
+
+#: src/metadata.rs:512
+msgid "DCI"
+msgstr ""
+
+#: src/metadata.rs:513
+msgid "PQ"
+msgstr ""
+
+#: src/metadata.rs:514
+msgid "Gamma 2.4"
+msgstr ""
+
+#. / Returns localized date + time format
 #. Translators: This is the date and time format we use in metadata output etc.
 #. The format has to follow <https://docs.gtk.org/glib/method.DateTime.format.html>
-#. The default is already translated. Don't change if you are not sure what to use.
-#: src/util/mod.rs:36
-#, c-format
+#. The default is already translated. Don't change if you are not sure what to
+#. use.
+#: src/util.rs:39
 msgid "%x %X"
 msgstr "%x %X"
 
-#: src/util/mod.rs:179 src/window.rs:593
+#: src/util.rs:182
 msgid "Failed to restore image from trash"
 msgstr "ਚਿੱਤਰ ਨੂੰ ਰੱਦੀ ਵਿੱਚੋਂ ਬਹਾਲ ਕਰਨ ਲਈ ਅਸਫ਼ਲ ਹੈ"
 
-#: src/util/mod.rs:200
-msgid "Failed to open image"
+#: src/widgets/drag_overlay.ui:15
+#, fuzzy
+#| msgid "Image Viewer"
+msgid "Drop Image to View"
+msgstr "ਚਿੱਤਰ ਦਰਸ਼ਕ"
+
+#: src/widgets/edit/adjust.rs:34 src/widgets/edit/adjust.ui:11
+#: src/widgets/edit/adjust.ui:43
+msgid "Brightness"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:35 src/widgets/edit/adjust.ui:72
+msgid "Contrast"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:36 src/widgets/edit/adjust.ui:101
+#, fuzzy
+#| msgid "Height"
+msgid "Highlights"
+msgstr "ਉਚਾਈ"
+
+#: src/widgets/edit/adjust.rs:37 src/widgets/edit/adjust.ui:130
+msgid "Shadows"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:38 src/widgets/edit/adjust.ui:159
+msgid "Saturation"
+msgstr ""
+
+#: src/widgets/edit/color_card.rs:204
+msgid "Hex Color"
+msgstr ""
+
+#: src/widgets/edit/crop.rs:41 src/widgets/edit/crop.ui:88
+#: src/widgets/edit/crop.ui:112
+msgid "Free"
+msgstr ""
+
+#: src/widgets/edit/crop.rs:42 src/widgets/edit/crop.ui:122
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Original Scale"
+msgid "Original"
+msgstr "ਅਸਲ ਸਕੇਲ"
+
+#: src/widgets/edit/crop.rs:43 src/widgets/edit/crop.ui:132
+msgid "Square"
+msgstr ""
+
+#: src/widgets/edit/crop.rs:842
+#, fuzzy
+#| msgid "Failed to delete image"
+msgid "Failed to Edit Image"
+msgstr "ਚਿੱਤਰ ਹਟਾਉਣ ਲਈ ਅਸਫ਼ਲ ਹੈ"
+
+#: src/widgets/edit/crop.ui:83
+msgid "Aspect Ratio"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:142
+msgid "5:4"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:152
+msgid "4:3"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:162
+msgid "3:2"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:172
+msgid "16:9"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:188
+msgid "Landscape"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:196
+msgid "Portrait"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:217
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Rotate Counterclockwise"
+msgid "Rotate Counter Clockwise"
+msgstr "ਖੱਬੇ ਦਾਅ ਘੁੰਮਾਓ"
+
+#: src/widgets/edit/crop.ui:224
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Rotate Clockwise"
+msgid "Rotate Clockwise"
+msgstr "ਸੱਜੇ ਦਾਅ ਘੁੰਮਾਓ"
+
+#: src/widgets/edit/crop.ui:231
+#, fuzzy
+#| msgid "Horizontal"
+msgid "Mirror Horizontally"
+msgstr "ਲੇਟਵਾਂ"
+
+#: src/widgets/edit/crop.ui:238
+msgid "Resize"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:249
+msgid "_Reset"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:251
+msgid "Undo Changes in this View"
+msgstr ""
+
+#: src/widgets/edit/crop_selection.ui:46
+msgid "Crop Selection"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:27
+msgid "Choose a Color"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:59
+msgid "Blue"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:79
+msgid "Yellow"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:99
+msgid "Red"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:119
+msgid "Orange"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:139
+msgid "Green"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:171
+msgid "Outline"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:179
+#, fuzzy
+#| msgid "Fill Space"
+msgid "Filled"
+msgstr "ਥਾਂ ਭਰੋ"
+
+#: src/widgets/edit/markup.ui:196
+msgid "Thin"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:214 src/widgets/edit/markup.ui:294
+msgid "Medium"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:232
+msgid "Thick"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:250
+msgid "Very Thick"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:279
+msgid "Small"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:309
+msgid "Large"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:324
+msgid "Very Large"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:344
+msgid "Sans"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:359
+msgid "Serif"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:374
+msgid "Monospace"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:389
+msgid "Handwriting"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:427
+msgid "Move, Resize and Rotate"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:435
+msgid "Paintbrush"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:443
+msgid "Highlighter"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:451
+msgid "Line"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:459
+msgid "Arrow"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:467
+msgid "Rectangle"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:475
+msgid "Circle"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:483
+msgid "Text"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:491
+msgid "Eraser"
+msgstr ""
+
+#: src/widgets/edit/resize_dialog.ui:4
+#, fuzzy
+#| msgid "View Images"
+msgid "Resize Image"
+msgstr "ਚਿੱਤਰ ਵੇਖੋ"
+
+#: src/widgets/edit/resize_dialog.ui:15 src/widgets/edit_window.ui:101
+#, fuzzy
+#| msgid "Cancel"
+msgid "_Cancel"
+msgstr "ਰੱਦ ਕਰੋ"
+
+#: src/widgets/edit/resize_dialog.ui:22
+msgid "_Resize"
+msgstr ""
+
+#: src/widgets/edit/resize_dialog.ui:50 src/widgets/print.rs:787
+#, fuzzy
+#| msgid "Width"
+msgid "_Width"
+msgstr "ਚੌੜਾਈ"
+
+#: src/widgets/edit/resize_dialog.ui:90
+#, fuzzy
+#| msgid "Height"
+msgid "_Height"
+msgstr "ਉਚਾਈ"
+
+#: src/widgets/edit/resize_dialog.ui:139
+msgid "Size in Percent"
+msgstr ""
+
+#. Translators: Filename suffix, {} is replaced by a number
+#: src/widgets/edit_window.rs:368
+#, rust-format
+msgid " (Edited)"
+msgid_plural " (Edited {})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/widgets/edit_window.rs:453
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Move Image to Trash"
+msgid "Moving Original to Trash"
+msgstr "ਚਿੱਤਰ ਰੱਦੀ ਵਿੱਚ ਭੇਜੋ"
+
+#: src/widgets/edit_window.rs:467 src/widgets/edit_window.rs:496
+#, fuzzy
+#| msgid "Failed to open image"
+msgid "Failed to save image."
 msgstr "ਚਿੱਤਰ ਖੋਲ੍ਹਣ ਲਈ ਅਸਫ਼ਲ ਹੈ"
 
-#. Translators: This is a toast notification, informing the user that an image has been set as background.
-#: src/widgets/image_view.rs:666
+#: src/widgets/edit_window.rs:476
+msgid "Finalizing Save Operation"
+msgstr ""
+
+#: src/widgets/edit_window.rs:531
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "First Image"
+msgid "Editing Image"
+msgstr "ਪਹਿਲਾਂ ਚਿੱਤਰ"
+
+#: src/widgets/edit_window.rs:554 src/widgets/edit_window.rs:581
+#, fuzzy
+#| msgid "Failed to delete image"
+msgid "Failed to edit image."
+msgstr "ਚਿੱਤਰ ਹਟਾਉਣ ਲਈ ਅਸਫ਼ਲ ਹੈ"
+
+#: src/widgets/edit_window.rs:610
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Navigate Images"
+msgid "Saving Image"
+msgstr "ਚਿੱਤਰਾਂ ਵਿੱਚ ਵੇਖੋ"
+
+#: src/widgets/edit_window.rs:622
+#, fuzzy
+#| msgid "Failed to open image"
+msgid "Failed to Save Image"
+msgstr "ਚਿੱਤਰ ਖੋਲ੍ਹਣ ਲਈ ਅਸਫ਼ਲ ਹੈ"
+
+#: src/widgets/edit_window.rs:991
+msgid "Save Changes?"
+msgstr ""
+
+#: src/widgets/edit_window.rs:993
+msgid ""
+"There are unsaved image editing changes. Closing without saving will "
+"permanently lose these modifications."
+msgstr ""
+
+#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:700
+msgid "Cancel"
+msgstr "ਰੱਦ ਕਰੋ"
+
+#: src/widgets/edit_window.rs:998
+msgid "Discard"
+msgstr ""
+
+#: src/widgets/edit_window.rs:999
+msgid "Save"
+msgstr ""
+
+#: src/widgets/edit_window.ui:33
+msgid "Hold to Show Original"
+msgstr ""
+
+#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:636
+msgid "Undo"
+msgstr "ਵਾਪਿਸ"
+
+#: src/widgets/edit_window.ui:46
+msgid "Redo"
+msgstr ""
+
+#: src/widgets/edit_window.ui:120
+msgid "Crop"
+msgstr ""
+
+#: src/widgets/edit_window.ui:124
+msgid "Cr_op"
+msgstr ""
+
+#: src/widgets/edit_window.ui:133
+msgid "Adjust"
+msgstr ""
+
+#: src/widgets/edit_window.ui:137
+msgid "A_djust"
+msgstr ""
+
+#: src/widgets/edit_window.ui:146
+msgid "Markup"
+msgstr ""
+
+#: src/widgets/edit_window.ui:150
+msgid "_Markup"
+msgstr ""
+
+#: src/widgets/edit_window.ui:160
+msgid "_Save"
+msgstr ""
+
+#: src/widgets/edit_window.ui:181
+msgid "_Save a Copy…"
+msgstr ""
+
+#: src/widgets/edit_window.ui:189
+msgid "Save changes and keep original."
+msgstr ""
+
+#: src/widgets/edit_window.ui:209
+msgid "_Replace Original"
+msgstr ""
+
+#: src/widgets/edit_window.ui:217
+#, fuzzy
+#| msgid "Image moved to trash"
+msgid "Original image will be moved to the trash."
+msgstr "ਚਿੱਤਰ ਨੂੰ ਰੱਦੀ ਵਿੱਚ ਭੇਜਿਆ"
+
+#: src/widgets/error_details.rs:80
+msgid ""
+"The following error occurred. If you think this is an issue with the "
+"program, please include this information when you report the error."
+msgstr ""
+
+#: src/widgets/error_details.ui:4
+msgid "Error Details"
+msgstr ""
+
+#: src/widgets/error_details.ui:19
+msgid ""
+"The image loader reported the following when trying to load or edit the "
+"image. Please include this information when you report an error. If "
+"possible, please also provide the image that causes the issue."
+msgstr ""
+
+#: src/widgets/error_details.ui:24
+msgid "Error Message"
+msgstr ""
+
+#: src/widgets/error_details.ui:28
+msgid "Copy Error Message"
+msgstr ""
+
+#: src/widgets/error_details.ui:68
+msgid "Report _Issue"
+msgstr ""
+
+#: src/widgets/image_page.rs:225
+#, rust-format
+msgid ""
+"No image loaders available. Maybe the “glycin-loaders” package with "
+"compatibility version “{}” is not installed."
+msgstr ""
+
+#: src/widgets/image_page.rs:243
+#, rust-format
+msgid "The image format “{} ({})” is known but not installed."
+msgstr ""
+
+#: src/widgets/image_page.rs:251
+#, rust-format
+msgid "Unknown image format “{} ({}).”"
+msgstr ""
+
+#: src/widgets/image_page.rs:260
+msgid "There is not enough free memory available to load this image."
+msgstr ""
+
+#: src/widgets/image_page.rs:267
+#, fuzzy, rust-format
+#| msgid "Failed to open image"
+msgid "Failed to load image file: {}"
+msgstr "ਚਿੱਤਰ ਖੋਲ੍ਹਣ ਲਈ ਅਸਫ਼ਲ ਹੈ"
+
+#: src/widgets/image_page.rs:272
+msgid "Either the image file is corrupted or it contains unsupported elements."
+msgstr ""
+
+#: src/widgets/image_page.ui:6 src/widgets/image_window.ui:16
+msgid "_Open With…"
+msgstr "…ਨਾਲ ਖੋਲ੍ਹੋ(_O)"
+
+#: src/widgets/image_page.ui:10 src/widgets/image_window.ui:20
+msgid "_Print…"
+msgstr "…ਪਰਿੰਟ ਕਰੋ(_P)"
+
+#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:25
+msgid "Rotate"
+msgstr "ਘੁੰਮਾਓ"
+
+#: src/widgets/image_page.ui:26 src/widgets/image_window.ui:36
+msgid "_Set as Background…"
+msgstr "…ਬੈਕਗਰਾਊਂਡ ਵਜੋਂ ਲਾਓ(_S)"
+
+#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:44
+#, fuzzy
+#| msgid "Delete"
+msgid "_Delete"
+msgstr "ਹਟਾਓ"
+
+#: src/widgets/image_page.ui:34
+msgid "_Copy"
+msgstr "ਕਾਪੀ ਕਰੋ(_C)"
+
+#: src/widgets/image_page.ui:63
+msgid "Could not Load Image"
+msgstr "ਚਿੱਤਰ ਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ"
+
+#: src/widgets/image_page.ui:71
+msgid "More _Information"
+msgstr ""
+
+#: src/widgets/image_page.ui:81
+msgid "_Reload"
+msgstr ""
+
+#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:105
+msgid "Rotate Left"
+msgstr "ਖੱਬੇ ਘੁੰਮਾਓ"
+
+#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:115
+msgid "Rotate Right"
+msgstr "ਸੱਜੇ ਘੁੰਮਾਓ"
+
+#. Translators: This is a toast notification, informing the user that
+#. an image has been set as background.
+#: src/widgets/image_view.rs:870
 msgid "Set as background."
 msgstr "ਬੈਕਗਰਾਊਂਡ ਵਜੋਂ ਲਾਓ।"
 
-#: src/widgets/image_view.rs:679
+#: src/widgets/image_view.rs:876
 msgid "Could not set background."
 msgstr "ਬੈਕਗਰਾਊਡ ਵਜੋਂ ਲਾਇਆ ਨਹੀਂ ਜਾ ਸਕਿਆ।"
 
-#: src/widgets/print.rs:108
+#: src/widgets/image_view.ui:26
+msgid "Previous Image"
+msgstr "ਪਿਛਲਾ ਚਿੱਤਰ"
+
+#: src/widgets/image_view.ui:36
+msgid "Next Image"
+msgstr "ਅਗਲੀ ਚਿੱਤਰ"
+
+#: src/widgets/image_view.ui:66
+msgid "Zoom Out"
+msgstr "ਜ਼ੂਮ ਆਉਟ"
+
+#: src/widgets/image_view.ui:77
+msgid "Zoom In"
+msgstr "ਜ਼ੂਮ ਇਨ"
+
+#: src/widgets/image_view.ui:92
+msgid "Toggle Zoom"
+msgstr ""
+
+#: src/widgets/image_view.ui:100
+msgid "Zoom to Specific Level"
+msgstr ""
+
+#: src/widgets/image_view.ui:229
+msgid "Custom Zoom Level"
+msgstr ""
+
+#: src/widgets/image_view.ui:235
+msgid "Zoom to Specified Level"
+msgstr ""
+
+#: src/widgets/image_window.rs:509
+msgid "Supported image formats"
+msgstr "ਸਹਾਇਕ ਚਿੱਤਰ ਫ਼ਾਰਮੈਟ"
+
+#: src/widgets/image_window.rs:515
+msgid "All files"
+msgstr "ਸਭ ਫਾਇਲਾਂ"
+
+#: src/widgets/image_window.rs:522
+msgid "Open Image"
+msgstr "ਚਿੱਤਰ ਖੋਲ੍ਹੋ"
+
+#: src/widgets/image_window.rs:614
+msgid "Image copied to clipboard"
+msgstr "ਚਿੱਤਰ ਕਲਿੱਪਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਕੀਤਾ"
+
+#: src/widgets/image_window.rs:635
+msgid "Image moved to trash"
+msgstr "ਚਿੱਤਰ ਨੂੰ ਰੱਦੀ ਵਿੱਚ ਭੇਜਿਆ"
+
+#: src/widgets/image_window.rs:666
+msgid "Failed to move image to trash"
+msgstr "ਚਿੱਤਰ ਰੱਦੀ ਵਿੱਚ ਭੇਜਣ ਲਈ ਅਸਫ਼ਲ"
+
+#: src/widgets/image_window.rs:690
+msgid "Permanently Delete Image?"
+msgstr "ਚਿੱਤਰ ਪੱਕੇ ਤੌਰ ਉੱਤੇ ਹਟਾਉਣਾ ਹੈ?"
+
+#: src/widgets/image_window.rs:692
+#, fuzzy, rust-format
+#| msgid "The image “{}” can only be deleted permanently."
+msgid "After deleting the image “{}” it will be permanently lost."
+msgstr "ਚਿੱਤਰ “{}” ਨੂੰ ਸਿਰਫ਼ ਪੱਕੇ ਤੌਰ ਉੱਤੇ ਹੀ ਹਟਾਇਆ ਜਾ ਸਕਦਾ ਹੈ।"
+
+#: src/widgets/image_window.rs:701
+msgid "Delete"
+msgstr "ਹਟਾਓ"
+
+#: src/widgets/image_window.rs:712
+msgid "Failed to delete image"
+msgstr "ਚਿੱਤਰ ਹਟਾਉਣ ਲਈ ਅਸਫ਼ਲ ਹੈ"
+
+#: src/widgets/image_window.ui:6
+msgid "_New Window"
+msgstr "ਨਵੀਂ ਵਿੰਡੋ(_N)"
+
+#: src/widgets/image_window.ui:10
+msgid "_Open…"
+msgstr "…ਖੋਲ੍ਹੋ(_O)"
+
+#: src/widgets/image_window.ui:40
+#, fuzzy
+#| msgid "_About Image Viewer"
+msgid "_Make Default Image Viewer"
+msgstr "ਚਿੱਤਰ ਦਰਸ਼ਕ ਬਾਰੇ(_A)"
+
+#: src/widgets/image_window.ui:50
+msgid "_Help"
+msgstr "ਮਦਦ(_H)"
+
+#: src/widgets/image_window.ui:54
+msgid "_Keyboard Shortcuts"
+msgstr "ਕੀ-ਬੋਰਡ ਸ਼ਾਰਟਕੱਟ(_K)"
+
+#: src/widgets/image_window.ui:58
+msgid "_About Glance"
+msgstr ""
+
+#: src/widgets/image_window.ui:91
+msgid "Toggle Fullscreen"
+msgstr "ਪੂਰੀ ਸਕਰੀਨ ਬਦਲੋ"
+
+#: src/widgets/image_window.ui:97
+msgid "Main Menu"
+msgstr "ਮੁੱਖ ਮੇਨੂ"
+
+#: src/widgets/image_window.ui:129
+msgid "Image Properties"
+msgstr "ਚਿੱਤਰ ਦੀ ਵਿਸ਼ੇਸ਼ਤਾ"
+
+#: src/widgets/image_window.ui:136
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "First Image"
+msgid "Edit Image"
+msgstr "ਪਹਿਲਾਂ ਚਿੱਤਰ"
+
+#: src/widgets/image_window.ui:224
+#, fuzzy
+#| msgid "View Images"
+msgid "View and Edit Images"
+msgstr "ਚਿੱਤਰ ਵੇਖੋ"
+
+#: src/widgets/image_window.ui:225
+msgid "Drag and drop images here"
+msgstr "ਚਿੱਤਰ ਚੱਕ ਕੇ ਇੱਥੇ ਸੁੱਟੋ"
+
+#: src/widgets/image_window.ui:229
+msgid "_Open Files…"
+msgstr "…ਫ਼ਾਇਲਾਂ ਖੋਲ੍ਹੋ(_O)"
+
+#: src/widgets/print.rs:109
 msgid "Top"
 msgstr "ਉੱਤੇ"
 
-#: src/widgets/print.rs:109
+#: src/widgets/print.rs:110
 msgid "Center"
 msgstr "ਸੈਂਟਰ"
 
-#: src/widgets/print.rs:110
+#: src/widgets/print.rs:111
 msgid "Bottom"
 msgstr "ਹੇਠਾਂ"
 
-#: src/widgets/print.rs:111
+#: src/widgets/print.rs:112
 msgid "Left"
 msgstr "ਖੱਬੇ"
 
-#: src/widgets/print.rs:112
+#: src/widgets/print.rs:113
 msgid "Right"
 msgstr "ਸੱਜੇ"
 
 #. Translators: Shorthand for centimeter
-#: src/widgets/print.rs:148
+#: src/widgets/print.rs:149
 msgid "cm"
 msgstr "cm"
 
 #. Translators: Shorthand for inch
-#: src/widgets/print.rs:150
+#: src/widgets/print.rs:151
 msgid "in"
 msgstr "in"
 
 #. Translators: Shorthand for pixel
-#: src/widgets/print.rs:152
+#: src/widgets/print.rs:153
 msgid "px"
 msgstr "px"
 
 #. Translators: {} is a placeholder for the filename
-#: src/widgets/print.rs:355
+#: src/widgets/print.rs:365
+#, rust-format
 msgid "Print “{}”"
 msgstr "“{}” ਪਰਿੰਟ ਕਰੋ"
 
-#: src/window.rs:479
-msgid "Supported image formats"
-msgstr "ਸਹਾਇਕ ਚਿੱਤਰ ਫ਼ਾਰਮੈਟ"
+#: src/widgets/print.rs:472
+msgid "Continue…"
+msgstr ""
 
-#: src/window.rs:488
-msgid "All files"
-msgstr "ਸਭ ਫਾਇਲਾਂ"
+#: src/widgets/print.rs:473
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "First Image"
+msgid "Print Image"
+msgstr "ਪਹਿਲਾਂ ਚਿੱਤਰ"
 
-#: src/window.rs:495
-msgid "Open Image"
-msgstr "ਚਿੱਤਰ ਖੋਲ੍ਹੋ"
+#: src/widgets/print.rs:784
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "200% Scale"
+msgid "_Scale"
+msgstr "200% ਸਕੇਲ"
 
-#: src/window.rs:559
-msgid "Image copied to clipboard"
-msgstr "ਚਿੱਤਰ ਕਲਿੱਪਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਕੀਤਾ"
+#. Translators: Go back to previous page
+#: src/widgets/print.ui:29
+#, fuzzy
+#| msgid "Back"
+msgid "_Back"
+msgstr "ਪਿੱਛੇ"
 
-#: src/window.rs:580
-msgid "Image moved to trash"
-msgstr "ਚਿੱਤਰ ਨੂੰ ਰੱਦੀ ਵਿੱਚ ਭੇਜਿਆ"
+#: src/widgets/print.ui:37
+#, fuzzy
+#| msgid "Print"
+msgid "_Print"
+msgstr "ਪਰਿੰਟ"
 
-#: src/window.rs:581
-msgid "Undo"
-msgstr "ਵਾਪਿਸ"
+#: src/widgets/print.ui:56
+msgid "Layout"
+msgstr "ਲੇਆਉਟ"
 
-#: src/window.rs:608
-msgid "Failed to move image to trash"
-msgstr "ਚਿੱਤਰ ਰੱਦੀ ਵਿੱਚ ਭੇਜਣ ਲਈ ਅਸਫ਼ਲ"
+#: src/widgets/print.ui:59
+#, fuzzy
+#| msgid "Orientation"
+msgid "_Orientation"
+msgstr "ਸਥਿਤੀ"
 
-#: src/window.rs:623
-msgid "Permanently Delete Image?"
-msgstr "ਚਿੱਤਰ ਪੱਕੇ ਤੌਰ ਉੱਤੇ ਹਟਾਉਣਾ ਹੈ?"
+#: src/widgets/print.ui:72
+msgid "Portrait Page Orientation"
+msgstr "ਪੋਰਟਰੇਟ ਸਫ਼ਾ ਸਥਿਤੀ"
 
-#: src/window.rs:625
-msgid "The image “{}” can only be deleted permanently."
-msgstr "ਚਿੱਤਰ “{}” ਨੂੰ ਸਿਰਫ਼ ਪੱਕੇ ਤੌਰ ਉੱਤੇ ਹੀ ਹਟਾਇਆ ਜਾ ਸਕਦਾ ਹੈ।"
+#: src/widgets/print.ui:80
+msgid "Landscape Page Orientation"
+msgstr "ਲੈਂਡਸਕੇਪ ਸਫ਼ਾ ਸਥਿਤੀ"
 
-#: src/window.rs:633
-msgid "Cancel"
-msgstr "ਰੱਦ ਕਰੋ"
+#: src/widgets/print.ui:89
+#, fuzzy
+#| msgid "Alignment"
+msgid "_Alignment"
+msgstr "ਸਫ਼ਬੰਦੀ"
 
-#: src/window.rs:634
-msgid "Delete"
-msgstr "ਹਟਾਓ"
+#: src/widgets/print.ui:108
+msgid "Margins"
+msgstr "ਹਾਸ਼ੀਏ"
 
-#: src/window.rs:645
-msgid "Failed to delete image"
-msgstr "ਚਿੱਤਰ ਹਟਾਉਣ ਲਈ ਅਸਫ਼ਲ ਹੈ"
+#: src/widgets/print.ui:111
+msgid "Margin Units"
+msgstr "ਹਾਸ਼ੀਏ ਦੀਆਂ ਇਕਾਈਆਂ"
+
+#: src/widgets/print.ui:128
+#, fuzzy
+#| msgid "Horizontal"
+msgid "_Horizontal"
+msgstr "ਲੇਟਵਾਂ"
+
+#: src/widgets/print.ui:134
+#, fuzzy
+#| msgid "Vertical"
+msgid "_Vertical"
+msgstr "ਖੜ੍ਹਵਾਂ"
+
+#: src/widgets/print.ui:142 src/widgets/properties_view.ui:56
+msgid "Image Size"
+msgstr "ਚਿੱਤਰ ਦਾ ਆਕਾਰ"
+
+#: src/widgets/print.ui:145
+msgid "Image Size Units"
+msgstr "ਚਿੱਤਰ ਦਾ ਆਕਾਰ ਦੀਆਂ ਇਕਾਈਆਂ"
+
+#: src/widgets/print.ui:163
+#, fuzzy
+#| msgid "Fill Space"
+msgid "_Fill Space"
+msgstr "ਥਾਂ ਭਰੋ"
+
+#: src/widgets/print.ui:174
+#, fuzzy
+#| msgid "Height"
+msgid "H_eight"
+msgstr "ਉਚਾਈ"
+
+#: src/widgets/properties_view.rs:284
+msgid "Unknown"
+msgstr ""
+
+#. Translators: Addition of image being transparent to format name
+#: src/widgets/properties_view.rs:288
+msgid ", transparent"
+msgstr ""
+
+#. Translators: Addition of image being grayscale to format name
+#: src/widgets/properties_view.rs:293
+msgid ", grayscale"
+msgstr ""
+
+#. Translators: Addition of bit size to format name
+#: src/widgets/properties_view.rs:298
+#, fuzzy
+#| msgid "{}\\u{202F}mm"
+msgid ", {}\\u{202F}bit"
+msgstr "{}\\u{202F}mm"
+
+#: src/widgets/properties_view.rs:315
+#, fuzzy
+#| msgid "1\\u{2215}{}\\u{202F}s"
+msgid "{}\\u{202F}\\u{D7}\\u{202F}{}"
+msgstr "1\\u{2215}{}\\u{202F}s"
+
+#. Translators: Shorthand for centimeter
+#: src/widgets/properties_view.rs:354
+msgid " cm"
+msgstr ""
+
+#. Translators: Shorthand for inch
+#: src/widgets/properties_view.rs:358
+msgid "″"
+msgstr ""
+
+#. Translators: Shorthand for meter
+#: src/widgets/properties_view.rs:362
+msgid " m"
+msgstr ""
+
+#. Translators: Shorthand for millimeter
+#: src/widgets/properties_view.rs:366
+msgid " mm"
+msgstr ""
+
+#. Translators: Shorthand for pica (unit)
+#: src/widgets/properties_view.rs:370
+msgid " pc"
+msgstr ""
+
+#. Translators: Shorthand for pica (unit)
+#: src/widgets/properties_view.rs:374
+msgid " pt"
+msgstr ""
+
+#: src/widgets/properties_view.rs:386
+#, fuzzy
+#| msgid "1\\u{2215}{}\\u{202F}s"
+msgid "{}{}\\u{202F}\\u{D7}\\u{202F}{}{}"
+msgstr "1\\u{2215}{}\\u{202F}s"
+
+#: src/widgets/properties_view.rs:403
+#, fuzzy
+#| msgid "{}\\u{202F}mm"
+msgid "{}\\u{202F}DPI"
+msgstr "{}\\u{202F}mm"
+
+#: src/widgets/properties_view.rs:407
+msgid "{}\\u{202F}DPI\\u{202F}\\u{D7}\\u{202F}{}\\u{202F}DPI"
+msgstr ""
+
+#: src/widgets/properties_view.rs:435
+msgid "Image Coordinates Copied"
+msgstr ""
+
+#: src/widgets/properties_view.ui:20
+msgid "Folder"
+msgstr "ਫੋਲਡਰ"
+
+#: src/widgets/properties_view.ui:28
+msgid "Open Containing Folder"
+msgstr "ਰੱਖਣ ਵਾਲਾ ਫੋਲਡਰ ਖੋਲ੍ਹੋ"
+
+#: src/widgets/properties_view.ui:41
+msgid "URI"
+msgstr ""
+
+#: src/widgets/properties_view.ui:66
+#, fuzzy
+#| msgid "File Size"
+msgid "Physical Size"
+msgstr "ਫਾਇਲ ਦਾ ਆਕਾਰ"
+
+#: src/widgets/properties_view.ui:76
+msgid "Resolution"
+msgstr ""
+
+#: src/widgets/properties_view.ui:86
+msgid "Image Format"
+msgstr "ਚਿੱਤਰ ਫਾਰਮੈਟ"
+
+#: src/widgets/properties_view.ui:96
+msgid "File Size"
+msgstr "ਫਾਇਲ ਦਾ ਆਕਾਰ"
+
+#: src/widgets/properties_view.ui:110
+msgid "File Created"
+msgstr "ਫ਼ਾਇਲ ਨੂੰ ਬਣਾਇਆ ਗਿਆ"
+
+#: src/widgets/properties_view.ui:120
+msgid "File Modified"
+msgstr "ਫ਼ਾਇਲ ਨੂੰ ਸੋਧਿਆ ਗਿਆ"
+
+#. Translators: This is a label for GPS coordinates
+#: src/widgets/properties_view.ui:134
+msgid "Location"
+msgstr "ਟਿਕਾਣਾ"
+
+#: src/widgets/properties_view.ui:145
+msgid "Copy Coordinates"
+msgstr ""
+
+#: src/widgets/properties_view.ui:156
+msgid "Open Location"
+msgstr "ਟਿਕਾਣਾ ਖੋਲ੍ਹੋ"
+
+#: src/widgets/properties_view.ui:169
+msgid "Originally Created"
+msgstr "ਅਸਲੀ ਬਣਾਇਆ"
+
+#: src/widgets/properties_view.ui:179
+msgid "Creator"
+msgstr ""
+
+#: src/widgets/properties_view.ui:189
+msgid "Copyright"
+msgstr ""
+
+#: src/widgets/properties_view.ui:199
+msgid "Comment"
+msgstr ""
+
+#: src/widgets/properties_view.ui:209
+msgid "Aperture"
+msgstr "ਅਪਰਚਰ"
+
+#: src/widgets/properties_view.ui:219
+msgid "Exposure"
+msgstr "ਐਕਸਪੋਜ਼ਰ"
+
+#: src/widgets/properties_view.ui:229
+msgid "ISO"
+msgstr "ISO"
+
+#: src/widgets/properties_view.ui:239
+msgid "Focal Length"
+msgstr "ਫੋਕਲ ਲੰਬਾਈ"
+
+#: src/widgets/properties_view.ui:249
+msgid "Maker, Model"
+msgstr "ਮੇਕਰ, ਮਾਡਲ"
+
+#: src/widgets/properties_view.ui:259
+msgid "Lens"
+msgstr ""
+
+#: src/widgets/properties_view.ui:269
+msgid "Software"
+msgstr ""
+
+#: src/widgets/properties_view.ui:279
+msgid "ICC Profile"
+msgstr ""
+
+#: src/widgets/properties_view.ui:289
+msgid "CICP"
+msgstr ""
+
+#: src/widgets/window.rs:249
+msgid "Show Details"
+msgstr ""

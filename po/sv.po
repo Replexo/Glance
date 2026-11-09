@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Loupe main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/loupe/-/issues\n"
-"POT-Creation-Date: 2026-08-06 11:47+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-09 00:39+0100\n"
 "PO-Revision-Date: 2026-08-24 16:24+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -19,50 +19,78 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.9\n"
 
-#: data/org.gnome.Loupe.desktop.in.in:2
-#: data/org.gnome.Loupe.metainfo.xml.in.in:6 src/about.rs:32
+#: data/io.github.Replexo.Glance.desktop.in.in:2
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:6
 #: src/widgets/image_window.rs:879
+#, fuzzy
+#| msgid "Cancel"
+msgid "Glance"
+msgstr "Avbryt"
+
+#: data/io.github.Replexo.Glance.desktop.in.in:3
 msgid "Image Viewer"
 msgstr "Bildvisare"
 
-#: data/org.gnome.Loupe.desktop.in.in:3
-#: data/org.gnome.Loupe.metainfo.xml.in.in:13
+#: data/io.github.Replexo.Glance.desktop.in.in:4
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:10
 msgid "View and edit images"
 msgstr "Visa och redigera bilder"
 
-#: data/org.gnome.Loupe.desktop.in.in:11
-msgid "Picture;Graphics;Loupe;"
+#: data/io.github.Replexo.Glance.desktop.in.in:12
+#, fuzzy
+#| msgid "Picture;Graphics;Loupe;"
+msgid "Picture;Graphics;Loupe;Glance;"
 msgstr "Bild;Grafik;Loupe;"
 
-#: data/org.gnome.Loupe.gschema.xml.in:6
+#: data/io.github.Replexo.Glance.gschema.xml.in:6
 msgid "Show the image properties sidebar"
 msgstr "Visa sidopanelen för bildegenskaper"
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.Loupe.metainfo.xml.in.in:8
-#: data/org.gnome.Loupe.metainfo.xml.in.in:10 src/about.rs:35
-msgid "The GNOME Project"
-msgstr "GNOME-projektet"
-
-#: data/org.gnome.Loupe.metainfo.xml.in.in:15
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:12
 msgid ""
-"Explore images, view their metadata, and make quick edits by cropping, "
-"rotating, or flipping them."
+"Glance is an image viewer with built-in editing. Browse your images, view "
+"their metadata, and make quick edits without opening a separate editor."
 msgstr ""
-"Utforska bilder, visa deras metadata, och gör snabba redigeringar genom att "
-"beskära, rotera eller vända dem."
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:28
-msgid "Main Window"
-msgstr "Huvudfönstret"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:14
+msgid ""
+"Mark up images with a brush, highlighter, lines, arrows, shapes and text"
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:32
-msgid "Crop Tool"
-msgstr "Beskärningsverktyget"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:15
+msgid "Adjust brightness, contrast, highlights, shadows and saturation"
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:36
-msgid "Image Properties Panel"
-msgstr "Bildegenskapspanelen"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:16
+msgid "Crop to an aspect ratio, rotate, flip and resize"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:17
+msgid "Undo and redo every edit, and save a copy or replace the original"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:19
+msgid "Glance is based on Loupe, the GNOME image viewer."
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:28
+msgid "Marking up an image"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:32
+msgid "Adjusting colours"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:36
+msgid "Cropping"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:76
+msgid ""
+"First release of Glance, based on Loupe 51.1. It adds Markup, Adjust and "
+"Crop editing views, undo and redo, zoom in the editor, and keyboard "
+"shortcuts for the markup tools."
+msgstr ""
 
 #: data/resources/shortcuts-dialog.ui:6
 msgctxt "shortcut window"
@@ -150,13 +178,13 @@ msgid "Rotate Image"
 msgstr "Rotera bild"
 
 #: data/resources/shortcuts-dialog.ui:119
-#: data/resources/shortcuts-dialog.ui:253
+#: data/resources/shortcuts-dialog.ui:259
 msgctxt "shortcut window"
 msgid "Rotate Clockwise"
 msgstr "Rotera medurs"
 
 #: data/resources/shortcuts-dialog.ui:125
-#: data/resources/shortcuts-dialog.ui:259
+#: data/resources/shortcuts-dialog.ui:265
 msgctxt "shortcut window"
 msgid "Rotate Counterclockwise"
 msgstr "Rotera moturs"
@@ -252,37 +280,89 @@ msgid "Open Editing View"
 msgstr "Öppna redigeringsvy"
 
 #: data/resources/shortcuts-dialog.ui:235
+#, fuzzy
+#| msgid "Crop Tool"
+msgctxt "shortcut window"
+msgid "Crop"
+msgstr "Beskärningsverktyget"
+
+#: data/resources/shortcuts-dialog.ui:241
 msgctxt "shortcut window"
 msgid "Replace Original"
 msgstr "Ersätt originalet"
 
-#: data/resources/shortcuts-dialog.ui:241
+#: data/resources/shortcuts-dialog.ui:247
 msgctxt "shortcut window"
 msgid "Save As"
 msgstr "Spara som"
 
-#: data/resources/shortcuts-dialog.ui:247
+#: data/resources/shortcuts-dialog.ui:253
 msgctxt "shortcut window"
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: data/resources/shortcuts-dialog.ui:265
+#: data/resources/shortcuts-dialog.ui:271
 msgctxt "shortcut window"
 msgid "Mirror Horizontally"
 msgstr "Spegla horisontellt"
 
-#: data/resources/shortcuts-dialog.ui:271
+#: data/resources/shortcuts-dialog.ui:277
 msgctxt "shortcut window"
 msgid "Mirror Vertically"
 msgstr "Spegla vertikalt"
 
-#: data/resources/shortcuts-dialog.ui:277
+#: data/resources/shortcuts-dialog.ui:283
 msgctxt "shortcut window"
 msgid "Apply Crop"
 msgstr "Tillämpa beskärning"
 
+#: data/resources/shortcuts-dialog.ui:291
+msgctxt "shortcut window"
+msgid "Markup"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:294
+msgctxt "shortcut window"
+msgid "Select, Move and Resize Markup"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:300
+msgctxt "shortcut window"
+msgid "Brush"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:306
+msgctxt "shortcut window"
+msgid "Line"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:312
+msgctxt "shortcut window"
+msgid "Arrow"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:318
+msgctxt "shortcut window"
+msgid "Rectangle"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:324
+msgctxt "shortcut window"
+msgid "Ellipse"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:330
+msgctxt "shortcut window"
+msgid "Text"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:336
+msgctxt "shortcut window"
+msgid "Eraser"
+msgstr ""
+
 #. Translators: Replace "translator-credits" with your names, one name per line
-#: src/about.rs:45
+#: src/about.rs:41
 msgid "translator-credits"
 msgstr ""
 "Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
@@ -291,9 +371,13 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
 
-#: src/about.rs:46
-msgid "Copyright © 2020–2024 Christopher Davis et al."
-msgstr "Copyright © 2020–2024 Christopher Davis med flera"
+#: src/application.rs:178
+msgid "Glance is now the default image viewer"
+msgstr ""
+
+#: src/application.rs:187
+msgid "Could not make Glance the default image viewer"
+msgstr ""
 
 #: src/file_model.rs:211
 msgid "Could not list other files in directory."
@@ -399,108 +483,99 @@ msgstr "Misslyckades med att återställa bild från papperskorgen"
 msgid "Drop Image to View"
 msgstr "Släpp bild för att visa"
 
-#: src/widgets/edit/crop.rs:363
-msgid "Failed to Edit Image"
-msgstr "Misslyckades med att redigera bild"
+#: src/widgets/edit/adjust.rs:34 src/widgets/edit/adjust.ui:11
+#: src/widgets/edit/adjust.ui:43
+msgid "Brightness"
+msgstr ""
 
-#: src/widgets/edit/crop.ui:6
+#: src/widgets/edit/adjust.rs:35 src/widgets/edit/adjust.ui:72
+msgid "Contrast"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:36 src/widgets/edit/adjust.ui:101
+msgid "Highlights"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:37 src/widgets/edit/adjust.ui:130
+msgid "Shadows"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:38 src/widgets/edit/adjust.ui:159
+msgid "Saturation"
+msgstr ""
+
+#: src/widgets/edit/color_card.rs:204
+msgid "Hex Color"
+msgstr ""
+
+#: src/widgets/edit/crop.rs:41 src/widgets/edit/crop.ui:88
+#: src/widgets/edit/crop.ui:112
 msgid "Free"
 msgstr "Fri"
 
-#: src/widgets/edit/crop.ui:11
+#: src/widgets/edit/crop.rs:42 src/widgets/edit/crop.ui:122
 msgid "Original"
 msgstr "Ursprunglig"
 
-#: src/widgets/edit/crop.ui:16
+#: src/widgets/edit/crop.rs:43 src/widgets/edit/crop.ui:132
 msgid "Square"
 msgstr "Kvadrat"
 
-#: src/widgets/edit/crop.ui:21
-msgid "5:4"
-msgstr "5:4"
+#: src/widgets/edit/crop.rs:842
+msgid "Failed to Edit Image"
+msgstr "Misslyckades med att redigera bild"
 
-#: src/widgets/edit/crop.ui:26
-msgid "4:3"
-msgstr "4:3"
-
-#: src/widgets/edit/crop.ui:31
-msgid "3:2"
-msgstr "3:2"
-
-#: src/widgets/edit/crop.ui:36
-msgid "16:9"
-msgstr "16:9"
-
-#: src/widgets/edit/crop.ui:77 src/widgets/edit/crop.ui:364
+#: src/widgets/edit/crop.ui:83
 msgid "Aspect Ratio"
 msgstr "Bildförhållande"
 
-#: src/widgets/edit/crop.ui:91
-msgid "_Free"
-msgstr "_Fri"
+#: src/widgets/edit/crop.ui:142
+msgid "5:4"
+msgstr "5:4"
 
-#: src/widgets/edit/crop.ui:109
-msgid "_Original"
-msgstr "_Ursprunglig"
+#: src/widgets/edit/crop.ui:152
+msgid "4:3"
+msgstr "4:3"
 
-#: src/widgets/edit/crop.ui:127
-msgid "_Square"
-msgstr "_Kvadrat"
+#: src/widgets/edit/crop.ui:162
+msgid "3:2"
+msgstr "3:2"
 
-#: src/widgets/edit/crop.ui:145
-msgid "_5:4"
-msgstr "_5:4"
+#: src/widgets/edit/crop.ui:172
+msgid "16:9"
+msgstr "16:9"
 
-#: src/widgets/edit/crop.ui:166
-msgid "_4:3"
-msgstr "_4:3"
-
-#: src/widgets/edit/crop.ui:187
-msgid "_3:2"
-msgstr "_3:2"
-
-#: src/widgets/edit/crop.ui:208
-msgid "_16:9"
-msgstr "_16:9"
-
-#: src/widgets/edit/crop.ui:231 src/widgets/edit/crop.ui:377
-msgid "Orientation Landscape"
+#: src/widgets/edit/crop.ui:188
+#, fuzzy
+#| msgid "Orientation Landscape"
+msgid "Landscape"
 msgstr "Liggande orientering"
 
-#: src/widgets/edit/crop.ui:240 src/widgets/edit/crop.ui:389
-msgid "Orientation Portrait"
-msgstr "Stående orientering"
+#: src/widgets/edit/crop.ui:196
+msgid "Portrait"
+msgstr ""
 
-#: src/widgets/edit/crop.ui:252 src/widgets/image_page.ui:15
-#: src/widgets/image_window.ui:25
-msgid "Rotate"
-msgstr "Rotera"
-
-#: src/widgets/edit/crop.ui:261 src/widgets/edit/crop.ui:407
+#: src/widgets/edit/crop.ui:217
 msgid "Rotate Counter Clockwise"
 msgstr "Rotera moturs"
 
-#: src/widgets/edit/crop.ui:268
+#: src/widgets/edit/crop.ui:224
 msgid "Rotate Clockwise"
 msgstr "Rotera medurs"
 
-#: src/widgets/edit/crop.ui:278
-msgid "Flip"
-msgstr "Vänd"
-
-#: src/widgets/edit/crop.ui:287 src/widgets/edit/crop.ui:415
+#: src/widgets/edit/crop.ui:231
 msgid "Mirror Horizontally"
 msgstr "Spegla horisontellt"
 
-#: src/widgets/edit/crop.ui:294
-msgid "Mirror Vertically"
-msgstr "Spegla vertikalt"
+#: src/widgets/edit/crop.ui:238
+msgid "Resize"
+msgstr ""
 
-#: src/widgets/edit/crop.ui:306 src/widgets/edit/crop.ui:429
+#: src/widgets/edit/crop.ui:249
 msgid "_Reset"
 msgstr "Åte_rställ"
 
-#: src/widgets/edit/crop.ui:307 src/widgets/edit/crop.ui:431
+#: src/widgets/edit/crop.ui:251
 msgid "Undo Changes in this View"
 msgstr "Ångra ändringar i denna vy"
 
@@ -508,47 +583,195 @@ msgstr "Ångra ändringar i denna vy"
 msgid "Crop Selection"
 msgstr "Beskär markering"
 
+#: src/widgets/edit/markup.ui:27
+msgid "Choose a Color"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:59
+msgid "Blue"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:79
+msgid "Yellow"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:99
+#, fuzzy
+#| msgid "_Reload"
+msgid "Red"
+msgstr "_Uppdatera"
+
+#: src/widgets/edit/markup.ui:119
+msgid "Orange"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:139
+msgid "Green"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:171
+msgid "Outline"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:179
+msgid "Filled"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:196
+msgid "Thin"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:214 src/widgets/edit/markup.ui:294
+msgid "Medium"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:232
+msgid "Thick"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:250
+msgid "Very Thick"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:279
+msgid "Small"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:309
+msgid "Large"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:324
+msgid "Very Large"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:344
+msgid "Sans"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:359
+msgid "Serif"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:374
+msgid "Monospace"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:389
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Editing"
+msgid "Handwriting"
+msgstr "Redigering"
+
+#: src/widgets/edit/markup.ui:427
+msgid "Move, Resize and Rotate"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:435
+msgid "Paintbrush"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:443
+msgid "Highlighter"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:451
+msgid "Line"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:459
+msgid "Arrow"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:467
+msgid "Rectangle"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:475
+msgid "Circle"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:483
+msgid "Text"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:491
+msgid "Eraser"
+msgstr ""
+
+#: src/widgets/edit/resize_dialog.ui:4
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Rotate Image"
+msgid "Resize Image"
+msgstr "Rotera bild"
+
+#: src/widgets/edit/resize_dialog.ui:15 src/widgets/edit_window.ui:101
+msgid "_Cancel"
+msgstr "A_vbryt"
+
+#: src/widgets/edit/resize_dialog.ui:22
+#, fuzzy
+#| msgid "_Reset"
+msgid "_Resize"
+msgstr "Åte_rställ"
+
+#: src/widgets/edit/resize_dialog.ui:50 src/widgets/print.rs:787
+msgid "_Width"
+msgstr "B_redd"
+
+#: src/widgets/edit/resize_dialog.ui:90
+#, fuzzy
+#| msgid "H_eight"
+msgid "_Height"
+msgstr "Hö_jd"
+
+#: src/widgets/edit/resize_dialog.ui:139
+msgid "Size in Percent"
+msgstr ""
+
 #. Translators: Filename suffix, {} is replaced by a number
-#: src/widgets/edit_window.rs:207
+#: src/widgets/edit_window.rs:368
 #, rust-format
 msgid " (Edited)"
 msgid_plural " (Edited {})"
 msgstr[0] " (redigerad)"
 msgstr[1] " (redigerad {})"
 
-#: src/widgets/edit_window.rs:292
+#: src/widgets/edit_window.rs:453
 msgid "Moving Original to Trash"
 msgstr "Flyttar originalet till papperskorgen"
 
-#: src/widgets/edit_window.rs:306 src/widgets/edit_window.rs:335
+#: src/widgets/edit_window.rs:467 src/widgets/edit_window.rs:496
 msgid "Failed to save image."
 msgstr "Misslyckades med att spara bild."
 
-#: src/widgets/edit_window.rs:315
+#: src/widgets/edit_window.rs:476
 msgid "Finalizing Save Operation"
 msgstr "Slutför sparningsåtgärd"
 
-#: src/widgets/edit_window.rs:367
+#: src/widgets/edit_window.rs:531
 msgid "Editing Image"
 msgstr "Redigerar bild"
 
-#: src/widgets/edit_window.rs:384
+#: src/widgets/edit_window.rs:554 src/widgets/edit_window.rs:581
 msgid "Failed to edit image."
 msgstr "Misslyckades med att redigera bild."
 
-#: src/widgets/edit_window.rs:391
+#: src/widgets/edit_window.rs:610
 msgid "Saving Image"
 msgstr "Sparar bild"
 
-#: src/widgets/edit_window.rs:410
+#: src/widgets/edit_window.rs:622
 msgid "Failed to Save Image"
 msgstr "Misslyckades med att spara bild"
 
-#: src/widgets/edit_window.rs:526
+#: src/widgets/edit_window.rs:991
 msgid "Save Changes?"
 msgstr "Spara ändringar?"
 
-#: src/widgets/edit_window.rs:528
+#: src/widgets/edit_window.rs:993
 msgid ""
 "There are unsaved image editing changes. Closing without saving will "
 "permanently lose these modifications."
@@ -556,40 +779,78 @@ msgstr ""
 "Det finns osparade bildredigeringsändringar. Att stänga utan att spara "
 "kommer få dessa ändringar att gå permanent förlorade."
 
-#: src/widgets/edit_window.rs:532 src/widgets/image_window.rs:700
+#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:700
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: src/widgets/edit_window.rs:533
+#: src/widgets/edit_window.rs:998
 msgid "Discard"
 msgstr "Förkasta"
 
-#: src/widgets/edit_window.rs:534
+#: src/widgets/edit_window.rs:999
 msgid "Save"
 msgstr "Spara"
 
-#: src/widgets/edit_window.ui:64
-msgid "_Cancel"
-msgstr "A_vbryt"
+#: src/widgets/edit_window.ui:33
+msgid "Hold to Show Original"
+msgstr ""
 
-#: src/widgets/edit_window.ui:71
+#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:636
+msgid "Undo"
+msgstr "Ångra"
+
+#: src/widgets/edit_window.ui:46
+msgid "Redo"
+msgstr ""
+
+#: src/widgets/edit_window.ui:120
+#, fuzzy
+#| msgid "Crop Tool"
+msgid "Crop"
+msgstr "Beskärningsverktyget"
+
+#: src/widgets/edit_window.ui:124
+msgid "Cr_op"
+msgstr ""
+
+#: src/widgets/edit_window.ui:133
+msgid "Adjust"
+msgstr ""
+
+#: src/widgets/edit_window.ui:137
+msgid "A_djust"
+msgstr ""
+
+#: src/widgets/edit_window.ui:146
+msgid "Markup"
+msgstr ""
+
+#: src/widgets/edit_window.ui:150
+msgid "_Markup"
+msgstr ""
+
+#: src/widgets/edit_window.ui:160
 msgid "_Save"
 msgstr "_Spara"
 
-#: src/widgets/edit_window.ui:92
-msgid "_Save As…"
+#: src/widgets/edit_window.ui:181
+#, fuzzy
+#| msgid "_Save As…"
+msgid "_Save a Copy…"
 msgstr "_Spara som…"
 
-#: src/widgets/edit_window.ui:100
-msgid "Keep original and create a new file"
-msgstr "Behåll originalet och skapa en ny fil"
+#: src/widgets/edit_window.ui:189
+msgid "Save changes and keep original."
+msgstr ""
 
-#: src/widgets/edit_window.ui:120
+#: src/widgets/edit_window.ui:209
 msgid "_Replace Original"
 msgstr "E_rsätt originalet"
 
-#: src/widgets/edit_window.ui:128
-msgid "Original image will be moved to the trash"
+#: src/widgets/edit_window.ui:217
+#, fuzzy
+#| msgid "Original image will be moved to the trash"
+msgid "Original image will be moved to the trash."
 msgstr "Ursprunglig bild kommer flyttas till papperskorgen"
 
 #: src/widgets/error_details.rs:80
@@ -667,11 +928,15 @@ msgstr "Ö_ppna med…"
 msgid "_Print…"
 msgstr "_Skriv ut…"
 
+#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:25
+msgid "Rotate"
+msgstr "Rotera"
+
 #: src/widgets/image_page.ui:26 src/widgets/image_window.ui:36
 msgid "_Set as Background…"
 msgstr "_Ange som bakgrund…"
 
-#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:40
+#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:44
 msgid "_Delete"
 msgstr "_Ta bort"
 
@@ -691,11 +956,11 @@ msgstr "Mer _information"
 msgid "_Reload"
 msgstr "_Uppdatera"
 
-#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:101
+#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:105
 msgid "Rotate Left"
 msgstr "Rotera åt vänster"
 
-#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:111
+#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:115
 msgid "Rotate Right"
 msgstr "Rotera åt höger"
 
@@ -761,10 +1026,6 @@ msgstr "Bild kopierad till urklipp"
 msgid "Image moved to trash"
 msgstr "Bild flyttad till papperskorgen"
 
-#: src/widgets/image_window.rs:636
-msgid "Undo"
-msgstr "Ångra"
-
 #: src/widgets/image_window.rs:666
 msgid "Failed to move image to trash"
 msgstr "Misslyckades med att flytta bild till papperskorgen"
@@ -794,43 +1055,51 @@ msgstr "_Nytt fönster"
 msgid "_Open…"
 msgstr "Ö_ppna…"
 
-#: src/widgets/image_window.ui:46
+#: src/widgets/image_window.ui:40
+#, fuzzy
+#| msgid "_About Image Viewer"
+msgid "_Make Default Image Viewer"
+msgstr "_Om Bildvisare"
+
+#: src/widgets/image_window.ui:50
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: src/widgets/image_window.ui:50
+#: src/widgets/image_window.ui:54
 msgid "_Keyboard Shortcuts"
 msgstr "_Tangentbordsgenvägar"
 
-#: src/widgets/image_window.ui:54
-msgid "_About Image Viewer"
-msgstr "_Om Bildvisare"
+#: src/widgets/image_window.ui:58
+#, fuzzy
+#| msgid "_About Loupe"
+msgid "_About Glance"
+msgstr "_Om Loupe"
 
-#: src/widgets/image_window.ui:87
+#: src/widgets/image_window.ui:91
 msgid "Toggle Fullscreen"
 msgstr "Växla helskärmsläge"
 
-#: src/widgets/image_window.ui:93
+#: src/widgets/image_window.ui:97
 msgid "Main Menu"
 msgstr "Huvudmeny"
 
-#: src/widgets/image_window.ui:125
+#: src/widgets/image_window.ui:129
 msgid "Image Properties"
 msgstr "Bildegenskaper"
 
-#: src/widgets/image_window.ui:132
+#: src/widgets/image_window.ui:136
 msgid "Edit Image"
 msgstr "Redigera bild"
 
-#: src/widgets/image_window.ui:220
+#: src/widgets/image_window.ui:224
 msgid "View and Edit Images"
 msgstr "Visa och redigera bilder"
 
-#: src/widgets/image_window.ui:221
+#: src/widgets/image_window.ui:225
 msgid "Drag and drop images here"
 msgstr "Dra och släpp bilder här"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:229
 msgid "_Open Files…"
 msgstr "Ö_ppna filer…"
 
@@ -883,13 +1152,9 @@ msgstr "Fortsätt…"
 msgid "Print Image"
 msgstr "Skriv ut bild"
 
-#: src/widgets/print.rs:801
+#: src/widgets/print.rs:784
 msgid "_Scale"
 msgstr "_Skala"
-
-#: src/widgets/print.rs:804
-msgid "_Width"
-msgstr "B_redd"
 
 #. Translators: Go back to previous page
 #: src/widgets/print.ui:29
@@ -1125,112 +1390,6 @@ msgstr "ICC-profil"
 msgid "CICP"
 msgstr "CICP"
 
-#: src/widgets/window.rs:254
+#: src/widgets/window.rs:249
 msgid "Show Details"
 msgstr "Visa detaljer"
-
-#~ msgid "Browse through your images and inspect their metadata with:"
-#~ msgstr "Bläddra genom dina bilder och inspektera deras metadata med:"
-
-#~ msgid "Fast GPU accelerated image rendering"
-#~ msgstr "Snabb GPU-accelererad bildrendering"
-
-#~ msgid "Tiled rendering for vector graphics"
-#~ msgstr "Rendering uppdelad i rutor för vektorgrafik"
-
-#~ msgid "Extendable and sandboxed image decoding"
-#~ msgstr "Utökningsbar bildavkodning i sandlåda"
-
-#~ msgid "Accessible presentation of the most important metadata."
-#~ msgstr "Åtkomlig presentation av viktigaste metadata."
-
-#~ msgctxt "shortcut window"
-#~ msgid "Gestures"
-#~ msgstr "Gester"
-
-#~ msgid "Copy to Clipboard"
-#~ msgstr "Kopiera till urklipp"
-
-#~ msgid "Move to Trash"
-#~ msgstr "Flytta till papperskorgen"
-
-#~ msgid "Copy Information"
-#~ msgstr "Kopiera information"
-
-#~ msgid "The Loupe Team"
-#~ msgstr "Loupe-gruppen"
-
-#~ msgid "Center image horizontally"
-#~ msgstr "Centrera bild horisontellt"
-
-#~ msgid "Center image vertically"
-#~ msgstr "Centrera bild vertikalt"
-
-#~ msgid "Image Scale"
-#~ msgstr "Bildskala"
-
-#~ msgid "Left Margin"
-#~ msgstr "Vänstermarginal"
-
-#~ msgid "Length Unit"
-#~ msgstr "Längdenhet"
-
-#~ msgid "_About Loupe"
-#~ msgstr "_Om Loupe"
-
-#~ msgid "Loupe"
-#~ msgstr "Loupe"
-
-#~ msgid "Failed to decode image"
-#~ msgstr "Misslyckades med att avkoda bild"
-
-#~ msgid "Unknown image format"
-#~ msgstr "Okänt bildformat"
-
-#~ msgid "Animated GIF"
-#~ msgstr "Animerad GIF"
-
-#~ msgid "Animated WebP"
-#~ msgstr "Animerad WebP"
-
-#~ msgid "Animated PNG"
-#~ msgstr "Animerad PNG"
-
-#~ msgid "Could not open image"
-#~ msgstr "Kunde inte öppna bild"
-
-#~ msgid "Could not read image"
-#~ msgstr "Kunde inte läsa bild"
-
-#~ msgid "Layout Image"
-#~ msgstr "Bildlayout"
-
-#~ msgid "The following features are not available yet"
-#~ msgstr "Följande funktionalitet är inte ännu tillgänglig"
-
-#~ msgid "Applying image color profiles"
-#~ msgstr "Tillämpar färgprofiler för bilder"
-
-#~ msgid "Christopher Davis"
-#~ msgstr "Christopher Davis"
-
-#~ msgid "File does not exist"
-#~ msgstr "Filen finns inte"
-
-#~ msgid "Failed to open new background image"
-#~ msgstr "Misslyckades med att öppna ny bakgrundsbild"
-
-#~ msgid "“{}” is not a valid image."
-#~ msgstr "”{}” är inte en giltig bild."
-
-#~ msgid "Correctly showing SVGs at every zoom-level"
-#~ msgstr "Korrekt visande av SVG-bilder på alla zoomnivåer"
-
-#~ msgid "Correct HighDPI support"
-#~ msgstr "Korrekt HighDPI-stöd"
-
-#~ msgid "Print settings to position the image on the page"
-#~ msgstr "Utskriftsinställningar för att positionera bilden på sidan"
-
-#~ msgid "File Type"
-#~ msgstr "Filtyp"

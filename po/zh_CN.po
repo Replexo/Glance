@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Loupe main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/loupe/-/issues\n"
-"POT-Creation-Date: 2026-08-06 11:47+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-09 00:39+0100\n"
 "PO-Revision-Date: 2026-08-15 17:01+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
@@ -19,48 +19,78 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Gtranslator 50.0\n"
 
-#: data/org.gnome.Loupe.desktop.in.in:2
-#: data/org.gnome.Loupe.metainfo.xml.in.in:6 src/about.rs:32
+#: data/io.github.Replexo.Glance.desktop.in.in:2
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:6
 #: src/widgets/image_window.rs:879
+#, fuzzy
+#| msgid "Cancel"
+msgid "Glance"
+msgstr "取消"
+
+#: data/io.github.Replexo.Glance.desktop.in.in:3
 msgid "Image Viewer"
 msgstr "图像查看器"
 
-#: data/org.gnome.Loupe.desktop.in.in:3
-#: data/org.gnome.Loupe.metainfo.xml.in.in:13
+#: data/io.github.Replexo.Glance.desktop.in.in:4
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:10
 msgid "View and edit images"
 msgstr "查看和编辑图像"
 
-#: data/org.gnome.Loupe.desktop.in.in:11
-msgid "Picture;Graphics;Loupe;"
+#: data/io.github.Replexo.Glance.desktop.in.in:12
+#, fuzzy
+#| msgid "Picture;Graphics;Loupe;"
+msgid "Picture;Graphics;Loupe;Glance;"
 msgstr "Picture;Graphics;Loupe;图片;图像;照片;图形;放大镜;查看器;观察器;"
 
-#: data/org.gnome.Loupe.gschema.xml.in:6
+#: data/io.github.Replexo.Glance.gschema.xml.in:6
 msgid "Show the image properties sidebar"
 msgstr "显示图像属性侧边栏"
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.Loupe.metainfo.xml.in.in:8
-#: data/org.gnome.Loupe.metainfo.xml.in.in:10 src/about.rs:35
-msgid "The GNOME Project"
-msgstr "GNOME 项目"
-
-#: data/org.gnome.Loupe.metainfo.xml.in.in:15
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:12
 msgid ""
-"Explore images, view their metadata, and make quick edits by cropping, "
-"rotating, or flipping them."
-msgstr "浏览图像，查看它们的元数据，以及通过剪裁、旋转或翻转它们来快速编辑。"
+"Glance is an image viewer with built-in editing. Browse your images, view "
+"their metadata, and make quick edits without opening a separate editor."
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:28
-msgid "Main Window"
-msgstr "主窗口"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:14
+msgid ""
+"Mark up images with a brush, highlighter, lines, arrows, shapes and text"
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:32
-msgid "Crop Tool"
-msgstr "剪裁工具"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:15
+msgid "Adjust brightness, contrast, highlights, shadows and saturation"
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:36
-msgid "Image Properties Panel"
-msgstr "图像属性面板"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:16
+msgid "Crop to an aspect ratio, rotate, flip and resize"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:17
+msgid "Undo and redo every edit, and save a copy or replace the original"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:19
+msgid "Glance is based on Loupe, the GNOME image viewer."
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:28
+msgid "Marking up an image"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:32
+msgid "Adjusting colours"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:36
+msgid "Cropping"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:76
+msgid ""
+"First release of Glance, based on Loupe 51.1. It adds Markup, Adjust and "
+"Crop editing views, undo and redo, zoom in the editor, and keyboard "
+"shortcuts for the markup tools."
+msgstr ""
 
 #: data/resources/shortcuts-dialog.ui:6
 msgctxt "shortcut window"
@@ -148,13 +178,13 @@ msgid "Rotate Image"
 msgstr "旋转图像"
 
 #: data/resources/shortcuts-dialog.ui:119
-#: data/resources/shortcuts-dialog.ui:253
+#: data/resources/shortcuts-dialog.ui:259
 msgctxt "shortcut window"
 msgid "Rotate Clockwise"
 msgstr "顺时针旋转"
 
 #: data/resources/shortcuts-dialog.ui:125
-#: data/resources/shortcuts-dialog.ui:259
+#: data/resources/shortcuts-dialog.ui:265
 msgctxt "shortcut window"
 msgid "Rotate Counterclockwise"
 msgstr "逆时针旋转"
@@ -250,37 +280,89 @@ msgid "Open Editing View"
 msgstr "打开编辑视图"
 
 #: data/resources/shortcuts-dialog.ui:235
+#, fuzzy
+#| msgid "Crop Tool"
+msgctxt "shortcut window"
+msgid "Crop"
+msgstr "剪裁工具"
+
+#: data/resources/shortcuts-dialog.ui:241
 msgctxt "shortcut window"
 msgid "Replace Original"
 msgstr "替换原图"
 
-#: data/resources/shortcuts-dialog.ui:241
+#: data/resources/shortcuts-dialog.ui:247
 msgctxt "shortcut window"
 msgid "Save As"
 msgstr "另存为"
 
-#: data/resources/shortcuts-dialog.ui:247
+#: data/resources/shortcuts-dialog.ui:253
 msgctxt "shortcut window"
 msgid "Cancel"
 msgstr "取消"
 
-#: data/resources/shortcuts-dialog.ui:265
+#: data/resources/shortcuts-dialog.ui:271
 msgctxt "shortcut window"
 msgid "Mirror Horizontally"
 msgstr "水平镜像"
 
-#: data/resources/shortcuts-dialog.ui:271
+#: data/resources/shortcuts-dialog.ui:277
 msgctxt "shortcut window"
 msgid "Mirror Vertically"
 msgstr "竖直镜像"
 
-#: data/resources/shortcuts-dialog.ui:277
+#: data/resources/shortcuts-dialog.ui:283
 msgctxt "shortcut window"
 msgid "Apply Crop"
 msgstr "应用剪裁"
 
+#: data/resources/shortcuts-dialog.ui:291
+msgctxt "shortcut window"
+msgid "Markup"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:294
+msgctxt "shortcut window"
+msgid "Select, Move and Resize Markup"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:300
+msgctxt "shortcut window"
+msgid "Brush"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:306
+msgctxt "shortcut window"
+msgid "Line"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:312
+msgctxt "shortcut window"
+msgid "Arrow"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:318
+msgctxt "shortcut window"
+msgid "Rectangle"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:324
+msgctxt "shortcut window"
+msgid "Ellipse"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:330
+msgctxt "shortcut window"
+msgid "Text"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:336
+msgctxt "shortcut window"
+msgid "Eraser"
+msgstr ""
+
 #. Translators: Replace "translator-credits" with your names, one name per line
-#: src/about.rs:45
+#: src/about.rs:41
 msgid "translator-credits"
 msgstr ""
 "Nanling <neithern@outlook.com>, 2023\n"
@@ -288,9 +370,13 @@ msgstr ""
 "Eni <enigma@petalmail.com>, 2023\n"
 "starccy <starccyz@gmail.com>, 2026"
 
-#: src/about.rs:46
-msgid "Copyright © 2020–2024 Christopher Davis et al."
-msgstr "版权所有 © 2020-2024 Christopher Davis 等人。"
+#: src/application.rs:178
+msgid "Glance is now the default image viewer"
+msgstr ""
+
+#: src/application.rs:187
+msgid "Could not make Glance the default image viewer"
+msgstr ""
 
 #: src/file_model.rs:211
 msgid "Could not list other files in directory."
@@ -393,108 +479,99 @@ msgstr "从回收站中恢复图像失败"
 msgid "Drop Image to View"
 msgstr "拖放图像以查看"
 
-#: src/widgets/edit/crop.rs:363
-msgid "Failed to Edit Image"
-msgstr "编辑图像失败"
+#: src/widgets/edit/adjust.rs:34 src/widgets/edit/adjust.ui:11
+#: src/widgets/edit/adjust.ui:43
+msgid "Brightness"
+msgstr ""
 
-#: src/widgets/edit/crop.ui:6
+#: src/widgets/edit/adjust.rs:35 src/widgets/edit/adjust.ui:72
+msgid "Contrast"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:36 src/widgets/edit/adjust.ui:101
+msgid "Highlights"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:37 src/widgets/edit/adjust.ui:130
+msgid "Shadows"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:38 src/widgets/edit/adjust.ui:159
+msgid "Saturation"
+msgstr ""
+
+#: src/widgets/edit/color_card.rs:204
+msgid "Hex Color"
+msgstr ""
+
+#: src/widgets/edit/crop.rs:41 src/widgets/edit/crop.ui:88
+#: src/widgets/edit/crop.ui:112
 msgid "Free"
 msgstr "自由"
 
-#: src/widgets/edit/crop.ui:11
+#: src/widgets/edit/crop.rs:42 src/widgets/edit/crop.ui:122
 msgid "Original"
 msgstr "原始"
 
-#: src/widgets/edit/crop.ui:16
+#: src/widgets/edit/crop.rs:43 src/widgets/edit/crop.ui:132
 msgid "Square"
 msgstr "方形"
 
-#: src/widgets/edit/crop.ui:21
-msgid "5:4"
-msgstr "5:4"
+#: src/widgets/edit/crop.rs:842
+msgid "Failed to Edit Image"
+msgstr "编辑图像失败"
 
-#: src/widgets/edit/crop.ui:26
-msgid "4:3"
-msgstr "4:3"
-
-#: src/widgets/edit/crop.ui:31
-msgid "3:2"
-msgstr "3:2"
-
-#: src/widgets/edit/crop.ui:36
-msgid "16:9"
-msgstr "16:9"
-
-#: src/widgets/edit/crop.ui:77 src/widgets/edit/crop.ui:364
+#: src/widgets/edit/crop.ui:83
 msgid "Aspect Ratio"
 msgstr "宽高比"
 
-#: src/widgets/edit/crop.ui:91
-msgid "_Free"
-msgstr "自由(_F)"
+#: src/widgets/edit/crop.ui:142
+msgid "5:4"
+msgstr "5:4"
 
-#: src/widgets/edit/crop.ui:109
-msgid "_Original"
-msgstr "原始(_O)"
+#: src/widgets/edit/crop.ui:152
+msgid "4:3"
+msgstr "4:3"
 
-#: src/widgets/edit/crop.ui:127
-msgid "_Square"
-msgstr "方形(_S)"
+#: src/widgets/edit/crop.ui:162
+msgid "3:2"
+msgstr "3:2"
 
-#: src/widgets/edit/crop.ui:145
-msgid "_5:4"
-msgstr "_5:4"
+#: src/widgets/edit/crop.ui:172
+msgid "16:9"
+msgstr "16:9"
 
-#: src/widgets/edit/crop.ui:166
-msgid "_4:3"
-msgstr "_4:3"
-
-#: src/widgets/edit/crop.ui:187
-msgid "_3:2"
-msgstr "_3:2"
-
-#: src/widgets/edit/crop.ui:208
-msgid "_16:9"
-msgstr "_16:9"
-
-#: src/widgets/edit/crop.ui:231 src/widgets/edit/crop.ui:377
-msgid "Orientation Landscape"
+#: src/widgets/edit/crop.ui:188
+#, fuzzy
+#| msgid "Orientation Landscape"
+msgid "Landscape"
 msgstr "横向"
 
-#: src/widgets/edit/crop.ui:240 src/widgets/edit/crop.ui:389
-msgid "Orientation Portrait"
-msgstr "竖向"
+#: src/widgets/edit/crop.ui:196
+msgid "Portrait"
+msgstr ""
 
-#: src/widgets/edit/crop.ui:252 src/widgets/image_page.ui:15
-#: src/widgets/image_window.ui:25
-msgid "Rotate"
-msgstr "旋转"
-
-#: src/widgets/edit/crop.ui:261 src/widgets/edit/crop.ui:407
+#: src/widgets/edit/crop.ui:217
 msgid "Rotate Counter Clockwise"
 msgstr "逆时针旋转"
 
-#: src/widgets/edit/crop.ui:268
+#: src/widgets/edit/crop.ui:224
 msgid "Rotate Clockwise"
 msgstr "顺时针旋转"
 
-#: src/widgets/edit/crop.ui:278
-msgid "Flip"
-msgstr "翻转"
-
-#: src/widgets/edit/crop.ui:287 src/widgets/edit/crop.ui:415
+#: src/widgets/edit/crop.ui:231
 msgid "Mirror Horizontally"
 msgstr "水平镜像"
 
-#: src/widgets/edit/crop.ui:294
-msgid "Mirror Vertically"
-msgstr "竖直镜像"
+#: src/widgets/edit/crop.ui:238
+msgid "Resize"
+msgstr ""
 
-#: src/widgets/edit/crop.ui:306 src/widgets/edit/crop.ui:429
+#: src/widgets/edit/crop.ui:249
 msgid "_Reset"
 msgstr "重置(_R)"
 
-#: src/widgets/edit/crop.ui:307 src/widgets/edit/crop.ui:431
+#: src/widgets/edit/crop.ui:251
 msgid "Undo Changes in this View"
 msgstr "撤消此视图中的更改"
 
@@ -502,85 +579,271 @@ msgstr "撤消此视图中的更改"
 msgid "Crop Selection"
 msgstr "剪裁选区"
 
+#: src/widgets/edit/markup.ui:27
+msgid "Choose a Color"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:59
+msgid "Blue"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:79
+msgid "Yellow"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:99
+#, fuzzy
+#| msgid "_Reload"
+msgid "Red"
+msgstr "重新加载(_R)"
+
+#: src/widgets/edit/markup.ui:119
+msgid "Orange"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:139
+msgid "Green"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:171
+msgid "Outline"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:179
+msgid "Filled"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:196
+msgid "Thin"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:214 src/widgets/edit/markup.ui:294
+msgid "Medium"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:232
+msgid "Thick"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:250
+msgid "Very Thick"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:279
+msgid "Small"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:309
+msgid "Large"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:324
+msgid "Very Large"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:344
+msgid "Sans"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:359
+msgid "Serif"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:374
+msgid "Monospace"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:389
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Editing"
+msgid "Handwriting"
+msgstr "编辑"
+
+#: src/widgets/edit/markup.ui:427
+msgid "Move, Resize and Rotate"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:435
+msgid "Paintbrush"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:443
+msgid "Highlighter"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:451
+msgid "Line"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:459
+msgid "Arrow"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:467
+msgid "Rectangle"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:475
+msgid "Circle"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:483
+msgid "Text"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:491
+msgid "Eraser"
+msgstr ""
+
+#: src/widgets/edit/resize_dialog.ui:4
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Rotate Image"
+msgid "Resize Image"
+msgstr "旋转图像"
+
+#: src/widgets/edit/resize_dialog.ui:15 src/widgets/edit_window.ui:101
+msgid "_Cancel"
+msgstr "取消(_C)"
+
+#: src/widgets/edit/resize_dialog.ui:22
+#, fuzzy
+#| msgid "_Reset"
+msgid "_Resize"
+msgstr "重置(_R)"
+
+#: src/widgets/edit/resize_dialog.ui:50 src/widgets/print.rs:787
+msgid "_Width"
+msgstr "宽度(_W)"
+
+#: src/widgets/edit/resize_dialog.ui:90
+#, fuzzy
+#| msgid "H_eight"
+msgid "_Height"
+msgstr "高度(_E)"
+
+#: src/widgets/edit/resize_dialog.ui:139
+msgid "Size in Percent"
+msgstr ""
+
 #. Translators: Filename suffix, {} is replaced by a number
-#: src/widgets/edit_window.rs:207
+#: src/widgets/edit_window.rs:368
 #, rust-format
 msgid " (Edited)"
 msgid_plural " (Edited {})"
 msgstr[0] "（已编辑 {}）"
 
-#: src/widgets/edit_window.rs:292
+#: src/widgets/edit_window.rs:453
 msgid "Moving Original to Trash"
 msgstr "将原图移至回收站"
 
-#: src/widgets/edit_window.rs:306 src/widgets/edit_window.rs:335
+#: src/widgets/edit_window.rs:467 src/widgets/edit_window.rs:496
 msgid "Failed to save image."
 msgstr "保存图像失败。"
 
-#: src/widgets/edit_window.rs:315
+#: src/widgets/edit_window.rs:476
 msgid "Finalizing Save Operation"
 msgstr "完成保存操作"
 
-#: src/widgets/edit_window.rs:367
+#: src/widgets/edit_window.rs:531
 msgid "Editing Image"
 msgstr "编辑图像"
 
-#: src/widgets/edit_window.rs:384
+#: src/widgets/edit_window.rs:554 src/widgets/edit_window.rs:581
 msgid "Failed to edit image."
 msgstr "编辑图像失败。"
 
-#: src/widgets/edit_window.rs:391
+#: src/widgets/edit_window.rs:610
 msgid "Saving Image"
 msgstr "保存图像"
 
-#: src/widgets/edit_window.rs:410
+#: src/widgets/edit_window.rs:622
 msgid "Failed to Save Image"
 msgstr "保存图像失败"
 
-#: src/widgets/edit_window.rs:526
+#: src/widgets/edit_window.rs:991
 msgid "Save Changes?"
 msgstr "保存更改？"
 
-#: src/widgets/edit_window.rs:528
+#: src/widgets/edit_window.rs:993
 msgid ""
 "There are unsaved image editing changes. Closing without saving will "
 "permanently lose these modifications."
 msgstr "存在未保存的图像编辑更改。不保存而关闭将永久丢失这些修改。"
 
-#: src/widgets/edit_window.rs:532 src/widgets/image_window.rs:700
+#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:700
 msgid "Cancel"
 msgstr "取消"
 
-#: src/widgets/edit_window.rs:533
+#: src/widgets/edit_window.rs:998
 msgid "Discard"
 msgstr "丢弃"
 
-#: src/widgets/edit_window.rs:534
+#: src/widgets/edit_window.rs:999
 msgid "Save"
 msgstr "保存"
 
-#: src/widgets/edit_window.ui:64
-msgid "_Cancel"
-msgstr "取消(_C)"
+#: src/widgets/edit_window.ui:33
+msgid "Hold to Show Original"
+msgstr ""
 
-#: src/widgets/edit_window.ui:71
+#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:636
+msgid "Undo"
+msgstr "撤销"
+
+#: src/widgets/edit_window.ui:46
+msgid "Redo"
+msgstr ""
+
+#: src/widgets/edit_window.ui:120
+#, fuzzy
+#| msgid "Crop Tool"
+msgid "Crop"
+msgstr "剪裁工具"
+
+#: src/widgets/edit_window.ui:124
+msgid "Cr_op"
+msgstr ""
+
+#: src/widgets/edit_window.ui:133
+msgid "Adjust"
+msgstr ""
+
+#: src/widgets/edit_window.ui:137
+msgid "A_djust"
+msgstr ""
+
+#: src/widgets/edit_window.ui:146
+msgid "Markup"
+msgstr ""
+
+#: src/widgets/edit_window.ui:150
+msgid "_Markup"
+msgstr ""
+
+#: src/widgets/edit_window.ui:160
 msgid "_Save"
 msgstr "保存(_S)"
 
-#: src/widgets/edit_window.ui:92
-msgid "_Save As…"
+#: src/widgets/edit_window.ui:181
+#, fuzzy
+#| msgid "_Save As…"
+msgid "_Save a Copy…"
 msgstr "另存为(_S)…"
 
-#: src/widgets/edit_window.ui:100
-msgid "Keep original and create a new file"
-msgstr "保留原图并创建新文件"
+#: src/widgets/edit_window.ui:189
+msgid "Save changes and keep original."
+msgstr ""
 
-#: src/widgets/edit_window.ui:120
+#: src/widgets/edit_window.ui:209
 msgid "_Replace Original"
 msgstr "替换原图(_R)"
 
-#: src/widgets/edit_window.ui:128
-msgid "Original image will be moved to the trash"
+#: src/widgets/edit_window.ui:217
+#, fuzzy
+#| msgid "Original image will be moved to the trash"
+msgid "Original image will be moved to the trash."
 msgstr "原始图像将移至回收站"
 
 #: src/widgets/error_details.rs:80
@@ -652,11 +915,15 @@ msgstr "打开方式(_O)…"
 msgid "_Print…"
 msgstr "打印(_P)…"
 
+#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:25
+msgid "Rotate"
+msgstr "旋转"
+
 #: src/widgets/image_page.ui:26 src/widgets/image_window.ui:36
 msgid "_Set as Background…"
 msgstr "设为背景(_S)…"
 
-#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:40
+#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:44
 msgid "_Delete"
 msgstr "删除(_D)"
 
@@ -676,11 +943,11 @@ msgstr "更多信息(_I)"
 msgid "_Reload"
 msgstr "重新加载(_R)"
 
-#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:101
+#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:105
 msgid "Rotate Left"
 msgstr "向左旋转"
 
-#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:111
+#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:115
 msgid "Rotate Right"
 msgstr "向右旋转"
 
@@ -746,10 +1013,6 @@ msgstr "图像已复制到剪贴板上"
 msgid "Image moved to trash"
 msgstr "图片已移至回收站"
 
-#: src/widgets/image_window.rs:636
-msgid "Undo"
-msgstr "撤销"
-
 #: src/widgets/image_window.rs:666
 msgid "Failed to move image to trash"
 msgstr "将图像移至回收站失败"
@@ -779,43 +1042,51 @@ msgstr "新建窗口(_N)"
 msgid "_Open…"
 msgstr "打开(_P)…"
 
-#: src/widgets/image_window.ui:46
+#: src/widgets/image_window.ui:40
+#, fuzzy
+#| msgid "_About Image Viewer"
+msgid "_Make Default Image Viewer"
+msgstr "关于图像查看器(_A)"
+
+#: src/widgets/image_window.ui:50
 msgid "_Help"
 msgstr "帮助(_H)"
 
-#: src/widgets/image_window.ui:50
+#: src/widgets/image_window.ui:54
 msgid "_Keyboard Shortcuts"
 msgstr "快捷键(_K)"
 
-#: src/widgets/image_window.ui:54
-msgid "_About Image Viewer"
-msgstr "关于图像查看器(_A)"
+#: src/widgets/image_window.ui:58
+#, fuzzy
+#| msgid "_About Loupe"
+msgid "_About Glance"
+msgstr "关于(_A)"
 
-#: src/widgets/image_window.ui:87
+#: src/widgets/image_window.ui:91
 msgid "Toggle Fullscreen"
 msgstr "切换全屏"
 
-#: src/widgets/image_window.ui:93
+#: src/widgets/image_window.ui:97
 msgid "Main Menu"
 msgstr "主菜单"
 
-#: src/widgets/image_window.ui:125
+#: src/widgets/image_window.ui:129
 msgid "Image Properties"
 msgstr "图像属性"
 
-#: src/widgets/image_window.ui:132
+#: src/widgets/image_window.ui:136
 msgid "Edit Image"
 msgstr "编辑图像"
 
-#: src/widgets/image_window.ui:220
+#: src/widgets/image_window.ui:224
 msgid "View and Edit Images"
 msgstr "查看和编辑图像"
 
-#: src/widgets/image_window.ui:221
+#: src/widgets/image_window.ui:225
 msgid "Drag and drop images here"
 msgstr "拖放图片到这里"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:229
 msgid "_Open Files…"
 msgstr "打开文件(_O)…"
 
@@ -868,13 +1139,9 @@ msgstr "继续…"
 msgid "Print Image"
 msgstr "打印图像"
 
-#: src/widgets/print.rs:801
+#: src/widgets/print.rs:784
 msgid "_Scale"
 msgstr "缩放(_S)"
-
-#: src/widgets/print.rs:804
-msgid "_Width"
-msgstr "宽度(_W)"
 
 #. Translators: Go back to previous page
 #: src/widgets/print.ui:29
@@ -1107,106 +1374,6 @@ msgstr "ICC 特性文件"
 msgid "CICP"
 msgstr "CICP"
 
-#: src/widgets/window.rs:254
+#: src/widgets/window.rs:249
 msgid "Show Details"
 msgstr "显示详情"
-
-#~ msgid "Browse through your images and inspect their metadata with:"
-#~ msgstr "浏览您的图像并检查其元数据："
-
-#~ msgid "Fast GPU accelerated image rendering"
-#~ msgstr "快速的 GPU 加速图像渲染"
-
-#~ msgid "Tiled rendering for vector graphics"
-#~ msgstr "分块渲染矢量图形"
-
-#~ msgid "Extendable and sandboxed image decoding"
-#~ msgstr "可扩展和沙盒化的图像解码"
-
-#~ msgid "Accessible presentation of the most important metadata."
-#~ msgstr "对最重要元数据的可访问呈现。"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Gestures"
-#~ msgstr "手势"
-
-#~ msgid "Copy to Clipboard"
-#~ msgstr "复制到剪贴板"
-
-#~ msgid "Move to Trash"
-#~ msgstr "移至回收站"
-
-#~ msgid "The Loupe Team"
-#~ msgstr "Loupe 团队"
-
-#~ msgid "Center image horizontally"
-#~ msgstr "图像横向居中"
-
-#~ msgid "Center image vertically"
-#~ msgstr "图像纵向居中"
-
-#~ msgid "Image Scale"
-#~ msgstr "图像缩放"
-
-#~ msgid "Left Margin"
-#~ msgstr "左侧边距"
-
-#~ msgid "Length Unit"
-#~ msgstr "长度单位"
-
-#~ msgid "_About Loupe"
-#~ msgstr "关于(_A)"
-
-#~ msgid "Loupe"
-#~ msgstr "Loupe"
-
-#~ msgid "Failed to decode image"
-#~ msgstr "解码图像失败"
-
-#~ msgid "Unknown image format"
-#~ msgstr "未知图像格式"
-
-#~ msgid "Animated GIF"
-#~ msgstr "GIF 动画"
-
-#~ msgid "Animated WebP"
-#~ msgstr "WebP 动画"
-
-#~ msgid "Animated PNG"
-#~ msgstr "PNG 动画"
-
-#~ msgid "Could not open image"
-#~ msgstr "无法打开图像"
-
-#~ msgid "Could not read image"
-#~ msgstr "无法读取图像"
-
-#~ msgid "Layout Image"
-#~ msgstr "布局图像"
-
-#~ msgid "The following features are not available yet"
-#~ msgstr "以下功能还不能使用"
-
-#~ msgid "Applying image color profiles"
-#~ msgstr "应用图像颜色配置文件"
-
-#~ msgid "Christopher Davis"
-#~ msgstr "Christopher Davis"
-
-#~ msgid "Correctly showing SVGs at every zoom-level"
-#~ msgstr "在每个缩放级别正确显示SVG"
-
-#~ msgid "Correct HighDPI support"
-#~ msgstr "正确的高DPI支持"
-
-#~ msgid "Print settings to position the image on the page"
-#~ msgstr "打印设置，以在页面上定位图像"
-
-#~ msgid "File does not exist"
-#~ msgstr "文件不存在"
-
-#~ msgid "Failed to open new background image"
-#~ msgstr "打开新背景图片失败"
-
-#~ msgid "“{}” is not a valid image."
-#~ msgstr "“{}” 不是一个有效的图像。"

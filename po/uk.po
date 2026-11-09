@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Loupe main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/loupe/-/issues\n"
-"POT-Creation-Date: 2026-07-20 19:42+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-09 00:39+0100\n"
 "PO-Revision-Date: 2026-07-30 22:03+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -15,58 +15,82 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n%10>="
-"2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : "
+"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 25.12.1\n"
 
-#: data/org.gnome.Loupe.desktop.in.in:2
-#: data/org.gnome.Loupe.metainfo.xml.in.in:6 src/about.rs:32
+#: data/io.github.Replexo.Glance.desktop.in.in:2
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:6
 #: src/widgets/image_window.rs:879
+#, fuzzy
+#| msgid "Cancel"
+msgid "Glance"
+msgstr "Скасувати"
+
+#: data/io.github.Replexo.Glance.desktop.in.in:3
 msgid "Image Viewer"
 msgstr "Перегляд зображень"
 
-#: data/org.gnome.Loupe.desktop.in.in:3
-#: data/org.gnome.Loupe.metainfo.xml.in.in:13
+#: data/io.github.Replexo.Glance.desktop.in.in:4
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:10
 msgid "View and edit images"
 msgstr "Перегляд і редагування зображень"
 
-#: data/org.gnome.Loupe.desktop.in.in:11
-msgid "Picture;Graphics;Loupe;"
-msgstr ""
-"Picture;Graphics;Loupe;зображення;картинка;графіка;перегляд;зображення;лупе;"
+#: data/io.github.Replexo.Glance.desktop.in.in:12
+#, fuzzy
+#| msgid "Picture;Graphics;Loupe;"
+msgid "Picture;Graphics;Loupe;Glance;"
+msgstr "Picture;Graphics;Loupe;зображення;картинка;графіка;перегляд;зображення;лупе;"
 
-#: data/org.gnome.Loupe.gschema.xml.in:6
+#: data/io.github.Replexo.Glance.gschema.xml.in:6
 msgid "Show the image properties sidebar"
 msgstr "Показати властивості зображення на бічній панелі"
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.Loupe.metainfo.xml.in.in:8
-#: data/org.gnome.Loupe.metainfo.xml.in.in:10 src/about.rs:35
-msgid "The GNOME Project"
-msgstr "Проєкт GNOME"
-
-#: data/org.gnome.Loupe.metainfo.xml.in.in:15
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:12
 msgid ""
-"Explore images, view their metadata, and make quick edits by cropping, "
-"rotating, or flipping them."
+"Glance is an image viewer with built-in editing. Browse your images, view "
+"their metadata, and make quick edits without opening a separate editor."
 msgstr ""
-"Подорожуйте збіркою фотографій, переглядайте метадані зображень і вносьте "
-"потрібні зміни до зображень — обрізання, обертання або віддзеркалення."
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:28
-#| msgctxt "shortcut window"
-#| msgid "New Window"
-msgid "Main Window"
-msgstr "Головне вікно"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:14
+msgid ""
+"Mark up images with a brush, highlighter, lines, arrows, shapes and text"
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:32
-msgid "Crop Tool"
-msgstr "Інструмент «Обрізання»"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:15
+msgid "Adjust brightness, contrast, highlights, shadows and saturation"
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:36
-#| msgid "Image Properties"
-msgid "Image Properties Panel"
-msgstr "Панель властивостей зображення"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:16
+msgid "Crop to an aspect ratio, rotate, flip and resize"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:17
+msgid "Undo and redo every edit, and save a copy or replace the original"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:19
+msgid "Glance is based on Loupe, the GNOME image viewer."
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:28
+msgid "Marking up an image"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:32
+msgid "Adjusting colours"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:36
+msgid "Cropping"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:76
+msgid ""
+"First release of Glance, based on Loupe 51.1. It adds Markup, Adjust and "
+"Crop editing views, undo and redo, zoom in the editor, and keyboard "
+"shortcuts for the markup tools."
+msgstr ""
 
 #: data/resources/shortcuts-dialog.ui:6
 msgctxt "shortcut window"
@@ -154,13 +178,13 @@ msgid "Rotate Image"
 msgstr "Обернути зображення"
 
 #: data/resources/shortcuts-dialog.ui:119
-#: data/resources/shortcuts-dialog.ui:253
+#: data/resources/shortcuts-dialog.ui:259
 msgctxt "shortcut window"
 msgid "Rotate Clockwise"
 msgstr "Обернути за годинниковою стрілкою"
 
 #: data/resources/shortcuts-dialog.ui:125
-#: data/resources/shortcuts-dialog.ui:259
+#: data/resources/shortcuts-dialog.ui:265
 msgctxt "shortcut window"
 msgid "Rotate Counterclockwise"
 msgstr "Обернути проти годинникової стрілки"
@@ -256,126 +280,181 @@ msgid "Open Editing View"
 msgstr "Відкрити панель редагування"
 
 #: data/resources/shortcuts-dialog.ui:235
+#, fuzzy
+#| msgid "Crop Tool"
+msgctxt "shortcut window"
+msgid "Crop"
+msgstr "Інструмент «Обрізання»"
+
+#: data/resources/shortcuts-dialog.ui:241
 msgctxt "shortcut window"
 msgid "Replace Original"
 msgstr "Замінити початковий"
 
-#: data/resources/shortcuts-dialog.ui:241
+#: data/resources/shortcuts-dialog.ui:247
 msgctxt "shortcut window"
 msgid "Save As"
 msgstr "Зберегти із новою назвою"
 
-#: data/resources/shortcuts-dialog.ui:247
+#: data/resources/shortcuts-dialog.ui:253
 msgctxt "shortcut window"
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: data/resources/shortcuts-dialog.ui:265
+#: data/resources/shortcuts-dialog.ui:271
 msgctxt "shortcut window"
 msgid "Mirror Horizontally"
 msgstr "Віддзеркалити горизонтально"
 
-#: data/resources/shortcuts-dialog.ui:271
+#: data/resources/shortcuts-dialog.ui:277
 msgctxt "shortcut window"
 msgid "Mirror Vertically"
 msgstr "Віддзеркалити вертикально"
 
-#: data/resources/shortcuts-dialog.ui:277
+#: data/resources/shortcuts-dialog.ui:283
 msgctxt "shortcut window"
 msgid "Apply Crop"
 msgstr "Застосувати обрізання"
 
+#: data/resources/shortcuts-dialog.ui:291
+msgctxt "shortcut window"
+msgid "Markup"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:294
+msgctxt "shortcut window"
+msgid "Select, Move and Resize Markup"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:300
+msgctxt "shortcut window"
+msgid "Brush"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:306
+msgctxt "shortcut window"
+msgid "Line"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:312
+msgctxt "shortcut window"
+msgid "Arrow"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:318
+msgctxt "shortcut window"
+msgid "Rectangle"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:324
+msgctxt "shortcut window"
+msgid "Ellipse"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:330
+msgctxt "shortcut window"
+msgid "Text"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:336
+msgctxt "shortcut window"
+msgid "Eraser"
+msgstr ""
+
 #. Translators: Replace "translator-credits" with your names, one name per line
-#: src/about.rs:45
+#: src/about.rs:41
 msgid "translator-credits"
 msgstr "Юрій Чорноіван <yurchor@ukr.net>, 2023"
 
-#: src/about.rs:46
-msgid "Copyright © 2020–2024 Christopher Davis et al."
-msgstr "© Christopher Davis та інші, 2020–2024."
+#: src/application.rs:178
+msgid "Glance is now the default image viewer"
+msgstr ""
+
+#: src/application.rs:187
+msgid "Could not make Glance the default image viewer"
+msgstr ""
 
 #: src/file_model.rs:211
 msgid "Could not list other files in directory."
 msgstr "Не вдалося отримати список інших файлів у каталозі."
 
 #. Translators: Display of the f-number <https://en.wikipedia.org/wiki/F-number>. {} will be replaced with the number
-#: src/metadata.rs:271
+#: src/metadata.rs:270
 msgid "\\u{192}\\u{2215}{}"
 msgstr "\\u{192}\\u{2215}{}"
 
 #. Translators: Fractional exposure time (photography) in seconds
-#: src/metadata.rs:284
+#: src/metadata.rs:283
 msgid "1\\u{2215}{}\\u{202F}s"
 msgstr "1\\u{2215}{}\\u{202F}с"
 
 #. Translators: Exposure time (photography) in seconds
-#: src/metadata.rs:292
+#: src/metadata.rs:291
 msgid "{}\\u{202F}s"
 msgstr "{}\\u{202F}с"
 
-#: src/metadata.rs:306
+#: src/metadata.rs:305
 msgid "{}\\u{202F}mm"
 msgstr "{}\\u{202F}мм"
 
 #. Translators: short for "north" in GPS coordinate
-#: src/metadata.rs:396
+#: src/metadata.rs:395
 msgid "N"
 msgstr "Пн"
 
 #. Translators: short for "south" in GPS coordinate
-#: src/metadata.rs:400
+#: src/metadata.rs:399
 msgid "S"
 msgstr "Пд"
 
 #. Translators: short for "east" in GPS coordinate
-#: src/metadata.rs:409
+#: src/metadata.rs:408
 msgid "E"
 msgstr "С"
 
 #. Translators: short for "west" in GPS coordinate
-#: src/metadata.rs:413
+#: src/metadata.rs:412
 msgid "W"
 msgstr "З"
 
-#: src/metadata.rs:493
+#: src/metadata.rs:492
 msgid "DCI P3"
 msgstr "DCI P3"
 
-#: src/metadata.rs:494
+#: src/metadata.rs:493
 msgid "Display P3"
 msgstr "Показати P3"
 
-#: src/metadata.rs:495
+#: src/metadata.rs:494
 msgid "Rec.2020"
 msgstr "Rec.2020"
 
-#: src/metadata.rs:496
+#: src/metadata.rs:495
 msgid "sRGB"
 msgstr "sRGB"
 
-#: src/metadata.rs:497 src/metadata.rs:505
+#: src/metadata.rs:496 src/metadata.rs:504
 msgid "Unspecified"
 msgstr "Не вказано"
 
-#: src/metadata.rs:498 src/metadata.rs:507 src/metadata.rs:517
+#: src/metadata.rs:497 src/metadata.rs:506 src/metadata.rs:516
 #, rust-format
-#| msgid "Unknown"
 msgid "Unknown ({})"
 msgstr "Не відомо ({})"
 
-#: src/metadata.rs:504
+#: src/metadata.rs:503
 msgid "ICtCp"
 msgstr "ICtCp"
 
-#: src/metadata.rs:513
+#: src/metadata.rs:512
 msgid "DCI"
 msgstr "DCI"
 
-#: src/metadata.rs:514
+#: src/metadata.rs:513
 msgid "PQ"
 msgstr "PQ"
 
-#: src/metadata.rs:515
+#: src/metadata.rs:514
 msgid "Gamma 2.4"
 msgstr "Гама 2,4"
 
@@ -396,108 +475,99 @@ msgstr "Не вдалося відновити зображення зі смі�
 msgid "Drop Image to View"
 msgstr "Скиньте зображення для перегляду"
 
-#: src/widgets/edit/crop.rs:363
-msgid "Failed to Edit Image"
-msgstr "Не вдалося внести зміни до зображення"
+#: src/widgets/edit/adjust.rs:34 src/widgets/edit/adjust.ui:11
+#: src/widgets/edit/adjust.ui:43
+msgid "Brightness"
+msgstr ""
 
-#: src/widgets/edit/crop.ui:6
+#: src/widgets/edit/adjust.rs:35 src/widgets/edit/adjust.ui:72
+msgid "Contrast"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:36 src/widgets/edit/adjust.ui:101
+msgid "Highlights"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:37 src/widgets/edit/adjust.ui:130
+msgid "Shadows"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:38 src/widgets/edit/adjust.ui:159
+msgid "Saturation"
+msgstr ""
+
+#: src/widgets/edit/color_card.rs:204
+msgid "Hex Color"
+msgstr ""
+
+#: src/widgets/edit/crop.rs:41 src/widgets/edit/crop.ui:88
+#: src/widgets/edit/crop.ui:112
 msgid "Free"
 msgstr "Довільне"
 
-#: src/widgets/edit/crop.ui:11
+#: src/widgets/edit/crop.rs:42 src/widgets/edit/crop.ui:122
 msgid "Original"
 msgstr "Оригінал"
 
-#: src/widgets/edit/crop.ui:16
+#: src/widgets/edit/crop.rs:43 src/widgets/edit/crop.ui:132
 msgid "Square"
 msgstr "Квадрат"
 
-#: src/widgets/edit/crop.ui:21
-msgid "5:4"
-msgstr "5:4"
+#: src/widgets/edit/crop.rs:842
+msgid "Failed to Edit Image"
+msgstr "Не вдалося внести зміни до зображення"
 
-#: src/widgets/edit/crop.ui:26
-msgid "4:3"
-msgstr "4:3"
-
-#: src/widgets/edit/crop.ui:31
-msgid "3:2"
-msgstr "3:2"
-
-#: src/widgets/edit/crop.ui:36
-msgid "16:9"
-msgstr "16:9"
-
-#: src/widgets/edit/crop.ui:77 src/widgets/edit/crop.ui:364
+#: src/widgets/edit/crop.ui:83
 msgid "Aspect Ratio"
 msgstr "Співвідношення сторін"
 
-#: src/widgets/edit/crop.ui:91
-msgid "_Free"
-msgstr "Дов_ільний"
+#: src/widgets/edit/crop.ui:142
+msgid "5:4"
+msgstr "5:4"
 
-#: src/widgets/edit/crop.ui:109
-msgid "_Original"
-msgstr "По_чатковий"
+#: src/widgets/edit/crop.ui:152
+msgid "4:3"
+msgstr "4:3"
 
-#: src/widgets/edit/crop.ui:127
-msgid "_Square"
-msgstr "_Квадратні"
+#: src/widgets/edit/crop.ui:162
+msgid "3:2"
+msgstr "3:2"
 
-#: src/widgets/edit/crop.ui:145
-msgid "_5:4"
-msgstr "_5:4"
+#: src/widgets/edit/crop.ui:172
+msgid "16:9"
+msgstr "16:9"
 
-#: src/widgets/edit/crop.ui:166
-msgid "_4:3"
-msgstr "_4:3"
-
-#: src/widgets/edit/crop.ui:187
-msgid "_3:2"
-msgstr "_3:2"
-
-#: src/widgets/edit/crop.ui:208
-msgid "_16:9"
-msgstr "_16:9"
-
-#: src/widgets/edit/crop.ui:231 src/widgets/edit/crop.ui:377
-msgid "Orientation Landscape"
+#: src/widgets/edit/crop.ui:188
+#, fuzzy
+#| msgid "Orientation Landscape"
+msgid "Landscape"
 msgstr "Альбомна орієнтація"
 
-#: src/widgets/edit/crop.ui:240 src/widgets/edit/crop.ui:389
-msgid "Orientation Portrait"
-msgstr "Книжкова орієнтація"
+#: src/widgets/edit/crop.ui:196
+msgid "Portrait"
+msgstr ""
 
-#: src/widgets/edit/crop.ui:252 src/widgets/image_page.ui:15
-#: src/widgets/image_window.ui:25
-msgid "Rotate"
-msgstr "Обертати"
-
-#: src/widgets/edit/crop.ui:261 src/widgets/edit/crop.ui:407
+#: src/widgets/edit/crop.ui:217
 msgid "Rotate Counter Clockwise"
 msgstr "Обернути проти годинникової стрілки"
 
-#: src/widgets/edit/crop.ui:268
+#: src/widgets/edit/crop.ui:224
 msgid "Rotate Clockwise"
 msgstr "Обернути за годинниковою стрілкою"
 
-#: src/widgets/edit/crop.ui:278
-msgid "Flip"
-msgstr "Віддзеркалити"
-
-#: src/widgets/edit/crop.ui:287 src/widgets/edit/crop.ui:415
+#: src/widgets/edit/crop.ui:231
 msgid "Mirror Horizontally"
 msgstr "Віддзеркалити горизонтально"
 
-#: src/widgets/edit/crop.ui:294
-msgid "Mirror Vertically"
-msgstr "Віддзеркалити вертикально"
+#: src/widgets/edit/crop.ui:238
+msgid "Resize"
+msgstr ""
 
-#: src/widgets/edit/crop.ui:306 src/widgets/edit/crop.ui:429
+#: src/widgets/edit/crop.ui:249
 msgid "_Reset"
 msgstr "С_кинути"
 
-#: src/widgets/edit/crop.ui:307 src/widgets/edit/crop.ui:431
+#: src/widgets/edit/crop.ui:251
 msgid "Undo Changes in this View"
 msgstr "Скасувати зміни на цій панелі перегляду"
 
@@ -505,8 +575,156 @@ msgstr "Скасувати зміни на цій панелі перегляд�
 msgid "Crop Selection"
 msgstr "Обрізати за позначеним"
 
+#: src/widgets/edit/markup.ui:27
+msgid "Choose a Color"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:59
+msgid "Blue"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:79
+msgid "Yellow"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:99
+#, fuzzy
+#| msgid "_Reload"
+msgid "Red"
+msgstr "Перезаванта_жити"
+
+#: src/widgets/edit/markup.ui:119
+msgid "Orange"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:139
+msgid "Green"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:171
+msgid "Outline"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:179
+msgid "Filled"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:196
+msgid "Thin"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:214 src/widgets/edit/markup.ui:294
+msgid "Medium"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:232
+msgid "Thick"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:250
+msgid "Very Thick"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:279
+msgid "Small"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:309
+msgid "Large"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:324
+msgid "Very Large"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:344
+msgid "Sans"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:359
+msgid "Serif"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:374
+msgid "Monospace"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:389
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Editing"
+msgid "Handwriting"
+msgstr "Редагування"
+
+#: src/widgets/edit/markup.ui:427
+msgid "Move, Resize and Rotate"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:435
+msgid "Paintbrush"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:443
+msgid "Highlighter"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:451
+msgid "Line"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:459
+msgid "Arrow"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:467
+msgid "Rectangle"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:475
+msgid "Circle"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:483
+msgid "Text"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:491
+msgid "Eraser"
+msgstr ""
+
+#: src/widgets/edit/resize_dialog.ui:4
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Rotate Image"
+msgid "Resize Image"
+msgstr "Обернути зображення"
+
+#: src/widgets/edit/resize_dialog.ui:15 src/widgets/edit_window.ui:101
+msgid "_Cancel"
+msgstr "_Скасувати"
+
+#: src/widgets/edit/resize_dialog.ui:22
+#, fuzzy
+#| msgid "_Reset"
+msgid "_Resize"
+msgstr "С_кинути"
+
+#: src/widgets/edit/resize_dialog.ui:50 src/widgets/print.rs:787
+msgid "_Width"
+msgstr "_Ширина"
+
+#: src/widgets/edit/resize_dialog.ui:90
+#, fuzzy
+#| msgid "H_eight"
+msgid "_Height"
+msgstr "_Висота"
+
+#: src/widgets/edit/resize_dialog.ui:139
+msgid "Size in Percent"
+msgstr ""
+
 #. Translators: Filename suffix, {} is replaced by a number
-#: src/widgets/edit_window.rs:199
+#: src/widgets/edit_window.rs:368
 #, rust-format
 msgid " (Edited)"
 msgid_plural " (Edited {})"
@@ -515,83 +733,118 @@ msgstr[1] " (редаговано {})"
 msgstr[2] " (редаговано {})"
 msgstr[3] " (редаговано {})"
 
-#: src/widgets/edit_window.rs:283
-#| msgctxt "shortcut window"
-#| msgid "Move Image to Trash"
+#: src/widgets/edit_window.rs:453
 msgid "Moving Original to Trash"
 msgstr "Пересуваємо оригінал до смітника"
 
-#: src/widgets/edit_window.rs:297 src/widgets/edit_window.rs:326
+#: src/widgets/edit_window.rs:467 src/widgets/edit_window.rs:496
 msgid "Failed to save image."
 msgstr "Спроба збереження зображення була невдалою."
 
-#: src/widgets/edit_window.rs:306
+#: src/widgets/edit_window.rs:476
 msgid "Finalizing Save Operation"
 msgstr "Завершення дії зі збереження"
 
-#: src/widgets/edit_window.rs:357
+#: src/widgets/edit_window.rs:531
 msgid "Editing Image"
 msgstr "Редагування зображення"
 
-#: src/widgets/edit_window.rs:374
+#: src/widgets/edit_window.rs:554 src/widgets/edit_window.rs:581
 msgid "Failed to edit image."
 msgstr "Не вдалося внести зміни до зображення."
 
-#: src/widgets/edit_window.rs:381
+#: src/widgets/edit_window.rs:610
 msgid "Saving Image"
 msgstr "Збереження зображення"
 
-#: src/widgets/edit_window.rs:400
+#: src/widgets/edit_window.rs:622
 msgid "Failed to Save Image"
 msgstr "Спроба збереження зображення була невдалою"
 
-#: src/widgets/edit_window.rs:515
+#: src/widgets/edit_window.rs:991
 msgid "Save Changes?"
 msgstr "Зберегти зміни?"
 
-#: src/widgets/edit_window.rs:517
+#: src/widgets/edit_window.rs:993
 msgid ""
 "There are unsaved image editing changes. Closing without saving will "
 "permanently lose these modifications."
 msgstr ""
-"Маємо незбережені зміни у зображенні. Закриття без збереження призведе до ост"
-"аточної втрати цих змін."
+"Маємо незбережені зміни у зображенні. Закриття без збереження призведе до "
+"остаточної втрати цих змін."
 
-#: src/widgets/edit_window.rs:521 src/widgets/image_window.rs:700
+#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:700
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: src/widgets/edit_window.rs:522
+#: src/widgets/edit_window.rs:998
 msgid "Discard"
 msgstr "Відкинути"
 
-#: src/widgets/edit_window.rs:523
-#| msgid "_Save"
+#: src/widgets/edit_window.rs:999
 msgid "Save"
 msgstr "Зберегти"
 
-#: src/widgets/edit_window.ui:64
-msgid "_Cancel"
-msgstr "_Скасувати"
+#: src/widgets/edit_window.ui:33
+msgid "Hold to Show Original"
+msgstr ""
 
-#: src/widgets/edit_window.ui:71
+#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:636
+msgid "Undo"
+msgstr "Скасувати"
+
+#: src/widgets/edit_window.ui:46
+msgid "Redo"
+msgstr ""
+
+#: src/widgets/edit_window.ui:120
+#, fuzzy
+#| msgid "Crop Tool"
+msgid "Crop"
+msgstr "Інструмент «Обрізання»"
+
+#: src/widgets/edit_window.ui:124
+msgid "Cr_op"
+msgstr ""
+
+#: src/widgets/edit_window.ui:133
+msgid "Adjust"
+msgstr ""
+
+#: src/widgets/edit_window.ui:137
+msgid "A_djust"
+msgstr ""
+
+#: src/widgets/edit_window.ui:146
+msgid "Markup"
+msgstr ""
+
+#: src/widgets/edit_window.ui:150
+msgid "_Markup"
+msgstr ""
+
+#: src/widgets/edit_window.ui:160
 msgid "_Save"
 msgstr "З_берегти"
 
-#: src/widgets/edit_window.ui:92
-msgid "_Save As…"
+#: src/widgets/edit_window.ui:181
+#, fuzzy
+#| msgid "_Save As…"
+msgid "_Save a Copy…"
 msgstr "Зберегти _як…"
 
-#: src/widgets/edit_window.ui:100
-msgid "Keep original and create a new file"
-msgstr "Зберегти оригінал і створити файл"
+#: src/widgets/edit_window.ui:189
+msgid "Save changes and keep original."
+msgstr ""
 
-#: src/widgets/edit_window.ui:120
+#: src/widgets/edit_window.ui:209
 msgid "_Replace Original"
 msgstr "З_амінити оригінал"
 
-#: src/widgets/edit_window.ui:128
-msgid "Original image will be moved to the trash"
+#: src/widgets/edit_window.ui:217
+#, fuzzy
+#| msgid "Original image will be moved to the trash"
+msgid "Original image will be moved to the trash."
 msgstr "Початкове зображення буде пересунуто до смітника"
 
 #: src/widgets/error_details.rs:80
@@ -660,8 +913,7 @@ msgid "Failed to load image file: {}"
 msgstr "Не вдалось прочитати відомості щодо файла зображення: {}"
 
 #: src/widgets/image_page.rs:272
-msgid ""
-"Either the image file is corrupted or it contains unsupported elements."
+msgid "Either the image file is corrupted or it contains unsupported elements."
 msgstr ""
 "Файл зображення або пошкоджено або у ньому містяться непідтримувані елементи."
 
@@ -673,11 +925,15 @@ msgstr "Відкрити _через…"
 msgid "_Print…"
 msgstr "Над_рукувати…"
 
+#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:25
+msgid "Rotate"
+msgstr "Обертати"
+
 #: src/widgets/image_page.ui:26 src/widgets/image_window.ui:36
 msgid "_Set as Background…"
 msgstr "З_робити фоновим зображенням…"
 
-#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:40
+#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:44
 msgid "_Delete"
 msgstr "В_илучити"
 
@@ -697,21 +953,21 @@ msgstr "Д_окладніше"
 msgid "_Reload"
 msgstr "Перезаванта_жити"
 
-#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:101
+#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:105
 msgid "Rotate Left"
 msgstr "Обернути ліворуч"
 
-#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:111
+#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:115
 msgid "Rotate Right"
 msgstr "Обернути праворуч"
 
 #. Translators: This is a toast notification, informing the user that
 #. an image has been set as background.
-#: src/widgets/image_view.rs:866
+#: src/widgets/image_view.rs:870
 msgid "Set as background."
 msgstr "Встановити як фонове зображення."
 
-#: src/widgets/image_view.rs:872
+#: src/widgets/image_view.rs:876
 msgid "Could not set background."
 msgstr "Не вдалося встановити фонове зображення."
 
@@ -767,10 +1023,6 @@ msgstr "Зображення скопійовано до буфера обмін
 msgid "Image moved to trash"
 msgstr "Зображення пересунуто до смітника"
 
-#: src/widgets/image_window.rs:636
-msgid "Undo"
-msgstr "Скасувати"
-
 #: src/widgets/image_window.rs:666
 msgid "Failed to move image to trash"
 msgstr "Не вдалося пересунути зображення до смітника"
@@ -800,43 +1052,51 @@ msgstr "_Створити вікно"
 msgid "_Open…"
 msgstr "_Відкрити…"
 
-#: src/widgets/image_window.ui:46
+#: src/widgets/image_window.ui:40
+#, fuzzy
+#| msgid "_About Image Viewer"
+msgid "_Make Default Image Viewer"
+msgstr "_Про «Перегляд зображень»"
+
+#: src/widgets/image_window.ui:50
 msgid "_Help"
 msgstr "_Довідка"
 
-#: src/widgets/image_window.ui:50
+#: src/widgets/image_window.ui:54
 msgid "_Keyboard Shortcuts"
 msgstr "_Клавіатурні скорочення"
 
-#: src/widgets/image_window.ui:54
-msgid "_About Image Viewer"
-msgstr "_Про «Перегляд зображень»"
+#: src/widgets/image_window.ui:58
+#, fuzzy
+#| msgid "_About Loupe"
+msgid "_About Glance"
+msgstr "_Про «Лупе»"
 
-#: src/widgets/image_window.ui:87
+#: src/widgets/image_window.ui:91
 msgid "Toggle Fullscreen"
 msgstr "Увімкнути/вимкнути повноекранний режим"
 
-#: src/widgets/image_window.ui:93
+#: src/widgets/image_window.ui:97
 msgid "Main Menu"
 msgstr "Головне меню"
 
-#: src/widgets/image_window.ui:125
+#: src/widgets/image_window.ui:129
 msgid "Image Properties"
 msgstr "Властивості зображення"
 
-#: src/widgets/image_window.ui:132
+#: src/widgets/image_window.ui:136
 msgid "Edit Image"
 msgstr "Редагувати зображення"
 
-#: src/widgets/image_window.ui:220
+#: src/widgets/image_window.ui:224
 msgid "View and Edit Images"
 msgstr "Перегляд і редагування зображень"
 
-#: src/widgets/image_window.ui:221
+#: src/widgets/image_window.ui:225
 msgid "Drag and drop images here"
 msgstr "Перетягніть і скиньте зображення тут"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:229
 msgid "_Open Files…"
 msgstr "_Відкрити файли…"
 
@@ -876,26 +1136,22 @@ msgid "px"
 msgstr "пк"
 
 #. Translators: {} is a placeholder for the filename
-#: src/widgets/print.rs:366
+#: src/widgets/print.rs:365
 #, rust-format
 msgid "Print “{}”"
 msgstr "Надрукувати «{}»"
 
-#: src/widgets/print.rs:473
+#: src/widgets/print.rs:472
 msgid "Continue…"
 msgstr "Продовжити…"
 
-#: src/widgets/print.rs:474
+#: src/widgets/print.rs:473
 msgid "Print Image"
 msgstr "Надрукувати зображення"
 
-#: src/widgets/print.rs:802
+#: src/widgets/print.rs:784
 msgid "_Scale"
 msgstr "_Масштаб"
-
-#: src/widgets/print.rs:805
-msgid "_Width"
-msgstr "_Ширина"
 
 #. Translators: Go back to previous page
 #: src/widgets/print.ui:29
@@ -993,7 +1249,6 @@ msgstr "″"
 
 #. Translators: Shorthand for meter
 #: src/widgets/properties_view.rs:362
-#| msgid "{} %"
 msgid " m"
 msgstr " м"
 
@@ -1013,17 +1268,14 @@ msgid " pt"
 msgstr " пт"
 
 #: src/widgets/properties_view.rs:386
-#| msgid "{}\\u{202F}\\u{D7}\\u{202F}{}"
 msgid "{}{}\\u{202F}\\u{D7}\\u{202F}{}{}"
 msgstr "{}{}\\u{202F}\\u{D7}\\u{202F}{}{}"
 
 #: src/widgets/properties_view.rs:403
-#| msgid "{}\\u{202F}s"
 msgid "{}\\u{202F}DPI"
 msgstr "{}\\u{202F}т/д"
 
 #: src/widgets/properties_view.rs:407
-#| msgid "{}\\u{202F}\\u{D7}\\u{202F}{}"
 msgid "{}\\u{202F}DPI\\u{202F}\\u{D7}\\u{202F}{}\\u{202F}DPI"
 msgstr "{}\\u{202F}DPI\\u{202F}\\u{D7}\\u{202F}{}\\u{202F}DPI"
 
@@ -1044,7 +1296,6 @@ msgid "URI"
 msgstr "Адреса"
 
 #: src/widgets/properties_view.ui:66
-#| msgid "File Size"
 msgid "Physical Size"
 msgstr "Фізичний розмір"
 
@@ -1133,111 +1384,6 @@ msgstr "Профіль ICC"
 msgid "CICP"
 msgstr "CICP"
 
-#: src/widgets/window.rs:254
+#: src/widgets/window.rs:249
 msgid "Show Details"
 msgstr "Показати подробиці"
-
-#~ msgid "Browse through your images and inspect their metadata with:"
-#~ msgstr ""
-#~ "Здійснюйте навігацію вашими зображеннями і переглядайте їхні метадані за "
-#~ "допомогою:"
-
-#~ msgid "Fast GPU accelerated image rendering"
-#~ msgstr "Швидкої обробка зображення за допомогою графічного процесора"
-
-#~ msgid "Tiled rendering for vector graphics"
-#~ msgstr "Плиткової обробки для векторної графіки"
-
-#~ msgid "Extendable and sandboxed image decoding"
-#~ msgstr "Придатного до розширення та ізольоване декодування зображень"
-
-#~ msgid "Accessible presentation of the most important metadata."
-#~ msgstr "Доступного представлення найважливіших метаданих"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Gestures"
-#~ msgstr "Жести"
-
-#~ msgid "Copy to Clipboard"
-#~ msgstr "Скопіювати до буфера"
-
-#~ msgid "Move to Trash"
-#~ msgstr "Пересунути до смітника"
-
-#~ msgid "The Loupe Team"
-#~ msgstr "Команда «Лупе»"
-
-#~ msgid "Center image horizontally"
-#~ msgstr "Зображення за центром горизонтально"
-
-#~ msgid "Center image vertically"
-#~ msgstr "Зображення за центром вертикально"
-
-#~ msgid "Image Scale"
-#~ msgstr "Масштаб зображення"
-
-#~ msgid "Left Margin"
-#~ msgstr "Лівий відступ"
-
-#~ msgid "Length Unit"
-#~ msgstr "Одиниця довжини"
-
-#~ msgid "_About Loupe"
-#~ msgstr "_Про «Лупе»"
-
-#~ msgid "Loupe"
-#~ msgstr "Лупе"
-
-#~ msgid "Failed to decode image"
-#~ msgstr "Не вдалося декодувати зображення"
-
-#~ msgid "Unknown image format"
-#~ msgstr "Невідомий формат зображення"
-
-#~ msgid "Animated GIF"
-#~ msgstr "Анімаційний GIF"
-
-#~ msgid "Animated WebP"
-#~ msgstr "Анімований WebP"
-
-#~ msgid "Animated PNG"
-#~ msgstr "Анімований PNG"
-
-#~ msgid "Could not open image"
-#~ msgstr "Не вдалося відкрити зображення"
-
-#~ msgid "Could not read image"
-#~ msgstr "Не вдалося прочитати зображення"
-
-#~ msgid "Layout Image"
-#~ msgstr "Компонування зображення"
-
-#~ msgid "The following features are not available yet"
-#~ msgstr "Наведеними нижче можливостями ще не можна скористатися"
-
-#~ msgid "Applying image color profiles"
-#~ msgstr "Застосовуємо профілі кольорів зображення"
-
-#~ msgid "Christopher Davis"
-#~ msgstr "Christopher Davis"
-
-#~ msgid "File does not exist"
-#~ msgstr "Файла не існує"
-
-#~ msgid "Failed to open new background image"
-#~ msgstr "Не вдалося відкрити нове зображення тла"
-
-#~ msgid "“{}” is not a valid image."
-#~ msgstr "«{}» не є коректним зображенням."
-
-#~ msgid "Correctly showing SVGs at every zoom-level"
-#~ msgstr "Належний показ SVG за будь-якого рівня масштабування"
-
-#~ msgid "Correct HighDPI support"
-#~ msgstr "Належна підтримка зображень із високою роздільною здатністю"
-
-#~ msgid "Print settings to position the image on the page"
-#~ msgstr "Параметри друку для розташовування зображення на сторінці"
-
-#~ msgid "File Type"
-#~ msgstr "Тип файла"

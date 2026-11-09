@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Loupe main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/loupe/-/issues\n"
-"POT-Creation-Date: 2026-08-06 11:47+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-09 00:39+0100\n"
 "PO-Revision-Date: 2026-08-09 17:29+0200\n"
 "Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
 "Language-Team: GNOME-NL https://matrix.to/#/#nl:gnome.org\n"
@@ -27,48 +27,78 @@ msgstr ""
 "X-DL-Domain: po\n"
 "X-DL-State: Translating\n"
 
-#: data/org.gnome.Loupe.desktop.in.in:2 data/org.gnome.Loupe.metainfo.xml.in.in:6
-#: src/about.rs:32 src/widgets/image_window.rs:879
+#: data/io.github.Replexo.Glance.desktop.in.in:2
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:6
+#: src/widgets/image_window.rs:879
+#, fuzzy
+#| msgid "Cancel"
+msgid "Glance"
+msgstr "Annuleren"
+
+#: data/io.github.Replexo.Glance.desktop.in.in:3
 msgid "Image Viewer"
 msgstr "Afbeeldingsweergave"
 
-#: data/org.gnome.Loupe.desktop.in.in:3 data/org.gnome.Loupe.metainfo.xml.in.in:13
+#: data/io.github.Replexo.Glance.desktop.in.in:4
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:10
 msgid "View and edit images"
 msgstr "Bekijk en bewerk afbeeldingen"
 
-#: data/org.gnome.Loupe.desktop.in.in:11
-msgid "Picture;Graphics;Loupe;"
+#: data/io.github.Replexo.Glance.desktop.in.in:12
+#, fuzzy
+#| msgid "Picture;Graphics;Loupe;"
+msgid "Picture;Graphics;Loupe;Glance;"
 msgstr "Picture;Graphics;Loupe;Foto;Grafisch;Afbeeldingsweergave;Afbeeldingsviewer;"
 
-#: data/org.gnome.Loupe.gschema.xml.in:6
+#: data/io.github.Replexo.Glance.gschema.xml.in:6
 msgid "Show the image properties sidebar"
 msgstr "Zijbalk met afbeeldingseigenschappen weergeven"
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.Loupe.metainfo.xml.in.in:8
-#: data/org.gnome.Loupe.metainfo.xml.in.in:10 src/about.rs:35
-msgid "The GNOME Project"
-msgstr "Het GNOME-project"
-
-#: data/org.gnome.Loupe.metainfo.xml.in.in:15
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:12
 msgid ""
-"Explore images, view their metadata, and make quick edits by cropping, rotating, "
-"or flipping them."
+"Glance is an image viewer with built-in editing. Browse your images, view "
+"their metadata, and make quick edits without opening a separate editor."
 msgstr ""
-"Blader door afbeeldingen, bekijk hun metadata en maak snelle bewerkingen door ze "
-"bij te snijden, te draaien of te spiegelen."
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:28
-msgid "Main Window"
-msgstr "Hoofdvenster"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:14
+msgid ""
+"Mark up images with a brush, highlighter, lines, arrows, shapes and text"
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:32
-msgid "Crop Tool"
-msgstr "Bijsnijdhulpmiddel"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:15
+msgid "Adjust brightness, contrast, highlights, shadows and saturation"
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:36
-msgid "Image Properties Panel"
-msgstr "Paneel met afbeeldingsinfo"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:16
+msgid "Crop to an aspect ratio, rotate, flip and resize"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:17
+msgid "Undo and redo every edit, and save a copy or replace the original"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:19
+msgid "Glance is based on Loupe, the GNOME image viewer."
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:28
+msgid "Marking up an image"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:32
+msgid "Adjusting colours"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:36
+msgid "Cropping"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:76
+msgid ""
+"First release of Glance, based on Loupe 51.1. It adds Markup, Adjust and "
+"Crop editing views, undo and redo, zoom in the editor, and keyboard "
+"shortcuts for the markup tools."
+msgstr ""
 
 #: data/resources/shortcuts-dialog.ui:6
 msgctxt "shortcut window"
@@ -155,12 +185,14 @@ msgctxt "shortcut window"
 msgid "Rotate Image"
 msgstr "Afbeelding draaien"
 
-#: data/resources/shortcuts-dialog.ui:119 data/resources/shortcuts-dialog.ui:253
+#: data/resources/shortcuts-dialog.ui:119
+#: data/resources/shortcuts-dialog.ui:259
 msgctxt "shortcut window"
 msgid "Rotate Clockwise"
 msgstr "Rechtsom draaien"
 
-#: data/resources/shortcuts-dialog.ui:125 data/resources/shortcuts-dialog.ui:259
+#: data/resources/shortcuts-dialog.ui:125
+#: data/resources/shortcuts-dialog.ui:265
 msgctxt "shortcut window"
 msgid "Rotate Counterclockwise"
 msgstr "Linksom draaien"
@@ -256,37 +288,89 @@ msgid "Open Editing View"
 msgstr "Bewerkingsweergave openen"
 
 #: data/resources/shortcuts-dialog.ui:235
+#, fuzzy
+#| msgid "Crop Tool"
+msgctxt "shortcut window"
+msgid "Crop"
+msgstr "Bijsnijdhulpmiddel"
+
+#: data/resources/shortcuts-dialog.ui:241
 msgctxt "shortcut window"
 msgid "Replace Original"
 msgstr "Origineel vervangen"
 
-#: data/resources/shortcuts-dialog.ui:241
+#: data/resources/shortcuts-dialog.ui:247
 msgctxt "shortcut window"
 msgid "Save As"
 msgstr "Opslaan als"
 
-#: data/resources/shortcuts-dialog.ui:247
+#: data/resources/shortcuts-dialog.ui:253
 msgctxt "shortcut window"
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: data/resources/shortcuts-dialog.ui:265
+#: data/resources/shortcuts-dialog.ui:271
 msgctxt "shortcut window"
 msgid "Mirror Horizontally"
 msgstr "Horizontaal spiegelen"
 
-#: data/resources/shortcuts-dialog.ui:271
+#: data/resources/shortcuts-dialog.ui:277
 msgctxt "shortcut window"
 msgid "Mirror Vertically"
 msgstr "Verticaal spiegelen"
 
-#: data/resources/shortcuts-dialog.ui:277
+#: data/resources/shortcuts-dialog.ui:283
 msgctxt "shortcut window"
 msgid "Apply Crop"
 msgstr "Bijsnijden toepassen"
 
+#: data/resources/shortcuts-dialog.ui:291
+msgctxt "shortcut window"
+msgid "Markup"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:294
+msgctxt "shortcut window"
+msgid "Select, Move and Resize Markup"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:300
+msgctxt "shortcut window"
+msgid "Brush"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:306
+msgctxt "shortcut window"
+msgid "Line"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:312
+msgctxt "shortcut window"
+msgid "Arrow"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:318
+msgctxt "shortcut window"
+msgid "Rectangle"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:324
+msgctxt "shortcut window"
+msgid "Ellipse"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:330
+msgctxt "shortcut window"
+msgid "Text"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:336
+msgctxt "shortcut window"
+msgid "Eraser"
+msgstr ""
+
 #. Translators: Replace "translator-credits" with your names, one name per line
-#: src/about.rs:45
+#: src/about.rs:41
 msgid "translator-credits"
 msgstr ""
 "Philip Goto https://philipgoto.nl/\n"
@@ -295,9 +379,13 @@ msgstr ""
 "Kynan De Keyser <keyskynan@gmail.com>\n"
 "Meer info over GNOME-NL https://nl.gnome.org"
 
-#: src/about.rs:46
-msgid "Copyright © 2020–2024 Christopher Davis et al."
-msgstr "Copyright © 2020–2024 Christopher Davis et al."
+#: src/application.rs:178
+msgid "Glance is now the default image viewer"
+msgstr ""
+
+#: src/application.rs:187
+msgid "Could not make Glance the default image viewer"
+msgstr ""
 
 #: src/file_model.rs:211
 msgid "Could not list other files in directory."
@@ -364,7 +452,6 @@ msgstr "Niet opgegeven"
 
 #: src/metadata.rs:497 src/metadata.rs:506 src/metadata.rs:516
 #, rust-format
-#| msgid "Unknown"
 msgid "Unknown ({})"
 msgstr "Onbekend ({})"
 
@@ -401,108 +488,99 @@ msgstr "Kon afbeelding niet terughalen uit prullenbak"
 msgid "Drop Image to View"
 msgstr "Versleep een afbeelding om ze te bekijken"
 
-#: src/widgets/edit/crop.rs:363
-msgid "Failed to Edit Image"
-msgstr "Kon afbeelding niet bewerken"
+#: src/widgets/edit/adjust.rs:34 src/widgets/edit/adjust.ui:11
+#: src/widgets/edit/adjust.ui:43
+msgid "Brightness"
+msgstr ""
 
-#: src/widgets/edit/crop.ui:6
+#: src/widgets/edit/adjust.rs:35 src/widgets/edit/adjust.ui:72
+msgid "Contrast"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:36 src/widgets/edit/adjust.ui:101
+msgid "Highlights"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:37 src/widgets/edit/adjust.ui:130
+msgid "Shadows"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:38 src/widgets/edit/adjust.ui:159
+msgid "Saturation"
+msgstr ""
+
+#: src/widgets/edit/color_card.rs:204
+msgid "Hex Color"
+msgstr ""
+
+#: src/widgets/edit/crop.rs:41 src/widgets/edit/crop.ui:88
+#: src/widgets/edit/crop.ui:112
 msgid "Free"
 msgstr "Vrij"
 
-#: src/widgets/edit/crop.ui:11
+#: src/widgets/edit/crop.rs:42 src/widgets/edit/crop.ui:122
 msgid "Original"
 msgstr "Origineel"
 
-#: src/widgets/edit/crop.ui:16
+#: src/widgets/edit/crop.rs:43 src/widgets/edit/crop.ui:132
 msgid "Square"
 msgstr "Vierkant"
 
-#: src/widgets/edit/crop.ui:21
-msgid "5:4"
-msgstr "5:4"
+#: src/widgets/edit/crop.rs:842
+msgid "Failed to Edit Image"
+msgstr "Kon afbeelding niet bewerken"
 
-#: src/widgets/edit/crop.ui:26
-msgid "4:3"
-msgstr "4:3"
-
-#: src/widgets/edit/crop.ui:31
-msgid "3:2"
-msgstr "3:2"
-
-#: src/widgets/edit/crop.ui:36
-msgid "16:9"
-msgstr "16:9"
-
-#: src/widgets/edit/crop.ui:77 src/widgets/edit/crop.ui:364
+#: src/widgets/edit/crop.ui:83
 msgid "Aspect Ratio"
 msgstr "Verhoudingen"
 
-#: src/widgets/edit/crop.ui:91
-msgid "_Free"
-msgstr "_Vrij"
+#: src/widgets/edit/crop.ui:142
+msgid "5:4"
+msgstr "5:4"
 
-#: src/widgets/edit/crop.ui:109
-msgid "_Original"
-msgstr "_Origineel"
+#: src/widgets/edit/crop.ui:152
+msgid "4:3"
+msgstr "4:3"
 
-#: src/widgets/edit/crop.ui:127
-msgid "_Square"
-msgstr "_Vierkant"
+#: src/widgets/edit/crop.ui:162
+msgid "3:2"
+msgstr "3:2"
 
-#: src/widgets/edit/crop.ui:145
-msgid "_5:4"
-msgstr "_5:4"
+#: src/widgets/edit/crop.ui:172
+msgid "16:9"
+msgstr "16:9"
 
-#: src/widgets/edit/crop.ui:166
-msgid "_4:3"
-msgstr "_4:3"
-
-#: src/widgets/edit/crop.ui:187
-msgid "_3:2"
-msgstr "_3:2"
-
-#: src/widgets/edit/crop.ui:208
-msgid "_16:9"
-msgstr "_16:9"
-
-#: src/widgets/edit/crop.ui:231 src/widgets/edit/crop.ui:377
-msgid "Orientation Landscape"
+#: src/widgets/edit/crop.ui:188
+#, fuzzy
+#| msgid "Orientation Landscape"
+msgid "Landscape"
 msgstr "Liggende oriëntatie"
 
-#: src/widgets/edit/crop.ui:240 src/widgets/edit/crop.ui:389
-msgid "Orientation Portrait"
-msgstr "Staande oriëntatie"
+#: src/widgets/edit/crop.ui:196
+msgid "Portrait"
+msgstr ""
 
-#: src/widgets/edit/crop.ui:252 src/widgets/image_page.ui:15
-#: src/widgets/image_window.ui:25
-msgid "Rotate"
-msgstr "Draaien"
-
-#: src/widgets/edit/crop.ui:261 src/widgets/edit/crop.ui:407
+#: src/widgets/edit/crop.ui:217
 msgid "Rotate Counter Clockwise"
 msgstr "Linksom draaien"
 
-#: src/widgets/edit/crop.ui:268
+#: src/widgets/edit/crop.ui:224
 msgid "Rotate Clockwise"
 msgstr "Rechtsom draaien"
 
-#: src/widgets/edit/crop.ui:278
-msgid "Flip"
-msgstr "Spiegelen"
-
-#: src/widgets/edit/crop.ui:287 src/widgets/edit/crop.ui:415
+#: src/widgets/edit/crop.ui:231
 msgid "Mirror Horizontally"
 msgstr "Horizontaal spiegelen"
 
-#: src/widgets/edit/crop.ui:294
-msgid "Mirror Vertically"
-msgstr "Verticaal spiegelen"
+#: src/widgets/edit/crop.ui:238
+msgid "Resize"
+msgstr ""
 
-#: src/widgets/edit/crop.ui:306 src/widgets/edit/crop.ui:429
+#: src/widgets/edit/crop.ui:249
 msgid "_Reset"
 msgstr "Te_rugzetten"
 
-#: src/widgets/edit/crop.ui:307 src/widgets/edit/crop.ui:431
+#: src/widgets/edit/crop.ui:251
 msgid "Undo Changes in this View"
 msgstr "Wijzigingen in deze weergave ongedaan maken"
 
@@ -510,94 +588,280 @@ msgstr "Wijzigingen in deze weergave ongedaan maken"
 msgid "Crop Selection"
 msgstr "Selectie bijsnijden"
 
+#: src/widgets/edit/markup.ui:27
+msgid "Choose a Color"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:59
+msgid "Blue"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:79
+msgid "Yellow"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:99
+#, fuzzy
+#| msgid "_Reload"
+msgid "Red"
+msgstr "He_rladen"
+
+#: src/widgets/edit/markup.ui:119
+msgid "Orange"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:139
+msgid "Green"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:171
+msgid "Outline"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:179
+msgid "Filled"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:196
+msgid "Thin"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:214 src/widgets/edit/markup.ui:294
+msgid "Medium"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:232
+msgid "Thick"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:250
+msgid "Very Thick"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:279
+msgid "Small"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:309
+msgid "Large"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:324
+msgid "Very Large"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:344
+msgid "Sans"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:359
+msgid "Serif"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:374
+msgid "Monospace"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:389
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Editing"
+msgid "Handwriting"
+msgstr "Bewerken"
+
+#: src/widgets/edit/markup.ui:427
+msgid "Move, Resize and Rotate"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:435
+msgid "Paintbrush"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:443
+msgid "Highlighter"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:451
+msgid "Line"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:459
+msgid "Arrow"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:467
+msgid "Rectangle"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:475
+msgid "Circle"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:483
+msgid "Text"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:491
+msgid "Eraser"
+msgstr ""
+
+#: src/widgets/edit/resize_dialog.ui:4
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Rotate Image"
+msgid "Resize Image"
+msgstr "Afbeelding draaien"
+
+#: src/widgets/edit/resize_dialog.ui:15 src/widgets/edit_window.ui:101
+msgid "_Cancel"
+msgstr "_Annuleren"
+
+#: src/widgets/edit/resize_dialog.ui:22
+#, fuzzy
+#| msgid "_Reset"
+msgid "_Resize"
+msgstr "Te_rugzetten"
+
+#: src/widgets/edit/resize_dialog.ui:50 src/widgets/print.rs:787
+msgid "_Width"
+msgstr "_Breedte"
+
+#: src/widgets/edit/resize_dialog.ui:90
+#, fuzzy
+#| msgid "H_eight"
+msgid "_Height"
+msgstr "H_oogte"
+
+#: src/widgets/edit/resize_dialog.ui:139
+msgid "Size in Percent"
+msgstr ""
+
 #. Translators: Filename suffix, {} is replaced by a number
-#: src/widgets/edit_window.rs:207
+#: src/widgets/edit_window.rs:368
 #, rust-format
 msgid " (Edited)"
 msgid_plural " (Edited {})"
 msgstr[0] " (bewerkt)"
 msgstr[1] " (bewerkt {})"
 
-#: src/widgets/edit_window.rs:292
+#: src/widgets/edit_window.rs:453
 msgid "Moving Original to Trash"
 msgstr "Oorspronkelijke afbeelding verplaatsen naar prullenbak"
 
-#: src/widgets/edit_window.rs:306 src/widgets/edit_window.rs:335
+#: src/widgets/edit_window.rs:467 src/widgets/edit_window.rs:496
 msgid "Failed to save image."
 msgstr "Opslaan van afbeelding mislukt."
 
-#: src/widgets/edit_window.rs:315
+#: src/widgets/edit_window.rs:476
 msgid "Finalizing Save Operation"
 msgstr "Opslagoperatie wordt voltooid"
 
-#: src/widgets/edit_window.rs:367
+#: src/widgets/edit_window.rs:531
 msgid "Editing Image"
 msgstr "Afbeelding bewerken"
 
-#: src/widgets/edit_window.rs:384
+#: src/widgets/edit_window.rs:554 src/widgets/edit_window.rs:581
 msgid "Failed to edit image."
 msgstr "Kon afbeelding niet bewerken."
 
-#: src/widgets/edit_window.rs:391
+#: src/widgets/edit_window.rs:610
 msgid "Saving Image"
 msgstr "Afbeelding wordt opgeslagen"
 
-#: src/widgets/edit_window.rs:410
+#: src/widgets/edit_window.rs:622
 msgid "Failed to Save Image"
 msgstr "Kon afbeelding niet opslaan"
 
-#: src/widgets/edit_window.rs:526
+#: src/widgets/edit_window.rs:991
 msgid "Save Changes?"
 msgstr "Wijzigingen opslaan?"
 
-#: src/widgets/edit_window.rs:528
+#: src/widgets/edit_window.rs:993
 msgid ""
-"There are unsaved image editing changes. Closing without saving will permanently "
-"lose these modifications."
+"There are unsaved image editing changes. Closing without saving will "
+"permanently lose these modifications."
 msgstr ""
-"Er zijn niet-opgeslagen bewerkingen aan de afbeelding. Als u afsluit onder op te "
-"slaat, gaan deze bewerkingen definitief verloren."
+"Er zijn niet-opgeslagen bewerkingen aan de afbeelding. Als u afsluit onder "
+"op te slaat, gaan deze bewerkingen definitief verloren."
 
-#: src/widgets/edit_window.rs:532 src/widgets/image_window.rs:700
+#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:700
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: src/widgets/edit_window.rs:533
+#: src/widgets/edit_window.rs:998
 msgid "Discard"
 msgstr "Verwerpen"
 
-#: src/widgets/edit_window.rs:534
+#: src/widgets/edit_window.rs:999
 msgid "Save"
 msgstr "Opslaan"
 
-#: src/widgets/edit_window.ui:64
-msgid "_Cancel"
-msgstr "_Annuleren"
+#: src/widgets/edit_window.ui:33
+msgid "Hold to Show Original"
+msgstr ""
 
-#: src/widgets/edit_window.ui:71
+#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:636
+msgid "Undo"
+msgstr "Ongedaan maken"
+
+#: src/widgets/edit_window.ui:46
+msgid "Redo"
+msgstr ""
+
+#: src/widgets/edit_window.ui:120
+#, fuzzy
+#| msgid "Crop Tool"
+msgid "Crop"
+msgstr "Bijsnijdhulpmiddel"
+
+#: src/widgets/edit_window.ui:124
+msgid "Cr_op"
+msgstr ""
+
+#: src/widgets/edit_window.ui:133
+msgid "Adjust"
+msgstr ""
+
+#: src/widgets/edit_window.ui:137
+msgid "A_djust"
+msgstr ""
+
+#: src/widgets/edit_window.ui:146
+msgid "Markup"
+msgstr ""
+
+#: src/widgets/edit_window.ui:150
+msgid "_Markup"
+msgstr ""
+
+#: src/widgets/edit_window.ui:160
 msgid "_Save"
 msgstr "Op_slaan"
 
-#: src/widgets/edit_window.ui:92
-msgid "_Save As…"
+#: src/widgets/edit_window.ui:181
+#, fuzzy
+#| msgid "_Save As…"
+msgid "_Save a Copy…"
 msgstr "Op_slaan als…"
 
-#: src/widgets/edit_window.ui:100
-msgid "Keep original and create a new file"
-msgstr "Origineel behouden en nieuw bestand maken"
+#: src/widgets/edit_window.ui:189
+msgid "Save changes and keep original."
+msgstr ""
 
-#: src/widgets/edit_window.ui:120
+#: src/widgets/edit_window.ui:209
 msgid "_Replace Original"
 msgstr "Origineel ve_rvangen"
 
-#: src/widgets/edit_window.ui:128
-msgid "Original image will be moved to the trash"
+#: src/widgets/edit_window.ui:217
+#, fuzzy
+#| msgid "Original image will be moved to the trash"
+msgid "Original image will be moved to the trash."
 msgstr "Originele afbeelding zal naar de prullenbak worden verplaatst"
 
 #: src/widgets/error_details.rs:80
 msgid ""
-"The following error occurred. If you think this is an issue with the program, "
-"please include this information when you report the error."
+"The following error occurred. If you think this is an issue with the "
+"program, please include this information when you report the error."
 msgstr ""
 "De volgende fout trad op. Als u denkt dat dit een fout van het programma is, "
 "overweeg dan om deze informatie op te nemen als u een foutmelding indient."
@@ -608,13 +872,13 @@ msgstr "Foutdetails"
 
 #: src/widgets/error_details.ui:19
 msgid ""
-"The image loader reported the following when trying to load or edit the image. "
-"Please include this information when you report an error. If possible, please "
-"also provide the image that causes the issue."
+"The image loader reported the following when trying to load or edit the "
+"image. Please include this information when you report an error. If "
+"possible, please also provide the image that causes the issue."
 msgstr ""
-"De afbeeldingslader meldde het volgende bij het laden van de afbeelding. Voeg "
-"deze informatie toe wanneer u foutmelding indient. Voeg, indien mogelijk, ook de "
-"afbeelding toe die het probleem veroorzaakt."
+"De afbeeldingslader meldde het volgende bij het laden van de afbeelding. "
+"Voeg deze informatie toe wanneer u foutmelding indient. Voeg, indien "
+"mogelijk, ook de afbeelding toe die het probleem veroorzaakt."
 
 #: src/widgets/error_details.ui:24
 msgid "Error Message"
@@ -631,11 +895,11 @@ msgstr "P_robleem melden"
 #: src/widgets/image_page.rs:225
 #, rust-format
 msgid ""
-"No image loaders available. Maybe the “glycin-loaders” package with compatibility "
-"version “{}” is not installed."
+"No image loaders available. Maybe the “glycin-loaders” package with "
+"compatibility version “{}” is not installed."
 msgstr ""
-"Geen afbeeldingsladers beschikbaar. Misschien is het pakket ‘glycin-loaders’ met "
-"compatibiliteitsversie ‘{}’ niet geïnstalleerd."
+"Geen afbeeldingsladers beschikbaar. Misschien is het pakket ‘glycin-loaders’ "
+"met compatibiliteitsversie ‘{}’ niet geïnstalleerd."
 
 #: src/widgets/image_page.rs:243
 #, rust-format
@@ -649,7 +913,8 @@ msgstr "Onbekende afbeeldingsindeling ‘{} ({}).’"
 
 #: src/widgets/image_page.rs:260
 msgid "There is not enough free memory available to load this image."
-msgstr "Er is onvoldoende vrij geheugen beschikbaar om deze afbeelding te laden."
+msgstr ""
+"Er is onvoldoende vrij geheugen beschikbaar om deze afbeelding te laden."
 
 #: src/widgets/image_page.rs:267
 #, rust-format
@@ -670,11 +935,15 @@ msgstr "_Openen met…"
 msgid "_Print…"
 msgstr "_Afdrukken…"
 
+#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:25
+msgid "Rotate"
+msgstr "Draaien"
+
 #: src/widgets/image_page.ui:26 src/widgets/image_window.ui:36
 msgid "_Set as Background…"
 msgstr "_Instellen als achtergrond…"
 
-#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:40
+#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:44
 msgid "_Delete"
 msgstr "Verwij_deren"
 
@@ -694,11 +963,11 @@ msgstr "Meer _informatie"
 msgid "_Reload"
 msgstr "He_rladen"
 
-#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:101
+#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:105
 msgid "Rotate Left"
 msgstr "Linksom draaien"
 
-#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:111
+#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:115
 msgid "Rotate Right"
 msgstr "Rechtsom draaien"
 
@@ -764,10 +1033,6 @@ msgstr "Afbeelding gekopieerd naar klembord"
 msgid "Image moved to trash"
 msgstr "Afbeelding verplaatst naar prullenbak"
 
-#: src/widgets/image_window.rs:636
-msgid "Undo"
-msgstr "Ongedaan maken"
-
 #: src/widgets/image_window.rs:666
 msgid "Failed to move image to trash"
 msgstr "Kon afbeelding niet verplaatsen naar prullenbak"
@@ -779,7 +1044,8 @@ msgstr "Afbeelding voorgoed verwijderen?"
 #: src/widgets/image_window.rs:692
 #, rust-format
 msgid "After deleting the image “{}” it will be permanently lost."
-msgstr "Wanneer u de afbeelding ‘{}’ verwijdert, zal deze voorgoed verloren gaan."
+msgstr ""
+"Wanneer u de afbeelding ‘{}’ verwijdert, zal deze voorgoed verloren gaan."
 
 #: src/widgets/image_window.rs:701
 msgid "Delete"
@@ -797,43 +1063,51 @@ msgstr "_Nieuw venster"
 msgid "_Open…"
 msgstr "_Openen…"
 
-#: src/widgets/image_window.ui:46
+#: src/widgets/image_window.ui:40
+#, fuzzy
+#| msgid "_About Image Viewer"
+msgid "_Make Default Image Viewer"
+msgstr "_Over Afbeeldingsweergave"
+
+#: src/widgets/image_window.ui:50
 msgid "_Help"
 msgstr "_Hulp"
 
-#: src/widgets/image_window.ui:50
+#: src/widgets/image_window.ui:54
 msgid "_Keyboard Shortcuts"
 msgstr "Snel_toetsen"
 
-#: src/widgets/image_window.ui:54
-msgid "_About Image Viewer"
-msgstr "_Over Afbeeldingsweergave"
+#: src/widgets/image_window.ui:58
+#, fuzzy
+#| msgid "_About Loupe"
+msgid "_About Glance"
+msgstr "_Over Loupe"
 
-#: src/widgets/image_window.ui:87
+#: src/widgets/image_window.ui:91
 msgid "Toggle Fullscreen"
 msgstr "Volledig scherm omschakelen"
 
-#: src/widgets/image_window.ui:93
+#: src/widgets/image_window.ui:97
 msgid "Main Menu"
 msgstr "Hoofdmenu"
 
-#: src/widgets/image_window.ui:125
+#: src/widgets/image_window.ui:129
 msgid "Image Properties"
 msgstr "Afbeeldingsinfo"
 
-#: src/widgets/image_window.ui:132
+#: src/widgets/image_window.ui:136
 msgid "Edit Image"
 msgstr "Afbeelding bewerken"
 
-#: src/widgets/image_window.ui:220
+#: src/widgets/image_window.ui:224
 msgid "View and Edit Images"
 msgstr "Bekijk en bewerk afbeeldingen"
 
-#: src/widgets/image_window.ui:221
+#: src/widgets/image_window.ui:225
 msgid "Drag and drop images here"
 msgstr "Sleep afbeeldingen hierheen"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:229
 msgid "_Open Files…"
 msgstr "Bestanden _openen…"
 
@@ -886,13 +1160,9 @@ msgstr "Doorgaan…"
 msgid "Print Image"
 msgstr "Afbeelding afdrukken"
 
-#: src/widgets/print.rs:801
+#: src/widgets/print.rs:784
 msgid "_Scale"
 msgstr "_Schalen"
-
-#: src/widgets/print.rs:804
-msgid "_Width"
-msgstr "_Breedte"
 
 #. Translators: Go back to previous page
 #: src/widgets/print.ui:29
@@ -990,7 +1260,6 @@ msgstr "″"
 
 #. Translators: Shorthand for meter
 #: src/widgets/properties_view.rs:362
-#| msgid "{} %"
 msgid " m"
 msgstr " m"
 
@@ -1010,17 +1279,14 @@ msgid " pt"
 msgstr " pt"
 
 #: src/widgets/properties_view.rs:386
-#| msgid "{}\\u{202F}\\u{D7}\\u{202F}{}"
 msgid "{}{}\\u{202F}\\u{D7}\\u{202F}{}{}"
 msgstr "{}{}\\u{202F}\\u{D7}\\u{202F}{}{}"
 
 #: src/widgets/properties_view.rs:403
-#| msgid "{}\\u{202F}s"
 msgid "{}\\u{202F}DPI"
 msgstr "{}\\u{202F}DPI"
 
 #: src/widgets/properties_view.rs:407
-#| msgid "{}\\u{202F}\\u{D7}\\u{202F}{}"
 msgid "{}\\u{202F}DPI\\u{202F}\\u{D7}\\u{202F}{}\\u{202F}DPI"
 msgstr "{}\\u{202F}DPI\\u{202F}\\u{D7}\\u{202F}{}\\u{202F}DPI"
 
@@ -1129,107 +1395,6 @@ msgstr "ICC-profiel"
 msgid "CICP"
 msgstr "CICP"
 
-#: src/widgets/window.rs:254
+#: src/widgets/window.rs:249
 msgid "Show Details"
 msgstr "Details weergeven"
-
-#~ msgid "Browse through your images and inspect their metadata with:"
-#~ msgstr "Blader door uw afbeeldingen en bekijk hun metagegevens met:"
-
-#~ msgid "Fast GPU accelerated image rendering"
-#~ msgstr "Snelle GPU-versnelde afbeeldingsrendering"
-
-#~ msgid "Tiled rendering for vector graphics"
-#~ msgstr "Getegeld renderen voor vectorafbeeldingen"
-
-#~ msgid "Extendable and sandboxed image decoding"
-#~ msgstr "Uitbreidbare decodering van afbeeldingen in een zandbak"
-
-#~ msgid "Accessible presentation of the most important metadata."
-#~ msgstr "Toegankelijke weergave van de belangrijkste metadata."
-
-# Als in muisgebaren - Nathan
-#~ msgctxt "shortcut window"
-#~ msgid "Gestures"
-#~ msgstr "Gebaren"
-
-#~ msgid "Copy to Clipboard"
-#~ msgstr "Kopiëren naar klembord"
-
-#~ msgid "Move to Trash"
-#~ msgstr "Verplaatsen naar prullenbak"
-
-#~ msgid "The Loupe Team"
-#~ msgstr "Het Loupe-team"
-
-#~ msgid "Center image horizontally"
-#~ msgstr "Afbeelding horizontaal centreren"
-
-#~ msgid "Center image vertically"
-#~ msgstr "Afbeelding verticaal centreren"
-
-#~ msgid "Image Scale"
-#~ msgstr "Afbeeldingsschaal"
-
-#~ msgid "Left Margin"
-#~ msgstr "Linkermarge"
-
-#~ msgid "Length Unit"
-#~ msgstr "Lengte-eenheid"
-
-#~ msgid "_About Loupe"
-#~ msgstr "_Over Loupe"
-
-#~ msgid "Loupe"
-#~ msgstr "Loupe"
-
-#~ msgid "Failed to decode image"
-#~ msgstr "Kon afbeelding niet decoderen"
-
-#~ msgid "Unknown image format"
-#~ msgstr "Onbekend afbeeldingsformaat"
-
-#~ msgid "Animated GIF"
-#~ msgstr "Geanimeerde GIF"
-
-#~ msgid "Animated WebP"
-#~ msgstr "Geanimeerde WebP"
-
-#~ msgid "Animated PNG"
-#~ msgstr "Geanimeerde PNG"
-
-#~ msgid "Could not open image"
-#~ msgstr "Kon afbeelding niet openen"
-
-#~ msgid "Could not read image"
-#~ msgstr "Kon afbeelding niet lezen"
-
-#~ msgid "Christopher Davis"
-#~ msgstr "Christopher Davis"
-
-#~ msgid "The following features are not available yet"
-#~ msgstr "De volgende functies zijn nog niet beschikbaar"
-
-#~ msgid "Correctly showing SVGs at every zoom-level"
-#~ msgstr "SVG’s correct tonen op elk zoomniveau"
-
-#~ msgid "Interpreting image color profiles"
-#~ msgstr "Kleurprofielen van afbeeldingen interpreteren"
-
-#~ msgid "Correct HighDPI support"
-#~ msgstr "Correcte ondersteuning voor hoge DPI"
-
-#~ msgid "Print settings to position the image on the page"
-#~ msgstr "Afdrukinstellingen voor het positioneren van de afbeelding op de pagina"
-
-#~ msgid "File Type"
-#~ msgstr "Bestandstype"
-
-#~ msgid "File does not exist"
-#~ msgstr "Bestand bestaat niet"
-
-#~ msgid "Failed to open new background image"
-#~ msgstr "Kon nieuwe achtergrondafbeelding niet openen"
-
-#~ msgid "“{}” is not a valid image."
-#~ msgstr "‘{}’ is geen geldige afbeelding."

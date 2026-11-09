@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Loupe main\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/loupe/-/issues\n"
-"POT-Creation-Date: 2024-03-09 11:38+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-09 00:39+0100\n"
 "PO-Revision-Date: 2024-03-10 22:03+0200\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
@@ -16,419 +16,1174 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 :"
-" 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
 "X-Generator: Lokalize 23.08.1\n"
 
-#: data/org.gnome.Loupe.desktop.in.in:3
-#: data/org.gnome.Loupe.metainfo.xml.in.in:6 src/about.rs:29 src/window.rs:880
-#| msgid "Image Size"
+#: data/io.github.Replexo.Glance.desktop.in.in:2
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:6
+#: src/widgets/image_window.rs:879
+#, fuzzy
+#| msgid "Cancel"
+msgid "Glance"
+msgstr "Atcelt"
+
+#: data/io.github.Replexo.Glance.desktop.in.in:3
 msgid "Image Viewer"
 msgstr "Attēla skatītājs"
 
-#: data/org.gnome.Loupe.desktop.in.in:11
-#| msgid "Picture;Slideshow;Graphics;Image Viewer;"
-msgid "Picture;Graphics;Loupe;"
+#: data/io.github.Replexo.Glance.desktop.in.in:4
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:10
+#, fuzzy
+#| msgid "View images"
+msgid "View and edit images"
+msgstr "Skatīt attēlus"
+
+#: data/io.github.Replexo.Glance.desktop.in.in:12
+#, fuzzy
+#| msgid "Picture;Graphics;Loupe;"
+msgid "Picture;Graphics;Loupe;Glance;"
 msgstr "Attēls;Grafika;Loupe;"
 
-#: data/org.gnome.Loupe.gschema.xml.in:6
-#| msgctxt "shortcut window"
-#| msgid "Toggle Image Properties"
+#: data/io.github.Replexo.Glance.gschema.xml.in:6
 msgid "Show the image properties sidebar"
 msgstr "Rādīt attēla īpašību sānu joslu"
 
-#. developer_name tag deprecated with Appstream 1.0
-#: data/org.gnome.Loupe.metainfo.xml.in.in:8 src/about.rs:32
-msgid "The GNOME Project"
-msgstr "GNOME projekts"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:12
+msgid ""
+"Glance is an image viewer with built-in editing. Browse your images, view "
+"their metadata, and make quick edits without opening a separate editor."
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:13
-msgid "View images"
-msgstr "Skatīt attēlus"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:14
+msgid ""
+"Mark up images with a brush, highlighter, lines, arrows, shapes and text"
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:15
-#| msgid "Browse through your images and inspect their metadata."
-msgid "Browse through your images and inspect their metadata with:"
-msgstr "Pārlūkojiet savus attēlus un apskatiet to metadatus ar:"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:15
+msgid "Adjust brightness, contrast, highlights, shadows and saturation"
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:17
-msgid "Fast GPU accelerated image rendering"
-msgstr "Ātru GPU paātrinātu attēlu renderēšanu"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:16
+msgid "Crop to an aspect ratio, rotate, flip and resize"
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:18
-msgid "Tiled rendering for vector graphics"
-msgstr "Mozaīkas renderēšanu vektoru grafikai"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:17
+msgid "Undo and redo every edit, and save a copy or replace the original"
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:19
-msgid "Extendable and sandboxed image decoding"
-msgstr "Paplašināmu un norobežotu attēlu atkodēšanu"
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:19
+msgid "Glance is based on Loupe, the GNOME image viewer."
+msgstr ""
 
-#: data/org.gnome.Loupe.metainfo.xml.in.in:20
-msgid "Accessible presentation of the most important metadata."
-msgstr "Piekļūstama prezentācija vissvarīgākajiem metadatiem."
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:28
+msgid "Marking up an image"
+msgstr ""
 
-#: data/resources/gtk/help-overlay.ui:11
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:32
+msgid "Adjusting colours"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:36
+msgid "Cropping"
+msgstr ""
+
+#: data/io.github.Replexo.Glance.metainfo.xml.in.in:76
+msgid ""
+"First release of Glance, based on Loupe 51.1. It adds Markup, Adjust and "
+"Crop editing views, undo and redo, zoom in the editor, and keyboard "
+"shortcuts for the markup tools."
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:6
 msgctxt "shortcut window"
 msgid "General Shortcuts"
 msgstr "Vispārīgi īsinājumtaustiņi"
 
-#: data/resources/gtk/help-overlay.ui:14
-msgctxt "shortcut window"
-msgid "Show Main Menu"
-msgstr "Rādīt galveno izvēlni"
-
-#: data/resources/gtk/help-overlay.ui:20
+#: data/resources/shortcuts-dialog.ui:9
+#, fuzzy
 #| msgctxt "shortcut window"
-#| msgid "Copy Image to Clipboard"
+#| msgid "Copy Image or Metadata to Clipboard"
 msgctxt "shortcut window"
-msgid "Copy Image or Metadata to Clipboard"
+msgid "Copy Image or Selected Text to Clipboard"
 msgstr "Kopēt attēlu vai metadatus uz starpliktuvi"
 
-#: data/resources/gtk/help-overlay.ui:26
+#: data/resources/shortcuts-dialog.ui:15
 msgctxt "shortcut window"
 msgid "Move Image to Trash"
 msgstr "Pārvietot attēlu uz miskasti"
 
-#: data/resources/gtk/help-overlay.ui:32
-#| msgid "Permanently Delete Image?"
+#: data/resources/shortcuts-dialog.ui:21
 msgctxt "shortcut window"
 msgid "Permanently Delete Image"
 msgstr "Neatgriezeniski dzēst attēlu"
 
-#: data/resources/gtk/help-overlay.ui:38
+#: data/resources/shortcuts-dialog.ui:27
 msgctxt "shortcut window"
-msgid "Toggle Image Properties"
-msgstr "Pārslēgt attēla īpašības"
+msgid "Open Image with Other App"
+msgstr ""
 
-#: data/resources/gtk/help-overlay.ui:44
+#: data/resources/shortcuts-dialog.ui:33
 msgctxt "shortcut window"
 msgid "Set as Background"
 msgstr "Iestatīt kā fonu"
 
-#: data/resources/gtk/help-overlay.ui:50
-msgctxt "shortcut window"
-msgid "Toggle Fullscreen"
-msgstr "Pārslēgt uz pilnekrānu"
-
-#: data/resources/gtk/help-overlay.ui:56
-msgctxt "shortcut window"
-msgid "Leave Fullscreen"
-msgstr "Pamest pilnekrāna režīmu"
-
-#: data/resources/gtk/help-overlay.ui:62
+#: data/resources/shortcuts-dialog.ui:39
 msgctxt "shortcut window"
 msgid "New Window"
 msgstr "Jauns logs"
 
-#: data/resources/gtk/help-overlay.ui:68
-#| msgid "Open Image"
+#: data/resources/shortcuts-dialog.ui:45
 msgctxt "shortcut window"
 msgid "Open Help"
 msgstr "Atvērt palīdzību"
 
-#: data/resources/gtk/help-overlay.ui:74
+#: data/resources/shortcuts-dialog.ui:51
 msgctxt "shortcut window"
 msgid "Show Keyboard Shortcuts"
 msgstr "Rādīt tastatūras īsinājumtaustiņus"
 
-#: data/resources/gtk/help-overlay.ui:80
+#: data/resources/shortcuts-dialog.ui:57
 msgctxt "shortcut window"
 msgid "Close Window"
 msgstr "Aizvērt logu"
 
-#: data/resources/gtk/help-overlay.ui:86
+#: data/resources/shortcuts-dialog.ui:63
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Iziet"
 
-#: data/resources/gtk/help-overlay.ui:94
+#: data/resources/shortcuts-dialog.ui:71
 msgctxt "shortcut window"
 msgid "Navigate Images"
 msgstr "Navigācija pa attēliem"
 
-#: data/resources/gtk/help-overlay.ui:98 data/resources/gtk/help-overlay.ui:112
-#: data/resources/gtk/help-overlay.ui:224
-#: data/resources/gtk/help-overlay.ui:238
+#: data/resources/shortcuts-dialog.ui:75 data/resources/shortcuts-dialog.ui:89
 msgctxt "shortcut window"
 msgid "Next Image"
 msgstr "Nākamais attēls"
 
-#: data/resources/gtk/help-overlay.ui:105
-#: data/resources/gtk/help-overlay.ui:119
-#: data/resources/gtk/help-overlay.ui:231
-#: data/resources/gtk/help-overlay.ui:245
+#: data/resources/shortcuts-dialog.ui:82 data/resources/shortcuts-dialog.ui:96
 msgctxt "shortcut window"
 msgid "Previous Image"
 msgstr "Iepriekšējais attēls"
 
-#: data/resources/gtk/help-overlay.ui:125
+#: data/resources/shortcuts-dialog.ui:102
 msgctxt "shortcut window"
 msgid "First Image"
 msgstr "Pirmais attēls"
 
-#: data/resources/gtk/help-overlay.ui:131
+#: data/resources/shortcuts-dialog.ui:108
 msgctxt "shortcut window"
 msgid "Last Image"
 msgstr "Pēdējais attēls"
 
-#: data/resources/gtk/help-overlay.ui:139
+#: data/resources/shortcuts-dialog.ui:116
 msgctxt "shortcut window"
 msgid "Rotate Image"
 msgstr "Pagriezt attēlu"
 
-#: data/resources/gtk/help-overlay.ui:142
-#: data/resources/gtk/help-overlay.ui:263
+#: data/resources/shortcuts-dialog.ui:119
+#: data/resources/shortcuts-dialog.ui:259
 msgctxt "shortcut window"
 msgid "Rotate Clockwise"
 msgstr "Pagriezt pulksteņrādītāja virzienā"
 
-#: data/resources/gtk/help-overlay.ui:148
-#: data/resources/gtk/help-overlay.ui:269
+#: data/resources/shortcuts-dialog.ui:125
+#: data/resources/shortcuts-dialog.ui:265
 msgctxt "shortcut window"
 msgid "Rotate Counterclockwise"
 msgstr "Pagriezt pretēji pulksteņrādītājam"
 
-#: data/resources/gtk/help-overlay.ui:156
+#: data/resources/shortcuts-dialog.ui:133
 msgctxt "shortcut window"
 msgid "Zoom Image"
 msgstr "Attēla mērogošana"
 
-#: data/resources/gtk/help-overlay.ui:159
-#: data/resources/gtk/help-overlay.ui:251
+#: data/resources/shortcuts-dialog.ui:136
 msgctxt "shortcut window"
 msgid "Zoom In"
 msgstr "Tuvināt"
 
-#: data/resources/gtk/help-overlay.ui:165
-#: data/resources/gtk/help-overlay.ui:257
+#: data/resources/shortcuts-dialog.ui:142
 msgctxt "shortcut window"
 msgid "Zoom Out"
 msgstr "Tālināt"
 
-#: data/resources/gtk/help-overlay.ui:171
+#: data/resources/shortcuts-dialog.ui:148
 msgctxt "shortcut window"
 msgid "Best Fit"
 msgstr "Labākā saderība"
 
-#: data/resources/gtk/help-overlay.ui:177
+#: data/resources/shortcuts-dialog.ui:154
 msgctxt "shortcut window"
 msgid "Original Scale"
 msgstr "Sākotnējais mērogs"
 
-#: data/resources/gtk/help-overlay.ui:183
+#: data/resources/shortcuts-dialog.ui:160
 msgctxt "shortcut window"
 msgid "200% Scale"
 msgstr "200% mērogs"
 
-#: data/resources/gtk/help-overlay.ui:191
+#: data/resources/shortcuts-dialog.ui:168
 msgctxt "shortcut window"
 msgid "Pan View"
 msgstr "Panoramēšanas skats"
 
-#: data/resources/gtk/help-overlay.ui:194
+#: data/resources/shortcuts-dialog.ui:171
 msgctxt "shortcut window"
 msgid "Pan Left"
 msgstr "Panoramēt pa kreisi"
 
-#: data/resources/gtk/help-overlay.ui:200
+#: data/resources/shortcuts-dialog.ui:177
 msgctxt "shortcut window"
 msgid "Pan Right"
 msgstr "Panoramēt pa labi"
 
-#: data/resources/gtk/help-overlay.ui:206
+#: data/resources/shortcuts-dialog.ui:183
 msgctxt "shortcut window"
 msgid "Pan Up"
 msgstr "Panoramēt uz augšu"
 
-#: data/resources/gtk/help-overlay.ui:212
+#: data/resources/shortcuts-dialog.ui:189
 msgctxt "shortcut window"
 msgid "Pan Down"
 msgstr "Panoramēt uz leju"
 
-#: data/resources/gtk/help-overlay.ui:220
+#: data/resources/shortcuts-dialog.ui:197
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Pan View"
 msgctxt "shortcut window"
-msgid "Gestures"
-msgstr "Žesti"
+msgid "View"
+msgstr "Panoramēšanas skats"
+
+#: data/resources/shortcuts-dialog.ui:200
+msgctxt "shortcut window"
+msgid "Toggle Fullscreen"
+msgstr "Pārslēgt uz pilnekrānu"
+
+#: data/resources/shortcuts-dialog.ui:206
+msgctxt "shortcut window"
+msgid "Leave Fullscreen"
+msgstr "Pamest pilnekrāna režīmu"
+
+#: data/resources/shortcuts-dialog.ui:212
+msgctxt "shortcut window"
+msgid "Toggle Image Properties"
+msgstr "Pārslēgt attēla īpašības"
+
+#: data/resources/shortcuts-dialog.ui:218
+msgctxt "shortcut window"
+msgid "Show Main Menu"
+msgstr "Rādīt galveno izvēlni"
+
+#: data/resources/shortcuts-dialog.ui:226
+msgctxt "shortcut window"
+msgid "Editing"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:229
+msgctxt "shortcut window"
+msgid "Open Editing View"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:235
+msgctxt "shortcut window"
+msgid "Crop"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:241
+msgctxt "shortcut window"
+msgid "Replace Original"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:247
+msgctxt "shortcut window"
+msgid "Save As"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:253
+#, fuzzy
+#| msgid "Cancel"
+msgctxt "shortcut window"
+msgid "Cancel"
+msgstr "Atcelt"
+
+#: data/resources/shortcuts-dialog.ui:271
+#, fuzzy
+#| msgid "_Horizontal"
+msgctxt "shortcut window"
+msgid "Mirror Horizontally"
+msgstr "_Horizontāli"
+
+#: data/resources/shortcuts-dialog.ui:277
+#, fuzzy
+#| msgid "_Vertical"
+msgctxt "shortcut window"
+msgid "Mirror Vertically"
+msgstr "_Vertikāli"
+
+#: data/resources/shortcuts-dialog.ui:283
+msgctxt "shortcut window"
+msgid "Apply Crop"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:291
+msgctxt "shortcut window"
+msgid "Markup"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:294
+msgctxt "shortcut window"
+msgid "Select, Move and Resize Markup"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:300
+msgctxt "shortcut window"
+msgid "Brush"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:306
+msgctxt "shortcut window"
+msgid "Line"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:312
+msgctxt "shortcut window"
+msgid "Arrow"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:318
+msgctxt "shortcut window"
+msgid "Rectangle"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:324
+msgctxt "shortcut window"
+msgid "Ellipse"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:330
+msgctxt "shortcut window"
+msgid "Text"
+msgstr ""
+
+#: data/resources/shortcuts-dialog.ui:336
+msgctxt "shortcut window"
+msgid "Eraser"
+msgstr ""
 
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/about.rs:41
 msgid "translator-credits"
+msgstr "Aldis TutinsRūdolfs Mazurs"
+
+#: src/application.rs:178
+msgid "Glance is now the default image viewer"
 msgstr ""
-"Aldis Tutins"
-"Rūdolfs Mazurs"
 
-#: src/about.rs:42
-#| msgid "Copyright © 2020–2023 Christopher Davis et al."
-msgid "Copyright © 2020–2024 Christopher Davis et al."
-msgstr "Autortiesības © 2020–2024 Kristofers Deivis un citi"
+#: src/application.rs:187
+msgid "Could not make Glance the default image viewer"
+msgstr ""
 
-#: src/file_model.rs:128
+#: src/file_model.rs:211
 msgid "Could not list other files in directory."
 msgstr "Neizdevās uzskaitīt citas datnes direktorijā."
 
+#. Translators: Display of the f-number <https://en.wikipedia.org/wiki/F-number>. {} will be replaced with the number
+#: src/metadata.rs:270
+msgid "\\u{192}\\u{2215}{}"
+msgstr ""
+
+#. Translators: Fractional exposure time (photography) in seconds
+#: src/metadata.rs:283
+msgid "1\\u{2215}{}\\u{202F}s"
+msgstr "1\\u{2215}{}\\u{202F}s"
+
+#. Translators: Exposure time (photography) in seconds
+#: src/metadata.rs:291
+#, fuzzy
+#| msgid "{}\\u{202F}mm"
+msgid "{}\\u{202F}s"
+msgstr "{}\\u{202F}mm"
+
+#: src/metadata.rs:305
+msgid "{}\\u{202F}mm"
+msgstr "{}\\u{202F}mm"
+
 #. Translators: short for "north" in GPS coordinate
-#: src/metadata/gps.rs:165
+#: src/metadata.rs:395
 msgid "N"
 msgstr "Z"
 
 #. Translators: short for "south" in GPS coordinate
-#: src/metadata/gps.rs:168
+#: src/metadata.rs:399
 msgid "S"
 msgstr "D"
 
 #. Translators: short for "east" in GPS coordinate
-#: src/metadata/gps.rs:190
+#: src/metadata.rs:408
 msgid "E"
 msgstr "A"
 
 #. Translators: short for "west" in GPS coordinate
-#: src/metadata/gps.rs:193
+#: src/metadata.rs:412
 msgid "W"
 msgstr "R"
 
-#. Translators: Unit for exposure time in seconds
-#: src/metadata/mod.rs:260
-msgid "1\\u{2215}{}\\u{202F}s"
-msgstr "1\\u{2215}{}\\u{202F}s"
+#: src/metadata.rs:492
+msgid "DCI P3"
+msgstr ""
 
-#. Translators: Unit for focal length in millimeters
-#: src/metadata/mod.rs:285
-msgid "{}\\u{202F}mm"
-msgstr "{}\\u{202F}mm"
+#: src/metadata.rs:493
+msgid "Display P3"
+msgstr ""
 
+#: src/metadata.rs:494
+msgid "Rec.2020"
+msgstr ""
+
+#: src/metadata.rs:495
+msgid "sRGB"
+msgstr ""
+
+#: src/metadata.rs:496 src/metadata.rs:504
+msgid "Unspecified"
+msgstr ""
+
+#: src/metadata.rs:497 src/metadata.rs:506 src/metadata.rs:516
+#, fuzzy, rust-format
+#| msgid "Unknown"
+msgid "Unknown ({})"
+msgstr "Nezināms"
+
+#: src/metadata.rs:503
+msgid "ICtCp"
+msgstr ""
+
+#: src/metadata.rs:512
+msgid "DCI"
+msgstr ""
+
+#: src/metadata.rs:513
+msgid "PQ"
+msgstr ""
+
+#: src/metadata.rs:514
+msgid "Gamma 2.4"
+msgstr ""
+
+#. / Returns localized date + time format
 #. Translators: This is the date and time format we use in metadata output etc.
 #. The format has to follow <https://docs.gtk.org/glib/method.DateTime.format.html>
 #. The default is already translated. Don't change if you are not sure what to
 #. use.
-#: src/util/mod.rs:37
-#, c-format
+#: src/util.rs:39
 msgid "%x %X"
 msgstr "%x %X"
 
-#: src/util/mod.rs:180 src/window.rs:701
+#: src/util.rs:182
 msgid "Failed to restore image from trash"
 msgstr "Neizdevās atjaunot attēlu no miskastes"
 
-#: src/util/mod.rs:201
-msgid "Failed to open image"
+#: src/widgets/drag_overlay.ui:15
+#, fuzzy
+#| msgid "Image Viewer"
+msgid "Drop Image to View"
+msgstr "Attēla skatītājs"
+
+#: src/widgets/edit/adjust.rs:34 src/widgets/edit/adjust.ui:11
+#: src/widgets/edit/adjust.ui:43
+msgid "Brightness"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:35 src/widgets/edit/adjust.ui:72
+msgid "Contrast"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:36 src/widgets/edit/adjust.ui:101
+msgid "Highlights"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:37 src/widgets/edit/adjust.ui:130
+msgid "Shadows"
+msgstr ""
+
+#: src/widgets/edit/adjust.rs:38 src/widgets/edit/adjust.ui:159
+msgid "Saturation"
+msgstr ""
+
+#: src/widgets/edit/color_card.rs:204
+msgid "Hex Color"
+msgstr ""
+
+#: src/widgets/edit/crop.rs:41 src/widgets/edit/crop.ui:88
+#: src/widgets/edit/crop.ui:112
+msgid "Free"
+msgstr ""
+
+#: src/widgets/edit/crop.rs:42 src/widgets/edit/crop.ui:122
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Original Scale"
+msgid "Original"
+msgstr "Sākotnējais mērogs"
+
+#: src/widgets/edit/crop.rs:43 src/widgets/edit/crop.ui:132
+msgid "Square"
+msgstr ""
+
+#: src/widgets/edit/crop.rs:842
+#, fuzzy
+#| msgid "Failed to delete image"
+msgid "Failed to Edit Image"
+msgstr "Neizdevās izdzēst attēlu"
+
+#: src/widgets/edit/crop.ui:83
+msgid "Aspect Ratio"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:142
+msgid "5:4"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:152
+msgid "4:3"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:162
+msgid "3:2"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:172
+msgid "16:9"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:188
+msgid "Landscape"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:196
+msgid "Portrait"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:217
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Rotate Counterclockwise"
+msgid "Rotate Counter Clockwise"
+msgstr "Pagriezt pretēji pulksteņrādītājam"
+
+#: src/widgets/edit/crop.ui:224
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Rotate Clockwise"
+msgid "Rotate Clockwise"
+msgstr "Pagriezt pulksteņrādītāja virzienā"
+
+#: src/widgets/edit/crop.ui:231
+#, fuzzy
+#| msgid "_Horizontal"
+msgid "Mirror Horizontally"
+msgstr "_Horizontāli"
+
+#: src/widgets/edit/crop.ui:238
+msgid "Resize"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:249
+msgid "_Reset"
+msgstr ""
+
+#: src/widgets/edit/crop.ui:251
+msgid "Undo Changes in this View"
+msgstr ""
+
+#: src/widgets/edit/crop_selection.ui:46
+msgid "Crop Selection"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:27
+msgid "Choose a Color"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:59
+msgid "Blue"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:79
+msgid "Yellow"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:99
+msgid "Red"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:119
+msgid "Orange"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:139
+msgid "Green"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:171
+msgid "Outline"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:179
+msgid "Filled"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:196
+msgid "Thin"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:214 src/widgets/edit/markup.ui:294
+msgid "Medium"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:232
+msgid "Thick"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:250
+msgid "Very Thick"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:279
+msgid "Small"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:309
+msgid "Large"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:324
+msgid "Very Large"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:344
+msgid "Sans"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:359
+msgid "Serif"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:374
+msgid "Monospace"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:389
+msgid "Handwriting"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:427
+msgid "Move, Resize and Rotate"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:435
+msgid "Paintbrush"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:443
+msgid "Highlighter"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:451
+msgid "Line"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:459
+msgid "Arrow"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:467
+msgid "Rectangle"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:475
+msgid "Circle"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:483
+msgid "Text"
+msgstr ""
+
+#: src/widgets/edit/markup.ui:491
+msgid "Eraser"
+msgstr ""
+
+#: src/widgets/edit/resize_dialog.ui:4
+#, fuzzy
+#| msgid "View Images"
+msgid "Resize Image"
+msgstr "Skatīt attēlus"
+
+#: src/widgets/edit/resize_dialog.ui:15 src/widgets/edit_window.ui:101
+#, fuzzy
+#| msgid "Cancel"
+msgid "_Cancel"
+msgstr "Atcelt"
+
+#: src/widgets/edit/resize_dialog.ui:22
+msgid "_Resize"
+msgstr ""
+
+#: src/widgets/edit/resize_dialog.ui:50 src/widgets/print.rs:787
+msgid "_Width"
+msgstr "_Platums"
+
+#: src/widgets/edit/resize_dialog.ui:90
+#, fuzzy
+#| msgid "H_eight"
+msgid "_Height"
+msgstr "_Augstums"
+
+#: src/widgets/edit/resize_dialog.ui:139
+msgid "Size in Percent"
+msgstr ""
+
+#. Translators: Filename suffix, {} is replaced by a number
+#: src/widgets/edit_window.rs:368
+#, rust-format
+msgid " (Edited)"
+msgid_plural " (Edited {})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: src/widgets/edit_window.rs:453
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Move Image to Trash"
+msgid "Moving Original to Trash"
+msgstr "Pārvietot attēlu uz miskasti"
+
+#: src/widgets/edit_window.rs:467 src/widgets/edit_window.rs:496
+#, fuzzy
+#| msgid "Failed to open image"
+msgid "Failed to save image."
 msgstr "Neizdevās atvērt attēlu"
 
-#: src/widgets/image_page.ui:6 src/window.ui:16
+#: src/widgets/edit_window.rs:476
+msgid "Finalizing Save Operation"
+msgstr ""
+
+#: src/widgets/edit_window.rs:531
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "First Image"
+msgid "Editing Image"
+msgstr "Pirmais attēls"
+
+#: src/widgets/edit_window.rs:554 src/widgets/edit_window.rs:581
+#, fuzzy
+#| msgid "Failed to delete image"
+msgid "Failed to edit image."
+msgstr "Neizdevās izdzēst attēlu"
+
+#: src/widgets/edit_window.rs:610
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "Navigate Images"
+msgid "Saving Image"
+msgstr "Navigācija pa attēliem"
+
+#: src/widgets/edit_window.rs:622
+#, fuzzy
+#| msgid "Failed to open image"
+msgid "Failed to Save Image"
+msgstr "Neizdevās atvērt attēlu"
+
+#: src/widgets/edit_window.rs:991
+msgid "Save Changes?"
+msgstr ""
+
+#: src/widgets/edit_window.rs:993
+msgid ""
+"There are unsaved image editing changes. Closing without saving will "
+"permanently lose these modifications."
+msgstr ""
+
+#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:700
+msgid "Cancel"
+msgstr "Atcelt"
+
+#: src/widgets/edit_window.rs:998
+msgid "Discard"
+msgstr ""
+
+#: src/widgets/edit_window.rs:999
+msgid "Save"
+msgstr ""
+
+#: src/widgets/edit_window.ui:33
+msgid "Hold to Show Original"
+msgstr ""
+
+#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:636
+msgid "Undo"
+msgstr "Atcelt"
+
+#: src/widgets/edit_window.ui:46
+msgid "Redo"
+msgstr ""
+
+#: src/widgets/edit_window.ui:120
+msgid "Crop"
+msgstr ""
+
+#: src/widgets/edit_window.ui:124
+msgid "Cr_op"
+msgstr ""
+
+#: src/widgets/edit_window.ui:133
+msgid "Adjust"
+msgstr ""
+
+#: src/widgets/edit_window.ui:137
+msgid "A_djust"
+msgstr ""
+
+#: src/widgets/edit_window.ui:146
+msgid "Markup"
+msgstr ""
+
+#: src/widgets/edit_window.ui:150
+msgid "_Markup"
+msgstr ""
+
+#: src/widgets/edit_window.ui:160
+msgid "_Save"
+msgstr ""
+
+#: src/widgets/edit_window.ui:181
+msgid "_Save a Copy…"
+msgstr ""
+
+#: src/widgets/edit_window.ui:189
+msgid "Save changes and keep original."
+msgstr ""
+
+#: src/widgets/edit_window.ui:209
+msgid "_Replace Original"
+msgstr ""
+
+#: src/widgets/edit_window.ui:217
+#, fuzzy
+#| msgid "Image moved to trash"
+msgid "Original image will be moved to the trash."
+msgstr "Attēls pārvietots uz miskasti"
+
+#: src/widgets/error_details.rs:80
+msgid ""
+"The following error occurred. If you think this is an issue with the "
+"program, please include this information when you report the error."
+msgstr ""
+
+#: src/widgets/error_details.ui:4
+msgid "Error Details"
+msgstr ""
+
+#: src/widgets/error_details.ui:19
+msgid ""
+"The image loader reported the following when trying to load or edit the "
+"image. Please include this information when you report an error. If "
+"possible, please also provide the image that causes the issue."
+msgstr ""
+
+#: src/widgets/error_details.ui:24
+msgid "Error Message"
+msgstr ""
+
+#: src/widgets/error_details.ui:28
+msgid "Copy Error Message"
+msgstr ""
+
+#: src/widgets/error_details.ui:68
+msgid "Report _Issue"
+msgstr ""
+
+#: src/widgets/image_page.rs:225
+#, rust-format
+msgid ""
+"No image loaders available. Maybe the “glycin-loaders” package with "
+"compatibility version “{}” is not installed."
+msgstr ""
+
+#: src/widgets/image_page.rs:243
+#, rust-format
+msgid "The image format “{} ({})” is known but not installed."
+msgstr ""
+
+#: src/widgets/image_page.rs:251
+#, fuzzy, rust-format
+#| msgid "Unknown image format: {}"
+msgid "Unknown image format “{} ({}).”"
+msgstr "Nezināms attēla formāts: {}"
+
+#: src/widgets/image_page.rs:260
+msgid "There is not enough free memory available to load this image."
+msgstr ""
+
+#: src/widgets/image_page.rs:267
+#, fuzzy, rust-format
+#| msgid "Failed to read image file information"
+msgid "Failed to load image file: {}"
+msgstr "Kļūda nolasot faila informāciju"
+
+#: src/widgets/image_page.rs:272
+msgid "Either the image file is corrupted or it contains unsupported elements."
+msgstr ""
+
+#: src/widgets/image_page.ui:6 src/widgets/image_window.ui:16
 msgid "_Open With…"
 msgstr "_Atvērt ar..."
 
-#: src/widgets/image_page.ui:14 src/window.ui:24
+#: src/widgets/image_page.ui:10 src/widgets/image_window.ui:20
 msgid "_Print…"
 msgstr "_Drukāt..."
 
-#: src/widgets/image_page.ui:18
-msgid "_Copy"
-msgstr "_Kopēt"
-
-#: src/widgets/image_page.ui:23 src/window.ui:29
+#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:25
 msgid "Rotate"
 msgstr "Pagriezt"
 
-#: src/widgets/image_page.ui:34 src/window.ui:40
+#: src/widgets/image_page.ui:26 src/widgets/image_window.ui:36
 msgid "_Set as Background…"
 msgstr "Ie_statīt kā fonu…"
+
+#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:44
+#, fuzzy
+#| msgid "Delete"
+msgid "_Delete"
+msgstr "Dzēst"
+
+#: src/widgets/image_page.ui:34
+msgid "_Copy"
+msgstr "_Kopēt"
 
 #: src/widgets/image_page.ui:63
 msgid "Could not Load Image"
 msgstr "Neizdevās ielādēt attēlu"
 
-#: src/widgets/image_page.ui:97 src/window.ui:106
+#: src/widgets/image_page.ui:71
+msgid "More _Information"
+msgstr ""
+
+#: src/widgets/image_page.ui:81
+msgid "_Reload"
+msgstr ""
+
+#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:105
 msgid "Rotate Left"
 msgstr "Pagriezt pa kreisi"
 
-#: src/widgets/image_page.ui:107 src/window.ui:116
+#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:115
 msgid "Rotate Right"
 msgstr "Pagriezt pa labi"
 
 #. Translators: This is a toast notification, informing the user that
 #. an image has been set as background.
-#: src/widgets/image_view.rs:682
+#: src/widgets/image_view.rs:870
 msgid "Set as background."
 msgstr "Iestatīt kā fonu."
 
-#: src/widgets/image_view.rs:695
+#: src/widgets/image_view.rs:876
 msgid "Could not set background."
 msgstr "Neizdevās ielikt kā fona attēlu."
 
-#: src/widgets/image_view.ui:27
+#: src/widgets/image_view.ui:26
 msgid "Previous Image"
 msgstr "Iepriekšējais attēls"
 
-#: src/widgets/image_view.ui:38
+#: src/widgets/image_view.ui:36
 msgid "Next Image"
 msgstr "Nākošais attēls"
 
-#: src/widgets/image_view.ui:63
+#: src/widgets/image_view.ui:66
 msgid "Zoom Out"
 msgstr "Attālināt"
 
-#: src/widgets/image_view.ui:74
+#: src/widgets/image_view.ui:77
 msgid "Zoom In"
 msgstr "Pietuvināt"
 
-#: src/widgets/image_view.ui:85
+#: src/widgets/image_view.ui:92
+msgid "Toggle Zoom"
+msgstr ""
+
+#: src/widgets/image_view.ui:100
+msgid "Zoom to Specific Level"
+msgstr ""
+
+#: src/widgets/image_view.ui:229
+msgid "Custom Zoom Level"
+msgstr ""
+
+#: src/widgets/image_view.ui:235
+msgid "Zoom to Specified Level"
+msgstr ""
+
+#: src/widgets/image_window.rs:509
+msgid "Supported image formats"
+msgstr "Atbalstītie attēlu formāti"
+
+#: src/widgets/image_window.rs:515
+msgid "All files"
+msgstr "Visas datnes"
+
+#: src/widgets/image_window.rs:522
+msgid "Open Image"
+msgstr "Atvērt attēlu"
+
+#: src/widgets/image_window.rs:614
+msgid "Image copied to clipboard"
+msgstr "Attēls nokopēts starpliktuvē"
+
+#: src/widgets/image_window.rs:635
+msgid "Image moved to trash"
+msgstr "Attēls pārvietots uz miskasti"
+
+#: src/widgets/image_window.rs:666
+msgid "Failed to move image to trash"
+msgstr "Neizdevās attēlu pārvietot uz miskasti"
+
+#: src/widgets/image_window.rs:690
+msgid "Permanently Delete Image?"
+msgstr "Neatgriezeniski dzēst attēlu?"
+
+#: src/widgets/image_window.rs:692
+#, rust-format
+msgid "After deleting the image “{}” it will be permanently lost."
+msgstr "Pēc attēlu \"{}\" dzēšanas, tas būs neatgriezeniski zudis."
+
+#: src/widgets/image_window.rs:701
+msgid "Delete"
+msgstr "Dzēst"
+
+#: src/widgets/image_window.rs:712
+msgid "Failed to delete image"
+msgstr "Neizdevās izdzēst attēlu"
+
+#: src/widgets/image_window.ui:6
+msgid "_New Window"
+msgstr "Jau_ns logs"
+
+#: src/widgets/image_window.ui:10
+msgid "_Open…"
+msgstr "_Atvērt..."
+
+#: src/widgets/image_window.ui:40
+#, fuzzy
+#| msgid "_About Image Viewer"
+msgid "_Make Default Image Viewer"
+msgstr "Par _attēla skatītāju"
+
+#: src/widgets/image_window.ui:50
+msgid "_Help"
+msgstr "_Palīdzība"
+
+#: src/widgets/image_window.ui:54
+msgid "_Keyboard Shortcuts"
+msgstr "_Tastatūras īsinājumtaustiņi"
+
+#: src/widgets/image_window.ui:58
+#, fuzzy
+#| msgid "_About Loupe"
+msgid "_About Glance"
+msgstr "Par programmu"
+
+#: src/widgets/image_window.ui:91
 msgid "Toggle Fullscreen"
 msgstr "Pārslēgt uz pilnekrānu"
 
-#: src/widgets/print.rs:116
+#: src/widgets/image_window.ui:97
+msgid "Main Menu"
+msgstr "Galvenā izvēlne"
+
+#: src/widgets/image_window.ui:129
+msgid "Image Properties"
+msgstr "Attēla īpašības"
+
+#: src/widgets/image_window.ui:136
+#, fuzzy
+#| msgctxt "shortcut window"
+#| msgid "First Image"
+msgid "Edit Image"
+msgstr "Pirmais attēls"
+
+#: src/widgets/image_window.ui:224
+#, fuzzy
+#| msgid "View Images"
+msgid "View and Edit Images"
+msgstr "Skatīt attēlus"
+
+#: src/widgets/image_window.ui:225
+msgid "Drag and drop images here"
+msgstr "Pārvelciet attēlus uz šejieni"
+
+#: src/widgets/image_window.ui:229
+msgid "_Open Files…"
+msgstr "_Atvērt datnes..."
+
+#: src/widgets/print.rs:109
 msgid "Top"
 msgstr "Augšā"
 
-#: src/widgets/print.rs:117
+#: src/widgets/print.rs:110
 msgid "Center"
 msgstr "Vidū"
 
-#: src/widgets/print.rs:118
+#: src/widgets/print.rs:111
 msgid "Bottom"
 msgstr "Apakšā"
 
-#: src/widgets/print.rs:119
-#| msgctxt "shortcut window"
-#| msgid "Pan Left"
+#: src/widgets/print.rs:112
 msgid "Left"
 msgstr "Pa kreisi"
 
-#: src/widgets/print.rs:120
-#| msgctxt "shortcut window"
-#| msgid "Pan Right"
+#: src/widgets/print.rs:113
 msgid "Right"
 msgstr "Pa labi"
 
 #. Translators: Shorthand for centimeter
-#: src/widgets/print.rs:156
+#: src/widgets/print.rs:149
 msgid "cm"
 msgstr "cm"
 
 #. Translators: Shorthand for inch
-#: src/widgets/print.rs:158
+#: src/widgets/print.rs:151
 msgid "in"
 msgstr "collas"
 
 #. Translators: Shorthand for pixel
-#: src/widgets/print.rs:160
+#: src/widgets/print.rs:153
 msgid "px"
 msgstr "px"
 
 #. Translators: {} is a placeholder for the filename
-#: src/widgets/print.rs:371
-#| msgid "_Print…"
+#: src/widgets/print.rs:365
+#, rust-format
 msgid "Print “{}”"
 msgstr "Drukāt “{}”"
 
-#: src/widgets/print.rs:782
+#: src/widgets/print.rs:472
+msgid "Continue…"
+msgstr ""
+
+#: src/widgets/print.rs:473
+#, fuzzy
 #| msgctxt "shortcut window"
-#| msgid "200% Scale"
+#| msgid "First Image"
+msgid "Print Image"
+msgstr "Pirmais attēls"
+
+#: src/widgets/print.rs:784
 msgid "_Scale"
 msgstr "Mērog_s"
-
-#: src/widgets/print.rs:785
-msgid "_Width"
-msgstr "_Platums"
 
 #. Translators: Go back to previous page
 #: src/widgets/print.ui:29
@@ -436,27 +1191,22 @@ msgid "_Back"
 msgstr "_Atpakaļ"
 
 #: src/widgets/print.ui:37
-#| msgid "Print"
 msgid "_Print"
 msgstr "_Drukāt"
 
 #: src/widgets/print.ui:56
-#| msgid "Image Layout"
 msgid "Layout"
 msgstr "Izkārtojums"
 
 #: src/widgets/print.ui:59
-#| msgid "Open Location"
 msgid "_Orientation"
 msgstr "_Orientācija"
 
 #: src/widgets/print.ui:72
-#| msgid "Portrait page orientation"
 msgid "Portrait Page Orientation"
 msgstr "Portreta lapas orientācija"
 
 #: src/widgets/print.ui:80
-#| msgid "Landscape page orientation"
 msgid "Landscape Page Orientation"
 msgstr "Ainavas lapas orientācija"
 
@@ -465,7 +1215,6 @@ msgid "_Alignment"
 msgstr "_Līdzinājums"
 
 #: src/widgets/print.ui:108
-#| msgid "Top Margin"
 msgid "Margins"
 msgstr "Apmales"
 
@@ -481,12 +1230,11 @@ msgstr "_Horizontāli"
 msgid "_Vertical"
 msgstr "_Vertikāli"
 
-#: src/widgets/print.ui:142 src/widgets/properties_view.ui:53
+#: src/widgets/print.ui:142 src/widgets/properties_view.ui:56
 msgid "Image Size"
 msgstr "Attēla izmērs"
 
 #: src/widgets/print.ui:145
-#| msgid "Image Size"
 msgid "Image Size Units"
 msgstr "Attēla izmēra mērvienības"
 
@@ -498,244 +1246,184 @@ msgstr "_Aizpildīt telpu"
 msgid "H_eight"
 msgstr "_Augstums"
 
-#: src/widgets/properties_view.rs:234
+#: src/widgets/properties_view.rs:284
 msgid "Unknown"
 msgstr "Nezināms"
 
 #. Translators: Addition of image being transparent to format name
-#: src/widgets/properties_view.rs:238
+#: src/widgets/properties_view.rs:288
 msgid ", transparent"
 msgstr ", caurspīdīgs"
 
 #. Translators: Addition of image being grayscale to format name
-#: src/widgets/properties_view.rs:243
+#: src/widgets/properties_view.rs:293
 msgid ", grayscale"
 msgstr ", pelēktoņu"
 
 #. Translators: Addition of bit size to format name
-#: src/widgets/properties_view.rs:248
-#| msgid "{}\\u{202F}mm"
+#: src/widgets/properties_view.rs:298
 msgid ", {}\\u{202F}bit"
 msgstr ", {}\\u{202F}biti"
 
-#: src/widgets/properties_view.rs:299
+#: src/widgets/properties_view.rs:315
+#, fuzzy
+#| msgid "1\\u{2215}{}\\u{202F}s"
+msgid "{}\\u{202F}\\u{D7}\\u{202F}{}"
+msgstr "1\\u{2215}{}\\u{202F}s"
+
+#. Translators: Shorthand for centimeter
+#: src/widgets/properties_view.rs:354
+msgid " cm"
+msgstr ""
+
+#. Translators: Shorthand for inch
+#: src/widgets/properties_view.rs:358
+msgid "″"
+msgstr ""
+
+#. Translators: Shorthand for meter
+#: src/widgets/properties_view.rs:362
+msgid " m"
+msgstr ""
+
+#. Translators: Shorthand for millimeter
+#: src/widgets/properties_view.rs:366
+msgid " mm"
+msgstr ""
+
+#. Translators: Shorthand for pica (unit)
+#: src/widgets/properties_view.rs:370
+msgid " pc"
+msgstr ""
+
+#. Translators: Shorthand for pica (unit)
+#: src/widgets/properties_view.rs:374
+msgid " pt"
+msgstr ""
+
+#: src/widgets/properties_view.rs:386
+#, fuzzy
+#| msgid "1\\u{2215}{}\\u{202F}s"
+msgid "{}{}\\u{202F}\\u{D7}\\u{202F}{}{}"
+msgstr "1\\u{2215}{}\\u{202F}s"
+
+#: src/widgets/properties_view.rs:403
+#, fuzzy
+#| msgid "{}\\u{202F}mm"
+msgid "{}\\u{202F}DPI"
+msgstr "{}\\u{202F}mm"
+
+#: src/widgets/properties_view.rs:407
+msgid "{}\\u{202F}DPI\\u{202F}\\u{D7}\\u{202F}{}\\u{202F}DPI"
+msgstr ""
+
+#: src/widgets/properties_view.rs:435
 msgid "Image Coordinates Copied"
 msgstr "Attēla koordinātas ir nokopētas"
 
-#: src/widgets/properties_view.ui:19
+#: src/widgets/properties_view.ui:20
 msgid "Folder"
 msgstr "Mape"
 
-#: src/widgets/properties_view.ui:26
+#: src/widgets/properties_view.ui:28
 msgid "Open Containing Folder"
 msgstr "Atvērt saturošo mapi"
 
-#: src/widgets/properties_view.ui:39
+#: src/widgets/properties_view.ui:41
 msgid "URI"
 msgstr "URI"
 
-#: src/widgets/properties_view.ui:62
+#: src/widgets/properties_view.ui:66
+#, fuzzy
+#| msgid "File Size"
+msgid "Physical Size"
+msgstr "Datnes izmērs"
+
+#: src/widgets/properties_view.ui:76
+msgid "Resolution"
+msgstr ""
+
+#: src/widgets/properties_view.ui:86
 msgid "Image Format"
 msgstr "Attēla formāts"
 
-#: src/widgets/properties_view.ui:71
+#: src/widgets/properties_view.ui:96
 msgid "File Size"
 msgstr "Datnes izmērs"
 
-#: src/widgets/properties_view.ui:84
+#: src/widgets/properties_view.ui:110
 msgid "File Created"
 msgstr "Datne izveidota"
 
-#: src/widgets/properties_view.ui:93
+#: src/widgets/properties_view.ui:120
 msgid "File Modified"
 msgstr "Datne mainīta"
 
 #. Translators: This is a label for GPS coordinates
-#: src/widgets/properties_view.ui:106
+#: src/widgets/properties_view.ui:134
 msgid "Location"
 msgstr "Atrašanās vieta"
 
-#: src/widgets/properties_view.ui:116
+#: src/widgets/properties_view.ui:145
 msgid "Copy Coordinates"
 msgstr "Kopēt koordinātes"
 
-#: src/widgets/properties_view.ui:127
+#: src/widgets/properties_view.ui:156
 msgid "Open Location"
 msgstr "Atvērt atrašanās vietu"
 
-#: src/widgets/properties_view.ui:140
+#: src/widgets/properties_view.ui:169
 msgid "Originally Created"
 msgstr "Sākotnēji izveidots"
 
-#: src/widgets/properties_view.ui:149
+#: src/widgets/properties_view.ui:179
+msgid "Creator"
+msgstr ""
+
+#: src/widgets/properties_view.ui:189
+msgid "Copyright"
+msgstr ""
+
+#: src/widgets/properties_view.ui:199
+msgid "Comment"
+msgstr ""
+
+#: src/widgets/properties_view.ui:209
 msgid "Aperture"
 msgstr "Diafragma"
 
-#: src/widgets/properties_view.ui:158
+#: src/widgets/properties_view.ui:219
 msgid "Exposure"
 msgstr "Ekspozīcija"
 
-#: src/widgets/properties_view.ui:167
+#: src/widgets/properties_view.ui:229
 msgid "ISO"
 msgstr "ISO"
 
-#: src/widgets/properties_view.ui:176
+#: src/widgets/properties_view.ui:239
 msgid "Focal Length"
 msgstr "Fokusa attālums"
 
-#: src/widgets/properties_view.ui:185
+#: src/widgets/properties_view.ui:249
 msgid "Maker, Model"
 msgstr "Ražotājs, modelis"
 
-#: src/window.rs:568
-msgid "Supported image formats"
-msgstr "Atbalstītie attēlu formāti"
+#: src/widgets/properties_view.ui:259
+msgid "Lens"
+msgstr ""
 
-#: src/window.rs:574
-msgid "All files"
-msgstr "Visas datnes"
+#: src/widgets/properties_view.ui:269
+msgid "Software"
+msgstr ""
 
-#: src/window.rs:581
-msgid "Open Image"
-msgstr "Atvērt attēlu"
+#: src/widgets/properties_view.ui:279
+msgid "ICC Profile"
+msgstr ""
 
-#: src/window.rs:667
-msgid "Image copied to clipboard"
-msgstr "Attēls nokopēts starpliktuvē"
+#: src/widgets/properties_view.ui:289
+msgid "CICP"
+msgstr ""
 
-#: src/window.rs:688
-msgid "Image moved to trash"
-msgstr "Attēls pārvietots uz miskasti"
-
-#: src/window.rs:689
-msgid "Undo"
-msgstr "Atcelt"
-
-#: src/window.rs:715
-msgid "Failed to move image to trash"
-msgstr "Neizdevās attēlu pārvietot uz miskasti"
-
-#: src/window.rs:741
-msgid "Permanently Delete Image?"
-msgstr "Neatgriezeniski dzēst attēlu?"
-
-#: src/window.rs:743
-#| msgid "The image “{}” can only be deleted permanently."
-msgid "After deleting the image “{}” it will be permanently lost."
-msgstr "Pēc attēlu \"{}\" dzēšanas, tas būs neatgriezeniski zudis."
-
-#: src/window.rs:751
-msgid "Cancel"
-msgstr "Atcelt"
-
-#: src/window.rs:752
-msgid "Delete"
-msgstr "Dzēst"
-
-#: src/window.rs:763
-msgid "Failed to delete image"
-msgstr "Neizdevās izdzēst attēlu"
-
-#: src/window.ui:6
-msgid "_New Window"
-msgstr "Jau_ns logs"
-
-#: src/window.ui:10
-msgid "_Open…"
-msgstr "_Atvērt..."
-
-#: src/window.ui:46
-msgid "_Help"
-msgstr "_Palīdzība"
-
-#: src/window.ui:50
-msgid "_Keyboard Shortcuts"
-msgstr "_Tastatūras īsinājumtaustiņi"
-
-#: src/window.ui:54
-msgid "_About Image Viewer"
-msgstr "Par _attēla skatītāju"
-
-#: src/window.ui:85
-msgid "Copy to Clipboard"
-msgstr "Kopēt starpliktuvē"
-
-#: src/window.ui:92
-msgid "Move to Trash"
-msgstr "Pārvietot uz miskasti"
-
-#: src/window.ui:98
-msgid "Main Menu"
-msgstr "Galvenā izvēlne"
-
-#: src/window.ui:130
-msgid "Image Properties"
-msgstr "Attēla īpašības"
-
-#: src/window.ui:174
-msgid "View Images"
-msgstr "Skatīt attēlus"
-
-#: src/window.ui:175
-msgid "Drag and drop images here"
-msgstr "Pārvelciet attēlus uz šejieni"
-
-#: src/window.ui:179
-msgid "_Open Files…"
-msgstr "_Atvērt datnes..."
-
-#~ msgid "Center image horizontally"
-#~ msgstr "Centrēt attēlu horizontāli"
-
-#~ msgid "Center image vertically"
-#~ msgstr "Centrēt attēlu vertikāli"
-
-#~ msgid "Image Width"
-#~ msgstr "Attēla platums"
-
-#~ msgid "Image Scale"
-#~ msgstr "Attēla mērogs"
-
-#~ msgid "Left Margin"
-#~ msgstr "Kreisā atkāpe"
-
-#~ msgid "Length Unit"
-#~ msgstr "Garuma vienība"
-
-#~ msgid "_About Loupe"
-#~ msgstr "Par programmu"
-
-#~ msgid "Loupe"
-#~ msgstr "Loupe"
-
-#~ msgid "The Loupe Team"
-#~ msgstr "Loupe komanda"
-
-#~ msgid "Failed to read image file information"
-#~ msgstr "Kļūda nolasot faila informāciju"
-
-#~ msgid "Failed to decode image"
-#~ msgstr "Kļūda attēla atkodēšanā"
-
-#~ msgid "Unknown image format"
-#~ msgstr "Nezināms faila formāts"
-
-#~ msgid "Animated GIF"
-#~ msgstr "Animēts GIF"
-
-#~ msgid "Animated WebP"
-#~ msgstr "Animēts WebP"
-
-#~ msgid "Animated PNG"
-#~ msgstr "Animēts PNG"
-
-#~ msgid "Unknown image format: {}"
-#~ msgstr "Nezināms attēla formāts: {}"
-
-#~ msgid "Could not open image"
-#~ msgstr "Neizdevās atvērt attēlu"
-
-#~ msgid "Could not read image"
-#~ msgstr "Neizdevās nolasīt attēlu"
-
-
+#: src/widgets/window.rs:249
+msgid "Show Details"
+msgstr ""

@@ -1,14 +1,15 @@
-# Spanish translation for Loupe.
+# Spanish translation for Glance, based on Loupe.
 # Copyright (C) 2023 Loupe's COPYRIGHT HOLDER
-# This file is distributed under the same license as the Loupe package.
+# This file is distributed under the same license as the Glance package.
 # Julián Villodre <jvillodrede@gmail.com>, 2024.
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2024-2026.
+# gnacho <hnacho@proton.me>, 2026.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Loupe main\n"
+"Project-Id-Version: Glance main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-08 18:39+0100\n"
+"POT-Creation-Date: 2026-11-09 00:39+0100\n"
 "PO-Revision-Date: 2026-11-09 00:00+0100\n"
 "Last-Translator: gnacho <hnacho@proton.me>\n"
 "Language-Team: Spanish <l10n-es@gnome.org>\n"
@@ -47,21 +48,18 @@ msgid ""
 "Glance is an image viewer with built-in editing. Browse your images, view "
 "their metadata, and make quick edits without opening a separate editor."
 msgstr ""
-"Glance es un visor de imágenes con edición integrada. Explore sus "
-"imágenes, consulte sus metadatos y haga retoques rápidos sin abrir un "
-"editor aparte."
+"Glance es un visor de imágenes con edición integrada. Explore sus imágenes, "
+"consulte sus metadatos y haga retoques rápidos sin abrir un editor aparte."
 
 #: data/io.github.Replexo.Glance.metainfo.xml.in.in:14
 msgid ""
 "Mark up images with a brush, highlighter, lines, arrows, shapes and text"
 msgstr ""
-"Anote imágenes con un pincel, un rotulador, líneas, flechas, formas y "
-"texto"
+"Anote imágenes con un pincel, un rotulador, líneas, flechas, formas y texto"
 
 #: data/io.github.Replexo.Glance.metainfo.xml.in.in:15
 msgid "Adjust brightness, contrast, highlights, shadows and saturation"
-msgstr ""
-"Ajuste el brillo, el contraste, las luces, las sombras y la saturación"
+msgstr "Ajuste el brillo, el contraste, las luces, las sombras y la saturación"
 
 #: data/io.github.Replexo.Glance.metainfo.xml.in.in:16
 msgid "Crop to an aspect ratio, rotate, flip and resize"
@@ -95,9 +93,9 @@ msgid ""
 "Crop editing views, undo and redo, zoom in the editor, and keyboard "
 "shortcuts for the markup tools."
 msgstr ""
-"Primera versión de Glance, basada en Loupe 51.1. Añade las vistas de "
-"edición Anotaciones, Ajustar y Recortar, deshacer y rehacer, zoom en el "
-"editor y atajos de teclado para las herramientas de anotación."
+"Primera versión de Glance, basada en Loupe 51.1. Añade las vistas de edición "
+"Anotaciones, Ajustar y Recortar, deshacer y rehacer, zoom en el editor y "
+"atajos de teclado para las herramientas de anotación."
 
 #: data/resources/shortcuts-dialog.ui:6
 msgctxt "shortcut window"
@@ -1365,136 +1363,3 @@ msgstr "CICP"
 #: src/widgets/window.rs:249
 msgid "Show Details"
 msgstr "Mostrar detalles"
-
-#~ msgid "The GNOME Project"
-#~ msgstr "El Proyecto GNOME"
-
-#~ msgid ""
-#~ "Explore images, view their metadata, and make quick edits by cropping, "
-#~ "rotating, or flipping them."
-#~ msgstr ""
-#~ "Explore imágenes, vea sus metadatos y realice ediciones rápidas "
-#~ "recortándolas, rotándolas o volteándolas."
-
-#~ msgid "Main Window"
-#~ msgstr "Ventana principal"
-
-#~ msgid "Image Properties Panel"
-#~ msgstr "Panel de propiedades de imagen"
-
-#~ msgid "Copyright © 2020–2024 Christopher Davis et al."
-#~ msgstr "Copyright © 2020–2024 Christopher Davis y otros"
-
-#~ msgid "_Free"
-#~ msgstr "_Libre"
-
-#~ msgid "_Original"
-#~ msgstr "_Original"
-
-#~ msgid "_Square"
-#~ msgstr "C_uadrado"
-
-#~ msgid "_5:4"
-#~ msgstr "_5:4"
-
-#~ msgid "_4:3"
-#~ msgstr "_4:3"
-
-#~ msgid "_3:2"
-#~ msgstr "_3:2"
-
-#~ msgid "_16:9"
-#~ msgstr "_16:9"
-
-#~ msgid "Orientation Portrait"
-#~ msgstr "Vertical"
-
-#~ msgid "Flip"
-#~ msgstr "Voltear"
-
-#~ msgid "Mirror Vertically"
-#~ msgstr "Espejar verticalmente"
-
-#~ msgid "Keep original and create a new file"
-#~ msgstr "Mantener el original y crear un archivo nuevo"
-
-#, fuzzy
-#~ msgid "Browse through your images and inspect their metadata with:"
-#~ msgstr "Explore sus imágenes e inspeccione sus metadatos con:"
-
-#, fuzzy
-#~ msgid "Fast GPU accelerated image rendering"
-#~ msgstr "Representación rápida de imágenes acelerada por GPU"
-
-#, fuzzy
-#~ msgid "Tiled rendering for vector graphics"
-#~ msgstr "Representación en mosaico para gráficos vectoriales"
-
-#, fuzzy
-#~ msgid "Extendable and sandboxed image decoding"
-#~ msgstr "Decodificación de imágenes extensible y en espacio aislado"
-
-#, fuzzy
-#~ msgid "Accessible presentation of the most important metadata."
-#~ msgstr "Presentación accesible de los metadatos más importantes."
-
-#, fuzzy
-#~ msgctxt "shortcut window"
-#~ msgid "Gestures"
-#~ msgstr "gestos"
-
-#, fuzzy
-#~ msgid "Copy to Clipboard"
-#~ msgstr "Copiar al portapapeles"
-
-#, fuzzy
-#~ msgid "Move to Trash"
-#~ msgstr "Mover a la papelera"
-
-#, fuzzy
-#~ msgid "The Loupe Team"
-#~ msgstr "El equipo de la lupa"
-
-#, fuzzy
-#~ msgid "Loupe"
-#~ msgstr "lupa"
-
-#, fuzzy
-#~ msgid "Christopher Davis"
-#~ msgstr "Cristóbal Davis"
-
-#, fuzzy
-#~ msgid "The following features are not available yet"
-#~ msgstr "Las siguientes funciones aún no están disponibles"
-
-#, fuzzy
-#~ msgid "Correctly showing SVGs at every zoom-level"
-#~ msgstr "Mostrar correctamente SVG en cada nivel de zoom"
-
-#, fuzzy
-#~ msgid "Interpreting image color profiles"
-#~ msgstr "Interpretación de perfiles de color de imagen."
-
-#, fuzzy
-#~ msgid "Correct HighDPI support"
-#~ msgstr "Soporte correcto de HighDPI"
-
-#, fuzzy
-#~ msgid "Print settings to position the image on the page"
-#~ msgstr "Configuración de impresión para colocar la imagen en la página"
-
-#, fuzzy
-#~ msgid "File does not exist"
-#~ msgstr "El archivo no existe"
-
-#, fuzzy
-#~ msgid "Failed to open new background image"
-#~ msgstr "No se pudo abrir una nueva imagen de fondo"
-
-#, fuzzy
-#~ msgid "“{}” is not a valid image."
-#~ msgstr "“{}” no es una imagen válida."
-
-#, fuzzy
-#~ msgid "File Type"
-#~ msgstr "Tipo de archivo"
