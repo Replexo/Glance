@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: loupe main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 00:39+0100\n"
+"POT-Creation-Date: 2026-11-09 20:06+0100\n"
 "PO-Revision-Date: 2026-08-27 22:15+0300\n"
 "Last-Translator: Aurimas Černius <aurimas.cernius@mailo.com>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
@@ -1081,15 +1081,21 @@ msgstr "Paveikslėlio savybės"
 msgid "Edit Image"
 msgstr "Redaguoti paveikslėlį"
 
-#: src/widgets/image_window.ui:224
+#: src/widgets/image_window.ui:143
+#, fuzzy
+#| msgid "Next Image"
+msgid "Select Text in Image"
+msgstr "Kitas paveikslėlis"
+
+#: src/widgets/image_window.ui:231
 msgid "View and Edit Images"
 msgstr "Rodyti bei keisti paveikslėlius"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:232
 msgid "Drag and drop images here"
 msgstr "Atitempkite paveikslėlius čia"
 
-#: src/widgets/image_window.ui:229
+#: src/widgets/image_window.ui:236
 msgid "_Open Files…"
 msgstr "_Atverti failus…"
 
@@ -1376,6 +1382,22 @@ msgstr "ICC profilis"
 #: src/widgets/properties_view.ui:289
 msgid "CICP"
 msgstr "CICP"
+
+#: src/widgets/text_layer.rs:107
+#, fuzzy
+#| msgid "_Copy"
+msgid "Copy"
+msgstr "_Kopijuoti"
+
+#: src/widgets/text_layer.rs:111
+msgid "Select All"
+msgstr ""
+
+#: src/widgets/text_layer.rs:680
+#, fuzzy
+#| msgid "Image copied to clipboard"
+msgid "Text copied to clipboard"
+msgstr "Paveikslėlis nukopijuotas į iškarpinę"
 
 #: src/widgets/window.rs:249
 msgid "Show Details"

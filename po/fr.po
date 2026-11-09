@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Loupe main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 00:39+0100\n"
+"POT-Creation-Date: 2026-11-09 20:06+0100\n"
 "PO-Revision-Date: 2026-08-31 22:18+0200\n"
 "Last-Translator: Guillaume Bernard <associations@guillaume-bernard.fr>\n"
 "Language-Team: French <international-french@discourse.gnome.org>\n"
@@ -1087,15 +1087,20 @@ msgstr "Propriétés de l’image"
 msgid "Edit Image"
 msgstr "Modifier l’image"
 
-#: src/widgets/image_window.ui:224
+#: src/widgets/image_window.ui:143
+#
+msgid "Select Text in Image"
+msgstr "Sélectionner le texte de l’image"
+
+#: src/widgets/image_window.ui:231
 msgid "View and Edit Images"
 msgstr "Visionner et modifier des images"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:232
 msgid "Drag and drop images here"
 msgstr "Glisser et déposer des images ici"
 
-#: src/widgets/image_window.ui:229
+#: src/widgets/image_window.ui:236
 msgid "_Open Files…"
 msgstr "_Ouvrir des fichiers…"
 
@@ -1382,6 +1387,20 @@ msgstr "Profil ICC"
 #: src/widgets/properties_view.ui:289
 msgid "CICP"
 msgstr "CICP"
+
+#: src/widgets/text_layer.rs:107
+#
+msgid "Copy"
+msgstr "Copier"
+
+#: src/widgets/text_layer.rs:111
+msgid "Select All"
+msgstr "Tout sélectionner"
+
+#: src/widgets/text_layer.rs:680
+#
+msgid "Text copied to clipboard"
+msgstr "Texte copié dans le presse-papiers"
 
 #: src/widgets/window.rs:249
 msgid "Show Details"

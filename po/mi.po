@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: loupe gnome-51\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 00:39+0100\n"
+"POT-Creation-Date: 2026-11-09 20:06+0100\n"
 "PO-Revision-Date: 2026-10-19 14:16+1300\n"
 "Last-Translator: Arlewatyerre Tuhoro-Bell <aidan@ursa.nz>\n"
 "Language-Team: Māori <https://gitlab.gnome.org/Teams/Translation/mi>\n"
@@ -1054,15 +1054,19 @@ msgstr ""
 msgid "Edit Image"
 msgstr ""
 
-#: src/widgets/image_window.ui:224
+#: src/widgets/image_window.ui:143
+msgid "Select Text in Image"
+msgstr ""
+
+#: src/widgets/image_window.ui:231
 msgid "View and Edit Images"
 msgstr ""
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:232
 msgid "Drag and drop images here"
 msgstr ""
 
-#: src/widgets/image_window.ui:229
+#: src/widgets/image_window.ui:236
 msgid "_Open Files…"
 msgstr ""
 
@@ -1348,6 +1352,20 @@ msgstr ""
 
 #: src/widgets/properties_view.ui:289
 msgid "CICP"
+msgstr ""
+
+#: src/widgets/text_layer.rs:107
+#, fuzzy
+#| msgid "_Copy"
+msgid "Copy"
+msgstr "_Tārua"
+
+#: src/widgets/text_layer.rs:111
+msgid "Select All"
+msgstr ""
+
+#: src/widgets/text_layer.rs:680
+msgid "Text copied to clipboard"
 msgstr ""
 
 #: src/widgets/window.rs:249

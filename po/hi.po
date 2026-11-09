@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: loupe main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 00:39+0100\n"
+"POT-Creation-Date: 2026-11-09 20:06+0100\n"
 "PO-Revision-Date: 2024-08-03 22:54+0530\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
@@ -1113,17 +1113,23 @@ msgstr "छवि गुण"
 msgid "Edit Image"
 msgstr "छवि प्रिंट करें"
 
-#: src/widgets/image_window.ui:224
+#: src/widgets/image_window.ui:143
+#, fuzzy
+#| msgid "Next Image"
+msgid "Select Text in Image"
+msgstr "अगली छवि"
+
+#: src/widgets/image_window.ui:231
 #, fuzzy
 #| msgid "View Images"
 msgid "View and Edit Images"
 msgstr "छवियां देखें"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:232
 msgid "Drag and drop images here"
 msgstr "छवियों को यहां खींचें और छोड़ें"
 
-#: src/widgets/image_window.ui:229
+#: src/widgets/image_window.ui:236
 msgid "_Open Files…"
 msgstr "फाइल खोलें (_O)…"
 
@@ -1418,6 +1424,22 @@ msgstr ""
 #: src/widgets/properties_view.ui:289
 msgid "CICP"
 msgstr ""
+
+#: src/widgets/text_layer.rs:107
+#, fuzzy
+#| msgid "_Copy"
+msgid "Copy"
+msgstr "कॉपी करें (_C)"
+
+#: src/widgets/text_layer.rs:111
+msgid "Select All"
+msgstr ""
+
+#: src/widgets/text_layer.rs:680
+#, fuzzy
+#| msgid "Image copied to clipboard"
+msgid "Text copied to clipboard"
+msgstr "छवि क्लिपबोर्ड पर कॉपी की गई"
 
 #: src/widgets/window.rs:249
 msgid "Show Details"

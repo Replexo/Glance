@@ -927,6 +927,7 @@ dependencies = [
  "moxcms",
  "pango",
  "pangocairo",
+ "pkg-config",
  "strum",
  "thiserror",
  "tracing",

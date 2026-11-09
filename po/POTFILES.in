@@ -67,5 +67,6 @@ src/widgets/properties_view.rs
 src/widgets/properties_view.ui
 src/widgets/shy_bin.rs
 src/widgets/sliding_view.rs
+src/widgets/text_layer.rs
 src/widgets/window.rs
 src/widgets/window.ui

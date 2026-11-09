@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: loupe main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 00:39+0100\n"
+"POT-Creation-Date: 2026-11-09 20:06+0100\n"
 "PO-Revision-Date: 2026-05-29 17:43+0100\n"
 "Last-Translator: Flynn Peck <cirilla@tuta.io>\n"
 "Language-Team: kw\n"
@@ -1086,15 +1086,21 @@ msgstr "Teythiennow Skeusen"
 msgid "Edit Image"
 msgstr "Golegi Skeusen"
 
-#: src/widgets/image_window.ui:224
+#: src/widgets/image_window.ui:143
+#, fuzzy
+#| msgid "Next Image"
+msgid "Select Text in Image"
+msgstr "Skeusen Nessa"
+
+#: src/widgets/image_window.ui:231
 msgid "View and Edit Images"
 msgstr "Gweles ha Golegi Skeusennow"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:232
 msgid "Drag and drop images here"
 msgstr "Draylewgh ha droppyewgh skeusennow omma"
 
-#: src/widgets/image_window.ui:229
+#: src/widgets/image_window.ui:236
 msgid "_Open Files…"
 msgstr "_Ygeri Restrennow…"
 
@@ -1389,6 +1395,22 @@ msgstr ""
 #: src/widgets/properties_view.ui:289
 msgid "CICP"
 msgstr ""
+
+#: src/widgets/text_layer.rs:107
+#, fuzzy
+#| msgid "_Copy"
+msgid "Copy"
+msgstr "_Kopia"
+
+#: src/widgets/text_layer.rs:111
+msgid "Select All"
+msgstr ""
+
+#: src/widgets/text_layer.rs:680
+#, fuzzy
+#| msgid "Image copied to clipboard"
+msgid "Text copied to clipboard"
+msgstr "Skeusen kopys war astel glypp"
 
 #: src/widgets/window.rs:249
 msgid "Show Details"

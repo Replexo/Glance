@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: loupe\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 00:39+0100\n"
+"POT-Creation-Date: 2026-11-09 20:06+0100\n"
 "PO-Revision-Date: 2026-03-07 06:39+0100\n"
 "Last-Translator: Daniel <wbcwknvstb@proton.me>, 2026.\n"
 "Language-Team: Polish\n"
@@ -1070,15 +1070,20 @@ msgstr "Właściwości obrazu"
 msgid "Edit Image"
 msgstr "Modyfikuje obraz"
 
-#: src/widgets/image_window.ui:224
+#: src/widgets/image_window.ui:143
+#
+msgid "Select Text in Image"
+msgstr "Zaznacz tekst na obrazie"
+
+#: src/widgets/image_window.ui:231
 msgid "View and Edit Images"
 msgstr "Wyświetlanie i edytowanie obrazów"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:232
 msgid "Drag and drop images here"
 msgstr "Tutaj można przeciągać obrazy"
 
-#: src/widgets/image_window.ui:229
+#: src/widgets/image_window.ui:236
 msgid "_Open Files…"
 msgstr "_Otwórz pliki…"
 
@@ -1365,6 +1370,20 @@ msgstr "Profil ICC"
 #: src/widgets/properties_view.ui:289
 msgid "CICP"
 msgstr "CICP"
+
+#: src/widgets/text_layer.rs:107
+#
+msgid "Copy"
+msgstr "Kopiuj"
+
+#: src/widgets/text_layer.rs:111
+msgid "Select All"
+msgstr "Zaznacz wszystko"
+
+#: src/widgets/text_layer.rs:680
+#
+msgid "Text copied to clipboard"
+msgstr "Skopiowano tekst do schowka"
 
 #: src/widgets/window.rs:249
 msgid "Show Details"

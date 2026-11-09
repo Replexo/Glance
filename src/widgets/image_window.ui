@@ -136,6 +136,13 @@
                     <property name="tooltip-text" translatable="yes">Edit Image</property>
                   </object>
                 </child>
+                <child type="end">
+                  <object class="GtkButton" id="text_button">
+                    <property name="visible">False</property>
+                    <property name="icon-name">glance-live-text-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Select Text in Image</property>
+                  </object>
+                </child>
                 <child>
                   <object class="GtkEventControllerMotion" id="headerbar_events" />
                 </child>

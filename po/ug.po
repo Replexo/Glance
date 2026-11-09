@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 00:39+0100\n"
+"POT-Creation-Date: 2026-11-09 20:06+0100\n"
 "PO-Revision-Date: 2026-08-18 12:23-0400\n"
 "Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: \n"
@@ -1080,15 +1080,21 @@ msgstr "سۈرەت خاسلىقى"
 msgid "Edit Image"
 msgstr "سۈرەت تەھرىرلەش"
 
-#: src/widgets/image_window.ui:224
+#: src/widgets/image_window.ui:143
+#, fuzzy
+#| msgid "Next Image"
+msgid "Select Text in Image"
+msgstr "كېيىنكى سۈرەت"
+
+#: src/widgets/image_window.ui:231
 msgid "View and Edit Images"
 msgstr "سۈرەتنى كۆرسىتىپ ۋە تەھرىرلەيدۇ"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:232
 msgid "Drag and drop images here"
 msgstr "سۈرەت بۇ جايغا سۆرەپ تاشلىنىدۇ"
 
-#: src/widgets/image_window.ui:229
+#: src/widgets/image_window.ui:236
 msgid "_Open Files…"
 msgstr "ھۆججەت ئاچ(_O)…"
 
@@ -1375,6 +1381,22 @@ msgstr "ICC سەپلىمە ھۆججەت"
 #: src/widgets/properties_view.ui:289
 msgid "CICP"
 msgstr "CICP"
+
+#: src/widgets/text_layer.rs:107
+#, fuzzy
+#| msgid "_Copy"
+msgid "Copy"
+msgstr "كۆچۈر(_C)"
+
+#: src/widgets/text_layer.rs:111
+msgid "Select All"
+msgstr ""
+
+#: src/widgets/text_layer.rs:680
+#, fuzzy
+#| msgid "Image copied to clipboard"
+msgid "Text copied to clipboard"
+msgstr "سۈرەت چاپلاش تاختىسىغا كۆچۈرۈلدى"
 
 #: src/widgets/window.rs:249
 msgid "Show Details"

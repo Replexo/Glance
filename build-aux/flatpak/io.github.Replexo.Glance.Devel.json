@@ -112,6 +112,109 @@
             ]
         },
         {
+            "name": "leptonica",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=Release",
+                "-DBUILD_SHARED_LIBS=ON",
+                "-DBUILD_PROG=OFF",
+                "-DSW_BUILD=OFF"
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/cmake",
+                "/lib/pkgconfig"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/DanBloomberg/leptonica/releases/download/1.87.0/leptonica-1.87.0.tar.gz",
+                    "sha256": "c73363397f96eb1295602bf44d708a994ad42046c791bf03ea0505d829bdb6a7"
+                }
+            ]
+        },
+        {
+            "name": "tesseract",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=Release",
+                "-DBUILD_SHARED_LIBS=ON",
+                "-DBUILD_TRAINING_TOOLS=OFF",
+                "-DBUILD_TESTS=OFF",
+                "-DSW_BUILD=OFF",
+                "-DOPENMP_BUILD=OFF",
+                "-DDISABLE_CURL=ON",
+                "-DDISABLE_ARCHIVE=ON",
+                "-DGRAPHICS_DISABLED=ON"
+            ],
+            "cleanup": [
+                "/bin",
+                "/include",
+                "/lib/cmake",
+                "/lib/pkgconfig",
+                "/share/tessdata/configs",
+                "/share/tessdata/tessconfigs"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/tesseract-ocr/tesseract/archive/refs/tags/5.5.3.tar.gz",
+                    "sha256": "9218e62793116d42a9f6d14cd9348518b27f382096eea3d0f2d1a24616bb5884"
+                }
+            ]
+        },
+        {
+            "name": "tessdata",
+            "buildsystem": "simple",
+            "build-commands": [
+                "install -Dm644 -t ${FLATPAK_DEST}/share/tessdata *.traineddata"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "url": "https://github.com/tesseract-ocr/tessdata_fast/raw/4.1.0/eng.traineddata",
+                    "sha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2"
+                },
+                {
+                    "type": "file",
+                    "url": "https://github.com/tesseract-ocr/tessdata_fast/raw/4.1.0/spa.traineddata",
+                    "sha256": "6f2e04d02774a18f01bed44b1111f2cd7f3ba7ac9dc4373cd3f898a40ea6b464"
+                },
+                {
+                    "type": "file",
+                    "url": "https://github.com/tesseract-ocr/tessdata_fast/raw/4.1.0/fra.traineddata",
+                    "sha256": "ced037562e8c80c13122dece28dd477d399af80911a28791a66a63ac1e3445ca"
+                },
+                {
+                    "type": "file",
+                    "url": "https://github.com/tesseract-ocr/tessdata_fast/raw/4.1.0/deu.traineddata",
+                    "sha256": "19d219bbb6672c869d20a9636c6816a81eb9a71796cb93ebe0cb1530e2cdb22d"
+                },
+                {
+                    "type": "file",
+                    "url": "https://github.com/tesseract-ocr/tessdata_fast/raw/4.1.0/por.traineddata",
+                    "sha256": "c4932b937207a9514b7514d518b931a99938c02a28a5a5a553f8599ed58b7deb"
+                },
+                {
+                    "type": "file",
+                    "url": "https://github.com/tesseract-ocr/tessdata_fast/raw/4.1.0/rus.traineddata",
+                    "sha256": "e16e5e036cce1d9ec2b00063cf8b54472625b9e14d893a169e2b0dedeb4df225"
+                },
+                {
+                    "type": "file",
+                    "url": "https://github.com/tesseract-ocr/tessdata_fast/raw/4.1.0/pol.traineddata",
+                    "sha256": "c4476cdbc0e33d898d32345122b7be1cbf85ace15f920f06c7714756e1ef79b2"
+                },
+                {
+                    "type": "file",
+                    "url": "https://github.com/tesseract-ocr/tessdata_fast/raw/4.1.0/tur.traineddata",
+                    "sha256": "7393381111e1152420fc4092cb44eef4237580d21b92bf30d7d221aad192c6b7"
+                }
+            ]
+        },
+        {
             "name": "glance",
             "buildsystem": "meson",
             "config-opts": [

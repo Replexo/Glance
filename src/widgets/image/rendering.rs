@@ -414,6 +414,16 @@ impl LpImage {
         (x, y)
     }
 
+    /// Convert image coordinates to widget coordinates
+    pub fn img_to_widget_coord(&self, (img_x, img_y): (f64, f64)) -> (f64, f64) {
+        let imp = self.imp();
+        let zoom = imp.applicable_zoom();
+        let x = img_x * zoom + self.image_rendering_x() - imp.hadj_value();
+        let y = img_y * zoom + self.image_rendering_y() - imp.vadj_value();
+
+        (x, y)
+    }
+
     /// Convert image coordinates to drawn image coordinates
     pub fn img_to_draw_coord(&self, (cur_x, cur_y): (f64, f64)) -> (f64, f64) {
         let imp = self.imp();

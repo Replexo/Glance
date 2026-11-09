@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: loupe main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 00:39+0100\n"
+"POT-Creation-Date: 2026-11-09 20:06+0100\n"
 "PO-Revision-Date: 2025-06-12 14:42-0400\n"
 "Last-Translator: Emilio Sepúlveda <emism.translations@gmail.com>\n"
 "Language-Team: Interlingua <softinterlingua@gmail.com>\n"
@@ -1065,17 +1065,23 @@ msgstr "Proprietates de imagine"
 msgid "Edit Image"
 msgstr "Modificar imagine"
 
-#: src/widgets/image_window.ui:224
+#: src/widgets/image_window.ui:143
+#, fuzzy
+#| msgid "Next Image"
+msgid "Select Text in Image"
+msgstr "Imagine sequente"
+
+#: src/widgets/image_window.ui:231
 #, fuzzy
 #| msgid "View Images"
 msgid "View and Edit Images"
 msgstr "Vider imagines"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:232
 msgid "Drag and drop images here"
 msgstr "Trahe e depone imagines hic"
 
-#: src/widgets/image_window.ui:229
+#: src/widgets/image_window.ui:236
 msgid "_Open Files…"
 msgstr "_Aperir files…"
 
@@ -1363,6 +1369,20 @@ msgstr ""
 
 #: src/widgets/properties_view.ui:289
 msgid "CICP"
+msgstr ""
+
+#: src/widgets/text_layer.rs:107
+#, fuzzy
+#| msgid "_Copy"
+msgid "Copy"
+msgstr "_Copiar"
+
+#: src/widgets/text_layer.rs:111
+msgid "Select All"
+msgstr ""
+
+#: src/widgets/text_layer.rs:680
+msgid "Text copied to clipboard"
 msgstr ""
 
 #: src/widgets/window.rs:249

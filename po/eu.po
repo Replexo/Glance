@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Loupe main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 00:39+0100\n"
+"POT-Creation-Date: 2026-11-09 20:06+0100\n"
 "PO-Revision-Date: 2026-08-02 18:54+0000\n"
 "Last-Translator: Asier Saratsua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
@@ -1080,15 +1080,21 @@ msgstr "Irudiaren propietateak"
 msgid "Edit Image"
 msgstr "Editatu irudia"
 
-#: src/widgets/image_window.ui:224
+#: src/widgets/image_window.ui:143
+#, fuzzy
+#| msgid "Next Image"
+msgid "Select Text in Image"
+msgstr "Hurrengo irudia"
+
+#: src/widgets/image_window.ui:231
 msgid "View and Edit Images"
 msgstr "Ikusi eta editatu irudiak"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:232
 msgid "Drag and drop images here"
 msgstr "Arrastatu eta jaregin irudiak hemen"
 
-#: src/widgets/image_window.ui:229
+#: src/widgets/image_window.ui:236
 msgid "_Open Files…"
 msgstr "Ireki _fitxategiak…"
 
@@ -1375,6 +1381,22 @@ msgstr "ICC profila"
 #: src/widgets/properties_view.ui:289
 msgid "CICP"
 msgstr "CICP"
+
+#: src/widgets/text_layer.rs:107
+#, fuzzy
+#| msgid "_Copy"
+msgid "Copy"
+msgstr "_Kopiatu"
+
+#: src/widgets/text_layer.rs:111
+msgid "Select All"
+msgstr ""
+
+#: src/widgets/text_layer.rs:680
+#, fuzzy
+#| msgid "Image copied to clipboard"
+msgid "Text copied to clipboard"
+msgstr "Irudia arbelean kopiatu da"
 
 #: src/widgets/window.rs:249
 msgid "Show Details"

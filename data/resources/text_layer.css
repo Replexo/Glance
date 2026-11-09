@@ -1,0 +1,27 @@
+/* Copy pill over selected text in an image, matching the editor pills */
+text-layer .text-pill {
+  background-color: rgb(28 28 32 / 0.88);
+  border: 1px solid rgb(255 255 255 / 0.08);
+  border-radius: 9999px;
+  padding: 4px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.25);
+}
+
+text-layer .text-pill button {
+  min-height: 28px;
+  padding: 0 12px;
+  border-radius: 9999px;
+  background: none;
+  box-shadow: none;
+  color: #f2f2f4;
+}
+
+text-layer .text-pill button:hover {
+  background-color: rgb(255 255 255 / 0.1);
+}
+
+text-layer .text-pill separator {
+  min-width: 1px;
+  margin: 6px 2px;
+  background-color: #34343a;
+}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: loupe main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 00:39+0100\n"
+"POT-Creation-Date: 2026-11-09 20:06+0100\n"
 "PO-Revision-Date: 2023-10-15 02:22+0200\n"
 "Last-Translator: Angelo Verlain SHEMA <hey@vixalien.com>\n"
 "Language-Team: Kinyarwanda <>\n"
@@ -1121,17 +1121,23 @@ msgstr "Ibyereke Ishusho"
 msgid "Edit Image"
 msgstr "Ishusho ya Mbere"
 
-#: src/widgets/image_window.ui:224
+#: src/widgets/image_window.ui:143
+#, fuzzy
+#| msgid "Next Image"
+msgid "Select Text in Image"
+msgstr "Ishusho Ikurikira"
+
+#: src/widgets/image_window.ui:231
 #, fuzzy
 #| msgid "View Images"
 msgid "View and Edit Images"
 msgstr "Kureba Amashusho"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:232
 msgid "Drag and drop images here"
 msgstr "Zana utereke amashusho hano"
 
-#: src/widgets/image_window.ui:229
+#: src/widgets/image_window.ui:236
 msgid "_Open Files…"
 msgstr "Gu_fungura amadosiye…"
 
@@ -1450,6 +1456,20 @@ msgstr ""
 #: src/widgets/properties_view.ui:289
 msgid "CICP"
 msgstr ""
+
+#: src/widgets/text_layer.rs:107
+msgid "Copy"
+msgstr ""
+
+#: src/widgets/text_layer.rs:111
+msgid "Select All"
+msgstr ""
+
+#: src/widgets/text_layer.rs:680
+#, fuzzy
+#| msgid "Image copied to clipboard"
+msgid "Text copied to clipboard"
+msgstr "Ishusho yashyizwe mububikogateganyo"
 
 #: src/widgets/window.rs:249
 msgid "Show Details"

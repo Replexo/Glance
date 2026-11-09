@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Loupe main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 00:39+0100\n"
+"POT-Creation-Date: 2026-11-09 20:06+0100\n"
 "PO-Revision-Date: 2026-08-06 15:11+0300\n"
 "Last-Translator: Akın Birdal <reend21@protonmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
@@ -1071,15 +1071,20 @@ msgstr "Resim Özellikleri"
 msgid "Edit Image"
 msgstr "Resmi Düzenle"
 
-#: src/widgets/image_window.ui:224
+#: src/widgets/image_window.ui:143
+#
+msgid "Select Text in Image"
+msgstr "Görüntüdeki metni seç"
+
+#: src/widgets/image_window.ui:231
 msgid "View and Edit Images"
 msgstr "Resimleri Görüntüle ve Düzenle"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:232
 msgid "Drag and drop images here"
 msgstr "Resimleri sürükleyip buraya bırakın"
 
-#: src/widgets/image_window.ui:229
+#: src/widgets/image_window.ui:236
 msgid "_Open Files…"
 msgstr "Dosya _Aç…"
 
@@ -1366,6 +1371,20 @@ msgstr "ICC Profili"
 #: src/widgets/properties_view.ui:289
 msgid "CICP"
 msgstr "CICP"
+
+#: src/widgets/text_layer.rs:107
+#
+msgid "Copy"
+msgstr "Kopyala"
+
+#: src/widgets/text_layer.rs:111
+msgid "Select All"
+msgstr "Tümünü seç"
+
+#: src/widgets/text_layer.rs:680
+#
+msgid "Text copied to clipboard"
+msgstr "Metin panoya kopyalandı"
 
 #: src/widgets/window.rs:249
 msgid "Show Details"

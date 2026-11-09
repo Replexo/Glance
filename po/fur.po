@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Loupe main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 00:39+0100\n"
+"POT-Creation-Date: 2026-11-09 20:06+0100\n"
 "PO-Revision-Date: 2025-07-10 15:24+0200\n"
 "Last-Translator: \n"
 "Language-Team: Friulian <fur@li.org>\n"
@@ -1084,17 +1084,23 @@ msgstr "Propietâts de imagjin"
 msgid "Edit Image"
 msgstr "Modifiche imagjin"
 
-#: src/widgets/image_window.ui:224
+#: src/widgets/image_window.ui:143
+#, fuzzy
+#| msgid "Next Image"
+msgid "Select Text in Image"
+msgstr "Imagjin sucessive"
+
+#: src/widgets/image_window.ui:231
 #, fuzzy
 #| msgid "View Images"
 msgid "View and Edit Images"
 msgstr "Visualize imagjins"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:232
 msgid "Drag and drop images here"
 msgstr "Strissine e mole lis imagjins achì"
 
-#: src/widgets/image_window.ui:229
+#: src/widgets/image_window.ui:236
 msgid "_Open Files…"
 msgstr "_Vierç files…"
 
@@ -1391,6 +1397,22 @@ msgstr ""
 #: src/widgets/properties_view.ui:289
 msgid "CICP"
 msgstr ""
+
+#: src/widgets/text_layer.rs:107
+#, fuzzy
+#| msgid "_Copy"
+msgid "Copy"
+msgstr "_Copie"
+
+#: src/widgets/text_layer.rs:111
+msgid "Select All"
+msgstr ""
+
+#: src/widgets/text_layer.rs:680
+#, fuzzy
+#| msgid "Image copied to clipboard"
+msgid "Text copied to clipboard"
+msgstr "Imagjin copiade intes notis"
 
 #: src/widgets/window.rs:249
 msgid "Show Details"

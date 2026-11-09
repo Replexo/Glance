@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: loupe main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 00:39+0100\n"
+"POT-Creation-Date: 2026-11-09 20:06+0100\n"
 "PO-Revision-Date: 2025-03-10 17:25+0800\n"
 "Last-Translator: \n"
 "Language-Team: Filipino <fil@li.org>\n"
@@ -1082,17 +1082,23 @@ msgstr "Mga Property ng Larawan"
 msgid "Edit Image"
 msgstr "I-edit ang Larawan"
 
-#: src/widgets/image_window.ui:224
+#: src/widgets/image_window.ui:143
+#, fuzzy
+#| msgid "Next Image"
+msgid "Select Text in Image"
+msgstr "Susunod na Larawan"
+
+#: src/widgets/image_window.ui:231
 #, fuzzy
 #| msgid "View Images"
 msgid "View and Edit Images"
 msgstr "Tingnan ang mga Larawan"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:232
 msgid "Drag and drop images here"
 msgstr "I-drag at -drop ang mga larawan dito"
 
-#: src/widgets/image_window.ui:229
+#: src/widgets/image_window.ui:236
 msgid "_Open Files…"
 msgstr "Mag_bukas ng File…"
 
@@ -1389,6 +1395,22 @@ msgstr ""
 #: src/widgets/properties_view.ui:289
 msgid "CICP"
 msgstr ""
+
+#: src/widgets/text_layer.rs:107
+#, fuzzy
+#| msgid "_Copy"
+msgid "Copy"
+msgstr "_Kopyahin"
+
+#: src/widgets/text_layer.rs:111
+msgid "Select All"
+msgstr ""
+
+#: src/widgets/text_layer.rs:680
+#, fuzzy
+#| msgid "Image copied to clipboard"
+msgid "Text copied to clipboard"
+msgstr "Kinopya ang larawan sa clipboard"
 
 #: src/widgets/window.rs:249
 msgid "Show Details"

@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Loupe main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 00:39+0100\n"
+"POT-Creation-Date: 2026-11-09 20:06+0100\n"
 "PO-Revision-Date: 2026-09-16 22:16+0200\n"
 "Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -1079,15 +1079,20 @@ msgstr "Bildeigenschaften"
 msgid "Edit Image"
 msgstr "Bild bearbeiten"
 
-#: src/widgets/image_window.ui:224
+#: src/widgets/image_window.ui:143
+#
+msgid "Select Text in Image"
+msgstr "Text im Bild auswählen"
+
+#: src/widgets/image_window.ui:231
 msgid "View and Edit Images"
 msgstr "Bilder betrachten und bearbeiten"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:232
 msgid "Drag and drop images here"
 msgstr "Bilder hierher ziehen und ablegen"
 
-#: src/widgets/image_window.ui:229
+#: src/widgets/image_window.ui:236
 msgid "_Open Files…"
 msgstr "_Dateien öffnen …"
 
@@ -1374,6 +1379,20 @@ msgstr "ICC-Profil"
 #: src/widgets/properties_view.ui:289
 msgid "CICP"
 msgstr "CICP"
+
+#: src/widgets/text_layer.rs:107
+#
+msgid "Copy"
+msgstr "Kopieren"
+
+#: src/widgets/text_layer.rs:111
+msgid "Select All"
+msgstr "Alles auswählen"
+
+#: src/widgets/text_layer.rs:680
+#
+msgid "Text copied to clipboard"
+msgstr "Text in die Zwischenablage kopiert"
 
 #: src/widgets/window.rs:249
 msgid "Show Details"

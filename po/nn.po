@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: loupe gnome-48\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 00:39+0100\n"
+"POT-Creation-Date: 2026-11-09 20:06+0100\n"
 "PO-Revision-Date: 2026-09-11 15:29+0200\n"
 "Last-Translator: Roy-Magne Mo <rmo@sunnmore.net>\n"
 "Language-Team: Norwegian Nynorsk <nn@li.org>\n"
@@ -1084,15 +1084,21 @@ msgstr "Bileteeigenskapar"
 msgid "Edit Image"
 msgstr "Brigd bilete"
 
-#: src/widgets/image_window.ui:224
+#: src/widgets/image_window.ui:143
+#, fuzzy
+#| msgid "Next Image"
+msgid "Select Text in Image"
+msgstr "Neste bilete"
+
+#: src/widgets/image_window.ui:231
 msgid "View and Edit Images"
 msgstr "Vis og rediger bilete"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:232
 msgid "Drag and drop images here"
 msgstr "Drag og slepp bilete her"
 
-#: src/widgets/image_window.ui:229
+#: src/widgets/image_window.ui:236
 msgid "_Open Files…"
 msgstr "_Opna filer …"
 
@@ -1379,6 +1385,22 @@ msgstr "ICC-profil"
 #: src/widgets/properties_view.ui:289
 msgid "CICP"
 msgstr "CICP"
+
+#: src/widgets/text_layer.rs:107
+#, fuzzy
+#| msgid "_Copy"
+msgid "Copy"
+msgstr "_Kopier"
+
+#: src/widgets/text_layer.rs:111
+msgid "Select All"
+msgstr ""
+
+#: src/widgets/text_layer.rs:680
+#, fuzzy
+#| msgid "Image copied to clipboard"
+msgid "Text copied to clipboard"
+msgstr "Bilete kopiert til utklippstavla"
 
 #: src/widgets/window.rs:249
 msgid "Show Details"

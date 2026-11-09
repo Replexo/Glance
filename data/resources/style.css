@@ -1,6 +1,7 @@
 @import 'edit.css';
 @import 'edit_crop.css';
 @import 'edit_glance.css';
+@import 'text_layer.css';
 
 :root {
   --osd-background-color: rgba(240, 240, 240, 0.75);

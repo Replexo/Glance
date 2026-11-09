@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 00:39+0100\n"
+"POT-Creation-Date: 2026-11-09 20:06+0100\n"
 "PO-Revision-Date: 2026-07-22 20:44+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: \n"
@@ -1066,15 +1066,20 @@ msgstr "Свойства изображения"
 msgid "Edit Image"
 msgstr "Редактировать изображение"
 
-#: src/widgets/image_window.ui:224
+#: src/widgets/image_window.ui:143
+#
+msgid "Select Text in Image"
+msgstr "Выделить текст на изображении"
+
+#: src/widgets/image_window.ui:231
 msgid "View and Edit Images"
 msgstr "Просмотр и редактирование изображений"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:232
 msgid "Drag and drop images here"
 msgstr "Перетащите изображения сюда"
 
-#: src/widgets/image_window.ui:229
+#: src/widgets/image_window.ui:236
 msgid "_Open Files…"
 msgstr "_Открыть файлы…"
 
@@ -1361,6 +1366,20 @@ msgstr "Профиль ICC"
 #: src/widgets/properties_view.ui:289
 msgid "CICP"
 msgstr "CICP"
+
+#: src/widgets/text_layer.rs:107
+#
+msgid "Copy"
+msgstr "Копировать"
+
+#: src/widgets/text_layer.rs:111
+msgid "Select All"
+msgstr "Выделить всё"
+
+#: src/widgets/text_layer.rs:680
+#
+msgid "Text copied to clipboard"
+msgstr "Текст скопирован в буфер обмена"
 
 #: src/widgets/window.rs:249
 msgid "Show Details"

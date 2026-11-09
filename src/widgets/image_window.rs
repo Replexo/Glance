@@ -45,7 +45,7 @@ use crate::util::Direction;
 use crate::util::gettext::*;
 use crate::util::root::ParentWindow;
 use crate::widgets::window::ActionPartGlobal;
-use crate::widgets::{LpDragOverlay, LpImage, LpImageView, LpPropertiesView};
+use crate::widgets::{LpDragOverlay, LpImage, LpImageView, LpPropertiesView, LpTextLayer};
 
 /// Animation duration for showing overlay buttons in milliseconds
 const SHOW_CONTROLS_ANIMATION_DURATION: u32 = 200;
@@ -74,6 +74,8 @@ mod imp {
 
         #[template_child]
         pub(super) properties_button: TemplateChild<gtk::ToggleButton>,
+        #[template_child]
+        pub(super) text_button: TemplateChild<gtk::Button>,
         #[template_child]
         pub(super) primary_menu: TemplateChild<gtk::MenuButton>,
 
@@ -111,6 +113,10 @@ mod imp {
         pub(super) show_controls_animation: OnceCell<adw::TimedAnimation>,
         pub(super) hide_controls_animation: OnceCell<adw::TimedAnimation>,
         pub(super) hide_controls_timeout: RefCell<Option<glib::SourceId>>,
+
+        /// Live text of the current image
+        pub(super) text_layer: glib::WeakRef<LpTextLayer>,
+        pub(super) text_binding: RefCell<Option<glib::Binding>>,
     }
 
     #[glib::object_subclass]
@@ -170,6 +176,16 @@ mod imp {
                     if n_press == 1 {
                         tracing::trace!("General 1 click event");
                         obj.on_click();
+                    }
+                }
+            ));
+
+            self.text_button.connect_clicked(glib::clone!(
+                #[weak]
+                obj,
+                move |_| {
+                    if let Some(text_layer) = obj.imp().text_layer.upgrade() {
+                        text_layer.select_all();
                     }
                 }
             ));
@@ -603,6 +619,14 @@ impl LpImageWindow {
         false
     }
 
+    /// Copies the selected text of the image, returns whether there was any
+    pub fn copy_selected_text(&self) -> bool {
+        self.imp()
+            .text_layer
+            .upgrade()
+            .is_some_and(|text_layer| text_layer.copy_selection())
+    }
+
     /// Copy image to clipboard or metadata text if selected
     pub fn copy_image(&self) {
         let imp = self.imp();
@@ -814,6 +838,28 @@ impl LpImageWindow {
 
         // Window title
         self.update_title();
+
+        // Live text, only read for the current image
+        let text_layer = current_page.as_ref().map(|x| x.text_layer());
+        let previous_layer = imp.text_layer.upgrade();
+        if previous_layer != text_layer {
+            if let Some(binding) = imp.text_binding.take() {
+                binding.unbind();
+            }
+            if let Some(previous_layer) = previous_layer {
+                previous_layer.set_active(false);
+            }
+            imp.text_layer.set(text_layer.as_ref());
+            imp.text_button.set_visible(false);
+            if let Some(text_layer) = &text_layer {
+                text_layer.set_active(true);
+                let binding = text_layer
+                    .bind_property("has-text", &*imp.text_button, "visible")
+                    .sync_create()
+                    .build();
+                imp.text_binding.replace(Some(binding));
+            }
+        }
 
         // Properties view
         let current_image: Option<LpImage> = current_page.as_ref().map(|x| x.image());

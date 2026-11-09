@@ -95,6 +95,8 @@ mod imp {
                 if image_window.has_metadata_selected() {
                     // Pass on to normal copy handler to copy selected metadata
                     glib::Propagation::Proceed
+                } else if image_window.copy_selected_text() {
+                    glib::Propagation::Stop
                 } else {
                     image_window.copy_image();
                     glib::Propagation::Stop

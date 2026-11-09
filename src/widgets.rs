@@ -31,6 +31,7 @@ mod print_preview;
 mod properties_view;
 mod shy_bin;
 mod sliding_view;
+mod text_layer;
 mod window;
 
 pub use drag_overlay::LpDragOverlay;
@@ -45,4 +46,5 @@ pub use print_preview::LpPrintPreview;
 pub use properties_view::LpPropertiesView;
 pub use shy_bin::LpShyBin;
 pub use sliding_view::LpSlidingView;
+pub use text_layer::LpTextLayer;
 pub use window::LpWindow;

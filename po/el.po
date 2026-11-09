@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Loupe main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 00:39+0100\n"
+"POT-Creation-Date: 2026-11-09 20:06+0100\n"
 "PO-Revision-Date: 2026-10-03 14:23+0300\n"
 "Last-Translator: Efstathios Iosifidis <eiosifidis@gmail.com>\n"
 "Language-Team: Greek <gnome-el-list@gnome.org>\n"
@@ -1095,15 +1095,21 @@ msgstr "Ιδιότητες εικόνας"
 msgid "Edit Image"
 msgstr "Επεξεργασία εικόνας"
 
-#: src/widgets/image_window.ui:224
+#: src/widgets/image_window.ui:143
+#, fuzzy
+#| msgid "Next Image"
+msgid "Select Text in Image"
+msgstr "Επόμενη εικόνα"
+
+#: src/widgets/image_window.ui:231
 msgid "View and Edit Images"
 msgstr "Προβολή και επεξεργασία εικόνων"
 
-#: src/widgets/image_window.ui:225
+#: src/widgets/image_window.ui:232
 msgid "Drag and drop images here"
 msgstr "Μεταφορά και απόθεση εικόνων εδώ"
 
-#: src/widgets/image_window.ui:229
+#: src/widgets/image_window.ui:236
 msgid "_Open Files…"
 msgstr "_Άνοιγμα αρχείων…"
 
@@ -1390,6 +1396,22 @@ msgstr "Προφίλ ICC"
 #: src/widgets/properties_view.ui:289
 msgid "CICP"
 msgstr "CICP"
+
+#: src/widgets/text_layer.rs:107
+#, fuzzy
+#| msgid "_Copy"
+msgid "Copy"
+msgstr "Αντι_γραφή"
+
+#: src/widgets/text_layer.rs:111
+msgid "Select All"
+msgstr ""
+
+#: src/widgets/text_layer.rs:680
+#, fuzzy
+#| msgid "Image copied to clipboard"
+msgid "Text copied to clipboard"
+msgstr "Η εικόνα αντιγράφηκε στο πρόχειρο"
 
 #: src/widgets/window.rs:249
 msgid "Show Details"

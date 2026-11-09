@@ -32,7 +32,7 @@ use crate::decoder::DecoderError;
 use crate::deps::*;
 use crate::util::ErrorType;
 use crate::util::gettext::*;
-use crate::widgets::LpImage;
+use crate::widgets::{LpImage, LpTextLayer};
 
 mod imp {
     use super::*;
@@ -63,6 +63,10 @@ mod imp {
         #[property(type = LpImage, get = Self::image)]
         pub(super) image: TemplateChild<LpImage>,
         #[template_child]
+        pub(super) overlay: TemplateChild<gtk::Overlay>,
+        #[template_child]
+        pub(super) text_layer: TemplateChild<LpTextLayer>,
+        #[template_child]
         pub(super) popover: TemplateChild<gtk::PopoverMenu>,
         #[template_child]
         pub(super) right_click_gesture: TemplateChild<gtk::GestureClick>,
@@ -77,6 +81,7 @@ mod imp {
         type ParentType = adw::Bin;
 
         fn class_init(klass: &mut Self::Class) {
+            LpTextLayer::ensure_type();
             Self::bind_template(klass);
         }
 
@@ -91,6 +96,10 @@ mod imp {
             let obj = self.obj();
 
             self.parent_constructed();
+
+            self.text_layer.set_image(&self.image);
+
+            self.text_layer.attach_input(&*self.overlay);
 
             self.right_click_gesture.connect_pressed(clone!(
                 #[weak]
@@ -191,6 +200,10 @@ impl LpImagePage {
 
     pub fn file(&self) -> gio::File {
         self.image().file().unwrap()
+    }
+
+    pub fn text_layer(&self) -> LpTextLayer {
+        self.imp().text_layer.clone()
     }
 
     pub fn scrolled_window(&self) -> gtk::ScrolledWindow {

@@ -9,6 +9,9 @@ license = "GPL-3.0-or-later"
 lto = true
 codegen-units = 1
 
+[build-dependencies]
+pkg-config = "0.3"
+
 [features]
 x11 = ["ashpd/gtk4_x11"]
 
