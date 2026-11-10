@@ -1,3 +1,10 @@
+## 1.1
+
+- Live text: select and copy text in images. It reads the device language and English, finds text that is turned or tilted, and now also reads photos of screens and pages with slightly slanted or curved lines.
+- The Flatpak and AppImage can check GitHub for new versions from the main menu.
+- The editor fits the photo below the undo buttons, so they no longer cover the picture or a crop handle.
+- Packages for Debian and Ubuntu, Fedora, Arch Linux and an AppImage.
+
 ## 1.0
 
 First release of Glance, a fork of Loupe 51.1.

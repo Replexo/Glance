@@ -38,5 +38,8 @@ install -Dm644 %{src}/COPYING.md %{buildroot}%{_datadir}/licenses/glance/COPYING
 %{_datadir}/dbus-1/services/*.service
 
 %changelog
+* Tue Nov 10 2026 Replexo <196697396+Replexo@users.noreply.github.com> - 1.1-1
+- See https://github.com/Replexo/Glance/releases
+
 * Tue Nov 10 2026 Replexo <196697396+Replexo@users.noreply.github.com> - 1.0-1
 - See https://github.com/Replexo/Glance/releases

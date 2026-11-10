@@ -1,7 +1,8 @@
 # Maintainer: Replexo <196697396+Replexo@users.noreply.github.com>
 pkgname=glance
-pkgver=1.0
+pkgver=1.1
 pkgrel=1
+options=('!debug')
 pkgdesc='View and edit images, based on GNOME Loupe'
 arch=('x86_64' 'aarch64')
 url='https://github.com/Replexo/Glance'

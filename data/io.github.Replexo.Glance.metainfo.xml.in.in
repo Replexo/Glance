@@ -71,6 +71,13 @@
   </categories>
 
   <releases>
+    <release version="1.1" date="2026-11-10">
+      <description>
+        <p>Live text: select and copy text in images, also in photos of screens and pages with slightly slanted lines.</p>
+        <p>The editor keeps the photo clear of the undo buttons.</p>
+        <p>Packages for Debian and Ubuntu, Fedora, Arch Linux and an AppImage.</p>
+      </description>
+    </release>
     <release version="1.0" date="2026-11-08">
       <description>
         <p>First release of Glance, based on Loupe 51.1. It adds Markup, Adjust and Crop editing views, undo and redo, zoom in the editor, and keyboard shortcuts for the markup tools.</p>
