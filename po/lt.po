@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: loupe main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 20:06+0100\n"
+"POT-Creation-Date: 2026-11-10 08:25+0100\n"
 "PO-Revision-Date: 2026-08-27 22:15+0300\n"
 "Last-Translator: Aurimas Černius <aurimas.cernius@mailo.com>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
@@ -21,9 +21,8 @@ msgstr ""
 
 #: data/io.github.Replexo.Glance.desktop.in.in:2
 #: data/io.github.Replexo.Glance.metainfo.xml.in.in:6
-#: src/widgets/image_window.rs:879
+#: src/widgets/image_window.rs:1008
 #, fuzzy
-#| msgid "Cancel"
 msgid "Glance"
 msgstr "Atsisakyti"
 
@@ -38,7 +37,6 @@ msgstr "Žiūrėti ir keisti paveikslėlius"
 
 #: data/io.github.Replexo.Glance.desktop.in.in:12
 #, fuzzy
-#| msgid "Picture;Graphics;Loupe;"
 msgid "Picture;Graphics;Loupe;Glance;"
 msgstr "Paveikslėlis;Grafika;Loupe;"
 
@@ -281,7 +279,6 @@ msgstr "Atverti redagavimo rodinį"
 
 #: data/resources/shortcuts-dialog.ui:235
 #, fuzzy
-#| msgid "Crop Tool"
 msgctxt "shortcut window"
 msgid "Crop"
 msgstr "Apkirpimo įrankis"
@@ -366,11 +363,11 @@ msgstr ""
 msgid "translator-credits"
 msgstr "Aurimas Černius <aurimas.cernius@mailo.com>"
 
-#: src/application.rs:178
+#: src/application.rs:226
 msgid "Glance is now the default image viewer"
 msgstr ""
 
-#: src/application.rs:187
+#: src/application.rs:235
 msgid "Could not make Glance the default image viewer"
 msgstr ""
 
@@ -539,7 +536,6 @@ msgstr "16:9"
 
 #: src/widgets/edit/crop.ui:188
 #, fuzzy
-#| msgid "Orientation Landscape"
 msgid "Landscape"
 msgstr "Gulsčia orientacija"
 
@@ -589,7 +585,6 @@ msgstr ""
 
 #: src/widgets/edit/markup.ui:99
 #, fuzzy
-#| msgid "_Reload"
 msgid "Red"
 msgstr "Įkelti iš _naujo"
 
@@ -651,8 +646,6 @@ msgstr ""
 
 #: src/widgets/edit/markup.ui:389
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Editing"
 msgid "Handwriting"
 msgstr "Redagavimas"
 
@@ -694,8 +687,6 @@ msgstr ""
 
 #: src/widgets/edit/resize_dialog.ui:4
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Rotate Image"
 msgid "Resize Image"
 msgstr "Pasukti paveikslėlį"
 
@@ -705,7 +696,6 @@ msgstr "_Atsisakyti"
 
 #: src/widgets/edit/resize_dialog.ui:22
 #, fuzzy
-#| msgid "_Reset"
 msgid "_Resize"
 msgstr "_Atstatyti"
 
@@ -715,7 +705,6 @@ msgstr "_Plotis"
 
 #: src/widgets/edit/resize_dialog.ui:90
 #, fuzzy
-#| msgid "H_eight"
 msgid "_Height"
 msgstr "_Aukštis"
 
@@ -772,7 +761,7 @@ msgstr ""
 "Yra neįrašytų paveikslėlio redagavimų. Užvėrus neįrašant šie pakeitimai bus "
 "negrįžtamai prarasti."
 
-#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:700
+#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:807
 msgid "Cancel"
 msgstr "Atsisakyti"
 
@@ -788,7 +777,7 @@ msgstr "Įrašyti"
 msgid "Hold to Show Original"
 msgstr ""
 
-#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:636
+#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:743
 msgid "Undo"
 msgstr "Atšaukti"
 
@@ -798,7 +787,6 @@ msgstr ""
 
 #: src/widgets/edit_window.ui:120
 #, fuzzy
-#| msgid "Crop Tool"
 msgid "Crop"
 msgstr "Apkirpimo įrankis"
 
@@ -828,7 +816,6 @@ msgstr "Į_rašyti"
 
 #: src/widgets/edit_window.ui:181
 #, fuzzy
-#| msgid "_Save As…"
 msgid "_Save a Copy…"
 msgstr "Į_rašyti taip…"
 
@@ -842,7 +829,6 @@ msgstr "_Pakeisti originalą"
 
 #: src/widgets/edit_window.ui:217
 #, fuzzy
-#| msgid "Original image will be moved to the trash"
 msgid "Original image will be moved to the trash."
 msgstr "Originalus paveikslėlis bus perkeltas į šiukšlinę"
 
@@ -880,7 +866,7 @@ msgstr "Kopijuoti klaidos pranešimą"
 msgid "Report _Issue"
 msgstr "Pranešti apie _klaidą"
 
-#: src/widgets/image_page.rs:225
+#: src/widgets/image_page.rs:238
 #, rust-format
 msgid ""
 "No image loaders available. Maybe the “glycin-loaders” package with "
@@ -889,46 +875,48 @@ msgstr ""
 "Nėra paveikslėlių įkėlėjų. Galbūt „glycin-loaders“ paketas su suderinamumo "
 "versiją „{}“ nėra įdiegtas."
 
-#: src/widgets/image_page.rs:243
+#: src/widgets/image_page.rs:256
 #, rust-format
 msgid "The image format “{} ({})” is known but not installed."
 msgstr "Paveikslėlio formatas „{} ({})“ yra žinomas, bet neįdiegtas."
 
-#: src/widgets/image_page.rs:251
+#: src/widgets/image_page.rs:264
 #, rust-format
 msgid "Unknown image format “{} ({}).”"
 msgstr "Nežinomas paveikslėlio formatas „{} ({}).“"
 
-#: src/widgets/image_page.rs:260
+#: src/widgets/image_page.rs:273
 msgid "There is not enough free memory available to load this image."
 msgstr "Nepakanka laisvos atminties šiam paveikslėliui įkelti."
 
-#: src/widgets/image_page.rs:267
+#: src/widgets/image_page.rs:280
 #, rust-format
 msgid "Failed to load image file: {}"
 msgstr "Nepavyko įkelti paveikslėlio failo: {}"
 
-#: src/widgets/image_page.rs:272
+#: src/widgets/image_page.rs:285
 msgid "Either the image file is corrupted or it contains unsupported elements."
 msgstr "Arba paveikslėlis yra sugadintas, arba jame yra nepalaikomų elementų."
 
-#: src/widgets/image_page.ui:6 src/widgets/image_window.ui:16
+#: src/widgets/image_page.ui:6 src/widgets/image_window.ui:6
+#: src/widgets/image_window.ui:40
 msgid "_Open With…"
 msgstr "_Atverti naudojant…"
 
-#: src/widgets/image_page.ui:10 src/widgets/image_window.ui:20
+#: src/widgets/image_page.ui:10 src/widgets/image_window.ui:22
+#: src/widgets/image_window.ui:44
 msgid "_Print…"
 msgstr "S_pausdinti…"
 
-#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:25
+#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:49
 msgid "Rotate"
 msgstr "Pasukti"
 
-#: src/widgets/image_page.ui:26 src/widgets/image_window.ui:36
+#: src/widgets/image_page.ui:26 src/widgets/image_window.ui:60
 msgid "_Set as Background…"
 msgstr "_Nustatyti kaip foną…"
 
-#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:44
+#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:68
 msgid "_Delete"
 msgstr "Iš_trinti"
 
@@ -948,21 +936,21 @@ msgstr "Daugiau _informacijos"
 msgid "_Reload"
 msgstr "Įkelti iš _naujo"
 
-#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:105
+#: src/widgets/image_page.ui:130 src/widgets/image_window.ui:166
 msgid "Rotate Left"
 msgstr "Pasukti į kairę"
 
-#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:115
+#: src/widgets/image_page.ui:140 src/widgets/image_window.ui:176
 msgid "Rotate Right"
 msgstr "Pasukti į dešinę"
 
 #. Translators: This is a toast notification, informing the user that
 #. an image has been set as background.
-#: src/widgets/image_view.rs:870
+#: src/widgets/image_view.rs:928
 msgid "Set as background."
 msgstr "Nustatyti kaip foną."
 
-#: src/widgets/image_view.rs:876
+#: src/widgets/image_view.rs:934
 msgid "Could not set background."
 msgstr "Nepavyko nustatyti fono."
 
@@ -998,104 +986,106 @@ msgstr "Pasirinktinis mastelis"
 msgid "Zoom to Specified Level"
 msgstr "Tam tikro lygio mastelis"
 
-#: src/widgets/image_window.rs:509
+#: src/widgets/image_window.rs:540
 msgid "Supported image formats"
 msgstr "Palaikomi paveikslėlių formatai"
 
-#: src/widgets/image_window.rs:515
+#: src/widgets/image_window.rs:546
 msgid "All files"
 msgstr "Visi failai"
 
-#: src/widgets/image_window.rs:522
+#: src/widgets/image_window.rs:553
 msgid "Open Image"
 msgstr "Atverti paveikslėlį"
 
-#: src/widgets/image_window.rs:614
+#: src/widgets/image_window.rs:663
+msgid "_Updates"
+msgstr ""
+
+#: src/widgets/image_window.rs:721
 msgid "Image copied to clipboard"
 msgstr "Paveikslėlis nukopijuotas į iškarpinę"
 
-#: src/widgets/image_window.rs:635
+#: src/widgets/image_window.rs:742
 msgid "Image moved to trash"
 msgstr "Paveikslėlis perkeltas į šiukšlinę"
 
-#: src/widgets/image_window.rs:666
+#: src/widgets/image_window.rs:773
 msgid "Failed to move image to trash"
 msgstr "Nepavyko perkelti paveikslėlio į šiukšlinę"
 
-#: src/widgets/image_window.rs:690
+#: src/widgets/image_window.rs:797
 msgid "Permanently Delete Image?"
 msgstr "Negrįžtamai ištrinti paveikslėlį?"
 
-#: src/widgets/image_window.rs:692
+#: src/widgets/image_window.rs:799
 #, rust-format
 msgid "After deleting the image “{}” it will be permanently lost."
 msgstr "Ištrynus paveikslėlį „{}“, jis bus negrįžtamai prarastas."
 
-#: src/widgets/image_window.rs:701
+#: src/widgets/image_window.rs:808
 msgid "Delete"
 msgstr "Ištrinti"
 
-#: src/widgets/image_window.rs:712
+#: src/widgets/image_window.rs:819
 msgid "Failed to delete image"
 msgstr "Nepavyko ištrinti paveikslėlio"
 
-#: src/widgets/image_window.ui:6
+#: src/widgets/image_window.ui:30
 msgid "_New Window"
 msgstr "_Naujas langas"
 
-#: src/widgets/image_window.ui:10
+#: src/widgets/image_window.ui:34
 msgid "_Open…"
 msgstr "_Atverti…"
 
-#: src/widgets/image_window.ui:40
+#: src/widgets/image_window.ui:64
 #, fuzzy
-#| msgid "_About Image Viewer"
 msgid "_Make Default Image Viewer"
 msgstr "_Apie paveikslėlių žiūryklę"
 
-#: src/widgets/image_window.ui:50
+#: src/widgets/image_window.ui:74
 msgid "_Help"
 msgstr "_Žinynas"
 
-#: src/widgets/image_window.ui:54
+#: src/widgets/image_window.ui:78
 msgid "_Keyboard Shortcuts"
 msgstr "_Klaviatūros trumpiniai"
 
-#: src/widgets/image_window.ui:58
+#: src/widgets/image_window.ui:82
 msgid "_About Glance"
 msgstr ""
 
-#: src/widgets/image_window.ui:91
+#: src/widgets/image_window.ui:152
 msgid "Toggle Fullscreen"
 msgstr "Perjungti viso ekrano veikseną"
 
-#: src/widgets/image_window.ui:97
+#: src/widgets/image_window.ui:158
 msgid "Main Menu"
 msgstr "Pagrindinis meniu"
 
-#: src/widgets/image_window.ui:129
+#: src/widgets/image_window.ui:190
 msgid "Image Properties"
 msgstr "Paveikslėlio savybės"
 
-#: src/widgets/image_window.ui:136
+#: src/widgets/image_window.ui:197
 msgid "Edit Image"
 msgstr "Redaguoti paveikslėlį"
 
-#: src/widgets/image_window.ui:143
+#: src/widgets/image_window.ui:204
 #, fuzzy
-#| msgid "Next Image"
 msgid "Select Text in Image"
 msgstr "Kitas paveikslėlis"
 
-#: src/widgets/image_window.ui:231
+#: src/widgets/image_window.ui:292
 msgid "View and Edit Images"
 msgstr "Rodyti bei keisti paveikslėlius"
 
-#: src/widgets/image_window.ui:232
+#: src/widgets/image_window.ui:293
 msgid "Drag and drop images here"
 msgstr "Atitempkite paveikslėlius čia"
 
-#: src/widgets/image_window.ui:236
+#: src/widgets/image_window.ui:297
 msgid "_Open Files…"
 msgstr "_Atverti failus…"
 
@@ -1383,22 +1373,96 @@ msgstr "ICC profilis"
 msgid "CICP"
 msgstr "CICP"
 
-#: src/widgets/text_layer.rs:107
+#: src/widgets/text_layer.rs:116
 #, fuzzy
-#| msgid "_Copy"
 msgid "Copy"
 msgstr "_Kopijuoti"
 
-#: src/widgets/text_layer.rs:111
+#: src/widgets/text_layer.rs:121
 msgid "Select All"
 msgstr ""
 
-#: src/widgets/text_layer.rs:680
+#: src/widgets/text_layer.rs:844
 #, fuzzy
-#| msgid "Image copied to clipboard"
 msgid "Text copied to clipboard"
 msgstr "Paveikslėlis nukopijuotas į iškarpinę"
 
-#: src/widgets/window.rs:249
+#: src/widgets/update_dialog.rs:72
+msgid "What’s New"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:176
+msgid "Checking for Updates…"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:178 src/widgets/update_dialog.rs:200
+#: src/widgets/update_dialog.rs:211 src/widgets/update_dialog.rs:307
+msgid "Close"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:195
+msgid "Glance Is Up to Date"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:199
+#, rust-format
+msgid "Version {}"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:207
+msgid "Could Not Check for Updates"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:210
+msgid "Check your internet connection and try again."
+msgstr ""
+
+#: src/widgets/update_dialog.rs:213 src/widgets/update_dialog.rs:271
+msgid "Try Again"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:220
+#, rust-format
+msgid "Glance {} Is Available"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:224
+#, rust-format
+msgid "You have version {}"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:227
+msgid "Later"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:232
+msgid "Update"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:236
+msgid "Open Download Page"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:252
+msgid "Downloading…"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:270
+msgid "The download failed."
+msgstr ""
+
+#: src/widgets/update_dialog.rs:283
+msgid "Restart Glance to use the new version."
+msgstr ""
+
+#: src/widgets/update_dialog.rs:284
+msgid "Restart Glance"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:306
+msgid "Finish installing in the window that opened."
+msgstr ""
+
+#: src/widgets/window.rs:251
 msgid "Show Details"
 msgstr "Rodyti detales"

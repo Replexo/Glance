@@ -17,3 +17,9 @@ option(
   type: 'feature',
   description: 'Enable X11 specific features.',
 )
+option(
+  'update_check',
+  type: 'boolean',
+  value: false,
+  description: 'Look for new releases on GitHub and offer to install them.',
+)

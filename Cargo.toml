@@ -48,6 +48,8 @@ libgweather = "4.8.0"
 moxcms = "0.8.1"
 pango = "0.22"
 pangocairo = "0.22"
+serde_json = "1.0"
+soup = { package = "soup3", version = "0.9" }
 strum = { version = "0.28.0", features = ["derive"] }
 thiserror = "2.0.3"
 tracing = "0.1.44"

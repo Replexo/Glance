@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Loupe main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 20:06+0100\n"
+"POT-Creation-Date: 2026-11-10 08:25+0100\n"
 "PO-Revision-Date: 2026-07-22 16:17+0200\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
@@ -28,9 +28,8 @@ msgstr ""
 
 #: data/io.github.Replexo.Glance.desktop.in.in:2
 #: data/io.github.Replexo.Glance.metainfo.xml.in.in:6
-#: src/widgets/image_window.rs:879
+#: src/widgets/image_window.rs:1008
 #, fuzzy
-#| msgid "Cancel"
 msgid "Glance"
 msgstr "Anulează"
 
@@ -45,7 +44,6 @@ msgstr "Vizualizează și modifică imagini"
 
 #: data/io.github.Replexo.Glance.desktop.in.in:12
 #, fuzzy
-#| msgid "Picture;Graphics;Loupe;"
 msgid "Picture;Graphics;Loupe;Glance;"
 msgstr "Picture;Graphics;Loupe;Imagine;Grafice;Imagini;Poze;Fotografii;"
 
@@ -288,7 +286,6 @@ msgstr "Deschide modul Modificare"
 
 #: data/resources/shortcuts-dialog.ui:235
 #, fuzzy
-#| msgid "Crop Tool"
 msgctxt "shortcut window"
 msgid "Crop"
 msgstr "Decupare"
@@ -375,11 +372,11 @@ msgstr ""
 "Florentina Mușat <florentina [dot] musat [dot] 28 [at] gmail [dot] com>\n"
 "Antonio Marin <gnmer.6qxyg@slmail.me>"
 
-#: src/application.rs:178
+#: src/application.rs:226
 msgid "Glance is now the default image viewer"
 msgstr ""
 
-#: src/application.rs:187
+#: src/application.rs:235
 msgid "Could not make Glance the default image viewer"
 msgstr ""
 
@@ -548,7 +545,6 @@ msgstr "16:9"
 
 #: src/widgets/edit/crop.ui:188
 #, fuzzy
-#| msgid "Orientation Landscape"
 msgid "Landscape"
 msgstr "Orientare orizontală"
 
@@ -598,7 +594,6 @@ msgstr ""
 
 #: src/widgets/edit/markup.ui:99
 #, fuzzy
-#| msgid "_Reload"
 msgid "Red"
 msgstr "_Reîncarcă"
 
@@ -660,8 +655,6 @@ msgstr ""
 
 #: src/widgets/edit/markup.ui:389
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Editing"
 msgid "Handwriting"
 msgstr "Modificare"
 
@@ -703,8 +696,6 @@ msgstr ""
 
 #: src/widgets/edit/resize_dialog.ui:4
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Rotate Image"
 msgid "Resize Image"
 msgstr "Rotește imaginea"
 
@@ -714,7 +705,6 @@ msgstr "_Anulează"
 
 #: src/widgets/edit/resize_dialog.ui:22
 #, fuzzy
-#| msgid "_Reset"
 msgid "_Resize"
 msgstr "_Restabilește"
 
@@ -724,7 +714,6 @@ msgstr "_Lățime"
 
 #: src/widgets/edit/resize_dialog.ui:90
 #, fuzzy
-#| msgid "H_eight"
 msgid "_Height"
 msgstr "Înălțim_e"
 
@@ -781,7 +770,7 @@ msgstr ""
 "Există modificări nesalvate ale imaginii. Închizând fără a le salva, acestea "
 "vor fi pierdute definitiv."
 
-#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:700
+#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:807
 msgid "Cancel"
 msgstr "Anulează"
 
@@ -797,7 +786,7 @@ msgstr "Salvează"
 msgid "Hold to Show Original"
 msgstr ""
 
-#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:636
+#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:743
 msgid "Undo"
 msgstr "Refă"
 
@@ -807,7 +796,6 @@ msgstr ""
 
 #: src/widgets/edit_window.ui:120
 #, fuzzy
-#| msgid "Crop Tool"
 msgid "Crop"
 msgstr "Decupare"
 
@@ -837,7 +825,6 @@ msgstr "_Salvează"
 
 #: src/widgets/edit_window.ui:181
 #, fuzzy
-#| msgid "_Save As…"
 msgid "_Save a Copy…"
 msgstr "_Salvează ca…"
 
@@ -851,7 +838,6 @@ msgstr "Înlocuiește o_riginalul"
 
 #: src/widgets/edit_window.ui:217
 #, fuzzy
-#| msgid "Original image will be moved to the trash"
 msgid "Original image will be moved to the trash."
 msgstr "Imaginea originală va fi mutată în gunoi"
 
@@ -889,7 +875,7 @@ msgstr "Copiază mesajul erorii"
 msgid "Report _Issue"
 msgstr "Raportează _problema"
 
-#: src/widgets/image_page.rs:225
+#: src/widgets/image_page.rs:238
 #, rust-format
 msgid ""
 "No image loaders available. Maybe the “glycin-loaders” package with "
@@ -898,47 +884,49 @@ msgstr ""
 "Nu este disponibil niciun încărcător de imagini. Poate că nu este instalată "
 "versiunea compatibilă „{}” a pachetului „glycin-loaders”."
 
-#: src/widgets/image_page.rs:243
+#: src/widgets/image_page.rs:256
 #, rust-format
 msgid "The image format “{} ({})” is known but not installed."
 msgstr "Formatul de imagine „{} ({})” este cunoscut, dar nu e instalat."
 
-#: src/widgets/image_page.rs:251
+#: src/widgets/image_page.rs:264
 #, rust-format
 msgid "Unknown image format “{} ({}).”"
 msgstr "Format necunoscut de imagine „{} ({})”."
 
-#: src/widgets/image_page.rs:260
+#: src/widgets/image_page.rs:273
 msgid "There is not enough free memory available to load this image."
 msgstr "Nu există suficientă memorie liberă pentru a încărca această imagine."
 
-#: src/widgets/image_page.rs:267
+#: src/widgets/image_page.rs:280
 #, rust-format
 msgid "Failed to load image file: {}"
 msgstr "Nu s-a putut încărca fișierul: {}"
 
-#: src/widgets/image_page.rs:272
+#: src/widgets/image_page.rs:285
 msgid "Either the image file is corrupted or it contains unsupported elements."
 msgstr ""
 "Fie fișierul de imagine este deteriorat, fie conține elemente neacceptate."
 
-#: src/widgets/image_page.ui:6 src/widgets/image_window.ui:16
+#: src/widgets/image_page.ui:6 src/widgets/image_window.ui:6
+#: src/widgets/image_window.ui:40
 msgid "_Open With…"
 msgstr "D_eschide cu…"
 
-#: src/widgets/image_page.ui:10 src/widgets/image_window.ui:20
+#: src/widgets/image_page.ui:10 src/widgets/image_window.ui:22
+#: src/widgets/image_window.ui:44
 msgid "_Print…"
 msgstr "Ti_părește…"
 
-#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:25
+#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:49
 msgid "Rotate"
 msgstr "Rotește"
 
-#: src/widgets/image_page.ui:26 src/widgets/image_window.ui:36
+#: src/widgets/image_page.ui:26 src/widgets/image_window.ui:60
 msgid "_Set as Background…"
 msgstr "_Stabilește ca fundal…"
 
-#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:44
+#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:68
 msgid "_Delete"
 msgstr "Ș_terge"
 
@@ -958,21 +946,21 @@ msgstr "Alte _informații"
 msgid "_Reload"
 msgstr "_Reîncarcă"
 
-#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:105
+#: src/widgets/image_page.ui:130 src/widgets/image_window.ui:166
 msgid "Rotate Left"
 msgstr "Rotește la stânga"
 
-#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:115
+#: src/widgets/image_page.ui:140 src/widgets/image_window.ui:176
 msgid "Rotate Right"
 msgstr "Rotește la dreapta"
 
 #. Translators: This is a toast notification, informing the user that
 #. an image has been set as background.
-#: src/widgets/image_view.rs:870
+#: src/widgets/image_view.rs:928
 msgid "Set as background."
 msgstr "Stabilește ca fundal."
 
-#: src/widgets/image_view.rs:876
+#: src/widgets/image_view.rs:934
 msgid "Could not set background."
 msgstr "Nu s-a putut stabili fundalul."
 
@@ -1008,104 +996,106 @@ msgstr "Nivel personalizat de mărire"
 msgid "Zoom to Specified Level"
 msgstr "Mărește la un nivel specific"
 
-#: src/widgets/image_window.rs:509
+#: src/widgets/image_window.rs:540
 msgid "Supported image formats"
 msgstr "Formate de imagine acceptate"
 
-#: src/widgets/image_window.rs:515
+#: src/widgets/image_window.rs:546
 msgid "All files"
 msgstr "Toate fișierele"
 
-#: src/widgets/image_window.rs:522
+#: src/widgets/image_window.rs:553
 msgid "Open Image"
 msgstr "Deschide imaginea"
 
-#: src/widgets/image_window.rs:614
+#: src/widgets/image_window.rs:663
+msgid "_Updates"
+msgstr ""
+
+#: src/widgets/image_window.rs:721
 msgid "Image copied to clipboard"
 msgstr "Imagine copiată"
 
-#: src/widgets/image_window.rs:635
+#: src/widgets/image_window.rs:742
 msgid "Image moved to trash"
 msgstr "Imagine mutată în gunoi"
 
-#: src/widgets/image_window.rs:666
+#: src/widgets/image_window.rs:773
 msgid "Failed to move image to trash"
 msgstr "Nu s-a putut muta imaginea în gunoi"
 
-#: src/widgets/image_window.rs:690
+#: src/widgets/image_window.rs:797
 msgid "Permanently Delete Image?"
 msgstr "Să fie ștearsă definitiv imaginea?"
 
-#: src/widgets/image_window.rs:692
+#: src/widgets/image_window.rs:799
 #, rust-format
 msgid "After deleting the image “{}” it will be permanently lost."
 msgstr "După ștergerea imaginii „{}” ea va fi pierdută definitiv."
 
-#: src/widgets/image_window.rs:701
+#: src/widgets/image_window.rs:808
 msgid "Delete"
 msgstr "Șterge"
 
-#: src/widgets/image_window.rs:712
+#: src/widgets/image_window.rs:819
 msgid "Failed to delete image"
 msgstr "Nu s-a putut șterge imaginea"
 
-#: src/widgets/image_window.ui:6
+#: src/widgets/image_window.ui:30
 msgid "_New Window"
 msgstr "_Fereastră nouă"
 
-#: src/widgets/image_window.ui:10
+#: src/widgets/image_window.ui:34
 msgid "_Open…"
 msgstr "D_eschide…"
 
-#: src/widgets/image_window.ui:40
+#: src/widgets/image_window.ui:64
 #, fuzzy
-#| msgid "_About Image Viewer"
 msgid "_Make Default Image Viewer"
 msgstr "_Despre Imagini"
 
-#: src/widgets/image_window.ui:50
+#: src/widgets/image_window.ui:74
 msgid "_Help"
 msgstr "_Ajutor"
 
-#: src/widgets/image_window.ui:54
+#: src/widgets/image_window.ui:78
 msgid "_Keyboard Shortcuts"
 msgstr "Scurtă_turi"
 
-#: src/widgets/image_window.ui:58
+#: src/widgets/image_window.ui:82
 msgid "_About Glance"
 msgstr ""
 
-#: src/widgets/image_window.ui:91
+#: src/widgets/image_window.ui:152
 msgid "Toggle Fullscreen"
 msgstr "Pe tot ecranul Activat/Dezactivat"
 
-#: src/widgets/image_window.ui:97
+#: src/widgets/image_window.ui:158
 msgid "Main Menu"
 msgstr "Opțiuni"
 
-#: src/widgets/image_window.ui:129
+#: src/widgets/image_window.ui:190
 msgid "Image Properties"
 msgstr "Proprietăți imagine"
 
-#: src/widgets/image_window.ui:136
+#: src/widgets/image_window.ui:197
 msgid "Edit Image"
 msgstr "Modifică imaginea"
 
-#: src/widgets/image_window.ui:143
+#: src/widgets/image_window.ui:204
 #, fuzzy
-#| msgid "Next Image"
 msgid "Select Text in Image"
 msgstr "Imaginea următoare"
 
-#: src/widgets/image_window.ui:231
+#: src/widgets/image_window.ui:292
 msgid "View and Edit Images"
 msgstr "Arată și modifică imagini"
 
-#: src/widgets/image_window.ui:232
+#: src/widgets/image_window.ui:293
 msgid "Drag and drop images here"
 msgstr "Trage și așează imagini aici"
 
-#: src/widgets/image_window.ui:236
+#: src/widgets/image_window.ui:297
 msgid "_Open Files…"
 msgstr "D_eschide fișiere…"
 
@@ -1393,22 +1383,96 @@ msgstr "Profil ICC"
 msgid "CICP"
 msgstr "CICP"
 
-#: src/widgets/text_layer.rs:107
+#: src/widgets/text_layer.rs:116
 #, fuzzy
-#| msgid "_Copy"
 msgid "Copy"
 msgstr "_Copiază"
 
-#: src/widgets/text_layer.rs:111
+#: src/widgets/text_layer.rs:121
 msgid "Select All"
 msgstr ""
 
-#: src/widgets/text_layer.rs:680
+#: src/widgets/text_layer.rs:844
 #, fuzzy
-#| msgid "Image copied to clipboard"
 msgid "Text copied to clipboard"
 msgstr "Imagine copiată"
 
-#: src/widgets/window.rs:249
+#: src/widgets/update_dialog.rs:72
+msgid "What’s New"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:176
+msgid "Checking for Updates…"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:178 src/widgets/update_dialog.rs:200
+#: src/widgets/update_dialog.rs:211 src/widgets/update_dialog.rs:307
+msgid "Close"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:195
+msgid "Glance Is Up to Date"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:199
+#, rust-format
+msgid "Version {}"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:207
+msgid "Could Not Check for Updates"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:210
+msgid "Check your internet connection and try again."
+msgstr ""
+
+#: src/widgets/update_dialog.rs:213 src/widgets/update_dialog.rs:271
+msgid "Try Again"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:220
+#, rust-format
+msgid "Glance {} Is Available"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:224
+#, rust-format
+msgid "You have version {}"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:227
+msgid "Later"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:232
+msgid "Update"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:236
+msgid "Open Download Page"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:252
+msgid "Downloading…"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:270
+msgid "The download failed."
+msgstr ""
+
+#: src/widgets/update_dialog.rs:283
+msgid "Restart Glance to use the new version."
+msgstr ""
+
+#: src/widgets/update_dialog.rs:284
+msgid "Restart Glance"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:306
+msgid "Finish installing in the window that opened."
+msgstr ""
+
+#: src/widgets/window.rs:251
 msgid "Show Details"
 msgstr "Arată detalii"

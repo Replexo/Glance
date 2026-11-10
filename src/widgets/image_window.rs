@@ -207,6 +207,10 @@ mod imp {
                 move |_| obj.on_current_page_changed()
             ));
 
+            if config::UPDATE_CHECK {
+                obj.setup_updates();
+            }
+
             obj.window().connect_fullscreened_notify(glib::clone!(
                 #[weak]
                 obj,
@@ -617,6 +621,75 @@ impl LpImageWindow {
         }
 
         false
+    }
+
+    /// Adds the Updates menu item and a dot on the menu button for new releases
+    fn setup_updates(&self) {
+        let imp = self.imp();
+        let app = LpApplication::default();
+
+        let dot = || {
+            let dot = gtk::Box::builder()
+                .css_classes(["update-dot"])
+                .halign(gtk::Align::End)
+                .valign(gtk::Align::Start)
+                .build();
+            app.bind_property("update-available", &dot, "visible")
+                .sync_create()
+                .build();
+            dot
+        };
+
+        let icon = gtk::Overlay::builder()
+            .child(&gtk::Image::from_icon_name("glance-more-symbolic"))
+            .build();
+        icon.add_overlay(&dot());
+        imp.primary_menu.set_child(Some(&icon));
+        imp.primary_menu.add_css_class("update-menu");
+
+        // The dot needs a custom item, plain menu items have no room for it
+        let label = gtk::Label::builder()
+            .label(gettext("_Updates"))
+            .use_underline(true)
+            .xalign(0.)
+            .hexpand(true)
+            .build();
+        let item_dot = dot();
+        item_dot.set_valign(gtk::Align::Center);
+        let content = gtk::Box::builder().spacing(12).build();
+        content.append(&label);
+        content.append(&item_dot);
+        let button = gtk::Button::builder()
+            .child(&content)
+            .action_name("app.updates")
+            .css_classes(["flat", "updates-item"])
+            .build();
+
+        let Some(popover) = imp
+            .primary_menu
+            .popover()
+            .and_downcast::<gtk::PopoverMenu>()
+        else {
+            return;
+        };
+        button.connect_clicked(glib::clone!(
+            #[weak]
+            popover,
+            move |_| popover.popdown()
+        ));
+
+        // Above About in the last section
+        if let Some(menu) = popover.menu_model()
+            && menu.n_items() > 0
+            && let Some(section) = menu
+                .item_link(menu.n_items() - 1, "section")
+                .and_downcast::<gio::Menu>()
+        {
+            let item = gio::MenuItem::new(None, None);
+            item.set_attribute_value("custom", Some(&"updates".to_variant()));
+            section.insert_item(section.n_items() - 1, &item);
+            popover.add_child(&button, "updates");
+        }
     }
 
     /// Copies the selected text of the image, returns whether there was any

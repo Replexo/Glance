@@ -64,6 +64,7 @@ pub mod editing;
 pub mod file_model;
 pub mod metadata;
 pub mod ocr;
+pub mod updates;
 pub mod util;
 pub mod widgets;
 
@@ -103,6 +104,26 @@ pub fn main() -> glib::ExitCode {
         .init();
 
     tracing::debug!("Logger initialized");
+
+    // Text recognition runs several Tesseract instances side by side. With
+    // a Tesseract built with OpenMP, its own threads would compete with them
+    // and keep spinning after each read. OpenMP reads its settings when it
+    // is loaded, before `main`, so the app starts itself again with them
+    // when it is loaded.
+    if std::env::var_os("OMP_THREAD_LIMIT").is_none()
+        && std::fs::read_to_string("/proc/self/maps").is_ok_and(|maps| maps.contains("libgomp"))
+    {
+        use std::os::unix::process::CommandExt;
+
+        if let Ok(exe) = std::env::current_exe() {
+            let err = std::process::Command::new(exe)
+                .args(std::env::args_os().skip(1))
+                .env("OMP_THREAD_LIMIT", "1")
+                .env("OMP_WAIT_POLICY", "passive")
+                .exec();
+            tracing::debug!("Could not restart with OpenMP settings: {err}");
+        }
+    }
 
     unsafe {
         setlocale(LocaleCategory::LcAll, "");

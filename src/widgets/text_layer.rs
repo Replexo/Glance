@@ -18,8 +18,8 @@
 //! Live text on top of an image
 //!
 //! Reads the text of the current image in the background. Found words
-//! glow briefly and can then be selected by dragging over them with the
-//! mouse, like text in a document. Only the Copy pill takes input itself.
+//! can then be selected by dragging over them with the mouse, or by
+//! double-clicking a word, like text in a document. Only the Copy pill takes input itself.
 //! Selecting is done by a gesture on the widget below, see `attach_input`,
 //! so scrolling, zooming, clicks and touch still reach the image.
 
@@ -38,13 +38,14 @@ use crate::util::gettext::*;
 use crate::widgets::{LpImage, LpWindow};
 
 /// Wait before reading, so quickly browsing images does not read each one
-const START_DELAY: Duration = Duration::from_millis(400);
-const GLOW_DURATION: u32 = 1600;
+const START_DELAY: Duration = Duration::from_millis(150);
 /// Extra space around words, for hitting and drawing them
 const WORD_PADDING: f32 = 3.;
 const PILL_SPACING: i32 = 8;
 /// Movement before a press on a word becomes a selection
 const DRAG_THRESHOLD: f64 = 4.;
+/// Gap between words, in word heights, that splits a highlight band
+const MAX_GAP: f32 = 1.5;
 
 const ACCENT: gdk::RGBA = gdk::RGBA::new(0.208, 0.518, 0.894, 1.);
 
@@ -79,8 +80,6 @@ mod imp {
         pub(super) drag_start: Cell<(f64, f64)>,
         pub(super) dragging: Cell<bool>,
 
-        pub(super) glow: Cell<f64>,
-        pub(super) glow_animation: OnceCell<adw::TimedAnimation>,
         pub(super) pill: OnceCell<gtk::Box>,
         /// A press started on the pill
         pub(super) pill_pressed: Cell<bool>,
@@ -130,24 +129,6 @@ mod imp {
             pill.set_parent(&*obj);
             self.pill.set(pill).unwrap();
             self.pill_buttons.set((copy, select_all)).unwrap();
-
-            let target = adw::CallbackAnimationTarget::new(clone!(
-                #[weak]
-                obj,
-                move |value| {
-                    obj.imp().glow.set(value);
-                    obj.queue_draw();
-                }
-            ));
-            let animation = adw::TimedAnimation::builder()
-                .widget(&*obj)
-                .value_from(1.)
-                .value_to(0.)
-                .duration(GLOW_DURATION)
-                .easing(adw::Easing::EaseInCubic)
-                .target(&target)
-                .build();
-            self.glow_animation.set(animation).unwrap();
         }
 
         fn dispose(&self) {
@@ -204,31 +185,36 @@ mod imp {
                 return;
             }
 
-            let glow = self.glow.get() as f32;
-            if glow > 0. {
-                let fill = gdk::RGBA::new(1., 1., 1., 0.35 * glow);
-                let mut border = ACCENT;
-                border.set_alpha(0.9 * glow);
-                for word in words.iter() {
-                    let rect = self.word_rect(word, WORD_PADDING);
-                    let rounded = rounded(&rect);
-                    snapshot.push_rounded_clip(&rounded);
-                    snapshot.append_color(&fill, &rect);
-                    snapshot.pop();
-                    snapshot.append_border(&rounded, &[1.5; 4], &[border; 4]);
-                }
-            }
-
             if let Some((start, end)) = self.selection.get()
                 && let Some(selected) = words.get(start..=end)
             {
                 let mut color = ACCENT;
                 color.set_alpha(0.4);
-                for rect in self.line_rects(selected) {
-                    let rounded = rounded(&rect);
+                let fill = |rect: &graphene::Rect| {
+                    let rounded = rounded(rect);
                     snapshot.push_rounded_clip(&rounded);
-                    snapshot.append_color(&color, &rect);
+                    snapshot.append_color(&color, rect);
                     snapshot.pop();
+                };
+
+                // Level lines get one band each, tilted words their own tilted box
+                let (level, tilted): (Vec<Word>, Vec<Word>) =
+                    selected.iter().cloned().partition(|word| word.angle == 0.);
+                for rect in self.line_rects(&level) {
+                    fill(&rect);
+                }
+                for word in &tilted {
+                    let shape = self.word_shape(word, WORD_PADDING);
+                    snapshot.save();
+                    snapshot.translate(&shape.center);
+                    snapshot.rotate(shape.angle);
+                    fill(&graphene::Rect::new(
+                        -shape.width / 2.,
+                        -shape.height / 2.,
+                        shape.width,
+                        shape.height,
+                    ));
+                    snapshot.restore();
                 }
             }
 
@@ -244,10 +230,6 @@ mod imp {
 
         pub(super) fn pill(&self) -> &gtk::Box {
             self.pill.get().unwrap()
-        }
-
-        pub(super) fn glow_animation(&self) -> &adw::TimedAnimation {
-            self.glow_animation.get().unwrap()
         }
 
         /// Current rotation in whole quarter turns, `None` while rotating
@@ -277,8 +259,8 @@ mod imp {
             self.pending_orientation.set(None);
         }
 
-        /// Word rectangle in widget coordinates
-        pub(super) fn word_rect(&self, word: &Word, padding: f32) -> graphene::Rect {
+        /// Centre, size and tilt of a word in widget coordinates
+        pub(super) fn word_shape(&self, word: &Word, padding: f32) -> WordShape {
             let image = self.image();
             // The image can be offset, for example by a scrollbar on the left
             let origin = image
@@ -286,25 +268,47 @@ mod imp {
                 .unwrap_or(graphene::Point::zero());
             let (x0, y0) = image.img_to_widget_coord((word.x, word.y));
             let (x1, y1) = image.img_to_widget_coord((word.x + word.width, word.y + word.height));
-            graphene::Rect::new(
-                origin.x() + x0 as f32 - padding,
-                origin.y() + y0 as f32 - padding,
-                (x1 - x0) as f32 + 2. * padding,
-                (y1 - y0) as f32 + 2. * padding,
-            )
+            WordShape {
+                center: graphene::Point::new(
+                    origin.x() + ((x0 + x1) / 2.) as f32,
+                    origin.y() + ((y0 + y1) / 2.) as f32,
+                ),
+                width: (x1 - x0) as f32 + 2. * padding,
+                height: (y1 - y0) as f32 + 2. * padding,
+                angle: word.angle as f32,
+            }
         }
 
-        /// One rectangle per line, spanning the given words
+        /// Level rectangle around a word in widget coordinates
+        pub(super) fn word_rect(&self, word: &Word, padding: f32) -> graphene::Rect {
+            self.word_shape(word, padding).bounds()
+        }
+
+        /// One band per run of words in a line, spanning the given words
+        ///
+        /// Large gaps end a band, so a band never stretches over a logo or
+        /// an empty part of the image between two pieces of text.
         pub(super) fn line_rects(&self, words: &[Word]) -> Vec<graphene::Rect> {
-            words
-                .chunk_by(|a, b| a.line == b.line)
-                .map(|line| {
-                    line.iter()
-                        .map(|word| self.word_rect(word, WORD_PADDING))
-                        .reduce(|a, b| a.union(&b))
-                        .unwrap()
-                })
-                .collect()
+            let mut rects = Vec::new();
+            let mut current: Option<(usize, graphene::Rect)> = None;
+            for word in words {
+                let rect = self.word_rect(word, WORD_PADDING);
+                match &mut current {
+                    Some((line, band))
+                        if *line == word.line
+                            && rect.x() - (band.x() + band.width())
+                                < rect.height().min(band.height()) * MAX_GAP =>
+                    {
+                        *band = band.union(&rect);
+                    }
+                    _ => {
+                        rects.extend(current.take().map(|(_, band)| band));
+                        current = Some((word.line, rect));
+                    }
+                }
+            }
+            rects.extend(current.map(|(_, band)| band));
+            rects
         }
 
         pub(super) fn selection_bounds(&self) -> Option<graphene::Rect> {
@@ -325,7 +329,7 @@ mod imp {
             let point = graphene::Point::new(x as f32, y as f32);
             if let Some(index) = words
                 .iter()
-                .position(|word| self.word_rect(word, WORD_PADDING).contains_point(&point))
+                .position(|word| self.word_shape(word, WORD_PADDING).contains(&point))
             {
                 return Some(index);
             }
@@ -358,6 +362,36 @@ mod imp {
                     let b = distance(rects[*b].x(), rects[*b].width(), x as f32);
                     a.total_cmp(&b)
                 })
+        }
+
+        /// The highlight of the selection covers `(x, y)`
+        pub(super) fn selection_contains(&self, x: f64, y: f64) -> bool {
+            let Some((start, end)) = self.selection.get() else {
+                return false;
+            };
+            let words = self.words.borrow();
+            let Some(selected) = words.get(start..=end) else {
+                return false;
+            };
+            let point = graphene::Point::new(x as f32, y as f32);
+            self.line_rects(selected)
+                .iter()
+                .any(|rect| rect.contains_point(&point))
+        }
+
+        /// First and last word of the line `index` is in
+        pub(super) fn line_range(&self, index: usize) -> (usize, usize) {
+            let words = self.words.borrow();
+            let line = words[index].line;
+            let start = words[..index]
+                .iter()
+                .rposition(|word| word.line != line)
+                .map_or(0, |i| i + 1);
+            let end = words[index..]
+                .iter()
+                .position(|word| word.line != line)
+                .map_or(words.len() - 1, |i| index + i - 1);
+            (start, end)
         }
 
         pub(super) fn pill_contains(&self, x: f64, y: f64) -> bool {
@@ -559,11 +593,27 @@ impl LpTextLayer {
         click.connect_pressed(clone!(
             #[weak(rename_to = obj)]
             self,
-            move |gesture, _, x, y| {
-                let on_pill = obj.imp().pill_contains(x, y);
-                obj.imp().pill_pressed.set(on_pill);
+            move |gesture, n_press, x, y| {
+                let imp = obj.imp();
+                let on_pill = imp.pill_contains(x, y);
+                imp.pill_pressed.set(on_pill);
                 if on_pill {
                     gesture.set_state(gtk::EventSequenceState::Claimed);
+                } else if n_press >= 2
+                    && (imp.word_at(x, y, false).is_some() || imp.selection_contains(x, y))
+                {
+                    // Double and triple clicks on text select it, they never
+                    // reach the image, which would go fullscreen
+                    gesture.set_state(gtk::EventSequenceState::Claimed);
+                    if let Some(index) = imp.word_at(x, y, true) {
+                        let range = if n_press == 2 {
+                            (index, index)
+                        } else {
+                            imp.line_range(index)
+                        };
+                        imp.selection.set(Some(range));
+                        imp.update_pill();
+                    }
                 } else {
                     obj.clear_selection();
                 }
@@ -756,10 +806,6 @@ impl LpTextLayer {
         imp.selection.set(None);
         imp.has_text.set(has_text);
         self.notify_has_text();
-
-        if has_text {
-            imp.glow_animation().play();
-        }
     }
 
     pub fn clear_selection(&self) {
@@ -769,7 +815,7 @@ impl LpTextLayer {
         }
     }
 
-    /// Selects all text and makes it glow
+    /// Selects all text
     pub fn select_all(&self) {
         let imp = self.imp();
         let count = imp.words.borrow().len();
@@ -779,7 +825,6 @@ impl LpTextLayer {
 
         imp.selection.set(Some((0, count - 1)));
         imp.update_pill();
-        imp.glow_animation().play();
     }
 
     /// Copies the selected text, returns whether there was any
@@ -808,4 +853,40 @@ impl LpTextLayer {
 fn rounded(rect: &graphene::Rect) -> gsk::RoundedRect {
     let radius = (rect.height() / 4.).min(6.);
     gsk::RoundedRect::from_rect(*rect, radius)
+}
+
+/// A word's box in widget coordinates, turned clockwise by `angle` degrees
+/// around its centre
+pub(super) struct WordShape {
+    center: graphene::Point,
+    width: f32,
+    height: f32,
+    angle: f32,
+}
+
+impl WordShape {
+    /// Turns a point into the word's own unturned frame
+    fn to_local(&self, point: &graphene::Point) -> (f32, f32) {
+        let (sin, cos) = (-self.angle).to_radians().sin_cos();
+        let dx = point.x() - self.center.x();
+        let dy = point.y() - self.center.y();
+        (dx * cos - dy * sin, dx * sin + dy * cos)
+    }
+
+    fn contains(&self, point: &graphene::Point) -> bool {
+        let (x, y) = self.to_local(point);
+        x.abs() <= self.width / 2. && y.abs() <= self.height / 2.
+    }
+
+    fn bounds(&self) -> graphene::Rect {
+        let (sin, cos) = self.angle.to_radians().sin_cos();
+        let half_width = (self.width * cos.abs() + self.height * sin.abs()) / 2.;
+        let half_height = (self.width * sin.abs() + self.height * cos.abs()) / 2.;
+        graphene::Rect::new(
+            self.center.x() - half_width,
+            self.center.y() - half_height,
+            2. * half_width,
+            2. * half_height,
+        )
+    }
 }

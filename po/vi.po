@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Loupe main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 20:06+0100\n"
+"POT-Creation-Date: 2026-11-10 08:25+0100\n"
 "PO-Revision-Date: 2025-06-29 22:56+0700\n"
 "Last-Translator: Cas Pascal <casboi86@gmail.com>\n"
 "Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
@@ -26,9 +26,8 @@ msgstr ""
 
 #: data/io.github.Replexo.Glance.desktop.in.in:2
 #: data/io.github.Replexo.Glance.metainfo.xml.in.in:6
-#: src/widgets/image_window.rs:879
+#: src/widgets/image_window.rs:1008
 #, fuzzy
-#| msgid "Cancel"
 msgid "Glance"
 msgstr "Thôi"
 
@@ -39,13 +38,11 @@ msgstr "Bộ xem ảnh"
 #: data/io.github.Replexo.Glance.desktop.in.in:4
 #: data/io.github.Replexo.Glance.metainfo.xml.in.in:10
 #, fuzzy
-#| msgid "View images"
 msgid "View and edit images"
 msgstr "Xem ảnh"
 
 #: data/io.github.Replexo.Glance.desktop.in.in:12
 #, fuzzy
-#| msgid "Picture;Graphics;Loupe;"
 msgid "Picture;Graphics;Loupe;Glance;"
 msgstr ""
 "Picture;Slideshow;Graphics;Loupe;Hình ảnh;Hinh anh;Trình chiếu;Trinh "
@@ -373,11 +370,11 @@ msgstr ""
 msgid "translator-credits"
 msgstr "Nhóm Việt hóa GNOME <gnome-vi-list@gnome.org>"
 
-#: src/application.rs:178
+#: src/application.rs:226
 msgid "Glance is now the default image viewer"
 msgstr ""
 
-#: src/application.rs:187
+#: src/application.rs:235
 msgid "Could not make Glance the default image viewer"
 msgstr ""
 
@@ -446,7 +443,6 @@ msgstr ""
 
 #: src/metadata.rs:497 src/metadata.rs:506 src/metadata.rs:516
 #, fuzzy, rust-format
-#| msgid "Unknown"
 msgid "Unknown ({})"
 msgstr "Chưa biết"
 
@@ -547,7 +543,6 @@ msgstr "16:9"
 
 #: src/widgets/edit/crop.ui:188
 #, fuzzy
-#| msgid "Orientation Landscape"
 msgid "Landscape"
 msgstr "Hướng Ngang_"
 
@@ -597,7 +592,6 @@ msgstr ""
 
 #: src/widgets/edit/markup.ui:99
 #, fuzzy
-#| msgid "_Reload"
 msgid "Red"
 msgstr "Tải loại"
 
@@ -659,8 +653,6 @@ msgstr ""
 
 #: src/widgets/edit/markup.ui:389
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Editing"
 msgid "Handwriting"
 msgstr "Chỉnh sửa"
 
@@ -702,7 +694,6 @@ msgstr ""
 
 #: src/widgets/edit/resize_dialog.ui:4
 #, fuzzy
-#| msgid "View Images"
 msgid "Resize Image"
 msgstr "Xem ảnh"
 
@@ -712,7 +703,6 @@ msgstr "Thôi"
 
 #: src/widgets/edit/resize_dialog.ui:22
 #, fuzzy
-#| msgid "_Reset"
 msgid "_Resize"
 msgstr "Đặ_t lại"
 
@@ -722,7 +712,6 @@ msgstr "Chiều Ngang "
 
 #: src/widgets/edit/resize_dialog.ui:90
 #, fuzzy
-#| msgid "H_eight"
 msgid "_Height"
 msgstr "Chiều dọc"
 
@@ -739,8 +728,6 @@ msgstr[0] "(Đã chỉnh sửa {})"
 
 #: src/widgets/edit_window.rs:453
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Move Image to Trash"
 msgid "Moving Original to Trash"
 msgstr "Chuyển ảnh vào thùng rác"
 
@@ -778,7 +765,7 @@ msgid ""
 "permanently lose these modifications."
 msgstr ""
 
-#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:700
+#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:807
 msgid "Cancel"
 msgstr "Thôi"
 
@@ -788,7 +775,6 @@ msgstr ""
 
 #: src/widgets/edit_window.rs:999
 #, fuzzy
-#| msgid "_Save"
 msgid "Save"
 msgstr "Lưu"
 
@@ -796,7 +782,7 @@ msgstr "Lưu"
 msgid "Hold to Show Original"
 msgstr ""
 
-#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:636
+#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:743
 msgid "Undo"
 msgstr "Hủy bước"
 
@@ -834,7 +820,6 @@ msgstr "Lưu"
 
 #: src/widgets/edit_window.ui:181
 #, fuzzy
-#| msgid "_Save As…"
 msgid "_Save a Copy…"
 msgstr "Lưu như…"
 
@@ -848,7 +833,6 @@ msgstr "Thay thế Ảnh gốc"
 
 #: src/widgets/edit_window.ui:217
 #, fuzzy
-#| msgid "Original image will be moved to the trash"
 msgid "Original image will be moved to the trash."
 msgstr "Ảnh gốc sẽ chuyển vào thùng rác"
 
@@ -886,7 +870,7 @@ msgstr "Sao chép Tin nhắn Lỗi"
 msgid "Report _Issue"
 msgstr "Báo cáo Lỗi"
 
-#: src/widgets/image_page.rs:225
+#: src/widgets/image_page.rs:238
 #, rust-format
 msgid ""
 "No image loaders available. Maybe the “glycin-loaders” package with "
@@ -895,47 +879,48 @@ msgstr ""
 "Không có sẵn trình tải ảnh. Có thể gói phần mềm “glycin-loaders” phiên bản "
 "“{}” chưa được cài đặt."
 
-#: src/widgets/image_page.rs:243
+#: src/widgets/image_page.rs:256
 #, rust-format
 msgid "The image format “{} ({})” is known but not installed."
 msgstr "Nhận ra định dạng ảnh “{} ({})” nhưng chưa cài đặt."
 
-#: src/widgets/image_page.rs:251
+#: src/widgets/image_page.rs:264
 #, rust-format
 msgid "Unknown image format “{} ({}).”"
 msgstr "Chưa biết định dạng ảnh “{} ({})”."
 
-#: src/widgets/image_page.rs:260
+#: src/widgets/image_page.rs:273
 msgid "There is not enough free memory available to load this image."
 msgstr "Không đủ dung lượng bộ nhớ để tải hình ảnh này."
 
-#: src/widgets/image_page.rs:267
+#: src/widgets/image_page.rs:280
 #, fuzzy, rust-format
-#| msgid "Failed to save image."
 msgid "Failed to load image file: {}"
 msgstr "Gặp lỗi khi lưu ảnh."
 
-#: src/widgets/image_page.rs:272
+#: src/widgets/image_page.rs:285
 msgid "Either the image file is corrupted or it contains unsupported elements."
 msgstr "Ảnh có thể đã bị hỏng hoặc đang chứa thành phần không được hỗ trợ."
 
-#: src/widgets/image_page.ui:6 src/widgets/image_window.ui:16
+#: src/widgets/image_page.ui:6 src/widgets/image_window.ui:6
+#: src/widgets/image_window.ui:40
 msgid "_Open With…"
 msgstr "_Mở bằng…"
 
-#: src/widgets/image_page.ui:10 src/widgets/image_window.ui:20
+#: src/widgets/image_page.ui:10 src/widgets/image_window.ui:22
+#: src/widgets/image_window.ui:44
 msgid "_Print…"
 msgstr "_In…"
 
-#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:25
+#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:49
 msgid "Rotate"
 msgstr "Xoay"
 
-#: src/widgets/image_page.ui:26 src/widgets/image_window.ui:36
+#: src/widgets/image_page.ui:26 src/widgets/image_window.ui:60
 msgid "_Set as Background…"
 msgstr "Đặt _làm hình nền…"
 
-#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:44
+#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:68
 msgid "_Delete"
 msgstr "_Xóa"
 
@@ -955,21 +940,21 @@ msgstr "Thông tin Thêm"
 msgid "_Reload"
 msgstr "Tải loại"
 
-#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:105
+#: src/widgets/image_page.ui:130 src/widgets/image_window.ui:166
 msgid "Rotate Left"
 msgstr "Xoay trái"
 
-#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:115
+#: src/widgets/image_page.ui:140 src/widgets/image_window.ui:176
 msgid "Rotate Right"
 msgstr "Xoay phải"
 
 #. Translators: This is a toast notification, informing the user that
 #. an image has been set as background.
-#: src/widgets/image_view.rs:870
+#: src/widgets/image_view.rs:928
 msgid "Set as background."
 msgstr "Đặt làm ảnh nền."
 
-#: src/widgets/image_view.rs:876
+#: src/widgets/image_view.rs:934
 msgid "Could not set background."
 msgstr "Không thể đặt làm ảnh nền."
 
@@ -1005,108 +990,108 @@ msgstr "Mức phóng tự chọn"
 msgid "Zoom to Specified Level"
 msgstr "Phóng đến mức độ chỉ định"
 
-#: src/widgets/image_window.rs:509
+#: src/widgets/image_window.rs:540
 msgid "Supported image formats"
 msgstr "Các định dạng ảnh được hỗ trợ"
 
-#: src/widgets/image_window.rs:515
+#: src/widgets/image_window.rs:546
 msgid "All files"
 msgstr "Mọi tập tin"
 
-#: src/widgets/image_window.rs:522
+#: src/widgets/image_window.rs:553
 msgid "Open Image"
 msgstr "Mở ảnh"
 
-#: src/widgets/image_window.rs:614
+#: src/widgets/image_window.rs:663
+msgid "_Updates"
+msgstr ""
+
+#: src/widgets/image_window.rs:721
 msgid "Image copied to clipboard"
 msgstr "Đã chép ảnh vào clipboard"
 
-#: src/widgets/image_window.rs:635
+#: src/widgets/image_window.rs:742
 msgid "Image moved to trash"
 msgstr "Đã chuyển ảnh vào thùng rác"
 
-#: src/widgets/image_window.rs:666
+#: src/widgets/image_window.rs:773
 msgid "Failed to move image to trash"
 msgstr "Gặp lỗi khi chuyển ảnh vào thùng rác"
 
-#: src/widgets/image_window.rs:690
+#: src/widgets/image_window.rs:797
 msgid "Permanently Delete Image?"
 msgstr "Xóa hình ảnh vĩnh viễn?"
 
-#: src/widgets/image_window.rs:692
+#: src/widgets/image_window.rs:799
 #, rust-format
 msgid "After deleting the image “{}” it will be permanently lost."
 msgstr "Ảnh “{}” sẽ bị mất vĩnh viễn sau khi xoá."
 
-#: src/widgets/image_window.rs:701
+#: src/widgets/image_window.rs:808
 msgid "Delete"
 msgstr "Xóa"
 
-#: src/widgets/image_window.rs:712
+#: src/widgets/image_window.rs:819
 msgid "Failed to delete image"
 msgstr "Gặp lỗi khi xóa ảnh"
 
-#: src/widgets/image_window.ui:6
+#: src/widgets/image_window.ui:30
 msgid "_New Window"
 msgstr "_Cửa sổ mới"
 
-#: src/widgets/image_window.ui:10
+#: src/widgets/image_window.ui:34
 msgid "_Open…"
 msgstr "_Mở…"
 
-#: src/widgets/image_window.ui:40
+#: src/widgets/image_window.ui:64
 #, fuzzy
-#| msgid "_About Image Viewer"
 msgid "_Make Default Image Viewer"
 msgstr "_Giới thiệu bộ xem ảnh"
 
-#: src/widgets/image_window.ui:50
+#: src/widgets/image_window.ui:74
 msgid "_Help"
 msgstr "T_rợ giúp"
 
-#: src/widgets/image_window.ui:54
+#: src/widgets/image_window.ui:78
 msgid "_Keyboard Shortcuts"
 msgstr "_Phím tắt bàn phím"
 
-#: src/widgets/image_window.ui:58
+#: src/widgets/image_window.ui:82
 #, fuzzy
-#| msgid "_About Loupe"
 msgid "_About Glance"
 msgstr "_Giới thiệu Loupe"
 
-#: src/widgets/image_window.ui:91
+#: src/widgets/image_window.ui:152
 msgid "Toggle Fullscreen"
 msgstr "Bật/tắt chế độ toàn màn hình"
 
-#: src/widgets/image_window.ui:97
+#: src/widgets/image_window.ui:158
 msgid "Main Menu"
 msgstr "Trình đơn chính"
 
-#: src/widgets/image_window.ui:129
+#: src/widgets/image_window.ui:190
 msgid "Image Properties"
 msgstr "Thuộc tính ảnh"
 
-#: src/widgets/image_window.ui:136
+#: src/widgets/image_window.ui:197
 msgid "Edit Image"
 msgstr "Chỉnh sửa Ảnh"
 
-#: src/widgets/image_window.ui:143
+#: src/widgets/image_window.ui:204
 #, fuzzy
-#| msgid "Next Image"
 msgid "Select Text in Image"
 msgstr "Ảnh tiếp theo"
 
-#: src/widgets/image_window.ui:231
+#: src/widgets/image_window.ui:292
 #, fuzzy
-#| msgid "View Images"
 msgid "View and Edit Images"
 msgstr "Xem ảnh"
 
-#: src/widgets/image_window.ui:232
+#: src/widgets/image_window.ui:293
 msgid "Drag and drop images here"
 msgstr "Kéo và thả ảnh vào đây"
 
-#: src/widgets/image_window.ui:236
+#: src/widgets/image_window.ui:297
 msgid "_Open Files…"
 msgstr "Mở _tập tin…"
 
@@ -1260,7 +1245,6 @@ msgstr ""
 #. Translators: Shorthand for meter
 #: src/widgets/properties_view.rs:362
 #, fuzzy
-#| msgid "{} %"
 msgid " m"
 msgstr "“{} ({})”"
 
@@ -1281,19 +1265,16 @@ msgstr ""
 
 #: src/widgets/properties_view.rs:386
 #, fuzzy
-#| msgid "{}\\u{202F}\\u{D7}\\u{202F}{}"
 msgid "{}{}\\u{202F}\\u{D7}\\u{202F}{}{}"
 msgstr "{}\\u{202F}\\u{D7}\\u{202F}{}"
 
 #: src/widgets/properties_view.rs:403
 #, fuzzy
-#| msgid "{}\\u{202F}s"
 msgid "{}\\u{202F}DPI"
 msgstr "{}\\u{202F}s"
 
 #: src/widgets/properties_view.rs:407
 #, fuzzy
-#| msgid "{}\\u{202F}\\u{D7}\\u{202F}{}"
 msgid "{}\\u{202F}DPI\\u{202F}\\u{D7}\\u{202F}{}\\u{202F}DPI"
 msgstr "{}\\u{202F}\\u{D7}\\u{202F}{}"
 
@@ -1315,7 +1296,6 @@ msgstr "URI"
 
 #: src/widgets/properties_view.ui:66
 #, fuzzy
-#| msgid "File Size"
 msgid "Physical Size"
 msgstr "Kích cỡ tập tin"
 
@@ -1404,22 +1384,96 @@ msgstr ""
 msgid "CICP"
 msgstr ""
 
-#: src/widgets/text_layer.rs:107
+#: src/widgets/text_layer.rs:116
 #, fuzzy
-#| msgid "_Copy"
 msgid "Copy"
 msgstr "_Sao chép"
 
-#: src/widgets/text_layer.rs:111
+#: src/widgets/text_layer.rs:121
 msgid "Select All"
 msgstr ""
 
-#: src/widgets/text_layer.rs:680
+#: src/widgets/text_layer.rs:844
 #, fuzzy
-#| msgid "Image copied to clipboard"
 msgid "Text copied to clipboard"
 msgstr "Đã chép ảnh vào clipboard"
 
-#: src/widgets/window.rs:249
+#: src/widgets/update_dialog.rs:72
+msgid "What’s New"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:176
+msgid "Checking for Updates…"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:178 src/widgets/update_dialog.rs:200
+#: src/widgets/update_dialog.rs:211 src/widgets/update_dialog.rs:307
+msgid "Close"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:195
+msgid "Glance Is Up to Date"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:199
+#, rust-format
+msgid "Version {}"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:207
+msgid "Could Not Check for Updates"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:210
+msgid "Check your internet connection and try again."
+msgstr ""
+
+#: src/widgets/update_dialog.rs:213 src/widgets/update_dialog.rs:271
+msgid "Try Again"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:220
+#, rust-format
+msgid "Glance {} Is Available"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:224
+#, rust-format
+msgid "You have version {}"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:227
+msgid "Later"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:232
+msgid "Update"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:236
+msgid "Open Download Page"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:252
+msgid "Downloading…"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:270
+msgid "The download failed."
+msgstr ""
+
+#: src/widgets/update_dialog.rs:283
+msgid "Restart Glance to use the new version."
+msgstr ""
+
+#: src/widgets/update_dialog.rs:284
+msgid "Restart Glance"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:306
+msgid "Finish installing in the window that opened."
+msgstr ""
+
+#: src/widgets/window.rs:251
 msgid "Show Details"
 msgstr "Hiện Chi tiết"

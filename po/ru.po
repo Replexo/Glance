@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 20:06+0100\n"
+"POT-Creation-Date: 2026-11-10 08:25+0100\n"
 "PO-Revision-Date: 2026-07-22 20:44+0300\n"
 "Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: \n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/io.github.Replexo.Glance.desktop.in.in:2
 #: data/io.github.Replexo.Glance.metainfo.xml.in.in:6
-#: src/widgets/image_window.rs:879
+#: src/widgets/image_window.rs:1008
 msgid "Glance"
 msgstr "Glance"
 
@@ -371,11 +371,11 @@ msgstr "Ластик"
 msgid "translator-credits"
 msgstr "Aleksandr Melman <alexmelman88@gmail.com>, 2023"
 
-#: src/application.rs:178
+#: src/application.rs:226
 msgid "Glance is now the default image viewer"
 msgstr "Glance теперь — средство просмотра изображений по умолчанию"
 
-#: src/application.rs:187
+#: src/application.rs:235
 msgid "Could not make Glance the default image viewer"
 msgstr ""
 "Не удалось назначить Glance средством просмотра изображений по умолчанию"
@@ -384,7 +384,9 @@ msgstr ""
 msgid "Could not list other files in directory."
 msgstr "Не удалось перечислить другие файлы в каталоге."
 
-#. Translators: Display of the f-number <https://en.wikipedia.org/wiki/F-number>. {} will be replaced with the number
+#. Translators: Display of the f-number
+#. <https://en.wikipedia.org/wiki/F-number>. {} will be replaced with the
+#. number
 #: src/metadata.rs:270
 msgid "\\u{192}\\u{2215}{}"
 msgstr "\\u{192}\\u{2215}{}"
@@ -466,7 +468,8 @@ msgstr "Гамма 2.4"
 
 #. / Returns localized date + time format
 #. Translators: This is the date and time format we use in metadata output etc.
-#. The format has to follow <https://docs.gtk.org/glib/method.DateTime.format.html>
+#. The format has to follow
+#. <https://docs.gtk.org/glib/method.DateTime.format.html>
 #. The default is already translated. Don't change if you are not sure what to
 #. use.
 #: src/util.rs:39
@@ -764,7 +767,7 @@ msgstr ""
 "Есть несохраненные изменения при редактировании изображения. При закрытии "
 "без сохранения эти изменения будут безвозвратно утеряны."
 
-#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:700
+#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:807
 msgid "Cancel"
 msgstr "Отменить"
 
@@ -780,7 +783,7 @@ msgstr "Сохранить"
 msgid "Hold to Show Original"
 msgstr "Удерживайте, чтобы показать оригинал"
 
-#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:636
+#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:743
 msgid "Undo"
 msgstr "Отменить"
 
@@ -866,7 +869,7 @@ msgstr "Копировать сообщение об ошибке"
 msgid "Report _Issue"
 msgstr "Сообщить об о_шибке"
 
-#: src/widgets/image_page.rs:225
+#: src/widgets/image_page.rs:238
 #, rust-format
 msgid ""
 "No image loaders available. Maybe the “glycin-loaders” package with "
@@ -875,47 +878,49 @@ msgstr ""
 "Загрузчики изображений отсутствуют. Возможно, не установлен пакет “glycin-"
 "loaders” с совместимой версией “{}”."
 
-#: src/widgets/image_page.rs:243
+#: src/widgets/image_page.rs:256
 #, rust-format
 msgid "The image format “{} ({})” is known but not installed."
 msgstr "Формат изображения “{} ({})” известен, но не установлен."
 
-#: src/widgets/image_page.rs:251
+#: src/widgets/image_page.rs:264
 #, rust-format
 msgid "Unknown image format “{} ({}).”"
 msgstr "Неизвестный формат изображения “{} ({}).”"
 
-#: src/widgets/image_page.rs:260
+#: src/widgets/image_page.rs:273
 msgid "There is not enough free memory available to load this image."
 msgstr "Для загрузки этого изображения недостаточно свободной памяти."
 
-#: src/widgets/image_page.rs:267
+#: src/widgets/image_page.rs:280
 #, rust-format
 msgid "Failed to load image file: {}"
 msgstr "Не удалось загрузить файл изображения: {}"
 
-#: src/widgets/image_page.rs:272
+#: src/widgets/image_page.rs:285
 msgid "Either the image file is corrupted or it contains unsupported elements."
 msgstr ""
 "Либо файл изображения поврежден, либо содержит неподдерживаемые элементы."
 
-#: src/widgets/image_page.ui:6 src/widgets/image_window.ui:16
+#: src/widgets/image_page.ui:6 src/widgets/image_window.ui:6
+#: src/widgets/image_window.ui:40
 msgid "_Open With…"
 msgstr "Открыть с _помощью…"
 
-#: src/widgets/image_page.ui:10 src/widgets/image_window.ui:20
+#: src/widgets/image_page.ui:10 src/widgets/image_window.ui:22
+#: src/widgets/image_window.ui:44
 msgid "_Print…"
 msgstr "П_ечать…"
 
-#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:25
+#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:49
 msgid "Rotate"
 msgstr "Повернуть"
 
-#: src/widgets/image_page.ui:26 src/widgets/image_window.ui:36
+#: src/widgets/image_page.ui:26 src/widgets/image_window.ui:60
 msgid "_Set as Background…"
 msgstr "_Установить как фон…"
 
-#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:44
+#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:68
 msgid "_Delete"
 msgstr "У_далить"
 
@@ -935,21 +940,21 @@ msgstr "Больше _информации"
 msgid "_Reload"
 msgstr "_Перезагрузить"
 
-#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:105
+#: src/widgets/image_page.ui:130 src/widgets/image_window.ui:166
 msgid "Rotate Left"
 msgstr "Повернуть влево"
 
-#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:115
+#: src/widgets/image_page.ui:140 src/widgets/image_window.ui:176
 msgid "Rotate Right"
 msgstr "Повернуть вправо"
 
 #. Translators: This is a toast notification, informing the user that
 #. an image has been set as background.
-#: src/widgets/image_view.rs:870
+#: src/widgets/image_view.rs:928
 msgid "Set as background."
 msgstr "Установить как фон."
 
-#: src/widgets/image_view.rs:876
+#: src/widgets/image_view.rs:934
 msgid "Could not set background."
 msgstr "Не удалось установить фон."
 
@@ -985,101 +990,104 @@ msgstr "Пользовательский уровень масштабирова
 msgid "Zoom to Specified Level"
 msgstr "Масштабировать до заданного уровня"
 
-#: src/widgets/image_window.rs:509
+#: src/widgets/image_window.rs:540
 msgid "Supported image formats"
 msgstr "Поддерживаемые форматы изображения"
 
-#: src/widgets/image_window.rs:515
+#: src/widgets/image_window.rs:546
 msgid "All files"
 msgstr "Все файлы"
 
-#: src/widgets/image_window.rs:522
+#: src/widgets/image_window.rs:553
 msgid "Open Image"
 msgstr "Открыть изображение"
 
-#: src/widgets/image_window.rs:614
+#: src/widgets/image_window.rs:663
+msgid "_Updates"
+msgstr "_Обновления"
+
+#: src/widgets/image_window.rs:721
 msgid "Image copied to clipboard"
 msgstr "Изображение скопировано в буфер обмена"
 
-#: src/widgets/image_window.rs:635
+#: src/widgets/image_window.rs:742
 msgid "Image moved to trash"
 msgstr "Изображение отправлено в корзину"
 
-#: src/widgets/image_window.rs:666
+#: src/widgets/image_window.rs:773
 msgid "Failed to move image to trash"
 msgstr "Не удалось отправить изображение в корзину"
 
-#: src/widgets/image_window.rs:690
+#: src/widgets/image_window.rs:797
 msgid "Permanently Delete Image?"
 msgstr "Удалить изображение безвозвратно?"
 
-#: src/widgets/image_window.rs:692
+#: src/widgets/image_window.rs:799
 #, rust-format
 msgid "After deleting the image “{}” it will be permanently lost."
 msgstr "После удаления изображения \"{}\" оно будет навсегда потеряно."
 
-#: src/widgets/image_window.rs:701
+#: src/widgets/image_window.rs:808
 msgid "Delete"
 msgstr "Удалить"
 
-#: src/widgets/image_window.rs:712
+#: src/widgets/image_window.rs:819
 msgid "Failed to delete image"
 msgstr "Не удалось удалить изображение"
 
-#: src/widgets/image_window.ui:6
+#: src/widgets/image_window.ui:30
 msgid "_New Window"
 msgstr "_Новое окно"
 
-#: src/widgets/image_window.ui:10
+#: src/widgets/image_window.ui:34
 msgid "_Open…"
 msgstr "_Открыть…"
 
-#: src/widgets/image_window.ui:40
+#: src/widgets/image_window.ui:64
 msgid "_Make Default Image Viewer"
 msgstr "_Сделать средством просмотра по умолчанию"
 
-#: src/widgets/image_window.ui:50
+#: src/widgets/image_window.ui:74
 msgid "_Help"
 msgstr "_Справка"
 
-#: src/widgets/image_window.ui:54
+#: src/widgets/image_window.ui:78
 msgid "_Keyboard Shortcuts"
 msgstr "_Комбинации клавиш"
 
-#: src/widgets/image_window.ui:58
+#: src/widgets/image_window.ui:82
 msgid "_About Glance"
 msgstr "_О Glance"
 
-#: src/widgets/image_window.ui:91
+#: src/widgets/image_window.ui:152
 msgid "Toggle Fullscreen"
 msgstr "Переключить полноэкранный режим"
 
-#: src/widgets/image_window.ui:97
+#: src/widgets/image_window.ui:158
 msgid "Main Menu"
 msgstr "Главное меню"
 
-#: src/widgets/image_window.ui:129
+#: src/widgets/image_window.ui:190
 msgid "Image Properties"
 msgstr "Свойства изображения"
 
-#: src/widgets/image_window.ui:136
+#: src/widgets/image_window.ui:197
 msgid "Edit Image"
 msgstr "Редактировать изображение"
 
-#: src/widgets/image_window.ui:143
-#
+#: src/widgets/image_window.ui:204
 msgid "Select Text in Image"
 msgstr "Выделить текст на изображении"
 
-#: src/widgets/image_window.ui:231
+#: src/widgets/image_window.ui:292
 msgid "View and Edit Images"
 msgstr "Просмотр и редактирование изображений"
 
-#: src/widgets/image_window.ui:232
+#: src/widgets/image_window.ui:293
 msgid "Drag and drop images here"
 msgstr "Перетащите изображения сюда"
 
-#: src/widgets/image_window.ui:236
+#: src/widgets/image_window.ui:297
 msgid "_Open Files…"
 msgstr "_Открыть файлы…"
 
@@ -1367,20 +1375,94 @@ msgstr "Профиль ICC"
 msgid "CICP"
 msgstr "CICP"
 
-#: src/widgets/text_layer.rs:107
-#
+#: src/widgets/text_layer.rs:116
 msgid "Copy"
 msgstr "Копировать"
 
-#: src/widgets/text_layer.rs:111
+#: src/widgets/text_layer.rs:121
 msgid "Select All"
 msgstr "Выделить всё"
 
-#: src/widgets/text_layer.rs:680
-#
+#: src/widgets/text_layer.rs:844
 msgid "Text copied to clipboard"
 msgstr "Текст скопирован в буфер обмена"
 
-#: src/widgets/window.rs:249
+#: src/widgets/update_dialog.rs:72
+msgid "What’s New"
+msgstr "Что нового"
+
+#: src/widgets/update_dialog.rs:176
+msgid "Checking for Updates…"
+msgstr "Поиск обновлений…"
+
+#: src/widgets/update_dialog.rs:178 src/widgets/update_dialog.rs:200
+#: src/widgets/update_dialog.rs:211 src/widgets/update_dialog.rs:307
+msgid "Close"
+msgstr "Закрыть"
+
+#: src/widgets/update_dialog.rs:195
+msgid "Glance Is Up to Date"
+msgstr "Glance обновлён"
+
+#: src/widgets/update_dialog.rs:199
+#, rust-format
+msgid "Version {}"
+msgstr "Версия {}"
+
+#: src/widgets/update_dialog.rs:207
+msgid "Could Not Check for Updates"
+msgstr "Не удалось проверить обновления"
+
+#: src/widgets/update_dialog.rs:210
+msgid "Check your internet connection and try again."
+msgstr "Проверьте подключение к Интернету и повторите попытку."
+
+#: src/widgets/update_dialog.rs:213 src/widgets/update_dialog.rs:271
+msgid "Try Again"
+msgstr "Повторить"
+
+#: src/widgets/update_dialog.rs:220
+#, rust-format
+msgid "Glance {} Is Available"
+msgstr "Доступна версия Glance {}"
+
+#: src/widgets/update_dialog.rs:224
+#, rust-format
+msgid "You have version {}"
+msgstr "У вас версия {}"
+
+#: src/widgets/update_dialog.rs:227
+msgid "Later"
+msgstr "Позже"
+
+#: src/widgets/update_dialog.rs:232
+msgid "Update"
+msgstr "Обновить"
+
+#: src/widgets/update_dialog.rs:236
+msgid "Open Download Page"
+msgstr "Открыть страницу загрузки"
+
+#: src/widgets/update_dialog.rs:252
+msgid "Downloading…"
+msgstr "Загрузка…"
+
+#: src/widgets/update_dialog.rs:270
+msgid "The download failed."
+msgstr "Не удалось загрузить."
+
+#: src/widgets/update_dialog.rs:283
+msgid "Restart Glance to use the new version."
+msgstr "Перезапустите Glance, чтобы использовать новую версию."
+
+#: src/widgets/update_dialog.rs:284
+msgid "Restart Glance"
+msgstr "Перезапустить Glance"
+
+#: src/widgets/update_dialog.rs:306
+msgid "Finish installing in the window that opened."
+msgstr "Завершите установку в открывшемся окне."
+
+#: src/widgets/window.rs:251
 msgid "Show Details"
 msgstr "Показать подробности"

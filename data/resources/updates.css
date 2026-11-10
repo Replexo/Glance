@@ -1,0 +1,28 @@
+/* Blue dot for a new release, on the main menu button and its Updates item */
+.update-dot {
+  min-width: 8px;
+  min-height: 8px;
+  border-radius: 9999px;
+  background-color: var(--accent-bg-color);
+}
+
+/* The icon carries the button's padding, so the dot can sit in the
+   button's top right corner with any icon theme */
+menubutton.update-menu > button {
+  padding: 0;
+}
+
+menubutton.update-menu > button image {
+  margin: 0 9px;
+}
+
+menubutton.update-menu .update-dot {
+  margin: 5px 5px 0 0;
+}
+
+popover .updates-item {
+  min-height: 30px;
+  padding: 0 12px;
+  border-radius: 6px;
+  font-weight: normal;
+}

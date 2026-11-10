@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Loupe main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 20:06+0100\n"
+"POT-Creation-Date: 2026-11-10 08:25+0100\n"
 "PO-Revision-Date: 2023-08-16 09:24+0700\n"
 "Last-Translator: OIS <mistresssilvara@hotmail.com>\n"
 "Language-Team: Interlingue <ie@li.org>\n"
@@ -19,9 +19,8 @@ msgstr ""
 
 #: data/io.github.Replexo.Glance.desktop.in.in:2
 #: data/io.github.Replexo.Glance.metainfo.xml.in.in:6
-#: src/widgets/image_window.rs:879
+#: src/widgets/image_window.rs:1008
 #, fuzzy
-#| msgid "Cancel"
 msgid "Glance"
 msgstr "Anullar"
 
@@ -32,20 +31,16 @@ msgstr "Visor de images"
 #: data/io.github.Replexo.Glance.desktop.in.in:4
 #: data/io.github.Replexo.Glance.metainfo.xml.in.in:10
 #, fuzzy
-#| msgid "View images"
 msgid "View and edit images"
 msgstr "Vider images"
 
 #: data/io.github.Replexo.Glance.desktop.in.in:12
 #, fuzzy
-#| msgid "Picture;Slideshow;Graphics;Loupe;"
 msgid "Picture;Graphics;Loupe;Glance;"
 msgstr "Pictura;Exhibition;Demonstration;Graphica;Lupe;"
 
 #: data/io.github.Replexo.Glance.gschema.xml.in:6
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Toggle Image Properties"
 msgid "Show the image properties sidebar"
 msgstr "Proprietás de image"
 
@@ -102,8 +97,6 @@ msgstr "General rápid-tastes."
 
 #: data/resources/shortcuts-dialog.ui:9
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Copy Image to Clipboard"
 msgctxt "shortcut window"
 msgid "Copy Image or Selected Text to Clipboard"
 msgstr "Copiar li image al Paperiere"
@@ -115,7 +108,6 @@ msgstr "Mover images al Paper-corb"
 
 #: data/resources/shortcuts-dialog.ui:21
 #, fuzzy
-#| msgid "Permanently Delete Image?"
 msgctxt "shortcut window"
 msgid "Permanently Delete Image"
 msgstr "Remover li image permanentmen?"
@@ -254,8 +246,6 @@ msgstr "Mover a bass"
 
 #: data/resources/shortcuts-dialog.ui:197
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Pan View"
 msgctxt "shortcut window"
 msgid "View"
 msgstr "Mover li vise"
@@ -307,21 +297,18 @@ msgstr ""
 
 #: data/resources/shortcuts-dialog.ui:253
 #, fuzzy
-#| msgid "Cancel"
 msgctxt "shortcut window"
 msgid "Cancel"
 msgstr "Anullar"
 
 #: data/resources/shortcuts-dialog.ui:271
 #, fuzzy
-#| msgid "Horizontal"
 msgctxt "shortcut window"
 msgid "Mirror Horizontally"
 msgstr "Horizontal"
 
 #: data/resources/shortcuts-dialog.ui:277
 #, fuzzy
-#| msgid "Vertical"
 msgctxt "shortcut window"
 msgid "Mirror Vertically"
 msgstr "Vertical"
@@ -381,11 +368,11 @@ msgstr ""
 msgid "translator-credits"
 msgstr "OIS <mistresssilvara@hotmail.com>, 2023"
 
-#: src/application.rs:178
+#: src/application.rs:226
 msgid "Glance is now the default image viewer"
 msgstr ""
 
-#: src/application.rs:187
+#: src/application.rs:235
 msgid "Could not make Glance the default image viewer"
 msgstr ""
 
@@ -406,7 +393,6 @@ msgstr "1\\u{2215}{}\\u{202F}s"
 #. Translators: Exposure time (photography) in seconds
 #: src/metadata.rs:291
 #, fuzzy
-#| msgid "{}\\u{202F}mm"
 msgid "{}\\u{202F}s"
 msgstr "{}\\u{202F}mm"
 
@@ -490,7 +476,6 @@ msgstr "Ne successat restituer li image ex li Paper-corb"
 
 #: src/widgets/drag_overlay.ui:15
 #, fuzzy
-#| msgid "Image Viewer"
 msgid "Drop Image to View"
 msgstr "Visor de images"
 
@@ -505,7 +490,6 @@ msgstr ""
 
 #: src/widgets/edit/adjust.rs:36 src/widgets/edit/adjust.ui:101
 #, fuzzy
-#| msgid "Height"
 msgid "Highlights"
 msgstr "Altore"
 
@@ -528,8 +512,6 @@ msgstr ""
 
 #: src/widgets/edit/crop.rs:42 src/widgets/edit/crop.ui:122
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Original Scale"
 msgid "Original"
 msgstr "Scale original"
 
@@ -539,7 +521,6 @@ msgstr ""
 
 #: src/widgets/edit/crop.rs:842
 #, fuzzy
-#| msgid "Failed to delete image"
 msgid "Failed to Edit Image"
 msgstr "Ne successat remover li image"
 
@@ -573,21 +554,16 @@ msgstr ""
 
 #: src/widgets/edit/crop.ui:217
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Rotate Counterclockwise"
 msgid "Rotate Counter Clockwise"
 msgstr "Rotar a levul"
 
 #: src/widgets/edit/crop.ui:224
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Rotate Clockwise"
 msgid "Rotate Clockwise"
 msgstr "Rotar a dextri"
 
 #: src/widgets/edit/crop.ui:231
 #, fuzzy
-#| msgid "Horizontal"
 msgid "Mirror Horizontally"
 msgstr "Horizontal"
 
@@ -637,7 +613,6 @@ msgstr ""
 
 #: src/widgets/edit/markup.ui:179
 #, fuzzy
-#| msgid "Fill Space"
 msgid "Filled"
 msgstr "Plenar li spacie"
 
@@ -723,13 +698,11 @@ msgstr ""
 
 #: src/widgets/edit/resize_dialog.ui:4
 #, fuzzy
-#| msgid "View Images"
 msgid "Resize Image"
 msgstr "Vider images"
 
 #: src/widgets/edit/resize_dialog.ui:15 src/widgets/edit_window.ui:101
 #, fuzzy
-#| msgid "Cancel"
 msgid "_Cancel"
 msgstr "Anullar"
 
@@ -739,13 +712,11 @@ msgstr ""
 
 #: src/widgets/edit/resize_dialog.ui:50 src/widgets/print.rs:787
 #, fuzzy
-#| msgid "Width"
 msgid "_Width"
 msgstr "Largore"
 
 #: src/widgets/edit/resize_dialog.ui:90
 #, fuzzy
-#| msgid "Height"
 msgid "_Height"
 msgstr "Altore"
 
@@ -763,14 +734,11 @@ msgstr[1] ""
 
 #: src/widgets/edit_window.rs:453
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Move Image to Trash"
 msgid "Moving Original to Trash"
 msgstr "Mover images al Paper-corb"
 
 #: src/widgets/edit_window.rs:467 src/widgets/edit_window.rs:496
 #, fuzzy
-#| msgid "Failed to open image"
 msgid "Failed to save image."
 msgstr "Ne successat aperter li image"
 
@@ -780,27 +748,21 @@ msgstr ""
 
 #: src/widgets/edit_window.rs:531
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "First Image"
 msgid "Editing Image"
 msgstr "Prim image"
 
 #: src/widgets/edit_window.rs:554 src/widgets/edit_window.rs:581
 #, fuzzy
-#| msgid "Failed to delete image"
 msgid "Failed to edit image."
 msgstr "Ne successat remover li image"
 
 #: src/widgets/edit_window.rs:610
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Navigate Images"
 msgid "Saving Image"
 msgstr "Navigar images"
 
 #: src/widgets/edit_window.rs:622
 #, fuzzy
-#| msgid "Failed to open image"
 msgid "Failed to Save Image"
 msgstr "Ne successat aperter li image"
 
@@ -814,7 +776,7 @@ msgid ""
 "permanently lose these modifications."
 msgstr ""
 
-#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:700
+#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:807
 msgid "Cancel"
 msgstr "Anullar"
 
@@ -830,7 +792,7 @@ msgstr ""
 msgid "Hold to Show Original"
 msgstr ""
 
-#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:636
+#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:743
 msgid "Undo"
 msgstr "Defar"
 
@@ -880,7 +842,6 @@ msgstr ""
 
 #: src/widgets/edit_window.ui:217
 #, fuzzy
-#| msgid "Image moved to trash"
 msgid "Original image will be moved to the trash."
 msgstr "Li image sta movet al Paper-corb"
 
@@ -913,56 +874,56 @@ msgstr ""
 msgid "Report _Issue"
 msgstr ""
 
-#: src/widgets/image_page.rs:225
+#: src/widgets/image_page.rs:238
 #, rust-format
 msgid ""
 "No image loaders available. Maybe the “glycin-loaders” package with "
 "compatibility version “{}” is not installed."
 msgstr ""
 
-#: src/widgets/image_page.rs:243
+#: src/widgets/image_page.rs:256
 #, rust-format
 msgid "The image format “{} ({})” is known but not installed."
 msgstr ""
 
-#: src/widgets/image_page.rs:251
+#: src/widgets/image_page.rs:264
 #, rust-format
 msgid "Unknown image format “{} ({}).”"
 msgstr ""
 
-#: src/widgets/image_page.rs:260
+#: src/widgets/image_page.rs:273
 msgid "There is not enough free memory available to load this image."
 msgstr ""
 
-#: src/widgets/image_page.rs:267
+#: src/widgets/image_page.rs:280
 #, fuzzy, rust-format
-#| msgid "Failed to open image"
 msgid "Failed to load image file: {}"
 msgstr "Ne successat aperter li image"
 
-#: src/widgets/image_page.rs:272
+#: src/widgets/image_page.rs:285
 msgid "Either the image file is corrupted or it contains unsupported elements."
 msgstr ""
 
-#: src/widgets/image_page.ui:6 src/widgets/image_window.ui:16
+#: src/widgets/image_page.ui:6 src/widgets/image_window.ui:6
+#: src/widgets/image_window.ui:40
 msgid "_Open With…"
 msgstr "_Aperter per…"
 
-#: src/widgets/image_page.ui:10 src/widgets/image_window.ui:20
+#: src/widgets/image_page.ui:10 src/widgets/image_window.ui:22
+#: src/widgets/image_window.ui:44
 msgid "_Print…"
 msgstr "_Printar…"
 
-#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:25
+#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:49
 msgid "Rotate"
 msgstr "Rotar"
 
-#: src/widgets/image_page.ui:26 src/widgets/image_window.ui:36
+#: src/widgets/image_page.ui:26 src/widgets/image_window.ui:60
 msgid "_Set as Background…"
 msgstr "Assignar quam li _funde…"
 
-#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:44
+#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:68
 #, fuzzy
-#| msgid "Delete"
 msgid "_Delete"
 msgstr "Remover"
 
@@ -982,21 +943,21 @@ msgstr ""
 msgid "_Reload"
 msgstr ""
 
-#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:105
+#: src/widgets/image_page.ui:130 src/widgets/image_window.ui:166
 msgid "Rotate Left"
 msgstr "Rotar a levul"
 
-#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:115
+#: src/widgets/image_page.ui:140 src/widgets/image_window.ui:176
 msgid "Rotate Right"
 msgstr "Rotar a dextri"
 
 #. Translators: This is a toast notification, informing the user that
 #. an image has been set as background.
-#: src/widgets/image_view.rs:870
+#: src/widgets/image_view.rs:928
 msgid "Set as background."
 msgstr "Sta assignat quam li funde"
 
-#: src/widgets/image_view.rs:876
+#: src/widgets/image_view.rs:934
 msgid "Could not set background."
 msgstr "Ne successat assignar li funde."
 
@@ -1032,110 +993,108 @@ msgstr ""
 msgid "Zoom to Specified Level"
 msgstr ""
 
-#: src/widgets/image_window.rs:509
+#: src/widgets/image_window.rs:540
 msgid "Supported image formats"
 msgstr "Suportat formates de images"
 
-#: src/widgets/image_window.rs:515
+#: src/widgets/image_window.rs:546
 msgid "All files"
 msgstr "Omni files"
 
-#: src/widgets/image_window.rs:522
+#: src/widgets/image_window.rs:553
 msgid "Open Image"
 msgstr "Aperter un image"
 
-#: src/widgets/image_window.rs:614
+#: src/widgets/image_window.rs:663
+msgid "_Updates"
+msgstr ""
+
+#: src/widgets/image_window.rs:721
 msgid "Image copied to clipboard"
 msgstr "Li image sta copiat al Paperiere"
 
-#: src/widgets/image_window.rs:635
+#: src/widgets/image_window.rs:742
 msgid "Image moved to trash"
 msgstr "Li image sta movet al Paper-corb"
 
-#: src/widgets/image_window.rs:666
+#: src/widgets/image_window.rs:773
 msgid "Failed to move image to trash"
 msgstr "Ne successat mover li image al Paper-corb"
 
-#: src/widgets/image_window.rs:690
+#: src/widgets/image_window.rs:797
 msgid "Permanently Delete Image?"
 msgstr "Remover li image permanentmen?"
 
-#: src/widgets/image_window.rs:692
+#: src/widgets/image_window.rs:799
 #, fuzzy, rust-format
-#| msgid "The image “{}” can only be deleted permanently."
 msgid "After deleting the image “{}” it will be permanently lost."
 msgstr "Li image «{}» posse esser removet solmen permanentmen."
 
-#: src/widgets/image_window.rs:701
+#: src/widgets/image_window.rs:808
 msgid "Delete"
 msgstr "Remover"
 
-#: src/widgets/image_window.rs:712
+#: src/widgets/image_window.rs:819
 msgid "Failed to delete image"
 msgstr "Ne successat remover li image"
 
-#: src/widgets/image_window.ui:6
+#: src/widgets/image_window.ui:30
 msgid "_New Window"
 msgstr "_Nov fenestre"
 
-#: src/widgets/image_window.ui:10
+#: src/widgets/image_window.ui:34
 msgid "_Open…"
 msgstr "_Aperter..."
 
-#: src/widgets/image_window.ui:40
+#: src/widgets/image_window.ui:64
 #, fuzzy
-#| msgid "_About Image Viewer"
 msgid "_Make Default Image Viewer"
 msgstr "_Pri li visor de images"
 
-#: src/widgets/image_window.ui:50
+#: src/widgets/image_window.ui:74
 msgid "_Help"
 msgstr "Au_xilie"
 
-#: src/widgets/image_window.ui:54
+#: src/widgets/image_window.ui:78
 msgid "_Keyboard Shortcuts"
 msgstr "R_apid-tastes"
 
-#: src/widgets/image_window.ui:58
+#: src/widgets/image_window.ui:82
 msgid "_About Glance"
 msgstr ""
 
-#: src/widgets/image_window.ui:91
+#: src/widgets/image_window.ui:152
 msgid "Toggle Fullscreen"
 msgstr "Plen-ecran"
 
-#: src/widgets/image_window.ui:97
+#: src/widgets/image_window.ui:158
 msgid "Main Menu"
 msgstr "Menú principal"
 
-#: src/widgets/image_window.ui:129
+#: src/widgets/image_window.ui:190
 msgid "Image Properties"
 msgstr "Proprietás de image"
 
-#: src/widgets/image_window.ui:136
+#: src/widgets/image_window.ui:197
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "First Image"
 msgid "Edit Image"
 msgstr "Prim image"
 
-#: src/widgets/image_window.ui:143
+#: src/widgets/image_window.ui:204
 #, fuzzy
-#| msgid "Next Image"
 msgid "Select Text in Image"
 msgstr "Sequent image"
 
-#: src/widgets/image_window.ui:231
+#: src/widgets/image_window.ui:292
 #, fuzzy
-#| msgid "View Images"
 msgid "View and Edit Images"
 msgstr "Vider images"
 
-#: src/widgets/image_window.ui:232
+#: src/widgets/image_window.ui:293
 msgid "Drag and drop images here"
 msgstr "Tira e fa cader images ci"
 
-#: src/widgets/image_window.ui:236
+#: src/widgets/image_window.ui:297
 msgid "_Open Files…"
 msgstr "_Aperter files…"
 
@@ -1186,28 +1145,22 @@ msgstr ""
 
 #: src/widgets/print.rs:473
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "First Image"
 msgid "Print Image"
 msgstr "Prim image"
 
 #: src/widgets/print.rs:784
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "200% Scale"
 msgid "_Scale"
 msgstr "Scale 200%"
 
 #. Translators: Go back to previous page
 #: src/widgets/print.ui:29
 #, fuzzy
-#| msgid "Back"
 msgid "_Back"
 msgstr "Retro"
 
 #: src/widgets/print.ui:37
 #, fuzzy
-#| msgid "Print"
 msgid "_Print"
 msgstr "Printar"
 
@@ -1217,7 +1170,6 @@ msgstr "Arangeament"
 
 #: src/widgets/print.ui:59
 #, fuzzy
-#| msgid "Orientation"
 msgid "_Orientation"
 msgstr "Orientation"
 
@@ -1231,7 +1183,6 @@ msgstr "Orientation de paisage"
 
 #: src/widgets/print.ui:89
 #, fuzzy
-#| msgid "Alignment"
 msgid "_Alignment"
 msgstr "Alineament"
 
@@ -1245,13 +1196,11 @@ msgstr "Unités de márgines"
 
 #: src/widgets/print.ui:128
 #, fuzzy
-#| msgid "Horizontal"
 msgid "_Horizontal"
 msgstr "Horizontal"
 
 #: src/widgets/print.ui:134
 #, fuzzy
-#| msgid "Vertical"
 msgid "_Vertical"
 msgstr "Vertical"
 
@@ -1265,13 +1214,11 @@ msgstr "Unités de dimension"
 
 #: src/widgets/print.ui:163
 #, fuzzy
-#| msgid "Fill Space"
 msgid "_Fill Space"
 msgstr "Plenar li spacie"
 
 #: src/widgets/print.ui:174
 #, fuzzy
-#| msgid "Height"
 msgid "H_eight"
 msgstr "Altore"
 
@@ -1292,13 +1239,11 @@ msgstr ""
 #. Translators: Addition of bit size to format name
 #: src/widgets/properties_view.rs:298
 #, fuzzy
-#| msgid "{}\\u{202F}mm"
 msgid ", {}\\u{202F}bit"
 msgstr "{}\\u{202F}mm"
 
 #: src/widgets/properties_view.rs:315
 #, fuzzy
-#| msgid "1\\u{2215}{}\\u{202F}s"
 msgid "{}\\u{202F}\\u{D7}\\u{202F}{}"
 msgstr "1\\u{2215}{}\\u{202F}s"
 
@@ -1334,13 +1279,11 @@ msgstr ""
 
 #: src/widgets/properties_view.rs:386
 #, fuzzy
-#| msgid "1\\u{2215}{}\\u{202F}s"
 msgid "{}{}\\u{202F}\\u{D7}\\u{202F}{}{}"
 msgstr "1\\u{2215}{}\\u{202F}s"
 
 #: src/widgets/properties_view.rs:403
 #, fuzzy
-#| msgid "{}\\u{202F}mm"
 msgid "{}\\u{202F}DPI"
 msgstr "{}\\u{202F}mm"
 
@@ -1366,7 +1309,6 @@ msgstr ""
 
 #: src/widgets/properties_view.ui:66
 #, fuzzy
-#| msgid "File Size"
 msgid "Physical Size"
 msgstr "Grandore de file"
 
@@ -1455,22 +1397,96 @@ msgstr ""
 msgid "CICP"
 msgstr ""
 
-#: src/widgets/text_layer.rs:107
+#: src/widgets/text_layer.rs:116
 #, fuzzy
-#| msgid "_Copy"
 msgid "Copy"
 msgstr "_Copiar"
 
-#: src/widgets/text_layer.rs:111
+#: src/widgets/text_layer.rs:121
 msgid "Select All"
 msgstr ""
 
-#: src/widgets/text_layer.rs:680
+#: src/widgets/text_layer.rs:844
 #, fuzzy
-#| msgid "Image copied to clipboard"
 msgid "Text copied to clipboard"
 msgstr "Li image sta copiat al Paperiere"
 
-#: src/widgets/window.rs:249
+#: src/widgets/update_dialog.rs:72
+msgid "What’s New"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:176
+msgid "Checking for Updates…"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:178 src/widgets/update_dialog.rs:200
+#: src/widgets/update_dialog.rs:211 src/widgets/update_dialog.rs:307
+msgid "Close"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:195
+msgid "Glance Is Up to Date"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:199
+#, rust-format
+msgid "Version {}"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:207
+msgid "Could Not Check for Updates"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:210
+msgid "Check your internet connection and try again."
+msgstr ""
+
+#: src/widgets/update_dialog.rs:213 src/widgets/update_dialog.rs:271
+msgid "Try Again"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:220
+#, rust-format
+msgid "Glance {} Is Available"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:224
+#, rust-format
+msgid "You have version {}"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:227
+msgid "Later"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:232
+msgid "Update"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:236
+msgid "Open Download Page"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:252
+msgid "Downloading…"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:270
+msgid "The download failed."
+msgstr ""
+
+#: src/widgets/update_dialog.rs:283
+msgid "Restart Glance to use the new version."
+msgstr ""
+
+#: src/widgets/update_dialog.rs:284
+msgid "Restart Glance"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:306
+msgid "Finish installing in the window that opened."
+msgstr ""
+
+#: src/widgets/window.rs:251
 msgid "Show Details"
 msgstr ""

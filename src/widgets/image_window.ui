@@ -93,7 +93,7 @@
                 </child>
                 <child type="end">
                   <object class="GtkMenuButton" id="primary_menu">
-                    <property name="icon-name">open-menu-symbolic</property>
+                    <property name="icon-name">glance-more-symbolic</property>
                     <property name="tooltip-text" translatable="yes">Main Menu</property>
                     <property name="primary">True</property>
                     <property name="popover">

@@ -28,6 +28,7 @@ use gettextrs::gettext;
 
 use crate::config;
 use crate::deps::*;
+use crate::updates::{self, Release};
 use crate::widgets::LpWindow;
 
 mod imp {
@@ -36,11 +37,16 @@ mod imp {
 
     // The basic struct that holds our
     // state and widgets
-    #[derive(Debug)]
+    #[derive(Debug, glib::Properties)]
+    #[properties(wrapper_type = super::LpApplication)]
     pub struct LpApplication {
         pub settings: gio::Settings,
         /// Watches the default apps for the menu item
         pub defaults_monitor: std::cell::RefCell<Option<gio::FileMonitor>>,
+        /// A newer release found on GitHub
+        pub update: std::cell::RefCell<Option<Release>>,
+        #[property(get)]
+        pub update_available: std::cell::Cell<bool>,
     }
 
     impl Default for LpApplication {
@@ -48,6 +54,8 @@ mod imp {
             Self {
                 settings: gio::Settings::new(config::APP_ID),
                 defaults_monitor: Default::default(),
+                update: Default::default(),
+                update_available: Default::default(),
             }
         }
     }
@@ -62,6 +70,7 @@ mod imp {
         type ParentType = adw::Application;
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for LpApplication {
         fn constructed(&self) {
             let obj = self.obj();
@@ -85,6 +94,18 @@ mod imp {
 
             LpShyBin::ensure_type();
             gtk::Window::set_default_icon_name(config::APP_ID);
+
+            if config::UPDATE_CHECK {
+                // Shortly after starting, so opening the first image comes first
+                glib::timeout_add_seconds_local_once(3, || {
+                    glib::spawn_future_local(async {
+                        if let Err(err) = super::LpApplication::default().check_for_updates().await
+                        {
+                            tracing::debug!("Could not check for updates: {err:#}");
+                        }
+                    });
+                });
+            }
         }
 
         fn activate(&self) {
@@ -149,6 +170,13 @@ impl LpApplication {
             gio::ActionEntryBuilder::new("make-default")
                 .activate(|app: &Self, _, _| app.make_default())
                 .build(),
+            gio::ActionEntryBuilder::new("updates")
+                .activate(|app: &Self, _, _| {
+                    if let Some(window) = app.active_window() {
+                        crate::widgets::update_dialog::present(&window);
+                    }
+                })
+                .build(),
             gio::ActionEntryBuilder::new("new-window")
                 .activate(|app: &Self, _, _| {
                     let win = LpWindow::new(app);
@@ -166,6 +194,26 @@ impl LpApplication {
         self.set_accels_for_action("app.quit", &["<Ctrl>Q"]);
         self.set_accels_for_action("window.close", &["<Ctrl>W"]);
         self.set_accels_for_action("app.new-window", &["<Ctrl>N"]);
+    }
+
+    /// The newer release found on GitHub, if any
+    pub fn update(&self) -> Option<Release> {
+        self.imp().update.borrow().clone()
+    }
+
+    /// Asks GitHub for the latest release and remembers it when it is newer
+    pub async fn check_for_updates(&self) -> anyhow::Result<Option<Release>> {
+        let release = updates::latest_release().await?;
+        let newer = release.is_newer();
+        tracing::debug!("Latest release {}, newer: {newer}", release.version);
+
+        let imp = self.imp();
+        imp.update.replace(newer.then(|| release.clone()));
+        if imp.update_available.replace(newer) != newer {
+            self.notify_update_available();
+        }
+
+        Ok(newer.then_some(release))
     }
 
     /// Makes Glance the default image viewer, after the user asked for it

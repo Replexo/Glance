@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Loupe main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 20:06+0100\n"
+"POT-Creation-Date: 2026-11-10 08:25+0100\n"
 "PO-Revision-Date: 2026-08-31 22:18+0200\n"
 "Last-Translator: Guillaume Bernard <associations@guillaume-bernard.fr>\n"
 "Language-Team: French <international-french@discourse.gnome.org>\n"
@@ -23,15 +23,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 50.0\n"
-"X-DL-Lang: \n"
-"X-DL-Module: loupe\n"
 "X-DL-Branch: main\n"
 "X-DL-Domain: po\n"
+"X-DL-Lang: \n"
+"X-DL-Module: loupe\n"
+"X-Generator: Gtranslator 50.0\n"
 
 #: data/io.github.Replexo.Glance.desktop.in.in:2
 #: data/io.github.Replexo.Glance.metainfo.xml.in.in:6
-#: src/widgets/image_window.rs:879
+#: src/widgets/image_window.rs:1008
 msgid "Glance"
 msgstr "Glance"
 
@@ -389,11 +389,11 @@ msgstr ""
 "Lucien Ouoba <luiz01luciano04@gmail.com>\n"
 "Alice Biseuil <alice.biseuil@protonmail.com>"
 
-#: src/application.rs:178
+#: src/application.rs:226
 msgid "Glance is now the default image viewer"
 msgstr "Glance est maintenant la visionneuse d’images par défaut"
 
-#: src/application.rs:187
+#: src/application.rs:235
 msgid "Could not make Glance the default image viewer"
 msgstr "Impossible de définir Glance comme visionneuse d’images par défaut"
 
@@ -401,7 +401,9 @@ msgstr "Impossible de définir Glance comme visionneuse d’images par défaut"
 msgid "Could not list other files in directory."
 msgstr "Impossible de lister les autres fichiers du répertoire."
 
-#. Translators: Display of the f-number <https://en.wikipedia.org/wiki/F-number>. {} will be replaced with the number
+#. Translators: Display of the f-number
+#. <https://en.wikipedia.org/wiki/F-number>. {} will be replaced with the
+#. number
 #: src/metadata.rs:270
 msgid "\\u{192}\\u{2215}{}"
 msgstr "\\u{192}\\u{2215}{}"
@@ -483,7 +485,8 @@ msgstr "Gamma 2.4"
 
 #. / Returns localized date + time format
 #. Translators: This is the date and time format we use in metadata output etc.
-#. The format has to follow <https://docs.gtk.org/glib/method.DateTime.format.html>
+#. The format has to follow
+#. <https://docs.gtk.org/glib/method.DateTime.format.html>
 #. The default is already translated. Don't change if you are not sure what to
 #. use.
 #: src/util.rs:39
@@ -781,7 +784,7 @@ msgstr ""
 "vous fermez sans enregistrer, ces modifications seront définitivement "
 "perdues."
 
-#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:700
+#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:807
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -797,7 +800,7 @@ msgstr "Enregistrer"
 msgid "Hold to Show Original"
 msgstr "Maintenir pour afficher l’original"
 
-#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:636
+#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:743
 msgid "Undo"
 msgstr "Annuler"
 
@@ -885,7 +888,7 @@ msgstr "Copier le message d’erreur"
 msgid "Report _Issue"
 msgstr "_Signaler un problème"
 
-#: src/widgets/image_page.rs:225
+#: src/widgets/image_page.rs:238
 #, rust-format
 msgid ""
 "No image loaders available. Maybe the “glycin-loaders” package with "
@@ -894,49 +897,51 @@ msgstr ""
 "Aucun chargeur d’images disponible. Le paquet « glycin-loaders » avec la "
 "version de compatibilité « {} » n’est peut-être pas installé."
 
-#: src/widgets/image_page.rs:243
+#: src/widgets/image_page.rs:256
 #, rust-format
 msgid "The image format “{} ({})” is known but not installed."
 msgstr "Le format d’image « {} ({}) » est connu mais n’est pas installé."
 
-#: src/widgets/image_page.rs:251
+#: src/widgets/image_page.rs:264
 #, rust-format
 msgid "Unknown image format “{} ({}).”"
 msgstr "Format d’image « {} ({}) » inconnu"
 
-#: src/widgets/image_page.rs:260
+#: src/widgets/image_page.rs:273
 msgid "There is not enough free memory available to load this image."
 msgstr ""
 "Il n’y a pas assez de mémoire libre disponible pour afficher cette image."
 
-#: src/widgets/image_page.rs:267
+#: src/widgets/image_page.rs:280
 #, rust-format
 msgid "Failed to load image file: {}"
 msgstr "Échec du chargement du fichier image : {}"
 
-#: src/widgets/image_page.rs:272
+#: src/widgets/image_page.rs:285
 msgid "Either the image file is corrupted or it contains unsupported elements."
 msgstr ""
 "Soit le fichier d’image est corrompu, soit il contient des éléments non pris "
 "en charge."
 
-#: src/widgets/image_page.ui:6 src/widgets/image_window.ui:16
+#: src/widgets/image_page.ui:6 src/widgets/image_window.ui:6
+#: src/widgets/image_window.ui:40
 msgid "_Open With…"
 msgstr "_Ouvrir avec…"
 
-#: src/widgets/image_page.ui:10 src/widgets/image_window.ui:20
+#: src/widgets/image_page.ui:10 src/widgets/image_window.ui:22
+#: src/widgets/image_window.ui:44
 msgid "_Print…"
 msgstr "Im_primer…"
 
-#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:25
+#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:49
 msgid "Rotate"
 msgstr "Faire pivoter"
 
-#: src/widgets/image_page.ui:26 src/widgets/image_window.ui:36
+#: src/widgets/image_page.ui:26 src/widgets/image_window.ui:60
 msgid "_Set as Background…"
 msgstr "_Définir comme arrière-plan…"
 
-#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:44
+#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:68
 msgid "_Delete"
 msgstr "_Supprimer"
 
@@ -956,21 +961,21 @@ msgstr "Plus d’_informations"
 msgid "_Reload"
 msgstr "_Recharger"
 
-#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:105
+#: src/widgets/image_page.ui:130 src/widgets/image_window.ui:166
 msgid "Rotate Left"
 msgstr "Faire pivoter vers la gauche"
 
-#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:115
+#: src/widgets/image_page.ui:140 src/widgets/image_window.ui:176
 msgid "Rotate Right"
 msgstr "Faire pivoter vers la droite"
 
 #. Translators: This is a toast notification, informing the user that
 #. an image has been set as background.
-#: src/widgets/image_view.rs:870
+#: src/widgets/image_view.rs:928
 msgid "Set as background."
 msgstr "Définir comme arrière-plan."
 
-#: src/widgets/image_view.rs:876
+#: src/widgets/image_view.rs:934
 msgid "Could not set background."
 msgstr "Impossible de définir comme arrière-plan."
 
@@ -1006,101 +1011,104 @@ msgstr "Niveau de zoom personnalisé"
 msgid "Zoom to Specified Level"
 msgstr "Zoomer vers le niveau indiqué"
 
-#: src/widgets/image_window.rs:509
+#: src/widgets/image_window.rs:540
 msgid "Supported image formats"
 msgstr "Formats d’images pris en charge"
 
-#: src/widgets/image_window.rs:515
+#: src/widgets/image_window.rs:546
 msgid "All files"
 msgstr "Tous les fichiers"
 
-#: src/widgets/image_window.rs:522
+#: src/widgets/image_window.rs:553
 msgid "Open Image"
 msgstr "Ouvrir l’image"
 
-#: src/widgets/image_window.rs:614
+#: src/widgets/image_window.rs:663
+msgid "_Updates"
+msgstr "_Mises à jour"
+
+#: src/widgets/image_window.rs:721
 msgid "Image copied to clipboard"
 msgstr "Image copiée vers le presse-papiers"
 
-#: src/widgets/image_window.rs:635
+#: src/widgets/image_window.rs:742
 msgid "Image moved to trash"
 msgstr "Image mise à la corbeille"
 
-#: src/widgets/image_window.rs:666
+#: src/widgets/image_window.rs:773
 msgid "Failed to move image to trash"
 msgstr "Échec de la mise à la corbeille"
 
-#: src/widgets/image_window.rs:690
+#: src/widgets/image_window.rs:797
 msgid "Permanently Delete Image?"
 msgstr "Supprimer définitivement cette image ?"
 
-#: src/widgets/image_window.rs:692
+#: src/widgets/image_window.rs:799
 #, rust-format
 msgid "After deleting the image “{}” it will be permanently lost."
 msgstr "La suppression de l’image « {} » provoquera sa perte définitive."
 
-#: src/widgets/image_window.rs:701
+#: src/widgets/image_window.rs:808
 msgid "Delete"
 msgstr "Supprimer"
 
-#: src/widgets/image_window.rs:712
+#: src/widgets/image_window.rs:819
 msgid "Failed to delete image"
 msgstr "Échec de la suppression de l’image"
 
-#: src/widgets/image_window.ui:6
+#: src/widgets/image_window.ui:30
 msgid "_New Window"
 msgstr "_Nouvelle fenêtre"
 
-#: src/widgets/image_window.ui:10
+#: src/widgets/image_window.ui:34
 msgid "_Open…"
 msgstr "_Ouvrir…"
 
-#: src/widgets/image_window.ui:40
+#: src/widgets/image_window.ui:64
 msgid "_Make Default Image Viewer"
 msgstr "Définir comme _visionneuse d’images par défaut"
 
-#: src/widgets/image_window.ui:50
+#: src/widgets/image_window.ui:74
 msgid "_Help"
 msgstr "Aid_e"
 
-#: src/widgets/image_window.ui:54
+#: src/widgets/image_window.ui:78
 msgid "_Keyboard Shortcuts"
 msgstr "_Raccourcis clavier"
 
-#: src/widgets/image_window.ui:58
+#: src/widgets/image_window.ui:82
 msgid "_About Glance"
 msgstr "À _propos de Glance"
 
-#: src/widgets/image_window.ui:91
+#: src/widgets/image_window.ui:152
 msgid "Toggle Fullscreen"
 msgstr "Basculer le plein écran"
 
-#: src/widgets/image_window.ui:97
+#: src/widgets/image_window.ui:158
 msgid "Main Menu"
 msgstr "Menu principal"
 
-#: src/widgets/image_window.ui:129
+#: src/widgets/image_window.ui:190
 msgid "Image Properties"
 msgstr "Propriétés de l’image"
 
-#: src/widgets/image_window.ui:136
+#: src/widgets/image_window.ui:197
 msgid "Edit Image"
 msgstr "Modifier l’image"
 
-#: src/widgets/image_window.ui:143
-#
+#: src/widgets/image_window.ui:204
 msgid "Select Text in Image"
 msgstr "Sélectionner le texte de l’image"
 
-#: src/widgets/image_window.ui:231
+#: src/widgets/image_window.ui:292
 msgid "View and Edit Images"
 msgstr "Visionner et modifier des images"
 
-#: src/widgets/image_window.ui:232
+#: src/widgets/image_window.ui:293
 msgid "Drag and drop images here"
 msgstr "Glisser et déposer des images ici"
 
-#: src/widgets/image_window.ui:236
+#: src/widgets/image_window.ui:297
 msgid "_Open Files…"
 msgstr "_Ouvrir des fichiers…"
 
@@ -1388,20 +1396,94 @@ msgstr "Profil ICC"
 msgid "CICP"
 msgstr "CICP"
 
-#: src/widgets/text_layer.rs:107
-#
+#: src/widgets/text_layer.rs:116
 msgid "Copy"
 msgstr "Copier"
 
-#: src/widgets/text_layer.rs:111
+#: src/widgets/text_layer.rs:121
 msgid "Select All"
 msgstr "Tout sélectionner"
 
-#: src/widgets/text_layer.rs:680
-#
+#: src/widgets/text_layer.rs:844
 msgid "Text copied to clipboard"
 msgstr "Texte copié dans le presse-papiers"
 
-#: src/widgets/window.rs:249
+#: src/widgets/update_dialog.rs:72
+msgid "What’s New"
+msgstr "Nouveautés"
+
+#: src/widgets/update_dialog.rs:176
+msgid "Checking for Updates…"
+msgstr "Recherche de mises à jour…"
+
+#: src/widgets/update_dialog.rs:178 src/widgets/update_dialog.rs:200
+#: src/widgets/update_dialog.rs:211 src/widgets/update_dialog.rs:307
+msgid "Close"
+msgstr "Fermer"
+
+#: src/widgets/update_dialog.rs:195
+msgid "Glance Is Up to Date"
+msgstr "Glance est à jour"
+
+#: src/widgets/update_dialog.rs:199
+#, rust-format
+msgid "Version {}"
+msgstr "Version {}"
+
+#: src/widgets/update_dialog.rs:207
+msgid "Could Not Check for Updates"
+msgstr "Impossible de rechercher des mises à jour"
+
+#: src/widgets/update_dialog.rs:210
+msgid "Check your internet connection and try again."
+msgstr "Vérifiez votre connexion Internet et réessayez."
+
+#: src/widgets/update_dialog.rs:213 src/widgets/update_dialog.rs:271
+msgid "Try Again"
+msgstr "Réessayer"
+
+#: src/widgets/update_dialog.rs:220
+#, rust-format
+msgid "Glance {} Is Available"
+msgstr "Glance {} est disponible"
+
+#: src/widgets/update_dialog.rs:224
+#, rust-format
+msgid "You have version {}"
+msgstr "Vous avez la version {}"
+
+#: src/widgets/update_dialog.rs:227
+msgid "Later"
+msgstr "Plus tard"
+
+#: src/widgets/update_dialog.rs:232
+msgid "Update"
+msgstr "Mettre à jour"
+
+#: src/widgets/update_dialog.rs:236
+msgid "Open Download Page"
+msgstr "Ouvrir la page de téléchargement"
+
+#: src/widgets/update_dialog.rs:252
+msgid "Downloading…"
+msgstr "Téléchargement…"
+
+#: src/widgets/update_dialog.rs:270
+msgid "The download failed."
+msgstr "Le téléchargement a échoué."
+
+#: src/widgets/update_dialog.rs:283
+msgid "Restart Glance to use the new version."
+msgstr "Redémarrez Glance pour utiliser la nouvelle version."
+
+#: src/widgets/update_dialog.rs:284
+msgid "Restart Glance"
+msgstr "Redémarrer Glance"
+
+#: src/widgets/update_dialog.rs:306
+msgid "Finish installing in the window that opened."
+msgstr "Terminez l’installation dans la fenêtre qui s’est ouverte."
+
+#: src/widgets/window.rs:251
 msgid "Show Details"
 msgstr "Afficher les détails"

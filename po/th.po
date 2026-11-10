@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-09 20:06+0100\n"
+"POT-Creation-Date: 2026-11-10 08:25+0100\n"
 "PO-Revision-Date: 2024-10-12 21:16+0700\n"
 "Last-Translator: Atirut Wattanamongkol <atirut.wattanamongkol@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -21,9 +21,8 @@ msgstr ""
 
 #: data/io.github.Replexo.Glance.desktop.in.in:2
 #: data/io.github.Replexo.Glance.metainfo.xml.in.in:6
-#: src/widgets/image_window.rs:879
+#: src/widgets/image_window.rs:1008
 #, fuzzy
-#| msgid "Cancel"
 msgid "Glance"
 msgstr "ยกเลิก"
 
@@ -34,13 +33,11 @@ msgstr "โปรแกรมดูภาพ"
 #: data/io.github.Replexo.Glance.desktop.in.in:4
 #: data/io.github.Replexo.Glance.metainfo.xml.in.in:10
 #, fuzzy
-#| msgid "View images"
 msgid "View and edit images"
 msgstr "ดูภาพต่างๆ"
 
 #: data/io.github.Replexo.Glance.desktop.in.in:12
 #, fuzzy
-#| msgid "Picture;Graphics;Loupe;"
 msgid "Picture;Graphics;Loupe;Glance;"
 msgstr "รูปภาพ;กราฟิก;Loupe;"
 
@@ -101,8 +98,6 @@ msgstr "แป้นลัดทั่วไป"
 
 #: data/resources/shortcuts-dialog.ui:9
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Copy Image or Metadata to Clipboard"
 msgctxt "shortcut window"
 msgid "Copy Image or Selected Text to Clipboard"
 msgstr "คัดลอกภาพหรือข้อมูลเมตาลงคลิปบอร์ด"
@@ -301,21 +296,18 @@ msgstr ""
 
 #: data/resources/shortcuts-dialog.ui:253
 #, fuzzy
-#| msgid "Cancel"
 msgctxt "shortcut window"
 msgid "Cancel"
 msgstr "ยกเลิก"
 
 #: data/resources/shortcuts-dialog.ui:271
 #, fuzzy
-#| msgid "_Horizontal"
 msgctxt "shortcut window"
 msgid "Mirror Horizontally"
 msgstr "แนว_นอน"
 
 #: data/resources/shortcuts-dialog.ui:277
 #, fuzzy
-#| msgid "_Vertical"
 msgctxt "shortcut window"
 msgid "Mirror Vertically"
 msgstr "แนว_ตั้ง"
@@ -375,11 +367,11 @@ msgstr ""
 msgid "translator-credits"
 msgstr "Atirut Wattanamongkol <atirut.wattanamongkol@gmail.com>"
 
-#: src/application.rs:178
+#: src/application.rs:226
 msgid "Glance is now the default image viewer"
 msgstr ""
 
-#: src/application.rs:187
+#: src/application.rs:235
 msgid "Could not make Glance the default image viewer"
 msgstr ""
 
@@ -482,7 +474,6 @@ msgstr "เรียกคืนภาพจากถังขยะไม่ส
 
 #: src/widgets/drag_overlay.ui:15
 #, fuzzy
-#| msgid "Image Viewer"
 msgid "Drop Image to View"
 msgstr "โปรแกรมดูภาพ"
 
@@ -518,8 +509,6 @@ msgstr ""
 
 #: src/widgets/edit/crop.rs:42 src/widgets/edit/crop.ui:122
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Original Scale"
 msgid "Original"
 msgstr "ขนาดต้นฉบับ"
 
@@ -529,7 +518,6 @@ msgstr ""
 
 #: src/widgets/edit/crop.rs:842
 #, fuzzy
-#| msgid "Failed to delete image"
 msgid "Failed to Edit Image"
 msgstr "ลบภาพไม่สำเร็จ"
 
@@ -563,21 +551,16 @@ msgstr ""
 
 #: src/widgets/edit/crop.ui:217
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Rotate Counterclockwise"
 msgid "Rotate Counter Clockwise"
 msgstr "หมุนทวนเข็มนาฬิกา"
 
 #: src/widgets/edit/crop.ui:224
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Rotate Clockwise"
 msgid "Rotate Clockwise"
 msgstr "หมุนตามเข็มนาฬิกา"
 
 #: src/widgets/edit/crop.ui:231
 #, fuzzy
-#| msgid "_Horizontal"
 msgid "Mirror Horizontally"
 msgstr "แนว_นอน"
 
@@ -711,13 +694,11 @@ msgstr ""
 
 #: src/widgets/edit/resize_dialog.ui:4
 #, fuzzy
-#| msgid "View Images"
 msgid "Resize Image"
 msgstr "ดูภาพต่างๆ"
 
 #: src/widgets/edit/resize_dialog.ui:15 src/widgets/edit_window.ui:101
 #, fuzzy
-#| msgid "Cancel"
 msgid "_Cancel"
 msgstr "ยกเลิก"
 
@@ -731,7 +712,6 @@ msgstr "ความ_กว้าง"
 
 #: src/widgets/edit/resize_dialog.ui:90
 #, fuzzy
-#| msgid "H_eight"
 msgid "_Height"
 msgstr "ความ_สูง"
 
@@ -748,14 +728,11 @@ msgstr[0] ""
 
 #: src/widgets/edit_window.rs:453
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Move Image to Trash"
 msgid "Moving Original to Trash"
 msgstr "ย้ายภาพลงถังขยะ"
 
 #: src/widgets/edit_window.rs:467 src/widgets/edit_window.rs:496
 #, fuzzy
-#| msgid "Failed to open image"
 msgid "Failed to save image."
 msgstr "เปิดภาพไม่สำเร็จ"
 
@@ -765,27 +742,21 @@ msgstr ""
 
 #: src/widgets/edit_window.rs:531
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "First Image"
 msgid "Editing Image"
 msgstr "ภาพแรก"
 
 #: src/widgets/edit_window.rs:554 src/widgets/edit_window.rs:581
 #, fuzzy
-#| msgid "Failed to delete image"
 msgid "Failed to edit image."
 msgstr "ลบภาพไม่สำเร็จ"
 
 #: src/widgets/edit_window.rs:610
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Navigate Images"
 msgid "Saving Image"
 msgstr "เปลี่ยนภาพ"
 
 #: src/widgets/edit_window.rs:622
 #, fuzzy
-#| msgid "Failed to open image"
 msgid "Failed to Save Image"
 msgstr "เปิดภาพไม่สำเร็จ"
 
@@ -799,7 +770,7 @@ msgid ""
 "permanently lose these modifications."
 msgstr ""
 
-#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:700
+#: src/widgets/edit_window.rs:997 src/widgets/image_window.rs:807
 msgid "Cancel"
 msgstr "ยกเลิก"
 
@@ -815,7 +786,7 @@ msgstr ""
 msgid "Hold to Show Original"
 msgstr ""
 
-#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:636
+#: src/widgets/edit_window.ui:39 src/widgets/image_window.rs:743
 msgid "Undo"
 msgstr "เลิกทำ"
 
@@ -865,7 +836,6 @@ msgstr ""
 
 #: src/widgets/edit_window.ui:217
 #, fuzzy
-#| msgid "Image moved to trash"
 msgid "Original image will be moved to the trash."
 msgstr "ย้ายภาพไปลงขยะแล้ว"
 
@@ -898,56 +868,56 @@ msgstr ""
 msgid "Report _Issue"
 msgstr ""
 
-#: src/widgets/image_page.rs:225
+#: src/widgets/image_page.rs:238
 #, rust-format
 msgid ""
 "No image loaders available. Maybe the “glycin-loaders” package with "
 "compatibility version “{}” is not installed."
 msgstr ""
 
-#: src/widgets/image_page.rs:243
+#: src/widgets/image_page.rs:256
 #, rust-format
 msgid "The image format “{} ({})” is known but not installed."
 msgstr ""
 
-#: src/widgets/image_page.rs:251
+#: src/widgets/image_page.rs:264
 #, rust-format
 msgid "Unknown image format “{} ({}).”"
 msgstr ""
 
-#: src/widgets/image_page.rs:260
+#: src/widgets/image_page.rs:273
 msgid "There is not enough free memory available to load this image."
 msgstr ""
 
-#: src/widgets/image_page.rs:267
+#: src/widgets/image_page.rs:280
 #, fuzzy, rust-format
-#| msgid "Failed to open image"
 msgid "Failed to load image file: {}"
 msgstr "เปิดภาพไม่สำเร็จ"
 
-#: src/widgets/image_page.rs:272
+#: src/widgets/image_page.rs:285
 msgid "Either the image file is corrupted or it contains unsupported elements."
 msgstr ""
 
-#: src/widgets/image_page.ui:6 src/widgets/image_window.ui:16
+#: src/widgets/image_page.ui:6 src/widgets/image_window.ui:6
+#: src/widgets/image_window.ui:40
 msgid "_Open With…"
 msgstr "เ_ปิดด้วย…"
 
-#: src/widgets/image_page.ui:10 src/widgets/image_window.ui:20
+#: src/widgets/image_page.ui:10 src/widgets/image_window.ui:22
+#: src/widgets/image_window.ui:44
 msgid "_Print…"
 msgstr "_พิมพ์…"
 
-#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:25
+#: src/widgets/image_page.ui:15 src/widgets/image_window.ui:49
 msgid "Rotate"
 msgstr "หมุน"
 
-#: src/widgets/image_page.ui:26 src/widgets/image_window.ui:36
+#: src/widgets/image_page.ui:26 src/widgets/image_window.ui:60
 msgid "_Set as Background…"
 msgstr "_ตั้งเป็นพื้นหลัง…"
 
-#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:44
+#: src/widgets/image_page.ui:30 src/widgets/image_window.ui:68
 #, fuzzy
-#| msgid "Delete"
 msgid "_Delete"
 msgstr "ลบ"
 
@@ -967,21 +937,21 @@ msgstr ""
 msgid "_Reload"
 msgstr ""
 
-#: src/widgets/image_page.ui:123 src/widgets/image_window.ui:105
+#: src/widgets/image_page.ui:130 src/widgets/image_window.ui:166
 msgid "Rotate Left"
 msgstr "หมุนไปทางซ้าย"
 
-#: src/widgets/image_page.ui:133 src/widgets/image_window.ui:115
+#: src/widgets/image_page.ui:140 src/widgets/image_window.ui:176
 msgid "Rotate Right"
 msgstr "หมุนไปทางขวา"
 
 #. Translators: This is a toast notification, informing the user that
 #. an image has been set as background.
-#: src/widgets/image_view.rs:870
+#: src/widgets/image_view.rs:928
 msgid "Set as background."
 msgstr "ตั้งเป็นพื้นหลัง"
 
-#: src/widgets/image_view.rs:876
+#: src/widgets/image_view.rs:934
 msgid "Could not set background."
 msgstr "ไม่สามารถตั้งพื้นหลังได้"
 
@@ -1017,109 +987,108 @@ msgstr ""
 msgid "Zoom to Specified Level"
 msgstr ""
 
-#: src/widgets/image_window.rs:509
+#: src/widgets/image_window.rs:540
 msgid "Supported image formats"
 msgstr ""
 
-#: src/widgets/image_window.rs:515
+#: src/widgets/image_window.rs:546
 msgid "All files"
 msgstr ""
 
-#: src/widgets/image_window.rs:522
+#: src/widgets/image_window.rs:553
 msgid "Open Image"
 msgstr ""
 
-#: src/widgets/image_window.rs:614
+#: src/widgets/image_window.rs:663
+msgid "_Updates"
+msgstr ""
+
+#: src/widgets/image_window.rs:721
 msgid "Image copied to clipboard"
 msgstr "คัดลอกภาพลงคลิปบอร์ดแล้ว"
 
-#: src/widgets/image_window.rs:635
+#: src/widgets/image_window.rs:742
 msgid "Image moved to trash"
 msgstr "ย้ายภาพไปลงขยะแล้ว"
 
-#: src/widgets/image_window.rs:666
+#: src/widgets/image_window.rs:773
 msgid "Failed to move image to trash"
 msgstr "ย้ายภาพลงถังขยะไม่สำเร็จ"
 
-#: src/widgets/image_window.rs:690
+#: src/widgets/image_window.rs:797
 msgid "Permanently Delete Image?"
 msgstr "ลบภาพอย่างถาวรหรือไม่?"
 
-#: src/widgets/image_window.rs:692
+#: src/widgets/image_window.rs:799
 #, rust-format
 msgid "After deleting the image “{}” it will be permanently lost."
 msgstr "ภาพ “{}” จะหายไปอย่างถาวรหลังจากการลบ"
 
-#: src/widgets/image_window.rs:701
+#: src/widgets/image_window.rs:808
 msgid "Delete"
 msgstr "ลบ"
 
-#: src/widgets/image_window.rs:712
+#: src/widgets/image_window.rs:819
 msgid "Failed to delete image"
 msgstr "ลบภาพไม่สำเร็จ"
 
-#: src/widgets/image_window.ui:6
+#: src/widgets/image_window.ui:30
 msgid "_New Window"
 msgstr "หน้าต่างให_ม่"
 
-#: src/widgets/image_window.ui:10
+#: src/widgets/image_window.ui:34
 msgid "_Open…"
 msgstr "เ_ปิด"
 
-#: src/widgets/image_window.ui:40
+#: src/widgets/image_window.ui:64
 #, fuzzy
-#| msgid "_About Image Viewer"
 msgid "_Make Default Image Viewer"
 msgstr "เ_กี่ยวกับโปรแกรมดูภาพ"
 
-#: src/widgets/image_window.ui:50
+#: src/widgets/image_window.ui:74
 msgid "_Help"
 msgstr "_วิธีใช้"
 
-#: src/widgets/image_window.ui:54
+#: src/widgets/image_window.ui:78
 msgid "_Keyboard Shortcuts"
 msgstr "แ_ป้นลัด"
 
-#: src/widgets/image_window.ui:58
+#: src/widgets/image_window.ui:82
 msgid "_About Glance"
 msgstr ""
 
-#: src/widgets/image_window.ui:91
+#: src/widgets/image_window.ui:152
 msgid "Toggle Fullscreen"
 msgstr "สลับแบบเต็มหน้าจอ"
 
-#: src/widgets/image_window.ui:97
+#: src/widgets/image_window.ui:158
 msgid "Main Menu"
 msgstr "เมนูหลัก"
 
-#: src/widgets/image_window.ui:129
+#: src/widgets/image_window.ui:190
 msgid "Image Properties"
 msgstr "คุณสมบัติภาพ"
 
-#: src/widgets/image_window.ui:136
+#: src/widgets/image_window.ui:197
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "First Image"
 msgid "Edit Image"
 msgstr "ภาพแรก"
 
-#: src/widgets/image_window.ui:143
+#: src/widgets/image_window.ui:204
 #, fuzzy
-#| msgid "Next Image"
 msgid "Select Text in Image"
 msgstr "ภาพต่อไป"
 
-#: src/widgets/image_window.ui:231
+#: src/widgets/image_window.ui:292
 #, fuzzy
-#| msgid "View Images"
 msgid "View and Edit Images"
 msgstr "ดูภาพต่างๆ"
 
-#: src/widgets/image_window.ui:232
+#: src/widgets/image_window.ui:293
 msgid "Drag and drop images here"
 msgstr "ลากและวางภาพลงที่นี่"
 
-#: src/widgets/image_window.ui:236
+#: src/widgets/image_window.ui:297
 msgid "_Open Files…"
 msgstr "เ_ปิดไฟล์"
 
@@ -1170,8 +1139,6 @@ msgstr ""
 
 #: src/widgets/print.rs:473
 #, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "First Image"
 msgid "Print Image"
 msgstr "ภาพแรก"
 
@@ -1323,7 +1290,6 @@ msgstr ""
 
 #: src/widgets/properties_view.ui:66
 #, fuzzy
-#| msgid "File Size"
 msgid "Physical Size"
 msgstr "ขนาดไฟล์"
 
@@ -1412,22 +1378,96 @@ msgstr ""
 msgid "CICP"
 msgstr ""
 
-#: src/widgets/text_layer.rs:107
+#: src/widgets/text_layer.rs:116
 #, fuzzy
-#| msgid "_Copy"
 msgid "Copy"
 msgstr "_คัดลอก"
 
-#: src/widgets/text_layer.rs:111
+#: src/widgets/text_layer.rs:121
 msgid "Select All"
 msgstr ""
 
-#: src/widgets/text_layer.rs:680
+#: src/widgets/text_layer.rs:844
 #, fuzzy
-#| msgid "Image copied to clipboard"
 msgid "Text copied to clipboard"
 msgstr "คัดลอกภาพลงคลิปบอร์ดแล้ว"
 
-#: src/widgets/window.rs:249
+#: src/widgets/update_dialog.rs:72
+msgid "What’s New"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:176
+msgid "Checking for Updates…"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:178 src/widgets/update_dialog.rs:200
+#: src/widgets/update_dialog.rs:211 src/widgets/update_dialog.rs:307
+msgid "Close"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:195
+msgid "Glance Is Up to Date"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:199
+#, rust-format
+msgid "Version {}"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:207
+msgid "Could Not Check for Updates"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:210
+msgid "Check your internet connection and try again."
+msgstr ""
+
+#: src/widgets/update_dialog.rs:213 src/widgets/update_dialog.rs:271
+msgid "Try Again"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:220
+#, rust-format
+msgid "Glance {} Is Available"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:224
+#, rust-format
+msgid "You have version {}"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:227
+msgid "Later"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:232
+msgid "Update"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:236
+msgid "Open Download Page"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:252
+msgid "Downloading…"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:270
+msgid "The download failed."
+msgstr ""
+
+#: src/widgets/update_dialog.rs:283
+msgid "Restart Glance to use the new version."
+msgstr ""
+
+#: src/widgets/update_dialog.rs:284
+msgid "Restart Glance"
+msgstr ""
+
+#: src/widgets/update_dialog.rs:306
+msgid "Finish installing in the window that opened."
+msgstr ""
+
+#: src/widgets/window.rs:251
 msgid "Show Details"
 msgstr ""

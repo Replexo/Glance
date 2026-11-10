@@ -17,6 +17,7 @@ src/lib.rs
 src/main.rs
 src/metadata.rs
 src/metadata/file.rs
+src/updates.rs
 src/util.rs
 src/util/gettext.rs
 src/util/root.rs
@@ -68,5 +69,6 @@ src/widgets/properties_view.ui
 src/widgets/shy_bin.rs
 src/widgets/sliding_view.rs
 src/widgets/text_layer.rs
+src/widgets/update_dialog.rs
 src/widgets/window.rs
 src/widgets/window.ui

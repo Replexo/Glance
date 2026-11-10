@@ -20,6 +20,7 @@ cargo_env = {
   'APP_ID': app_id,
   'VERSION': version,
   'LOCALEDIR': localedir,
+  'UPDATE_CHECK': get_option('update_check').to_string(),
 }
 
 # Build binary

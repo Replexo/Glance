@@ -18,6 +18,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 pub mod edit;
+pub mod update_dialog;
 
 mod drag_overlay;
 mod edit_window;
