@@ -10,6 +10,7 @@
     "command": "glance",
     "finish-args": [
         "--share=ipc",
+        "--share=network",
         "--socket=fallback-x11",
         "--socket=wayland",
         "--device=dri",
@@ -215,7 +216,8 @@
             "name": "glance",
             "buildsystem": "meson",
             "config-opts": [
-                "-Dprofile=release"
+                "-Dprofile=release",
+                "-Dupdate_check=true"
             ],
             "sources": [
                 {
