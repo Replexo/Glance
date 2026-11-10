@@ -6,17 +6,19 @@
 
 # Glance
 
-**View and edit images on GNOME**
+**Image viewer and photo editor for Linux**
 
 [![Latest release](https://img.shields.io/github/v/release/Replexo/Glance?label=release)](https://github.com/Replexo/Glance/releases/latest)
 [![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue)](COPYING.md)
 [![GTK 4 and libadwaita](https://img.shields.io/badge/GTK%204-libadwaita-4a86cf)](https://gtk.org)
 
-<img src="data/screenshots/promo.webp" width="800" alt="Glance marking up, adjusting and cropping a photo">
+<img src="data/screenshots/promo.webp" width="800" alt="Glance image viewer and photo editor marking up, adjusting and cropping a photo on Linux">
 
 </div>
 
-Glance is an image viewer with an editor built in. Open a picture, mark it up, adjust its colours or crop it, and save, all in the same window. It is a fork of [Loupe](https://gitlab.gnome.org/GNOME/loupe), the GNOME image viewer, so browsing stays fast, sandboxed and touch-friendly.
+Glance is a fast image viewer and photo editor for Linux and GNOME. Open a picture, annotate it, adjust its colours, crop it, copy the text in it, and save, all in the same window. It is a fork of [Loupe](https://gitlab.gnome.org/GNOME/loupe), the GNOME image viewer, so browsing stays fast, sandboxed and touch-friendly.
+
+Glance runs on any Linux desktop and comes as a Flatpak, an AppImage, and packages for Debian and Ubuntu, Fedora and Arch Linux.
 
 ## Features
 
@@ -40,22 +42,39 @@ Brightness, contrast, highlights, shadows and saturation, each on its own slider
 
 Free or fixed aspect ratios, rotate, flip and resize.
 
+### Live text (OCR)
+
+Select and copy text straight from any image: screenshots, scanned pages, photos of signs, screens and documents. Glance finds the text by itself with [Tesseract](https://github.com/tesseract-ocr/tesseract), also when it is turned, tilted or slightly curved, and everything stays on your computer.
+
+It reads English, Spanish, French, German, Portuguese, Russian, Polish and Turkish, using your device language together with English.
+
+<img src="data/screenshots/live-text.webp" width="640" alt="Copying text from a photo of a recipe with Glance live text OCR">
+
 ### And more
 
 - Undo and redo across every kind of edit.
 - Zoom inside the editor for detailed work.
 - **Save a Copy**, or **Replace Original** and move the old file to the trash.
 - **Make Default Image Viewer** in the main menu opens every supported image type with Glance.
+- The Flatpak and AppImage can check for new versions from the main menu.
+
+### Languages
+
+Glance is fully translated into Spanish, German, French, Brazilian Portuguese, Russian, Polish and Turkish. The viewer is also translated into the other 52 languages of Loupe.
 
 ## Install
 
-Download [`glance-1.0.flatpak`](https://github.com/Replexo/Glance/releases/latest/download/glance-1.0.flatpak) from the latest release. Open it with your software centre, or install it from a terminal:
+Download the file for your system from the [latest release](https://github.com/Replexo/Glance/releases/latest):
 
-```sh
-flatpak install --user glance-1.0.flatpak
-```
+| System | File | Install |
+|---|---|---|
+| Any Linux (Flatpak) | [`Glance-1.1-x86_64.flatpak`](https://github.com/Replexo/Glance/releases/latest/download/Glance-1.1-x86_64.flatpak) | `flatpak install --user Glance-1.1-x86_64.flatpak` |
+| Any Linux (AppImage) | [`Glance-1.1-x86_64.AppImage`](https://github.com/Replexo/Glance/releases/latest/download/Glance-1.1-x86_64.AppImage) | `chmod +x Glance-1.1-x86_64.AppImage`, then run it |
+| Ubuntu 25.10 and newer | [`glance_1.1_amd64.deb`](https://github.com/Replexo/Glance/releases/latest/download/glance_1.1_amd64.deb) | `sudo apt install ./glance_1.1_amd64.deb` |
+| Fedora 43 and newer | [`glance-1.1-1.fc43.x86_64.rpm`](https://github.com/Replexo/Glance/releases/latest/download/glance-1.1-1.fc43.x86_64.rpm) | `sudo dnf install ./glance-1.1-1.fc43.x86_64.rpm` |
+| Arch Linux | [`glance-1.1-1-x86_64.pkg.tar.zst`](https://github.com/Replexo/Glance/releases/latest/download/glance-1.1-1-x86_64.pkg.tar.zst) | `sudo pacman -U glance-1.1-1-x86_64.pkg.tar.zst` |
 
-Glance uses the GNOME 51 runtime, which Flatpak downloads from [Flathub](https://flathub.org/setup) if you don't have it yet. Glance is coming to Flathub itself soon, with automatic updates.
+The Flatpak uses the GNOME 51 runtime, which Flatpak downloads from [Flathub](https://flathub.org/setup) if you don't have it yet. Glance is coming to Flathub itself soon, with automatic updates. You can check your download against `SHA256SUMS` on the release page.
 
 To build it yourself instead, see [Build from source](#build-from-source).
 
@@ -79,7 +98,7 @@ All shortcuts are listed under **Keyboard Shortcuts** in the main menu.
 
 ## Build from source
 
-You need GTK 4.20, libadwaita 1.8, libgweather 4, libseccomp, the glycin loaders and Rust 1.93 or newer.
+You need GTK 4.20, libadwaita 1.8, libgweather 4, libseccomp, the glycin loaders, Tesseract 5 with Leptonica, and Rust 1.93 or newer.
 
 ```sh
 meson setup builddir
@@ -109,7 +128,8 @@ Bug reports and ideas are welcome in the [issue tracker](https://github.com/Repl
 - Based on [Loupe](https://gitlab.gnome.org/GNOME/loupe) by Christopher Davis, Sophie Herold and the GNOME contributors.
 - Icons from [MingCute Icons](https://www.mingcute.com/) (Apache-2.0) and [coolicons](https://github.com/krystonschwarze/coolicons) (MIT). See `data/COPYING.mingcute` and `data/COPYING.coolicons`.
 - The set of markup tools follows [Gradia](https://github.com/AlexanderVanhee/Gradia).
-- Translations come from the Loupe translators. Text added by Glance is in English for now.
+- Text recognition by [Tesseract](https://github.com/tesseract-ocr/tesseract) (Apache-2.0).
+- Translations of the viewer come from the Loupe translators.
 
 ## License
 
