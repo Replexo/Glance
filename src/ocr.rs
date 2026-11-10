@@ -50,6 +50,11 @@ const MAX_SIDE: u32 = 4000;
 const TILTS: [f64; 6] = [10., -10., 20., -20., 30., -30.];
 /// Longer sides are scaled down before reading tilted text
 const MAX_TILT_SIDE: u32 = 1800;
+/// Small tilts tried for slightly slanted or curved lines, as in photos
+/// of screens and pages, in degrees clockwise
+const LEANS: [f64; 2] = [3., -3.];
+/// Lines sloping more than this, in degrees, are read again with `LEANS`
+const MAX_SLOPE: f64 = 1.;
 /// Most Tesseract instances reading at once
 const MAX_ENGINES: usize = 4;
 /// Mean confidence of a read that needs no other tries
@@ -252,6 +257,8 @@ enum Pass {
     Turn(u32),
     /// The smaller image tilted clockwise by degrees
     Tilt(f64),
+    /// The upright image tilted clockwise by a few degrees
+    Lean(f64),
 }
 
 /// Runs `passes` on as many engines as there are, returning the words of
@@ -293,6 +300,7 @@ fn run(
                         }
                         Pass::Turn(_) => std::borrow::Cow::Owned(image::imageops::rotate180(small)),
                         Pass::Tilt(tilt) => std::borrow::Cow::Owned(tilt_gray(small, tilt)),
+                        Pass::Lean(tilt) => std::borrow::Cow::Owned(tilt_gray(rgb, tilt)),
                     };
                     let words = match pass {
                         Pass::Sparse => engine.read_with(&image, cancelled, PSM_SPARSE_TEXT),
@@ -339,20 +347,28 @@ fn read_job(engines: &mut Engines, job: &Job) -> anyhow::Result<Vec<Word>> {
     // half, and tilted text, as in photos of signs, from it tilted back. A
     // confident read ends the search, otherwise the best read wins. Words
     // keep their tilt. Passes of a step run in parallel.
-    let mut best: Option<(f32, Vec<Word>)> = None;
+    //
+    // Slightly slanted or curved lines, as in photos of screens, lose
+    // words in the upright read, so when its lines slope it is read again
+    // tilted a little both ways, and the words the best of these reads
+    // missed are taken from the others.
+    let mut reads: Vec<(f32, Vec<Word>, bool)> = Vec::new();
     let mut extra = Vec::new();
     let mut sure = false;
+    let mut sloped = false;
 
     let mut first = vec![Pass::Upright, Pass::Local];
     if rgb.width().min(rgb.height()) / 2 >= MIN_SPARSE_SIDE {
         first.push(Pass::Sparse);
     }
+    let leans = LEANS.map(Pass::Lean);
     let turns = [Pass::Turn(90), Pass::Turn(270), Pass::Turn(180)];
     let tilts = TILTS.map(Pass::Tilt);
 
-    for step in [&first[..], &turns[..], &tilts[..]] {
-        if sure {
-            break;
+    for step in [&first[..], &leans[..], &turns[..], &tilts[..]] {
+        let is_lean = matches!(step[0], Pass::Lean(_));
+        if (is_lean && !sloped) || (!is_lean && sure) {
+            continue;
         }
         for (pass, mut found, size) in run(engines, step, &rgb, &small, &job.cancelled) {
             if job.cancelled.load(Ordering::Relaxed) {
@@ -371,7 +387,13 @@ fn read_job(engines: &mut Engines, job: &Job) -> anyhow::Result<Vec<Word>> {
                     extra.push(found);
                     continue;
                 }
-                Pass::Upright => {}
+                Pass::Upright => sloped = slopes(&found),
+                Pass::Lean(tilt) => {
+                    let from = (size.0 / 2., size.1 / 2.);
+                    for word in &mut found {
+                        tilt_back(word, tilt, from, (width / 2., height / 2.));
+                    }
+                }
                 Pass::Turn(turn) => {
                     for word in &mut found {
                         turn_back(word, turn, small_size.0, small_size.1);
@@ -394,19 +416,27 @@ fn read_job(engines: &mut Engines, job: &Job) -> anyhow::Result<Vec<Word>> {
             let (score, is_sure) = rate(&found);
             // Only a level read can end the search before the tilts
             sure |= is_sure && !matches!(pass, Pass::Tilt(_));
-            if best.as_ref().is_none_or(|(most, _)| score > *most) {
-                best = Some((score, found));
-            }
+            reads.push((score, found, matches!(pass, Pass::Upright | Pass::Lean(_))));
         }
     }
     if job.cancelled.load(Ordering::Relaxed) {
         return Ok(Vec::new());
     }
 
-    let mut words = best.map(|(_, words)| words).unwrap_or_default();
-    for extra in extra {
+    let best = (0..reads.len()).max_by(|&a, &b| reads[a].0.total_cmp(&reads[b].0));
+    let (mut words, level) = best.map_or((Vec::new(), false), |x| {
+        let (_, words, level) = reads.swap_remove(x);
+        (words, level)
+    });
+    // Other level reads only fill gaps in a level read
+    let others = reads
+        .into_iter()
+        .filter(|x| level && x.2)
+        .map(|x| x.1);
+    for extra in others.chain(extra) {
         merge(&mut words, extra);
     }
+    join_lines(&mut words);
     if count_chars(&words) < MIN_CHARS {
         words.clear();
     }
@@ -438,10 +468,11 @@ fn tilt_gray(rgb: &RgbImage, degrees: f64) -> RgbImage {
         let dy = y as f64 + 0.5 - out_h / 2.;
         let sx = dx * cos + dy * sin + w / 2.;
         let sy = -dx * sin + dy * cos + h / 2.;
-        // Smooth edges read better than jagged ones
+        // Sharp, smooth edges read best, so pixels are mixed bicubically.
+        // Bilinear mixing blurs small text and loses many words.
         let (sx, sy) = (sx - 0.5, sy - 0.5);
         let (x0, y0) = (sx.floor(), sy.floor());
-        let (fx, fy) = (sx - x0, sy - y0);
+        let (wx, wy) = (cubic_weights(sx - x0), cubic_weights(sy - y0));
         let pixel = |x: f64, y: f64, c: usize| {
             if x >= 0. && y >= 0. && x < w && y < h {
                 rgb.get_pixel(x as u32, y as u32).0[c] as f64
@@ -450,11 +481,27 @@ fn tilt_gray(rgb: &RgbImage, degrees: f64) -> RgbImage {
             }
         };
         Rgb(std::array::from_fn(|c| {
-            let top = pixel(x0, y0, c) * (1. - fx) + pixel(x0 + 1., y0, c) * fx;
-            let bottom = pixel(x0, y0 + 1., c) * (1. - fx) + pixel(x0 + 1., y0 + 1., c) * fx;
-            (top * (1. - fy) + bottom * fy).round() as u8
+            let mut sum = 0.;
+            for (j, wy) in wy.iter().enumerate() {
+                let y = y0 + j as f64 - 1.;
+                for (i, wx) in wx.iter().enumerate() {
+                    sum += pixel(x0 + i as f64 - 1., y, c) * wx * wy;
+                }
+            }
+            sum.round().clamp(0., 255.) as u8
         }))
     })
+}
+
+/// Catmull-Rom weights of the four pixels around a point `t` past the second
+fn cubic_weights(t: f64) -> [f64; 4] {
+    let (t2, t3) = (t * t, t * t * t);
+    [
+        (-t3 + 2. * t2 - t) / 2.,
+        (3. * t3 - 5. * t2 + 2.) / 2.,
+        (-3. * t3 + 4. * t2 + t) / 2.,
+        (t3 - t2) / 2.,
+    ]
 }
 
 /// Moves a word read from an image tilted clockwise by `degrees` back onto
@@ -495,9 +542,36 @@ fn rate(words: &[Word]) -> (f32, bool) {
     (score, mean >= SURE_CONFIDENCE)
 }
 
+/// Whether a long line of `words` slopes more than `MAX_SLOPE`
+fn slopes(words: &[Word]) -> bool {
+    words.chunk_by(|a, b| a.line == b.line).any(|line| {
+        if line.len() < 4 {
+            return false;
+        }
+        let points = line
+            .iter()
+            .map(|w| (w.x + w.width / 2., w.y + w.height / 2.))
+            .collect::<Vec<_>>();
+        let n = points.len() as f64;
+        let mean_x = points.iter().map(|p| p.0).sum::<f64>() / n;
+        let mean_y = points.iter().map(|p| p.1).sum::<f64>() / n;
+        let (mut xy, mut xx) = (0., 0.);
+        for (x, y) in &points {
+            xy += (x - mean_x) * (y - mean_y);
+            xx += (x - mean_x).powi(2);
+        }
+        // Short lines slope by chance
+        let height = line.iter().map(|w| w.height).sum::<f64>() / n;
+        xx > 0. && xx.sqrt() > height * 8. && (xy / xx).atan().to_degrees().abs() > MAX_SLOPE
+    })
+}
+
 /// Adds the words of `extra` that are not already in `words`
+///
+/// A longer, confident word replaces the shorter pieces it covers, as
+/// parts of slanted lines are often read as fragments. Added words go
+/// next to their neighbours on the same line, so copied text keeps its order.
 fn merge(words: &mut Vec<Word>, extra: Vec<Word>) {
-    let first_line = words.iter().map(|w| w.line + 1).max().unwrap_or(0);
     let bounds = |w: &Word| {
         let (sin, cos) = w.angle.to_radians().sin_cos();
         let half_w = (w.width * cos.abs() + w.height * sin.abs()) / 2.;
@@ -513,18 +587,138 @@ fn merge(words: &mut Vec<Word>, extra: Vec<Word>) {
         w > 0. && h > 0. && w * h > smaller * 0.3
     };
 
-    let new: Vec<Word> = extra
-        .into_iter()
-        .filter(|e| {
-            e.confidence >= EXTRA_CONFIDENCE
-                && count_chars(std::slice::from_ref(e)) >= 3
-                && !words.iter().any(|w| overlaps(w, e))
-        })
-        .collect();
-    words.extend(new.into_iter().map(|mut word| {
-        word.line += first_line;
-        word
-    }));
+    for word in extra {
+        let chars = count_chars(std::slice::from_ref(&word));
+        if word.confidence < EXTRA_CONFIDENCE || chars < 3 {
+            continue;
+        }
+        let covered = (0..words.len())
+            .filter(|&i| overlaps(&words[i], &word))
+            .collect::<Vec<_>>();
+        if !covered.is_empty() {
+            let pieces = covered.iter().map(|&i| &words[i]).cloned().collect::<Vec<_>>();
+            let lowest = pieces.iter().map(|w| w.confidence).fold(f32::MAX, f32::min);
+            if chars <= count_chars(&pieces) || word.confidence + 10. < lowest {
+                continue;
+            }
+            // Takes the place of the first piece
+            let mut word = word;
+            word.line = pieces[0].line;
+            word.paragraph_start = pieces[0].paragraph_start;
+            let at = covered[0];
+            for &i in covered.iter().rev() {
+                words.remove(i);
+            }
+            words.insert(at, word);
+            continue;
+        }
+        insert_in_line(words, word);
+    }
+}
+
+/// Inserts `word` after the nearest word to its left on the same line,
+/// or before the nearest to its right, or else on a new last line
+fn insert_in_line(words: &mut Vec<Word>, mut word: Word) {
+    let centre = |w: &Word| (w.x + w.width / 2., w.y + w.height / 2.);
+    let (x, y) = centre(&word);
+    let same_line = |w: &Word| (centre(w).1 - y).abs() < w.height.max(word.height) / 2.;
+
+    let left = (0..words.len())
+        .filter(|&i| same_line(&words[i]) && centre(&words[i]).0 < x)
+        .max_by(|&a, &b| centre(&words[a]).0.total_cmp(&centre(&words[b]).0));
+    let right = (0..words.len())
+        .filter(|&i| same_line(&words[i]) && centre(&words[i]).0 >= x)
+        .min_by(|&a, &b| centre(&words[a]).0.total_cmp(&centre(&words[b]).0));
+
+    if let Some(i) = left {
+        word.line = words[i].line;
+        word.paragraph_start = false;
+        words.insert(i + 1, word);
+    } else if let Some(i) = right {
+        word.line = words[i].line;
+        word.paragraph_start = words[i].paragraph_start;
+        words[i].paragraph_start = false;
+        words.insert(i, word);
+    } else {
+        word.line = words.iter().map(|w| w.line + 1).max().unwrap_or(0);
+        words.push(word);
+    }
+}
+
+/// Joins line pieces that continue each other on the same line
+///
+/// Reads of slanted lines often split a line into pieces, which then copy
+/// as separate lines. Pieces far apart, as in columns, stay apart.
+fn join_lines(words: &mut Vec<Word>) {
+    let mut pieces: Vec<Vec<Word>> = Vec::new();
+    for word in words.drain(..) {
+        match pieces.iter_mut().find(|x| x[0].line == word.line) {
+            Some(piece) => piece.push(word),
+            None => pieces.push(vec![word]),
+        }
+    }
+
+    let centre_y = |w: &Word| w.y + w.height / 2.;
+    let continues = |a: &[Word], b: &[Word]| {
+        let (last, first) = (&a[a.len() - 1], &b[0]);
+        let height = last.height.max(first.height);
+        let gap = first.x - (last.x + last.width);
+        gap > -height / 2. && gap < height * 3. && (centre_y(first) - centre_y(last)).abs() < height / 2.
+    };
+    let mut next: Vec<Option<usize>> = vec![None; pieces.len()];
+    let mut has_previous = vec![false; pieces.len()];
+    for a in 0..pieces.len() {
+        let closest = (0..pieces.len())
+            .filter(|&b| b != a && !has_previous[b] && continues(&pieces[a], &pieces[b]))
+            .min_by(|&x, &y| pieces[x][0].x.total_cmp(&pieces[y][0].x));
+        if let Some(b) = closest {
+            next[a] = Some(b);
+            has_previous[b] = true;
+        }
+    }
+
+    let mut taken = vec![false; pieces.len()];
+    let mut line = 0;
+    // The first word of the last line, as slanted lines drift up or down
+    let mut line_start = None;
+    // The distance between the last two lines
+    let mut pitch: Option<f64> = None;
+    for start in 0..pieces.len() {
+        if has_previous[start] || taken[start] {
+            continue;
+        }
+        let mut at = Some(start);
+        let mut first = true;
+        // Joined pieces were often paragraphs of their own, so only a gap
+        // clearly wider than the one between the last lines starts one
+        let above = line_start.map(|i: usize| (centre_y(&words[i]), words[i].height));
+        line_start = Some(words.len());
+        while let Some(i) = at.filter(|&i| !taken[i]) {
+            taken[i] = true;
+            for mut word in std::mem::take(&mut pieces[i]) {
+                if first && let Some((y, height)) = above {
+                    let gap = centre_y(&word) - y;
+                    let usual = pitch.unwrap_or(height.max(word.height) * 2.5);
+                    word.paragraph_start &= gap > usual * 1.5;
+                    pitch = Some(gap);
+                }
+                word.paragraph_start &= first;
+                first = false;
+                word.line = line;
+                words.push(word);
+            }
+            at = next[i];
+        }
+        line += 1;
+    }
+    // Pieces left in a loop
+    for piece in pieces.into_iter().filter(|x| !x.is_empty()) {
+        for mut word in piece {
+            word.line = line;
+            words.push(word);
+        }
+        line += 1;
+    }
 }
 
 fn count_chars(words: &[Word]) -> usize {
@@ -900,4 +1094,6 @@ fn data_path() -> Option<CString> {
 unsafe extern "C" fn is_cancelled(cancel_this: *mut c_void, _words: c_int) -> bool {
     unsafe { (*(cancel_this as *const AtomicBool)).load(Ordering::Relaxed) }
 }
+
+
 

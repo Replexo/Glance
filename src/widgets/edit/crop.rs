@@ -473,7 +473,9 @@ mod imp {
                 }
             ));
 
-            // Best fit keeps the picture clear of the pills at the bottom
+            // Best fit keeps the picture clear of the pills at the bottom,
+            // and of the editor's undo pill at the top, which is 36 px high
+            // with 12 px above it
             self.canvas.connect_get_child_position(glib::clone!(
                 #[weak]
                 obj,
@@ -486,7 +488,7 @@ mod imp {
                         let (_, width, _, _) = widget.measure(gtk::Orientation::Horizontal, -1);
                         let (_, pills, _, _) = widget
                             .measure(gtk::Orientation::Vertical, width.min(canvas.width()));
-                        imp.image.set_fit_insets((18., 18., 18., pills as f64 + 12.));
+                        imp.image.set_fit_insets((18., 60., 18., pills as f64 + 12.));
                     }
                     None
                 }
